@@ -420,7 +420,7 @@ class ChartGenerator:
 
         # 제목 및 설명
         subject_list = ', '.join(subjects)
-        title = f'2026 수능 전과목 LLM 모델별 총점 비교'
+        title = f'2026 수능 주요 과목 LLM 모델별 총점 비교'
 
         # 선택과목이 있는 과목 정보 생성
         elective_info = []
