@@ -338,6 +338,147 @@ class ChartGenerator:
             for select_sheet in select_sheets:
                 self.create_breakdown_chart(subject, common_sheet, select_sheet)
 
+    def create_overall_comparison_chart(self):
+        """전과목 합산 비교 차트 생성"""
+        print('\n[전과목 종합]')
+
+        # 모든 과목의 점수 수집
+        subjects = self.loader.get_subjects()
+        model_total_scores = defaultdict(int)
+        subject_details = {}  # 과목별 상세 정보
+
+        for subject in subjects:
+            sheets = self.loader.get_subject_sheets(subject)
+
+            # 단일 시트 과목 (예: 영어, 한국사)
+            if len(sheets) == 1 and sheets[0][1] == '전체':
+                scores = self.loader.load_scores(sheets[0][0])
+                max_score = self.loader.get_max_score(sheets[0][0])
+                subject_details[subject] = {'max': max_score, 'type': 'single'}
+
+                for model, score in scores.items():
+                    model_total_scores[model] += score
+
+            # 공통+선택 과목 (국어, 수학)
+            else:
+                common_sheet = None
+                select_sheets = []
+
+                for sheet_name, part in sheets:
+                    if part == '공통':
+                        common_sheet = (sheet_name, part)
+                    else:
+                        select_sheets.append((sheet_name, part))
+
+                if common_sheet and select_sheets:
+                    # 공통 점수
+                    common_scores = self.loader.load_scores(common_sheet[0])
+                    common_max = self.loader.get_max_score(common_sheet[0])
+
+                    # 모든 선택과목의 평균 점수 계산
+                    select_max = self.loader.get_max_score(select_sheets[0][0])  # 선택과목 만점은 동일
+
+                    # 각 모델별 선택과목 평균 점수 계산
+                    model_select_avg = defaultdict(float)
+                    for select_sheet_name, select_part in select_sheets:
+                        select_scores = self.loader.load_scores(select_sheet_name)
+                        for model, score in select_scores.items():
+                            model_select_avg[model] += score
+
+                    # 평균 계산
+                    num_selects = len(select_sheets)
+                    for model in model_select_avg.keys():
+                        model_select_avg[model] /= num_selects
+
+                    subject_details[subject] = {
+                        'max': common_max + select_max,
+                        'type': 'common+select',
+                        'select_count': num_selects,
+                        'select_names': [part for _, part in select_sheets]
+                    }
+
+                    for model in common_scores.keys():
+                        total = common_scores[model] + model_select_avg.get(model, 0)
+                        model_total_scores[model] += total
+
+        # 데이터 정렬 (점수 내림차순)
+        sorted_items = sorted(model_total_scores.items(), key=lambda x: x[1], reverse=True)
+        model_names = [item[0] for item in sorted_items]
+        total_scores = [item[1] for item in sorted_items]
+
+        # 만점 계산
+        total_max_score = sum(details['max'] for details in subject_details.values())
+
+        # 모델명 짧게 변환
+        model_short = [name.replace(' ', '\n') if len(name) > 10 else name for name in model_names]
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(14, 7))
+        x = np.arange(len(model_names))
+        colors = ChartConfig.get_model_colors(model_names)
+        bars = ax.bar(x, total_scores, color=colors, alpha=0.8, edgecolor='black', linewidth=1.5)
+
+        # 제목 및 설명
+        subject_list = ', '.join(subjects)
+        title = f'2026 수능 전과목 LLM 모델별 총점 비교'
+
+        # 선택과목이 있는 과목 정보 생성
+        elective_info = []
+        for subj, details in subject_details.items():
+            if details['type'] == 'common+select':
+                select_names = ', '.join(details['select_names'])
+                elective_info.append(f"{subj}({select_names} 평균)")
+
+        if elective_info:
+            subtitle = f'포함 과목: {subject_list} | 선택과목: {" / ".join(elective_info)}'
+        else:
+            subtitle = f'포함 과목: {subject_list}'
+
+        ax.set_ylabel('총점 (점)', fontsize=13, fontweight='bold')
+        ax.set_title(title, fontsize=16, fontweight='bold', pad=15)
+        ax.text(0.5, 0.98, subtitle, transform=ax.transAxes,
+                ha='center', va='top', fontsize=11, style='italic', color='#555')
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_short, fontsize=11, fontweight='bold')
+        ax.set_ylim(0, max(total_scores) * 1.15)
+        ax.axhline(y=total_max_score, color='gray', linestyle='--', linewidth=1.5, alpha=0.6,
+                   label=f'만점 ({total_max_score}점)')
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+        ax.legend(fontsize=11, loc='upper right')
+
+        # 점수 및 비율 표시
+        for i, (bar, score) in enumerate(zip(bars, total_scores)):
+            percentage = (score / total_max_score) * 100
+            color = 'red' if score == total_max_score else 'black'
+
+            # 점수 표시 (정수인 경우 소수점 없이, 아니면 소수점 1자리)
+            if score == int(score):
+                score_text = f'{int(score)}점'
+            else:
+                score_text = f'{score:.1f}점'
+
+            ax.text(bar.get_x() + bar.get_width()/2., score + total_max_score * 0.02,
+                    score_text, ha='center', va='bottom', fontsize=12, fontweight='bold', color=color)
+
+            # 백분율 표시
+            ax.text(bar.get_x() + bar.get_width()/2., score / 2,
+                    f'{percentage:.1f}%', ha='center', va='center', fontsize=10,
+                    fontweight='bold', color='white',
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='black', alpha=0.6))
+
+        plt.tight_layout()
+
+        # 파일 저장
+        filename = 'overall_comparison.png'
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        print(f'  📊 총 {len(subjects)}개 과목, 만점 {total_max_score}점')
+
+        return filepath
+
 
 def list_subjects(excel_path):
     """사용 가능한 과목 목록 출력"""
@@ -376,6 +517,10 @@ def main():
                         help='출력 디렉토리')
     parser.add_argument('--list', action='store_true',
                         help='사용 가능한 과목 목록 출력')
+    parser.add_argument('--overall', action='store_true',
+                        help='전과목 합산 비교 차트만 생성')
+    parser.add_argument('--no-overall', action='store_true',
+                        help='전과목 합산 차트 생성 안 함')
 
     args = parser.parse_args()
 
@@ -392,6 +537,17 @@ def main():
     loader = DataLoader(args.excel)
     generator = ChartGenerator(loader, args.output)
 
+    # 전과목 합산 차트만 생성
+    if args.overall:
+        try:
+            generator.create_overall_comparison_chart()
+        except Exception as e:
+            print(f'  ✗ 전과목 합산 차트 생성 실패: {e}')
+        print(f'\n{"="*60}')
+        print('✅ 차트 생성 완료!')
+        print(f'{"="*60}\n')
+        return
+
     # 생성할 과목 결정
     if args.subjects:
         subjects = args.subjects
@@ -404,6 +560,13 @@ def main():
             generator.generate_for_subject(subject, args.mode)
         except Exception as e:
             print(f'  ✗ {subject} 차트 생성 실패: {e}')
+
+    # 전과목 합산 차트 생성 (기본적으로 생성, --no-overall 옵션으로 제외 가능)
+    if not args.no_overall:
+        try:
+            generator.create_overall_comparison_chart()
+        except Exception as e:
+            print(f'  ✗ 전과목 합산 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
