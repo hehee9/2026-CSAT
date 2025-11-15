@@ -338,6 +338,154 @@ class ChartGenerator:
             for select_sheet in select_sheets:
                 self.create_breakdown_chart(subject, common_sheet, select_sheet)
 
+    def create_subject_model_comparison_chart(self):
+        """과목-모델별 상세 비교 차트 생성 (세로 막대)"""
+        print('\n[과목-모델별 상세 비교]')
+
+        subjects = self.loader.get_subjects()
+
+        # 데이터 수집: 과목별로 그룹화
+        subject_data = []  # [(subject_name, [(model, score), ...]), ...]
+
+        for subject in subjects:
+            sheets = self.loader.get_subject_sheets(subject)
+
+            # 단일 시트 과목 (예: 영어, 한국사)
+            if len(sheets) == 1 and sheets[0][1] == '전체':
+                scores = self.loader.load_scores(sheets[0][0])
+                max_score_val = self.loader.get_max_score(sheets[0][0])
+
+                model_scores = [(model, score) for model, score in scores.items()]
+                subject_data.append((subject, model_scores, max_score_val))
+
+            # 공통+선택 과목 (국어, 수학) - 선택과목 평균 사용
+            else:
+                common_sheet = None
+                select_sheets = []
+
+                for sheet_name, part in sheets:
+                    if part == '공통':
+                        common_sheet = (sheet_name, part)
+                    else:
+                        select_sheets.append((sheet_name, part))
+
+                if common_sheet and select_sheets:
+                    common_scores = self.loader.load_scores(common_sheet[0])
+
+                    # 각 모델별 선택과목 평균 계산
+                    model_avg_scores = {}
+                    for model in common_scores.keys():
+                        select_total = 0
+                        for select_sheet_name, select_part in select_sheets:
+                            select_scores = self.loader.load_scores(select_sheet_name)
+                            select_total += select_scores.get(model, 0)
+
+                        # 공통 + 선택과목 평균
+                        avg_score = common_scores[model] + (select_total / len(select_sheets))
+                        model_avg_scores[model] = avg_score
+
+                    model_scores = [(model, score) for model, score in model_avg_scores.items()]
+                    subject_data.append((subject, model_scores, 100))
+
+        # x축 위치 계산 (과목 간 간격 추가)
+        bar_positions = []
+        bar_labels = []
+        bar_scores = []
+        bar_colors = []
+        subject_positions = []  # 과목명 표시 위치
+        subject_names = []
+        subject_max_scores = []  # 각 과목의 만점
+
+        current_pos = 0
+        gap_within_subject = 0.5  # 과목 내부 막대 간 간격 (절반으로 축소)
+        gap_between_subjects = 1.0  # 과목 간 간격
+
+        for subject, model_scores, max_score_val in subject_data:
+            subject_start = current_pos
+
+            for model, score in model_scores:
+                bar_positions.append(current_pos)
+                bar_labels.append(model)  # 긴 이름도 그대로 유지
+                bar_scores.append(score)
+                bar_colors.append(ChartConfig.get_model_colors([model])[0])
+                current_pos += gap_within_subject
+
+            # 과목명 표시 위치 (중앙)
+            subject_center = (subject_start + current_pos - gap_within_subject) / 2
+            subject_positions.append(subject_center)
+            subject_names.append(subject)
+            subject_max_scores.append(max_score_val)
+
+            # 다음 과목을 위한 간격
+            current_pos += gap_between_subjects
+
+        # 전체 y축 최대값 계산 (가장 큰 만점 기준)
+        max_y_limit = max(subject_max_scores) * 1.1
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(16, 7))
+        bar_width = 0.3  # 막대 폭
+
+        bars = ax.bar(bar_positions, bar_scores, width=bar_width, color=bar_colors,
+                      alpha=0.85, edgecolor='black', linewidth=0.5)
+
+        # 제목 및 라벨
+        ax.set_ylabel('점수 (점)', fontsize=16, fontweight='bold')
+        ax.set_title('2026 수능 과목-모델별 상세 성적 비교', fontsize=20, fontweight='bold', pad=20)
+        ax.set_xticks(bar_positions)
+        ax.set_xticklabels(bar_labels, fontsize=11, rotation=45, ha='right')  # 45도 회전
+        ax.set_ylim(0, max_y_limit)
+
+        # 과목별 만점선 표시 (100점과 50점)
+        if 100 in subject_max_scores:
+            ax.axhline(y=100, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='만점 (100점)')
+        if 50 in subject_max_scores:
+            ax.axhline(y=50, color='orange', linestyle='--', linewidth=1, alpha=0.5, label='만점 (50점)')
+
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+        ax.legend(fontsize=12)
+
+        # 점수 표시 - 과목별 만점 매핑
+        # 각 막대의 인덱스로부터 과목 결정
+        bars_per_subject = []
+        idx = 0
+        for subject, model_scores, max_score_val in subject_data:
+            num_models = len(model_scores)
+            bars_per_subject.append((idx, idx + num_models, max_score_val))
+            idx += num_models
+
+        for i, (bar, score) in enumerate(zip(bars, bar_scores)):
+            # 현재 막대가 속한 과목의 만점 찾기
+            current_max = 100
+            for start_idx, end_idx, max_val in bars_per_subject:
+                if start_idx <= i < end_idx:
+                    current_max = max_val
+                    break
+
+            color = 'red' if score == current_max else 'black'
+            score_text = f'{int(score)}' if score == int(score) else f'{score:.1f}'
+            ax.text(bar.get_x() + bar.get_width()/2., score + max_y_limit * 0.015,
+                    score_text, ha='center', va='bottom', fontsize=11, fontweight='bold', color=color)
+
+        # 과목명 표시 (상단, 불투명하게)
+        for pos, name in zip(subject_positions, subject_names):
+            ax.text(pos, max_y_limit * 0.98, name, ha='center', va='bottom', fontsize=15,
+                    fontweight='bold', bbox=dict(boxstyle='round,pad=0.5',
+                    facecolor='white', alpha=1.0, edgecolor='black', linewidth=1.5))
+
+        plt.tight_layout()
+
+        # 파일 저장
+        filename = 'subject_model_comparison.png'
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        print(f'  📊 총 {len(bar_positions)}개 항목, {len(subject_names)}개 과목')
+
+        return filepath
+
     def create_overall_comparison_chart(self):
         """전과목 합산 비교 차트 생성"""
         print('\n[전과목 종합]')
@@ -521,6 +669,10 @@ def main():
                         help='전과목 합산 비교 차트만 생성')
     parser.add_argument('--no-overall', action='store_true',
                         help='전과목 합산 차트 생성 안 함')
+    parser.add_argument('--subject-model', action='store_true',
+                        help='과목-모델별 상세 비교 차트 생성')
+    parser.add_argument('--no-subject-model', action='store_true',
+                        help='과목-모델별 상세 비교 차트 생성 안 함')
 
     args = parser.parse_args()
 
@@ -548,6 +700,17 @@ def main():
         print(f'{"="*60}\n')
         return
 
+    # 과목-모델별 상세 비교 차트만 생성
+    if args.subject_model:
+        try:
+            generator.create_subject_model_comparison_chart()
+        except Exception as e:
+            print(f'  ✗ 과목-모델별 상세 비교 차트 생성 실패: {e}')
+        print(f'\n{"="*60}')
+        print('✅ 차트 생성 완료!')
+        print(f'{"="*60}\n')
+        return
+
     # 생성할 과목 결정
     if args.subjects:
         subjects = args.subjects
@@ -567,6 +730,13 @@ def main():
             generator.create_overall_comparison_chart()
         except Exception as e:
             print(f'  ✗ 전과목 합산 차트 생성 실패: {e}')
+
+    # 과목-모델별 상세 비교 차트 생성 (기본적으로 생성, --no-subject-model 옵션으로 제외 가능)
+    if not args.no_subject_model:
+        try:
+            generator.create_subject_model_comparison_chart()
+        except Exception as e:
+            print(f'  ✗ 과목-모델별 상세 비교 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
