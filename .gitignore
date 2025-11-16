@@ -7,6 +7,7 @@ __pycache__/
 dist/
 build/
 .Python
+generate_charts.py
 
 # Virtual environments
 venv/
