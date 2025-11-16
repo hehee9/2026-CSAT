@@ -36,6 +36,13 @@ desktop.ini
 ~$*.xlsx
 .~lock.*
 
+# Problems folder (copyright-sensitive content)
+problems/
+
+# etc.
+CLAUDE.md
+.claude/
+
 # Don't ignore the main Excel file and images
 !2026 수능 LLM 풀이.xlsx
 !images/

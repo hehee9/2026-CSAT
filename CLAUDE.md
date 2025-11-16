@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a data analysis project tracking LLM (Large Language Model) performance on the 2026 Korean SAT (수능). The project compares multiple models (GPT-5.x series and Gemini 2.5 series) across Korean Language and Math subjects, with detailed scoring and visualization.
+This is a data analysis project tracking LLM (Large Language Model) performance on the 2026 Korean SAT (수능). The project has two main components:
+
+1. **Manual Testing & Visualization**: Excel-based results tracking with automated chart generation
+2. **API Automation**: Automated question submission to multiple LLM APIs for systematic testing
+
+The project compares models from OpenAI (GPT-5 series), Google (Gemini 2.5 series), Anthropic (Claude), DeepSeek, and xAI (Grok) across Korean Language, Math, English, and Korean History subjects.
 
 ## Data Structure
 
@@ -160,3 +165,216 @@ Install with: `pip install pandas openpyxl matplotlib numpy`
 - Common section + one elective = 100 points total
 - Perfect scores (100점) are highlighted in red on charts
 - The Excel file must contain the '정답' column with maximum scores in the 총점 row
+
+---
+
+## API Automation System
+
+The `api_solver.py` script automates sending SAT questions to multiple LLM APIs and collecting answers. This system is separate from the manual Excel-based testing.
+
+### Architecture
+
+```
+problems/ folder (git-ignored)
+    ↓ (questions.json + text files + images)
+SATSolver → APIClient (OpenAI/Anthropic/Google/DeepSeek/Grok)
+    ↓
+APIResponse → results.json
+```
+
+**Key Components**:
+- `Question`: Data class holding question metadata and text loading
+- `ModelConfig`: Configuration for each API (keys, model IDs, rate limits, base URLs)
+- `APIClient`: Base class for API interactions
+- `OpenAIClient`, `AnthropicClient`, `GoogleClient`: API-specific implementations
+- `SATSolver`: Main orchestrator that manages multiple clients and question batches
+
+### Question Storage Structure
+
+Questions are stored in the `problems/` folder (excluded from git for copyright):
+
+```
+problems/
+├── images/
+│   ├── 국어/           # Subject-specific image folder
+│   │   ├── 1_01.png    # Question 1, image 1
+│   │   └── 12_01.png   # Question 12, image 1
+│   └── 수학/
+├── 국어/
+│   ├── 공통/           # Section-specific text files
+│   │   ├── 1.txt       # Question 1 full text
+│   │   └── 2.txt
+│   ├── 화작/
+│   ├── 언매/
+│   └── questions.json  # Metadata: numbers, answers, points, paths
+└── 수학/
+    ├── 공통/
+    ├── 확통/
+    ├── 미적분/
+    ├── 기하/
+    └── questions.json
+```
+
+**questions.json format**:
+```json
+{
+  "subject": "국어",
+  "section": "공통",
+  "questions": [
+    {
+      "number": 12,
+      "type": "multiple_choice",
+      "choices": [1, 2, 3, 4, 5],
+      "correct_answer": 3,
+      "points": 2,
+      "question_path": "problems/국어/공통/12.txt",
+      "image_paths": [
+        "problems/images/국어/12_01.png",
+        "problems/images/국어/12_02.png"
+      ]
+    }
+  ]
+}
+```
+
+### API Client Design
+
+The system uses **API-specific clients** that handle different authentication and request formats:
+
+1. **OpenAI-compatible APIs** (OpenAI, DeepSeek, Grok):
+   - Use OpenAI Python SDK with configurable `base_url`
+   - DeepSeek: `base_url="https://api.deepseek.com"`
+   - Grok: `base_url="https://api.x.ai/v1"`
+   - Images: base64-encoded with data URI scheme
+   - MIME type auto-detection from file extensions
+
+2. **Anthropic (Claude)**:
+   - Uses Anthropic Python SDK
+   - Supports Batch API for 50% cost savings (not yet implemented in solver)
+   - Images: base64 in `source.data` field with `media_type`
+
+3. **Google (Gemini)**:
+   - Dual SDK support: modern `google.genai` and legacy `google-generativeai`
+   - Images: PIL Image objects passed directly (SDK handles conversion)
+   - Auto-detection and fallback between SDKs
+
+### Configuration System
+
+API credentials and settings are stored in `config.json` (git-ignored). See `config.example.json`:
+
+```json
+{
+  "system_prompt": "당신은 한국 수능 문제를 푸는 AI입니다...",
+  "models": [
+    {
+      "name": "GPT-5.1",
+      "api_type": "openai",
+      "api_key": "YOUR_KEY",
+      "model_id": "gpt-5.1",
+      "max_tokens": 128000,
+      "temperature": 1.0,
+      "rate_limit_rpm": 10
+    },
+    {
+      "name": "DeepSeek-V3.2 Chat",
+      "api_type": "deepseek",
+      "api_key": "YOUR_KEY",
+      "model_id": "deepseek-chat",
+      "base_url": "https://api.deepseek.com",
+      "max_tokens": 65536,
+      "temperature": 1.0,
+      "rate_limit_rpm": 10
+    }
+  ]
+}
+```
+
+**Important**: `api_type` determines which client class to use. OpenAI-compatible types (`openai`, `deepseek`, `grok`) all use `OpenAIClient` with different `base_url` values.
+
+### Running the API Solver
+
+```bash
+# List available models from config
+python api_solver.py --list-models
+
+# Solve questions for a specific subject and section
+python api_solver.py --subject 국어 --section 공통
+
+# Use specific models only
+python api_solver.py --subject 수학 --section 확통 --models "GPT-5.1" "Gemini 2.5 Pro"
+
+# Custom config and output files
+python api_solver.py --config custom_config.json --output results_korean.json
+```
+
+Results are saved in JSON format with:
+- Question numbers and model responses
+- Answer extraction results
+- Success/failure status and error messages
+- Timestamps and raw API responses
+
+### Model Capabilities Matrix
+
+| Provider | Vision | Multiple Images | Batch API | OpenAI Compatible |
+|----------|--------|-----------------|-----------|-------------------|
+| OpenAI (GPT) | ✅ | ✅ | ❌ | Native |
+| Anthropic (Claude) | ✅ | ✅ | ✅ | ❌ |
+| Google (Gemini) | ✅ | ✅ (3600 max) | ❌ | ❌ |
+| DeepSeek | ❌ | ❌ | ❌ | ✅ |
+| Grok | ✅ | ✅ | ❌ | ✅ |
+
+**Note**: DeepSeek does not support vision/images - questions with images will fail or be answered without visual context.
+
+### Rate Limiting
+
+Each model config has `rate_limit_rpm` (requests per minute). The `APIClient.rate_limit()` method enforces delays:
+- Tracks last request time
+- Calculates minimum interval: `60 / rate_limit_rpm`
+- Sleeps if needed before next request
+
+This prevents API quota errors and ensures respectful API usage.
+
+### Adding New APIs
+
+To add a new API provider:
+
+1. **If OpenAI-compatible**: Just add to config with appropriate `base_url`
+   ```json
+   {
+     "name": "NewModel",
+     "api_type": "openai",  // or create new type
+     "base_url": "https://api.newprovider.com/v1",
+     "api_key": "...",
+     "model_id": "model-name"
+   }
+   ```
+
+2. **If custom protocol**: Create new client class inheriting `APIClient`
+   - Implement `send_request(question, system_prompt) -> APIResponse`
+   - Handle image encoding if supported
+   - Add to `SATSolver._init_clients()` mapping
+
+3. Update `ModelConfig.api_type` type hints
+
+### Dependencies
+
+```bash
+# Core
+pip install pandas openpyxl matplotlib numpy
+
+# API clients (install as needed)
+pip install openai           # OpenAI, DeepSeek, Grok
+pip install anthropic        # Claude
+pip install google-generativeai  # Gemini
+pip install pillow           # Image handling
+```
+
+### Development Workflow
+
+1. **Add questions**: Create text files and update `questions.json`
+2. **Configure APIs**: Copy `config.example.json` to `config.json`, add keys
+3. **Run solver**: `python api_solver.py --subject 국어 --section 공통`
+4. **Manual entry**: Copy results to Excel file for visualization
+5. **Generate charts**: `python generate_charts.py`
+
+The API automation is designed for systematic testing but results must be manually transferred to Excel for chart generation (no automated integration yet).

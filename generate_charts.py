@@ -39,6 +39,9 @@ class ChartConfig:
 
     GPT_COLOR = '#EA4335'      # OpenAI - 빨간색
     GEMINI_COLOR = '#4285F4'    # Gemini - 파란색
+    CLAUDE_COLOR = '#D2691E'    # Claude - 주황색~갈색 (Chocolate)
+    GROK_COLOR = '#6A4C93'      # Grok - 약간 어두운 보라색
+    DEEPSEEK_COLOR = '#1E3A8A'  # DeepSeek - Gemini보다 어두운 파란색
 
     @staticmethod
     def get_model_colors(models):
@@ -49,9 +52,29 @@ class ChartConfig:
                 colors.append(ChartConfig.GPT_COLOR)
             elif 'Gemini' in model or 'gemini' in model.lower():
                 colors.append(ChartConfig.GEMINI_COLOR)
+            elif 'Claude' in model or 'claude' in model.lower():
+                colors.append(ChartConfig.CLAUDE_COLOR)
+            elif 'Grok' in model or 'grok' in model.lower():
+                colors.append(ChartConfig.GROK_COLOR)
+            elif 'DeepSeek' in model or 'deepseek' in model.lower():
+                colors.append(ChartConfig.DEEPSEEK_COLOR)
             else:
                 colors.append('#666666')
         return colors
+
+    @staticmethod
+    def lighten_color(hex_color, factor=0.5):
+        """색상을 밝게 조정 (factor: 0=원색, 1=흰색)"""
+        # hex를 RGB로 변환
+        hex_color = hex_color.lstrip('#')
+        r, g, b = int(hex_color[0:2], 16), int(hex_color[2:4], 16), int(hex_color[4:6], 16)
+
+        # 밝게 조정 (흰색 방향으로)
+        r = int(r + (255 - r) * factor)
+        g = int(g + (255 - g) * factor)
+        b = int(b + (255 - b) * factor)
+
+        return f'#{r:02x}{g:02x}{b:02x}'
 
 
 class DataLoader:
@@ -178,8 +201,15 @@ class ChartGenerator:
         }
         return replacements.get(text, text.replace(' ', '_').replace('/', '_'))
 
-    def create_summary_chart(self, subject, option_parts, title_suffix=''):
-        """종합 성적 차트 생성"""
+    def create_summary_chart(self, subject, option_parts, title_suffix='', sort_by='name'):
+        """종합 성적 차트 생성
+
+        Args:
+            subject: 과목명
+            option_parts: [(sheet_name, part), ...] 리스트
+            title_suffix: 제목 추가 텍스트
+            sort_by: 정렬 방식 ('name' = 모델명순, 'score' = 성적순)
+        """
         # 각 파트별 점수 로드 및 만점 계산
         all_scores = {}
         model_names = None
@@ -198,17 +228,30 @@ class ChartGenerator:
                     all_scores[model] = 0
                 all_scores[model] += scores.get(model, 0)
 
+        # 정렬 방식에 따라 정렬
+        if sort_by == 'score':
+            # 성적순 (내림차순)
+            sorted_items = sorted(all_scores.items(), key=lambda x: x[1], reverse=True)
+            model_names = [item[0] for item in sorted_items]
+        # else: sort_by == 'name' -> 기존 순서 유지 (엑셀 컬럼 순서)
+
         # 총점 계산
         total_scores = [all_scores[model] for model in model_names]
 
-        # 모델명 짧게 변환
-        model_short = [name.replace(' ', '\n') if len(name) > 10 else name for name in model_names]
+        # 동적 폭 계산: 모델 수에 따라 조정 (절반으로 축소)
+        num_models = len(model_names)
+        fig_width = max(6, min(12, 5 + num_models * 0.4))  # 절반 크기
 
         # 차트 생성
-        fig, ax = plt.subplots(figsize=(12, 6))
-        x = np.arange(len(model_names))
+        fig, ax = plt.subplots(figsize=(fig_width, 5))
+        # 막대 간격 조정 (0.75로 증가)
+        x = np.arange(len(model_names)) * 0.75
         colors = ChartConfig.get_model_colors(model_names)
-        bars = ax.bar(x, total_scores, color=colors, alpha=0.8)
+
+        # 막대 폭 절반 크기 유지
+        bar_width = max(0.2, min(0.4, 0.5 - num_models * 0.01))
+        # 수정된 부분 1: edgecolor와 linewidth를 추가하여 막대에 테두리 적용
+        bars = ax.bar(x, total_scores, width=bar_width, color=colors, alpha=0.8, edgecolor='black', linewidth=0.5)
 
         # 제목 생성
         parts_str = ' + '.join([part for _, part in option_parts])
@@ -219,7 +262,7 @@ class ChartGenerator:
         ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
         ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_short, fontsize=10)
+        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')  # 45도 회전
         ax.set_ylim(0, max(total_scores) * 1.15)
         ax.axhline(y=total_max_score, color='gray', linestyle='--', linewidth=1, alpha=0.5, label=f'만점 ({total_max_score}점)')
         ax.grid(axis='y', alpha=0.3)
@@ -228,14 +271,16 @@ class ChartGenerator:
         # 점수 표시
         for i, (bar, score) in enumerate(zip(bars, total_scores)):
             color = 'red' if score == total_max_score else 'black'
+            # 수정된 부분 2: f-string에서 '점' 텍스트 제거
             ax.text(bar.get_x() + bar.get_width()/2., score + 1.5,
-                    f'{score}점', ha='center', va='bottom', fontsize=11, fontweight='bold', color=color)
+                    f'{score}', ha='center', va='bottom', fontsize=11, fontweight='bold', color=color)
 
         plt.tight_layout()
 
         # 파일명 생성
         option_name = '_'.join([self._get_filename_safe(part) for _, part in option_parts])
-        filename = f'{subject.lower()}_score_{option_name}.png'
+        sort_suffix = '_by_score' if sort_by == 'score' else '_by_name'
+        filename = f'{subject.lower()}_score_{option_name}{sort_suffix}.png'
         filepath = os.path.join(self.output_dir, filename)
 
         plt.savefig(filepath, dpi=150, bbox_inches='tight')
@@ -244,13 +289,29 @@ class ChartGenerator:
         print(f'  ✓ {filename}')
         return filepath
 
-    def create_breakdown_chart(self, subject, common_sheet, select_sheet):
-        """영역별 분포 차트 생성 (Stacked Bar)"""
+    def create_breakdown_chart(self, subject, common_sheet, select_sheet, sort_by='name'):
+        """영역별 분포 차트 생성 (Stacked Bar)
+
+        Args:
+            subject: 과목명
+            common_sheet: 공통 영역 시트 정보
+            select_sheet: 선택 영역 시트 정보
+            sort_by: 정렬 방식 ('name' = 모델명순, 'score' = 성적순)
+        """
         # 점수 로드
         common_scores_dict = self.loader.load_scores(common_sheet[0])
         select_scores_dict = self.loader.load_scores(select_sheet[0])
 
         model_names = list(common_scores_dict.keys())
+
+        # 정렬 방식에 따라 정렬
+        if sort_by == 'score':
+            # 총점 기준 성적순 (내림차순)
+            total_scores_dict = {m: common_scores_dict[m] + select_scores_dict[m] for m in model_names}
+            sorted_items = sorted(total_scores_dict.items(), key=lambda x: x[1], reverse=True)
+            model_names = [item[0] for item in sorted_items]
+        # else: sort_by == 'name' -> 기존 순서 유지 (엑셀 컬럼 순서)
+
         common_scores = [common_scores_dict[m] for m in model_names]
         select_scores = [select_scores_dict[m] for m in model_names]
 
@@ -258,41 +319,53 @@ class ChartGenerator:
         common_max = self.loader.get_max_score(common_sheet[0])
         select_max = self.loader.get_max_score(select_sheet[0])
 
-        # 모델명 짧게 변환
-        model_short = [name.replace(' ', '\n') if len(name) > 10 else name for name in model_names]
+        # 동적 폭 계산 (절반으로 축소)
+        num_models = len(model_names)
+        fig_width = max(6, min(12, 5 + num_models * 0.4))  # 절반 크기
 
         # 차트 생성
-        fig, ax = plt.subplots(figsize=(12, 6))
-        x = np.arange(len(model_names))
+        fig, ax = plt.subplots(figsize=(fig_width, 5))
+        # 막대 간격 조정 (0.75로 증가)
+        x = np.arange(len(model_names)) * 0.75
 
-        bars1 = ax.bar(x, common_scores, label=f'{common_sheet[1]} ({common_max}점)',
-                       color=ChartConfig.SUBJECT_COLORS['공통'])
-        bars2 = ax.bar(x, select_scores, bottom=common_scores,
-                       label=f'{select_sheet[1]} ({select_max}점)',
-                       color=ChartConfig.SUBJECT_COLORS['선택1'])
+        # 막대 폭 절반 크기 유지
+        bar_width = max(0.2, min(0.4, 0.5 - num_models * 0.01))
+
+        # 제작사별 컬러링
+        common_colors = ChartConfig.get_model_colors(model_names)
+        select_colors = [ChartConfig.lighten_color(c, 0.5) for c in common_colors]
+
+        bars1 = ax.bar(x, common_scores, width=bar_width, label='공통 영역',
+                       color=common_colors, edgecolor='black', linewidth=0.5)
+        bars2 = ax.bar(x, select_scores, width=bar_width, bottom=common_scores,
+                       label='선택 영역',
+                       color=select_colors, edgecolor='black', linewidth=0.5)
 
         title = f'2026 수능 {subject} 영역별 점수 분포 ({select_sheet[1]})'
 
         ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
         ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_short, fontsize=10)
-        ax.set_ylim(0, 110)
-        ax.legend(fontsize=11, loc='upper right')
+        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')  # 45도 회전
+        ax.set_ylim(0, 115)  # 상단 여백 증가 (110 -> 115)
+        # 범례를 우상단 유지하되 그래프 박스 위로 완전히 빼내기
+        ax.legend(fontsize=11, loc='lower right', bbox_to_anchor=(1.0, 1.02), frameon=True)
         ax.grid(axis='y', alpha=0.3)
 
         # 총점 표시
         for i, (score_c, score_s) in enumerate(zip(common_scores, select_scores)):
             total = score_c + score_s
             color = 'red' if total == 100 else 'black'
-            ax.text(i, total + 1.5, f'{total}점', ha='center', va='bottom',
+            # 수정된 부분: f-string에서 '점' 텍스트 제거
+            ax.text(x[i], total + 1.5, f'{total}', ha='center', va='bottom',
                     fontsize=10, fontweight='bold', color=color)
 
         plt.tight_layout()
 
         # 파일명 생성
         option_name = self._get_filename_safe(select_sheet[1])
-        filename = f'{subject.lower()}_breakdown_{option_name}.png'
+        sort_suffix = '_by_score' if sort_by == 'score' else '_by_name'
+        filename = f'{subject.lower()}_breakdown_{option_name}{sort_suffix}.png'
         filepath = os.path.join(self.output_dir, filename)
 
         plt.savefig(filepath, dpi=150, bbox_inches='tight')
@@ -307,10 +380,12 @@ class ChartGenerator:
 
         sheets = self.loader.get_subject_sheets(subject)
 
-        # 단일 시트 과목 처리 (예: 영어)
+        # 단일 시트 과목 처리 (예: 영어, 한국사)
         if len(sheets) == 1 and sheets[0][1] == '전체':
             if mode in ['summary', 'all']:
-                self.create_summary_chart(subject, [sheets[0]])
+                # 모델명순/성적순 차트 각각 생성
+                self.create_summary_chart(subject, [sheets[0]], sort_by='name')
+                self.create_summary_chart(subject, [sheets[0]], sort_by='score')
             print(f'  ℹ 단일 시트 과목 - breakdown 차트는 생성하지 않습니다')
             return
 
@@ -328,15 +403,14 @@ class ChartGenerator:
             print(f'  ⚠ 공통 시트를 찾을 수 없습니다.')
             return
 
-        # 종합 차트 생성
-        if mode in ['summary', 'all']:
-            for select_sheet in select_sheets:
-                self.create_summary_chart(subject, [common_sheet, select_sheet])
+        # 국어/수학의 경우 공통+선택 조합의 summary 차트는 생성하지 않음
+        # (breakdown만 유지)
 
-        # 영역별 차트 생성
+        # 영역별 차트 생성 (모델명순/성적순 각각)
         if mode in ['breakdown', 'all']:
             for select_sheet in select_sheets:
-                self.create_breakdown_chart(subject, common_sheet, select_sheet)
+                self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='name')
+                self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='score')
 
     def create_subject_model_comparison_chart(self):
         """과목-모델별 상세 비교 차트 생성 (세로 막대)"""
@@ -422,9 +496,13 @@ class ChartGenerator:
         # 전체 y축 최대값 계산 (가장 큰 만점 기준)
         max_y_limit = max(subject_max_scores) * 1.1
 
+        # 동적 폭 계산 (전체 막대 수 기준)
+        total_bars = len(bar_positions)
+        fig_width = max(14, min(30, 12 + total_bars * 0.3))
+
         # 차트 생성
-        fig, ax = plt.subplots(figsize=(16, 7))
-        bar_width = 0.3  # 막대 폭
+        fig, ax = plt.subplots(figsize=(fig_width, 7))
+        bar_width = max(0.25, min(0.35, 0.5 - total_bars * 0.005))  # 막대 폭 동적 조정
 
         bars = ax.bar(bar_positions, bar_scores, width=bar_width, color=bar_colors,
                       alpha=0.85, edgecolor='black', linewidth=0.5)
@@ -501,6 +579,11 @@ class ChartGenerator:
             # 단일 시트 과목 (예: 영어, 한국사)
             if len(sheets) == 1 and sheets[0][1] == '전체':
                 scores = self.loader.load_scores(sheets[0][0])
+                # 수정된 부분 1: 유효한 점수 데이터가 없으면 해당 과목을 건너뜀
+                if not scores:
+                    print(f'  ℹ {subject} 과목에 유효한 점수 데이터가 없어 총점에서 제외합니다.')
+                    continue
+                
                 max_score = self.loader.get_max_score(sheets[0][0])
                 subject_details[subject] = {'max': max_score, 'type': 'single'}
 
@@ -521,6 +604,11 @@ class ChartGenerator:
                 if common_sheet and select_sheets:
                     # 공통 점수
                     common_scores = self.loader.load_scores(common_sheet[0])
+                    # 수정된 부분 1: 유효한 점수 데이터가 없으면 해당 과목을 건너뜀
+                    if not common_scores:
+                        print(f'  ℹ {subject} 과목에 유효한 점수 데이터가 없어 총점에서 제외합니다.')
+                        continue
+
                     common_max = self.loader.get_max_score(common_sheet[0])
 
                     # 모든 선택과목의 평균 점수 계산
@@ -554,20 +642,25 @@ class ChartGenerator:
         model_names = [item[0] for item in sorted_items]
         total_scores = [item[1] for item in sorted_items]
 
-        # 만점 계산
+        # 만점 계산 (subject_details에 추가된 과목들만 합산하므로 자동으로 유효한 과목만 계산됨)
         total_max_score = sum(details['max'] for details in subject_details.values())
 
-        # 모델명 짧게 변환
-        model_short = [name.replace(' ', '\n') if len(name) > 10 else name for name in model_names]
+        # 동적 폭 계산 (절반으로 축소)
+        num_models = len(model_names)
+        fig_width = max(7, min(14, 6 + num_models * 0.5))  # 절반 크기
 
         # 차트 생성
-        fig, ax = plt.subplots(figsize=(14, 7))
-        x = np.arange(len(model_names))
+        fig, ax = plt.subplots(figsize=(fig_width, 6))
+        # 막대 간격 조정 (0.75로 증가)
+        x = np.arange(len(model_names)) * 0.75
         colors = ChartConfig.get_model_colors(model_names)
-        bars = ax.bar(x, total_scores, color=colors, alpha=0.8, edgecolor='black', linewidth=1.5)
+
+        # 막대 폭 절반 크기 유지
+        bar_width = max(0.25, min(0.4, 0.5 - num_models * 0.0075))
+        bars = ax.bar(x, total_scores, width=bar_width, color=colors, alpha=0.8, edgecolor='black', linewidth=1.5)
 
         # 제목 및 설명
-        subject_list = ', '.join(subjects)
+        subject_list = ', '.join(subject_details.keys()) # subject_details.keys()를 사용해 유효한 과목만 표시
         title = f'2026 수능 주요 과목 LLM 모델별 총점 비교'
 
         # 선택과목이 있는 과목 정보 생성
@@ -587,32 +680,25 @@ class ChartGenerator:
         ax.text(0.5, 0.98, subtitle, transform=ax.transAxes,
                 ha='center', va='top', fontsize=11, style='italic', color='#555')
         ax.set_xticks(x)
-        ax.set_xticklabels(model_short, fontsize=11, fontweight='bold')
-        ax.set_ylim(0, max(total_scores) * 1.15)
+        ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')  # 45도 회전
+        ax.set_ylim(0, max(total_scores) * 1.15 if total_scores else 100)
         ax.axhline(y=total_max_score, color='gray', linestyle='--', linewidth=1.5, alpha=0.6,
                    label=f'만점 ({total_max_score}점)')
         ax.grid(axis='y', alpha=0.3, linestyle='--')
         ax.legend(fontsize=11, loc='upper right')
 
-        # 점수 및 비율 표시
+        # 점수 표시
         for i, (bar, score) in enumerate(zip(bars, total_scores)):
-            percentage = (score / total_max_score) * 100
             color = 'red' if score == total_max_score else 'black'
 
             # 점수 표시 (정수인 경우 소수점 없이, 아니면 소수점 1자리)
             if score == int(score):
-                score_text = f'{int(score)}점'
+                score_text = f'{int(score)}'
             else:
-                score_text = f'{score:.1f}점'
+                score_text = f'{score:.1f}'
 
             ax.text(bar.get_x() + bar.get_width()/2., score + total_max_score * 0.02,
                     score_text, ha='center', va='bottom', fontsize=12, fontweight='bold', color=color)
-
-            # 백분율 표시
-            ax.text(bar.get_x() + bar.get_width()/2., score / 2,
-                    f'{percentage:.1f}%', ha='center', va='center', fontsize=10,
-                    fontweight='bold', color='white',
-                    bbox=dict(boxstyle='round,pad=0.3', facecolor='black', alpha=0.6))
 
         plt.tight_layout()
 
@@ -623,7 +709,7 @@ class ChartGenerator:
         plt.close()
 
         print(f'  ✓ {filename}')
-        print(f'  📊 총 {len(subjects)}개 과목, 만점 {total_max_score}점')
+        print(f'  📊 총 {len(subject_details)}개 과목, 만점 {total_max_score}점')
 
         return filepath
 

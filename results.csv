@@ -1,8 +1,0 @@
-﻿모델,정답수,정답률
-GPT-5.1,33,97.1%
-GPT-5.1 Chat,27,79.4%
-GPT-5 mini,31,91.2%
-GPT-5 nano,14,41.2%
-Gemini 2.5 Pro,34,100.0%
-Gemini 2.5 Flash,33,97.1%
-Gemini 2.5 Flash Lite,28,82.4%
