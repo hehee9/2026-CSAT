@@ -78,15 +78,19 @@
   - DeepSeek V3.2 Exp (Thinking)
   - DeepSeek V3.2 Exp (Non-Thinking)
 
+  ※ DeepSeek는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+
 ## 국어 영역
 
-### 모델별 종합 성적
+### 종합 성적
+![국어 1](images/국어_average_breakdown_by_name.png)
+![국어 2](images/국어_average_breakdown_by_score.png)
 
-#### 화법과 작문
+### 화법과 작문
 ![화법과 작문 1](images/국어_breakdown_화작_by_name.png)
 ![화법과 작문 2](images/국어_breakdown_화작_by_score.png)
 
-#### 언어와 매체
+### 언어와 매체
 ![언어와 매체 1](images/국어_breakdown_언매_by_name.png)
 ![언어와 매체 2](images/국어_breakdown_언매_by_score.png)
 
@@ -153,17 +157,20 @@
 
 ## 수학 영역
 
-### 모델별 종합 성적
+### 종합 성적
 
-#### 확률과 통계
+![수학 1](images/수학_average_breakdown_by_name.png)
+![수학 2](images/수학_average_breakdown_by_score.png)
+
+### 확률과 통계
 ![확률과 통계 1](images/수학_breakdown_확통_by_name.png)
 ![확률과 통계 2](images/수학_breakdown_확통_by_score.png)
 
-#### 미적분
+### 미적분
 ![미분과 적분 1](images/수학_breakdown_미적_by_name.png)
 ![미분과 적분 2](images/수학_breakdown_미적_by_score.png)
 
-#### 기하
+### 기하
 ![기하 1](images/수학_breakdown_geometry_by_name.png)
 ![기하 2](images/수학_breakdown_geometry_by_score.png)
 

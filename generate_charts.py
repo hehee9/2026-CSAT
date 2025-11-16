@@ -374,6 +374,94 @@ class ChartGenerator:
         print(f'  ✓ {filename}')
         return filepath
 
+    def create_elective_average_chart(self, subject, common_sheet, select_sheets, sort_by='name'):
+        """선택과목 평균을 사용한 영역별 분포 차트 생성 (Stacked Bar)
+
+        Args:
+            subject: 과목명
+            common_sheet: 공통 영역 시트 정보
+            select_sheets: 선택 영역 시트 정보 리스트
+            sort_by: 정렬 방식 ('name' = 모델명순, 'score' = 성적순)
+        """
+        # 공통 점수 로드
+        common_scores_dict = self.loader.load_scores(common_sheet[0])
+        model_names = list(common_scores_dict.keys())
+
+        # 각 모델별 선택과목 평균 점수 계산
+        model_select_avg = defaultdict(float)
+        for select_sheet_name, _ in select_sheets:
+            select_scores = self.loader.load_scores(select_sheet_name)
+            for model, score in select_scores.items():
+                model_select_avg[model] += score
+        
+        num_selects = len(select_sheets)
+        if num_selects > 0:
+            for model in model_select_avg.keys():
+                model_select_avg[model] /= num_selects
+
+        # 정렬 방식에 따라 정렬
+        if sort_by == 'score':
+            # 총점(공통+선택평균) 기준 성적순 (내림차순)
+            total_scores_dict = {m: common_scores_dict.get(m, 0) + model_select_avg.get(m, 0) for m in model_names}
+            sorted_items = sorted(total_scores_dict.items(), key=lambda x: x[1], reverse=True)
+            model_names = [item[0] for item in sorted_items]
+
+        common_scores = [common_scores_dict.get(m, 0) for m in model_names]
+        select_avg_scores = [model_select_avg.get(m, 0) for m in model_names]
+
+        # 동적 폭 계산
+        num_models = len(model_names)
+        fig_width = max(6, min(12, 5 + num_models * 0.4))
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(fig_width, 5))
+        x = np.arange(len(model_names)) * 0.75
+        bar_width = max(0.2, min(0.4, 0.5 - num_models * 0.01))
+
+        # 제작사별 컬러링
+        common_colors = ChartConfig.get_model_colors(model_names)
+        select_colors = [ChartConfig.lighten_color(c, 0.5) for c in common_colors]
+
+        ax.bar(x, common_scores, width=bar_width, label='공통 영역',
+               color=common_colors, edgecolor='black', linewidth=0.5)
+        ax.bar(x, select_avg_scores, width=bar_width, bottom=common_scores,
+               label='선택 영역 (평균)',
+               color=select_colors, edgecolor='black', linewidth=0.5)
+
+        title = f'2026 수능 {subject} 영역별 점수 분포 (선택과목 평균)'
+
+        ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
+        ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')
+        ax.set_ylim(0, 115)
+        ax.legend(fontsize=11, loc='lower right', bbox_to_anchor=(1.0, 1.02), frameon=True)
+        ax.grid(axis='y', alpha=0.3)
+
+        # 총점 표시 (소수점 처리 포함)
+        for i, (score_c, score_s_avg) in enumerate(zip(common_scores, select_avg_scores)):
+            total = score_c + score_s_avg
+            color = 'red' if total == 100 else 'black'
+            
+            # 소수점 1자리까지 표기 (정수면 정수로)
+            score_text = f'{total:.1f}' if total % 1 != 0 else f'{int(total)}'
+            
+            ax.text(x[i], total + 1.5, score_text, ha='center', va='bottom',
+                    fontsize=10, fontweight='bold', color=color)
+
+        plt.tight_layout()
+
+        # 파일명 생성
+        sort_suffix = '_by_score' if sort_by == 'score' else '_by_name'
+        filename = f'{subject.lower()}_average_breakdown{sort_suffix}.png'
+        filepath = os.path.join(self.output_dir, filename)
+
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        return filepath
+
     def generate_for_subject(self, subject, mode='all'):
         """특정 과목의 모든 차트 생성"""
         print(f'\n[{subject} 영역]')
@@ -406,7 +494,12 @@ class ChartGenerator:
         # 국어/수학의 경우 공통+선택 조합의 summary 차트는 생성하지 않음
         # (breakdown만 유지)
 
-        # 영역별 차트 생성 (모델명순/성적순 각각)
+        # 선택과목이 2개 이상일 때만 선택과목 평균 차트 생성
+        if len(select_sheets) > 1 and mode in ['breakdown', 'all']:
+            self.create_elective_average_chart(subject, common_sheet, select_sheets, sort_by='name')
+            self.create_elective_average_chart(subject, common_sheet, select_sheets, sort_by='score')
+
+        # 개별 선택과목 breakdown 차트 생성
         if mode in ['breakdown', 'all']:
             for select_sheet in select_sheets:
                 self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='name')
