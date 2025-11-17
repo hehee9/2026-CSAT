@@ -808,22 +808,44 @@ class ChartGenerator:
         model_total_scores = defaultdict(int)
         subject_details = {}  # 과목별 상세 정보
 
+        # 탐구 과목 분류 (국어, 수학, 영어, 한국사가 아닌 과목)
+        core_subjects = {'국어', '수학', '영어', '한국사'}
+        탐구_subjects = []
+
+        for subject in subjects:
+            if subject not in core_subjects:
+                탐구_subjects.append(subject)
+
+        # 탐구 과목이 2개보다 많으면 2개 선택한 것으로 평균 계산
+        탐구_multiplier = 2 / len(탐구_subjects) if len(탐구_subjects) > 0 else 1
+
         for subject in subjects:
             sheets = self.loader.get_subject_sheets(subject)
 
-            # 단일 시트 과목 (예: 영어, 한국사)
+            # 단일 시트 과목 (예: 영어, 한국사, 탐구 과목들)
             if len(sheets) == 1 and sheets[0][1] == '전체':
                 scores = self.loader.load_scores(sheets[0][0])
                 # 수정된 부분 1: 유효한 점수 데이터가 없으면 해당 과목을 건너뜀
                 if not scores:
                     print(f'  ℹ {subject} 과목에 유효한 점수 데이터가 없어 총점에서 제외합니다.')
                     continue
-                
-                max_score = self.loader.get_max_score(sheets[0][0])
-                subject_details[subject] = {'max': max_score, 'type': 'single'}
 
-                for model, score in scores.items():
-                    model_total_scores[model] += score
+                max_score = self.loader.get_max_score(sheets[0][0])
+
+                # 탐구 과목인 경우
+                if subject in 탐구_subjects:
+                    subject_details[subject] = {
+                        'max': max_score * 탐구_multiplier,
+                        'type': 'single',
+                        'is_탐구': True
+                    }
+                    for model, score in scores.items():
+                        model_total_scores[model] += score * 탐구_multiplier
+                else:
+                    # 영어, 한국사 등
+                    subject_details[subject] = {'max': max_score, 'type': 'single'}
+                    for model, score in scores.items():
+                        model_total_scores[model] += score
 
             # 공통+선택 과목 (국어, 수학)
             else:
@@ -925,20 +947,25 @@ class ChartGenerator:
                     select_names = ', '.join(details['select_names'])
                     elective_info.append(f"{subj}({select_names} 평균)")
 
-        # 탐구 과목 정보 추가
+        # 탐구 과목 정보 추가 (2과목 환산)
         if 탐구_subjects:
-            elective_info.append(f"탐구({', '.join(탐구_subjects)})")
+            elective_info.append(f"탐구({', '.join(탐구_subjects)} 2과목 환산)")
 
         if elective_info:
-            subtitle = f'포함 과목: {subject_list} | 선택과목: {" / ".join(elective_info)}'
+            subtitle_line1 = f'포함 과목: {subject_list}'
+            subtitle_line2 = f'선택과목: {" / ".join(elective_info)}'
         else:
-            subtitle = f'포함 과목: {subject_list}'
+            subtitle_line1 = f'포함 과목: {subject_list}'
+            subtitle_line2 = ''
 
         ax.set_ylabel('총점 (점)', fontsize=13, fontweight='bold')
-        ax.set_title(title, fontsize=16, fontweight='bold', pad=35)  # pad 증가 (15 -> 35)
-        # 포함 과목 정보를 그래프 박스 바깥(제목 아래)에 배치
-        fig.text(0.5, 0.92, subtitle, ha='center', va='top',
+        ax.set_title(title, fontsize=16, fontweight='bold', pad=45)  # pad 증가 (35 -> 45)
+        # 포함 과목 정보를 그래프 박스 바깥(제목 아래)에 2줄로 배치
+        fig.text(0.5, 0.93, subtitle_line1, ha='center', va='top',
                  fontsize=11, style='italic', color='#555', transform=fig.transFigure)
+        if subtitle_line2:
+            fig.text(0.5, 0.895, subtitle_line2, ha='center', va='top',
+                     fontsize=11, style='italic', color='#555', transform=fig.transFigure)
         ax.set_xticks(x)
         ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')  # 45도 회전
         ax.set_ylim(0, max(total_scores) * 1.15 if total_scores else 100)
