@@ -37,7 +37,7 @@ class ChartConfig:
         '선택4': '#4285F4',
     }
 
-    GPT_COLOR = '#EA4335'      # OpenAI - 빨간색
+    GPT_COLOR = '#EA4335'       # OpenAI - 빨간색
     GEMINI_COLOR = '#4285F4'    # Gemini - 파란색
     CLAUDE_COLOR = '#D2691E'    # Claude - 주황색~갈색 (Chocolate)
     GROK_COLOR = '#6A4C93'      # Grok - 약간 어두운 보라색
@@ -180,9 +180,92 @@ class DataLoader:
 
         return 100  # 기본값
 
+    def load_question_answers(self, sheet_name):
+        """문항별 모든 모델의 응답 로드
+
+        Returns:
+            dict: {
+                'questions': [1, 2, 3, ...],
+                'correct_answers': {1: 3, 2: 5, ...},
+                'model_answers': {
+                    'GPT-5.1': {1: 3, 2: 5, ...},
+                    'Gemini 2.5 Pro': {1: 4, 2: 5, ...},
+                    ...
+                }
+            }
+        """
+        df = pd.read_excel(self.excel_path, sheet_name=sheet_name)
+
+        # 헤더 행 찾기
+        header_row_idx = None
+        for idx in range(min(5, len(df))):
+            if '문항 번호' in str(df.iloc[idx, 0]):
+                header_row_idx = idx
+                break
+
+        if header_row_idx is None:
+            raise ValueError(f"'{sheet_name}' 시트에서 헤더를 찾을 수 없습니다.")
+
+        # 데이터 정리
+        headers = df.iloc[header_row_idx].values
+        df_clean = df.iloc[header_row_idx+1:].copy()
+        df_clean.columns = headers
+
+        # 총점 행 제외 (문항 번호가 숫자인 행만 선택)
+        df_questions = df_clean[pd.to_numeric(df_clean['문항 번호'], errors='coerce').notna()].copy()
+        df_questions['문항 번호'] = pd.to_numeric(df_questions['문항 번호'])
+
+        # 문항 번호 리스트
+        questions = sorted(df_questions['문항 번호'].astype(int).tolist())
+
+        # 정답 매핑
+        correct_answers = {}
+        if '정답' in df_questions.columns:
+            for _, row in df_questions.iterrows():
+                q_num = int(row['문항 번호'])
+                answer = row['정답']
+                if pd.notna(answer):
+                    try:
+                        correct_answers[q_num] = int(answer)
+                    except:
+                        pass
+
+        # 모델별 응답 추출
+        model_answers = {}
+        for col in df_clean.columns:
+            col_str = str(col).strip()
+            # 불필요한 컬럼 제외
+            if col_str in ['문항 번호', '정답', 'nan', '']:
+                continue
+            if 'Unnamed' in col_str:
+                continue
+
+            # 이 모델의 응답 추출
+            answers = {}
+            for _, row in df_questions.iterrows():
+                q_num = int(row['문항 번호'])
+                answer = row[col]
+                # 유효한 응답만 포함 (NaN 제외)
+                if pd.notna(answer):
+                    try:
+                        answers[q_num] = int(answer)
+                    except:
+                        pass
+
+            model_answers[col_str] = answers
+
+        return {
+            'questions': questions,
+            'correct_answers': correct_answers,
+            'model_answers': model_answers
+        }
+
 
 class ChartGenerator:
     """차트 생성기 클래스"""
+
+    # 수학 서술형 문항 번호 (선지 선택률 차트에서 제외)
+    MATH_DESCRIPTIVE_QUESTIONS = {16, 17, 18, 19, 20, 21, 22, 29, 30}
 
     def __init__(self, data_loader, output_dir='images'):
         self.loader = data_loader
@@ -200,6 +283,199 @@ class ChartGenerator:
             '공통': 'common',
         }
         return replacements.get(text, text.replace(' ', '_').replace('/', '_'))
+
+    def _calculate_choice_rates(self, question_data, subject):
+        """선지별 선택률 계산 (무응답 제외)
+
+        Args:
+            question_data: load_question_answers() 결과
+            subject: 과목명 (수학일 경우 서술형 제외)
+
+        Returns:
+            dict: {
+                question_number: {
+                    'choices': [1, 2, 3, 4, 5],
+                    'rates': [0.8, 0.0, 0.12, 0.04, 0.04],  # 선지별 선택률
+                    'correct': 1,  # 정답 선지
+                    'total_responses': 25  # 총 응답 수 (무응답 제외)
+                },
+                ...
+            }
+        """
+        questions = question_data['questions']
+        correct_answers = question_data['correct_answers']
+        model_answers = question_data['model_answers']
+
+        # 수학인 경우 서술형 문항 제외
+        if subject == '수학':
+            questions = [q for q in questions if q not in self.MATH_DESCRIPTIVE_QUESTIONS]
+
+        choice_stats = {}
+
+        for q_num in questions:
+            # 이 문항에 대한 모든 모델의 응답 수집
+            responses = []
+            for model_name, answers in model_answers.items():
+                if q_num in answers:
+                    responses.append(answers[q_num])
+
+            # 응답이 없으면 건너뛰기
+            if not responses:
+                continue
+
+            # 선지별 개수 계산 (1~5 범위로 가정)
+            choice_counts = {i: 0 for i in range(1, 6)}
+            for response in responses:
+                if 1 <= response <= 5:
+                    choice_counts[response] += 1
+
+            total_responses = len(responses)
+
+            # 선택률 계산 (백분율)
+            rates = [choice_counts[i] / total_responses * 100 for i in range(1, 6)]
+
+            choice_stats[q_num] = {
+                'choices': list(range(1, 6)),
+                'rates': rates,
+                'correct': correct_answers.get(q_num, None),
+                'total_responses': total_responses
+            }
+
+        return choice_stats
+
+    def create_choice_rate_chart(self, subject, sheet_name, section):
+        """과목별 문항 선지 선택률 차트 생성 (세로 막대 그래프)
+
+        Args:
+            subject: 과목명
+            sheet_name: 시트명
+            section: 영역명 (공통, 화작, 언매, 확통, 미적분, 기하 등)
+        """
+        # 응답 데이터 로드
+        question_data = self.loader.load_question_answers(sheet_name)
+        choice_stats = self._calculate_choice_rates(question_data, subject)
+
+        if not choice_stats:
+            print(f'  ℹ {subject}-{section}: 선택률 데이터가 없습니다.')
+            return
+
+        questions = sorted(choice_stats.keys())
+        choice_symbols = {1: '①', 2: '②', 3: '③', 4: '④', 5: '⑤'}
+
+        # 문항당 너비 계산
+        question_width = 2.5  # 각 문항당 너비 (인치)
+        fig_width = max(12, len(questions) * question_width + 2)
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(fig_width, 8))
+
+        # X축 위치 계산
+        bar_width = 0.15  # 각 선지의 막대 폭
+        x_base = np.arange(len(questions)) * 0.85  # 문항 간격 (줄임)
+
+        # 선지별로 막대 그리기 (①②③④⑤)
+        for choice_idx in range(1, 6):
+            x_positions = []
+            heights = []
+            colors = []
+            edge_widths = []
+
+            for q_idx, q_num in enumerate(questions):
+                stats = choice_stats[q_num]
+                correct = stats['correct']
+                rate = stats['rates'][choice_idx - 1]  # 1-based to 0-based index
+
+                x_positions.append(x_base[q_idx] + (choice_idx - 3) * bar_width)
+                heights.append(rate)
+
+                # 정답 여부에 따라 색상 결정 (선택률에 따라 강도 조절)
+                # 낮은 비율 = 연한(밝은) 색, 높은 비율 = 진한(어두운) 색
+                # 흰색(255)에서 목표 색상으로 블렌딩
+
+                if choice_idx == correct:
+                    # 정답: 초록색 계열 (RGB: 46, 125, 50 = #2E7D32)
+                    target_r, target_g, target_b = 46, 125, 50
+                    blend = 0.2 + (rate / 100.0) * 0.8  # 0.2~1.0
+                    edge_widths.append(0.5)
+                else:
+                    # 오답: 빨간색 계열 (RGB: 211, 47, 47 = #D32F2F)
+                    target_r, target_g, target_b = 211, 47, 47
+                    blend = 0.1 + (rate / 100.0) * 0.6  # 0.1~0.7
+                    edge_widths.append(0.5)
+
+                # 흰색에서 목표 색상으로 보간
+                white = 255
+                r = int(white + (target_r - white) * blend)
+                g = int(white + (target_g - white) * blend)
+                b = int(white + (target_b - white) * blend)
+                colors.append(f'#{r:02x}{g:02x}{b:02x}')
+
+            # 막대 그리기
+            for x, h, c, ew in zip(x_positions, heights, colors, edge_widths):
+                ax.bar(x, h, width=bar_width, color=c, alpha=1.0,
+                      edgecolor='black', linewidth=ew)
+
+                # 선택률 표시 (0보다 클 때만)
+                if h > 0:
+                    # 진한 색상일 때 텍스트도 굵게
+                    fontweight = 'bold' if h >= 50 else 'normal'
+                    # 소수점이 0이면 정수로, 아니면 소수점 1자리로 표시 (% 기호 제거)
+                    rate_text = f'{int(h)}' if h == int(h) else f'{h:.1f}'
+                    ax.text(x, h + 2, rate_text, ha='center', va='bottom',
+                           fontsize=13, fontweight=fontweight, rotation=0)
+
+        # 선지 기호를 모든 문항의 X축 레이블로 표시 (상단)
+        # X축 틱을 각 선지 위치에 설정
+        all_x_positions = []
+        all_labels = []
+        for q_idx, q_num in enumerate(questions):
+            for choice_idx in range(1, 6):
+                x_pos = x_base[q_idx] + (choice_idx - 3) * bar_width
+                all_x_positions.append(x_pos)
+                all_labels.append(choice_symbols[choice_idx])
+
+        ax.set_xticks(all_x_positions)
+        ax.set_xticklabels(all_labels, fontsize=14, rotation=0)
+
+        # 문항 번호를 X축 아래에 표시
+        for q_idx, q_num in enumerate(questions):
+            ax.text(x_base[q_idx], -15, f'{q_num}번', ha='center', va='top',
+                   fontsize=15, fontweight='normal')
+
+        # 문항 간 구분선 추가 (연한 회색 세로선)
+        for q_idx in range(1, len(questions)):
+            # 이전 문항의 마지막 선지와 현재 문항의 첫 선지 사이
+            separator_x = (x_base[q_idx-1] + x_base[q_idx]) / 2
+            ax.axvline(x=separator_x, color='lightgray', linestyle='-', linewidth=1, alpha=0.5, zorder=0)
+
+        # 축 설정
+        ax.set_ylim(0, 110)
+        ax.set_ylabel('선택률', fontsize=16, fontweight='bold')
+        ax.set_title(f'2026 수능 {subject} 영역 문항별 선지 선택률 ({section})',
+                    fontsize=18, fontweight='bold', pad=20)
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+        ax.axhline(y=0, color='black', linewidth=1)
+
+        # 범례 추가 (그래프 박스 외부 상단)
+        from matplotlib.patches import Patch
+        legend_elements = [
+            Patch(facecolor='#2E7D32', alpha=1.0, edgecolor='black', linewidth=0.5, label='정답 (초록, 선택률에 따라 진함)'),
+            Patch(facecolor='#D32F2F', alpha=1.0, edgecolor='black', linewidth=0.5, label='오답 (빨강, 선택률에 따라 진함)')
+        ]
+        ax.legend(handles=legend_elements, loc='lower right', bbox_to_anchor=(1.0, 1.02), fontsize=13, frameon=True)
+
+        plt.tight_layout()
+
+        # 파일명 생성
+        section_safe = self._get_filename_safe(section)
+        filename = f'{subject.lower()}_choice_rate_{section_safe}.png'
+        filepath = os.path.join(self.output_dir, filename)
+
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        return filepath
 
     def create_summary_chart(self, subject, option_parts, title_suffix='', sort_by='name'):
         """종합 성적 차트 생성
@@ -460,8 +736,14 @@ class ChartGenerator:
         print(f'  ✓ {filename}')
         return filepath
 
-    def generate_for_subject(self, subject, mode='all'):
-        """특정 과목의 모든 차트 생성"""
+    def generate_for_subject(self, subject, mode='all', include_choice_rate=False):
+        """특정 과목의 모든 차트 생성
+
+        Args:
+            subject: 과목명
+            mode: 차트 종류 (summary/breakdown/all)
+            include_choice_rate: 선지 선택률 차트 생성 여부
+        """
         print(f'\n[{subject} 영역]')
 
         sheets = self.loader.get_subject_sheets(subject)
@@ -472,6 +754,11 @@ class ChartGenerator:
                 # 모델명순/성적순 차트 각각 생성
                 self.create_summary_chart(subject, [sheets[0]], sort_by='name')
                 self.create_summary_chart(subject, [sheets[0]], sort_by='score')
+
+            # 선지 선택률 차트 생성 (단일 시트 과목)
+            if include_choice_rate:
+                self.create_choice_rate_chart(subject, sheets[0][0], sheets[0][1])
+
             print(f'  ℹ 단일 시트 과목 - breakdown 차트는 생성하지 않습니다')
             return
 
@@ -502,6 +789,15 @@ class ChartGenerator:
             for select_sheet in select_sheets:
                 self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='name')
                 self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='score')
+
+        # 선지 선택률 차트 생성 (공통 + 각 선택과목별)
+        if include_choice_rate:
+            # 공통 영역
+            self.create_choice_rate_chart(subject, common_sheet[0], common_sheet[1])
+
+            # 각 선택과목
+            for select_sheet in select_sheets:
+                self.create_choice_rate_chart(subject, select_sheet[0], select_sheet[1])
 
     def create_overall_comparison_chart(self):
         """전과목 합산 비교 차트 생성"""
@@ -599,15 +895,39 @@ class ChartGenerator:
         bars = ax.bar(x, total_scores, width=bar_width, color=colors, alpha=0.9, edgecolor='black', linewidth=1.5)
 
         # 제목 및 설명
-        subject_list = ', '.join(subject_details.keys()) # subject_details.keys()를 사용해 유효한 과목만 표시
+        # 과목 순서: 국어 - 수학 - 영어 - 한국사 - 탐구
+        subject_order = ['국어', '수학', '영어', '한국사']
+        탐구_subjects = []
+        ordered_subjects = []
+
+        for subj in subject_order:
+            if subj in subject_details:
+                ordered_subjects.append(subj)
+
+        # 탐구 과목 수집
+        for subj in subject_details.keys():
+            if subj not in subject_order:  # 국어/수학/영어/한국사가 아닌 것들은 탐구로 간주
+                탐구_subjects.append(subj)
+
+        # 탐구 과목이 있으면 뭉쳐서 추가
+        if 탐구_subjects:
+            ordered_subjects.append('탐구')
+
+        subject_list = ', '.join(ordered_subjects)
         title = f'2026 수능 주요 과목 LLM 모델별 총점 비교'
 
-        # 선택과목이 있는 과목 정보 생성
+        # 선택과목 정보 생성
         elective_info = []
-        for subj, details in subject_details.items():
-            if details['type'] == 'common+select':
-                select_names = ', '.join(details['select_names'])
-                elective_info.append(f"{subj}({select_names} 평균)")
+        for subj in subject_order:
+            if subj in subject_details:
+                details = subject_details[subj]
+                if details['type'] == 'common+select':
+                    select_names = ', '.join(details['select_names'])
+                    elective_info.append(f"{subj}({select_names} 평균)")
+
+        # 탐구 과목 정보 추가
+        if 탐구_subjects:
+            elective_info.append(f"탐구({', '.join(탐구_subjects)})")
 
         if elective_info:
             subtitle = f'포함 과목: {subject_list} | 선택과목: {" / ".join(elective_info)}'
@@ -615,9 +935,10 @@ class ChartGenerator:
             subtitle = f'포함 과목: {subject_list}'
 
         ax.set_ylabel('총점 (점)', fontsize=13, fontweight='bold')
-        ax.set_title(title, fontsize=16, fontweight='bold', pad=15)
-        ax.text(0.5, 0.98, subtitle, transform=ax.transAxes,
-                ha='center', va='top', fontsize=11, style='italic', color='#555')
+        ax.set_title(title, fontsize=16, fontweight='bold', pad=35)  # pad 증가 (15 -> 35)
+        # 포함 과목 정보를 그래프 박스 바깥(제목 아래)에 배치
+        fig.text(0.5, 0.92, subtitle, ha='center', va='top',
+                 fontsize=11, style='italic', color='#555', transform=fig.transFigure)
         ax.set_xticks(x)
         ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')  # 45도 회전
         ax.set_ylim(0, max(total_scores) * 1.15 if total_scores else 100)
@@ -698,6 +1019,8 @@ def main():
                         help='과목-모델별 상세 비교 차트 생성')
     parser.add_argument('--no-subject-model', action='store_true',
                         help='과목-모델별 상세 비교 차트 생성 안 함')
+    parser.add_argument('--choice-rate', action='store_true',
+                        help='과목별 문항 선지 선택률 차트 생성')
 
     args = parser.parse_args()
 
@@ -734,7 +1057,7 @@ def main():
     # 각 과목별 차트 생성
     for subject in subjects:
         try:
-            generator.generate_for_subject(subject, args.mode)
+            generator.generate_for_subject(subject, args.mode, include_choice_rate=args.choice_rate)
         except Exception as e:
             print(f'  ✗ {subject} 차트 생성 실패: {e}')
 
