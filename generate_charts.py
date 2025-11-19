@@ -272,6 +272,12 @@ class ChartGenerator:
         self.output_dir = output_dir
         os.makedirs(output_dir, exist_ok=True)
 
+    def _add_watermark(self, ax):
+        """차트 좌상단에 워터마크 추가"""
+        ax.text(0.01, 1.02, 'Github/hehee9', transform=ax.transAxes,
+                fontsize=10, color='gray', alpha=0.7,
+                ha='left', va='bottom')
+
     def _get_filename_safe(self, text):
         """파일명으로 안전한 문자열 변환"""
         replacements = {
@@ -464,6 +470,9 @@ class ChartGenerator:
         ]
         ax.legend(handles=legend_elements, loc='lower right', bbox_to_anchor=(1.0, 1.02), fontsize=13, frameon=True)
 
+        # 워터마크 추가
+        self._add_watermark(ax)
+
         plt.tight_layout()
 
         # 파일명 생성
@@ -548,6 +557,9 @@ class ChartGenerator:
             color = 'red' if score == total_max_score else 'black'
             ax.text(bar.get_x() + bar.get_width()/2., score + 1.5,
                     f'{score}', ha='center', va='bottom', fontsize=11, fontweight='bold', color=color)
+
+        # 워터마크 추가
+        self._add_watermark(ax)
 
         plt.tight_layout()
 
@@ -634,6 +646,9 @@ class ChartGenerator:
             ax.text(x[i], total + 1.5, f'{total}', ha='center', va='bottom',
                     fontsize=10, fontweight='bold', color=color)
 
+        # 워터마크 추가
+        self._add_watermark(ax)
+
         plt.tight_layout()
 
         # 파일명 생성
@@ -716,12 +731,15 @@ class ChartGenerator:
         for i, (score_c, score_s_avg) in enumerate(zip(common_scores, select_avg_scores)):
             total = score_c + score_s_avg
             color = 'red' if total == 100 else 'black'
-            
+
             # 소수점 1자리까지 표기 (정수면 정수로)
             score_text = f'{total:.1f}' if total % 1 != 0 else f'{int(total)}'
-            
+
             ax.text(x[i], total + 1.5, score_text, ha='center', va='bottom',
                     fontsize=10, fontweight='bold', color=color)
+
+        # 워터마크 추가
+        self._add_watermark(ax)
 
         plt.tight_layout()
 
@@ -987,6 +1005,9 @@ class ChartGenerator:
             ax.text(bar.get_x() + bar.get_width()/2., score + total_max_score * 0.02,
                     score_text, ha='center', va='bottom', fontsize=12, fontweight='bold', color=color)
 
+        # 워터마크 추가
+        self._add_watermark(ax)
+
         plt.tight_layout()
 
         # 파일 저장
@@ -997,6 +1018,208 @@ class ChartGenerator:
 
         print(f'  ✓ {filename}')
         print(f'  📊 총 {len(subject_details)}개 과목, 만점 {total_max_score}점')
+
+        return filepath
+
+    def create_overall_best_worst_chart(self):
+        """전과목 최고/최저점 조합 비교 차트 생성
+
+        선택과목 조합:
+        - 국어: 언매/화작 중 1개
+        - 수학: 확통/미적분/기하 중 1개
+        - 탐구: 물1/화1/생1/사문 중 2개
+        """
+        print('\n[전과목 종합 - 최고/최저점 조합]')
+
+        from itertools import combinations
+
+        subjects = self.loader.get_subjects()
+
+        # 과목별 데이터 수집
+        # 영어, 한국사: 고정 점수
+        # 국어, 수학: 공통 + 선택과목별 점수
+        # 탐구: 각 과목별 점수
+
+        fixed_scores = {}  # 영어, 한국사
+        korean_data = {'common': {}, 'electives': {}}  # 국어
+        math_data = {'common': {}, 'electives': {}}  # 수학
+        science_scores = {}  # 탐구 과목들
+
+        # 탐구 과목 목록 (실제 데이터에서 확인)
+        core_subjects = {'국어', '수학', '영어', '한국사'}
+
+        for subject in subjects:
+            sheets = self.loader.get_subject_sheets(subject)
+
+            # 단일 시트 과목 (영어, 한국사, 탐구 과목들)
+            if len(sheets) == 1 and sheets[0][1] == '전체':
+                scores = self.loader.load_scores(sheets[0][0])
+                if not scores:
+                    continue
+
+                if subject in ['영어', '한국사']:
+                    fixed_scores[subject] = scores
+                else:
+                    # 탐구 과목
+                    science_scores[subject] = scores
+
+            # 공통+선택 과목 (국어, 수학)
+            else:
+                common_sheet = None
+                select_sheets = []
+
+                for sheet_name, part in sheets:
+                    if part == '공통':
+                        common_sheet = (sheet_name, part)
+                    else:
+                        select_sheets.append((sheet_name, part))
+
+                if common_sheet and select_sheets:
+                    common_scores = self.loader.load_scores(common_sheet[0])
+                    if not common_scores:
+                        continue
+
+                    if subject == '국어':
+                        korean_data['common'] = common_scores
+                        for sheet_name, part in select_sheets:
+                            korean_data['electives'][part] = self.loader.load_scores(sheet_name)
+                    elif subject == '수학':
+                        math_data['common'] = common_scores
+                        for sheet_name, part in select_sheets:
+                            math_data['electives'][part] = self.loader.load_scores(sheet_name)
+
+        # 모델 목록 (공통 기준)
+        model_names = list(korean_data['common'].keys()) if korean_data['common'] else []
+        if not model_names:
+            print('  ⚠ 모델 데이터를 찾을 수 없습니다.')
+            return
+
+        # 각 모델별 최고/최저점 계산
+        model_best_scores = {}
+        model_worst_scores = {}
+
+        for model in model_names:
+            # 고정 점수 (영어, 한국사)
+            fixed_total = sum(scores.get(model, 0) for scores in fixed_scores.values())
+
+            # 국어: 공통 + 선택 중 최고/최저
+            korean_common = korean_data['common'].get(model, 0)
+            korean_elective_scores = [scores.get(model, 0) for scores in korean_data['electives'].values()]
+            korean_best = korean_common + max(korean_elective_scores) if korean_elective_scores else korean_common
+            korean_worst = korean_common + min(korean_elective_scores) if korean_elective_scores else korean_common
+
+            # 수학: 공통 + 선택 중 최고/최저
+            math_common = math_data['common'].get(model, 0)
+            math_elective_scores = [scores.get(model, 0) for scores in math_data['electives'].values()]
+            math_best = math_common + max(math_elective_scores) if math_elective_scores else math_common
+            math_worst = math_common + min(math_elective_scores) if math_elective_scores else math_common
+
+            # 탐구: 2과목 조합 중 최고/최저
+            science_subject_scores = [(subj, scores.get(model, 0)) for subj, scores in science_scores.items()]
+
+            if len(science_subject_scores) >= 2:
+                # 모든 2과목 조합
+                all_combos = list(combinations(science_subject_scores, 2))
+                combo_sums = [(combo, sum(s for _, s in combo)) for combo in all_combos]
+
+                best_combo = max(combo_sums, key=lambda x: x[1])
+                worst_combo = min(combo_sums, key=lambda x: x[1])
+
+                science_best = best_combo[1]
+                science_worst = worst_combo[1]
+            elif len(science_subject_scores) == 1:
+                science_best = science_worst = science_subject_scores[0][1]
+            else:
+                science_best = science_worst = 0
+
+            # 총점 계산
+            model_best_scores[model] = fixed_total + korean_best + math_best + science_best
+            model_worst_scores[model] = fixed_total + korean_worst + math_worst + science_worst
+
+        # 최고점 기준 정렬
+        sorted_by_best = sorted(model_best_scores.items(), key=lambda x: x[1], reverse=True)
+        model_names_sorted = [item[0] for item in sorted_by_best]
+
+        best_scores = [model_best_scores[m] for m in model_names_sorted]
+        worst_scores = [model_worst_scores[m] for m in model_names_sorted]
+
+        # 만점 계산 (영어 100 + 한국사 50 + 국어 100 + 수학 100 + 탐구 50*2)
+        # 탐구는 각 과목 50점씩 2과목 = 100점
+        actual_max = sum(100 if subj == '영어' else 50 for subj in fixed_scores.keys())
+        actual_max += 100 + 100  # 국어, 수학
+        actual_max += 50 * 2  # 탐구 2과목 (각 50점)
+
+        # 차트 생성
+        num_models = len(model_names_sorted)
+        fig_width = max(8, min(16, 7 + num_models * 0.6))
+
+        fig, ax = plt.subplots(figsize=(fig_width, 7))
+        x = np.arange(len(model_names_sorted)) * 0.9
+        bar_width = 0.35
+
+        colors = ChartConfig.get_model_colors(model_names_sorted)
+
+        # 최고점 막대 (진한 색)
+        bars_best = ax.bar(x - bar_width/2, best_scores, width=bar_width,
+                          color=colors, alpha=0.9, edgecolor='black', linewidth=1,
+                          label='최고점 조합')
+
+        # 최저점 막대 (연한 색)
+        light_colors = [ChartConfig.lighten_color(c, 0.5) for c in colors]
+        bars_worst = ax.bar(x + bar_width/2, worst_scores, width=bar_width,
+                           color=light_colors, alpha=0.9, edgecolor='black', linewidth=1,
+                           label='최저점 조합')
+
+        # 제목 및 설명
+        title = '2026 수능 LLM 모델별 총점 비교 (최고/최저점 조합)'
+
+        ax.set_ylabel('총점 (점)', fontsize=13, fontweight='bold')
+        ax.set_title(title, fontsize=16, fontweight='bold', pad=45)
+
+        # 부제목
+        subtitle_line1 = '포함 과목: 국어, 수학, 영어, 한국사, 탐구'
+        subtitle_line2 = '선택: 국어(언매/화작 중 1) / 수학(확통/미적/기하 중 1) / 탐구(2과목)'
+
+        fig.text(0.5, 0.93, subtitle_line1, ha='center', va='top',
+                fontsize=11, style='italic', color='#555', transform=fig.transFigure)
+        fig.text(0.5, 0.895, subtitle_line2, ha='center', va='top',
+                fontsize=11, style='italic', color='#555', transform=fig.transFigure)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_names_sorted, fontsize=11, fontweight='bold', rotation=45, ha='right')
+        ax.set_ylim(0, max(best_scores) * 1.15 if best_scores else 100)
+        ax.axhline(y=actual_max, color='gray', linestyle='--', linewidth=1.5, alpha=0.6,
+                  label=f'만점 ({actual_max}점)')
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+        ax.legend(fontsize=10, loc='lower right', bbox_to_anchor=(1.0, 1.02), frameon=True, ncol=3)
+
+        # 점수 표시
+        for i, (bar_b, bar_w, score_b, score_w) in enumerate(zip(bars_best, bars_worst, best_scores, worst_scores)):
+            # 최고점
+            color_b = 'red' if score_b == actual_max else 'black'
+            score_text_b = f'{int(score_b)}' if score_b == int(score_b) else f'{score_b:.1f}'
+            ax.text(bar_b.get_x() + bar_b.get_width()/2., score_b + actual_max * 0.01,
+                   score_text_b, ha='center', va='bottom', fontsize=10, fontweight='bold', color=color_b)
+
+            # 최저점
+            color_w = 'red' if score_w == actual_max else 'black'
+            score_text_w = f'{int(score_w)}' if score_w == int(score_w) else f'{score_w:.1f}'
+            ax.text(bar_w.get_x() + bar_w.get_width()/2., score_w + actual_max * 0.01,
+                   score_text_w, ha='center', va='bottom', fontsize=10, fontweight='bold', color=color_w)
+
+        # 워터마크 추가
+        self._add_watermark(ax)
+
+        plt.tight_layout()
+
+        # 파일 저장
+        filename = 'overall_best_worst.png'
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        print(f'  📊 만점 {actual_max}점 (최고점/최저점 조합)')
 
         return filepath
 
@@ -1046,8 +1269,8 @@ def main():
                         help='과목-모델별 상세 비교 차트 생성')
     parser.add_argument('--no-subject-model', action='store_true',
                         help='과목-모델별 상세 비교 차트 생성 안 함')
-    parser.add_argument('--choice-rate', action='store_true',
-                        help='과목별 문항 선지 선택률 차트 생성')
+    parser.add_argument('--no-choice-rate', action='store_true',
+                        help='과목별 문항 선지 선택률 차트 생성 안 함')
 
     args = parser.parse_args()
 
@@ -1070,6 +1293,13 @@ def main():
             generator.create_overall_comparison_chart()
         except Exception as e:
             print(f'  ✗ 전과목 합산 차트 생성 실패: {e}')
+
+        # 최고/최저점 조합 차트도 함께 생성
+        try:
+            generator.create_overall_best_worst_chart()
+        except Exception as e:
+            print(f'  ✗ 최고/최저점 조합 차트 생성 실패: {e}')
+
         print(f'\n{"="*60}')
         print('✅ 차트 생성 완료!')
         print(f'{"="*60}\n')
@@ -1082,9 +1312,11 @@ def main():
         subjects = loader.get_subjects()
 
     # 각 과목별 차트 생성
+    # 기본적으로 선택률 차트 생성, --no-choice-rate 옵션으로 제외 가능
+    include_choice_rate = not args.no_choice_rate
     for subject in subjects:
         try:
-            generator.generate_for_subject(subject, args.mode, include_choice_rate=args.choice_rate)
+            generator.generate_for_subject(subject, args.mode, include_choice_rate=include_choice_rate)
         except Exception as e:
             print(f'  ✗ {subject} 차트 생성 실패: {e}')
 
@@ -1094,6 +1326,12 @@ def main():
             generator.create_overall_comparison_chart()
         except Exception as e:
             print(f'  ✗ 전과목 합산 차트 생성 실패: {e}')
+
+        # 최고/최저점 조합 차트도 함께 생성
+        try:
+            generator.create_overall_best_worst_chart()
+        except Exception as e:
+            print(f'  ✗ 최고/최저점 조합 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
