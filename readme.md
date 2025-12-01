@@ -30,6 +30,19 @@
 > - 영어, 한국사: 전체 점수
 > - 탐구: 4과목(물리1, 화학1, 생명과학1, 사회문화) 중 최고/최저점 택2
 
+### 이미지 첨부 문제 vs 텍스트 문제 비교
+
+![이미지 있는 문제 득점률](images/with_image_accuracy.png)
+
+![이미지 없는 문제 득점률](images/without_image_accuracy.png)
+
+> 📊 **평가 범위**: 전체 과목 (국어, 수학, 영어, 한국사, 탐구)
+>
+> 📝 **계산 방식**:
+> - 이미지 첨부 문제: 1개 이상의 이미지가 첨부된 문제들의 득점률 (실제 점수 / 만점 × 100%)
+> - 텍스트 문제: 이미지가 없는 문제들의 득점률 (실제 점수 / 만점 × 100%)
+> - 모든 과목과 영역의 점수를 통합하여 계산
+
 ## 테스트 환경 및 주의사항
 
 **중요: 본 테스트는 API를 통한 환경에서 수행되었습니다.**
@@ -93,6 +106,9 @@
 - **DeepSeek 시리즈**
   - DeepSeek V3.2 Exp (Thinking)
   - DeepSeek V3.2 Exp (Non-Thinking)
+  - DeepSeek V3.2 (Thinking)
+  - DeepSeek V3.2 (Non-Thinking)
+  - DeepSeek V3.2 Speciale
 
   ※ DeepSeek는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
@@ -124,11 +140,14 @@
 | GPT-5.1 | 74점 |
 | GPT-5.1 Codex | 74점 |
 | Gemini 2.5 Flash | 73점 |
+| DeepSeek-V3.2 Speciale | 73점 |
 | GPT-5 mini | 69점 |
-| DeepSeek-V3.2 exp (Thinking) | 68점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 67점 |
+| DeepSeek-V3.2 Exp (Thinking) | 68점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 67점 |
 | Grok 4 | 67점 |
+| DeepSeek-V3.2 (Thinking) | 67점 |
 | Grok 4 Fast | 66점 |
+| DeepSeek-V3.2 (Non-Thinking) | 66점 |
 | Gemini 2.5 Flash Lite | 61점 |
 | GPT-5.1 Chat | 60점 |
 | Claude Haiku 4.5 | 54점 |
@@ -145,12 +164,15 @@
 | **Gemini 2.5 Flash Lite** | **24점** |
 | **GPT-5.1 Codex** | **24점** |
 | **Claude Sonnet 4.5** | **24점** |
-| **DeepSeek-V3.2 exp (Thinking)** | **24점** |
+| **DeepSeek-V3.2 Exp (Thinking)** | **24점** |
+| **DeepSeek-V3.2 (Thinking)** | **24점** |
+| **DeepSeek-V3.2 (Non-Thinking)** | **24점** |
 | Gemini 2.5 Pro | 22점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 22점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 22점 |
 | GPT-5 mini | 21점 |
 | Grok 4 | 21점 |
 | Grok 4 Fast | 21점 |
+| DeepSeek-V3.2 Speciale | 21점 |
 | GPT-4o | 17점 |
 | Claude Haiku 4.5 | 17점 |
 | GPT-5 nano | 15점 |
@@ -165,13 +187,16 @@
 | GPT-5 mini | 22점 |
 | Gemini 2.5 Flash | 22점 |
 | Grok 4 | 22점 |
+| DeepSeek-V3.2 Speciale | 22점 |
 | Claude Sonnet 4.5 | 19점 |
 | GPT-5.1 Chat | 19점 |
-| DeepSeek-V3.2 exp (Thinking) | 19점 |
+| DeepSeek-V3.2 Exp (Thinking) | 19점 |
 | Gemini 2.5 Flash Lite | 17점 |
+| DeepSeek-V3.2 (Thinking) | 17점 |
 | Grok 4 Fast | 15점 |
 | Claude Haiku 4.5 | 15점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 13점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 13점 |
+| DeepSeek-V3.2 (Non-Thinking) | 13점 |
 | GPT-5 nano | 11점 |
 | GPT-4o | 10점 |
 
@@ -208,7 +233,9 @@
 | **GPT-5.1** | **74점** |
 | **Claude Sonnet 4.5** | **74점** |
 | **Gemini 3 Pro (Preview)** | **74점** |
-| **DeepSeek-V3.2 exp (Thinking)** | **74점** |
+| **DeepSeek-V3.2 Exp (Thinking)** | **74점** |
+| **DeepSeek-V3.2 (Thinking)** | **74점** |
+| **DeepSeek-V3.2 Speciale** | **74점** |
 | GPT-5 mini | 70점 |
 | GPT-5 nano | 70점 |
 | Gemini 2.5 Pro | 70점 |
@@ -218,8 +245,9 @@
 | Grok 4 Fast | 70점 |
 | GPT-5.1 Chat | 66점 |
 | Gemini 2.5 Flash Lite | 66점 |
+| DeepSeek-V3.2 (Non-Thinking) | 66점 |
 | Claude Haiku 4.5 | 62점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 58점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 58점 |
 | GPT-4o | 44점 |
 
 #### 수학 - 확률과 통계 (26점 만점)
@@ -233,13 +261,16 @@
 | **Gemini 2.5 Pro** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
-| **DeepSeek-V3.2 exp (Thinking)** | **26점** |
+| **DeepSeek-V3.2 Exp (Thinking)** | **26점** |
+| **DeepSeek-V3.2 (Thinking)** | **26점** |
+| **DeepSeek-V3.2 Speciale** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
 | Gemini 2.5 Flash | 22점 |
 | Gemini 2.5 Flash Lite | 18점 |
 | Claude Haiku 4.5 | 18점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 (Non-Thinking) | 18점 |
 | GPT-4o | 18점 |
 
 #### 수학 - 미적분 (26점 만점)
@@ -252,14 +283,17 @@
 | **Claude Sonnet 4.5** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
+| **DeepSeek-V3.2 Speciale** | **26점** |
 | GPT-5 nano | 22점 |
 | Gemini 3 Pro (Preview) | 22점 |
 | Gemini 2.5 Pro | 22점 |
 | Gemini 2.5 Flash Lite | 22점 |
 | Claude Haiku 4.5 | 22점 |
-| DeepSeek-V3.2 exp (Thinking) | 22점 |
+| DeepSeek-V3.2 Exp (Thinking) | 22점 |
+| DeepSeek-V3.2 (Non-Thinking) | 22점 |
 | GPT-5.1 Chat | 18점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 (Thinking) | 18점 |
 | GPT-4o | 11점 |
 
 #### 수학 - 기하 (26점 만점)
@@ -273,12 +307,15 @@
 | **Gemini 2.5 Flash Lite** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
-| **DeepSeek-V3.2 exp (Thinking)** | **26점** |
+| **DeepSeek-V3.2 Exp (Thinking)** | **26점** |
+| **DeepSeek-V3.2 (Thinking)** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
+| DeepSeek-V3.2 Speciale | 23점 |
 | GPT-5.1 Chat | 22점 |
 | GPT-5 mini | 22점 |
-| DeepSeek-V3.2 exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 Exp (Non-Thinking) | 18점 |
+| DeepSeek-V3.2 (Non-Thinking) | 14점 |
 | Claude Haiku 4.5 | 11점 |
 | GPT-4o | 8점 |
 

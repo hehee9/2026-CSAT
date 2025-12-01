@@ -18,6 +18,8 @@ import pandas as pd
 import numpy as np
 import argparse
 import os
+import json
+from pathlib import Path
 from collections import defaultdict
 
 # 한글 폰트 설정
@@ -258,6 +260,159 @@ class DataLoader:
             'questions': questions,
             'correct_answers': correct_answers,
             'model_answers': model_answers
+        }
+
+    def load_questions_metadata(self, subject, section):
+        """questions.json에서 문제별 메타데이터 로드 (이미지 여부, 배점)
+
+        Args:
+            subject: 과목명
+            section: 영역명
+
+        Returns:
+            dict: {
+                question_number: {
+                    'has_image': True/False,
+                    'points': int
+                },
+                ...
+            }
+        """
+        # questions.json 경로 찾기
+        base_path = Path('problems')
+
+        # 탐구 과목 목록
+        탐구_subjects = ['물리1', '화학1', '생명1', '지과1', '사회문화', '물리2', '화학2', '생명2', '지과2']
+
+        # 과목별 경로 구성
+        if subject in ['영어', '한국사']:
+            # 단일 시트 과목 (영어, 한국사)
+            json_path = base_path / subject / 'questions.json'
+        elif subject in 탐구_subjects or section == '전체':
+            # 탐구 과목: problems/탐구/{과목명}/questions.json
+            json_path = base_path / '탐구' / subject / 'questions.json'
+        else:
+            # 국어/수학 등 공통+선택 과목
+            section_map = {
+                '공통': '공통',
+                '화작': '화작',
+                '화법과 작문': '화작',
+                '언매': '언매',
+                '언어와 매체': '언매',
+                '확통': '확통',
+                '확률과 통계': '확통',
+                '미적분': '미적',
+                '기하': '기하'
+            }
+            section_folder = section_map.get(section, section)
+            json_path = base_path / subject / section_folder / 'questions.json'
+
+        if not json_path.exists():
+            print(f'  ⚠ questions.json을 찾을 수 없습니다: {json_path}')
+            return {}
+
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            metadata = {}
+            for q in data.get('questions', []):
+                q_num = q['number']
+                has_image = len(q.get('image_paths', [])) > 0
+                points = q.get('points', 0)
+
+                metadata[q_num] = {
+                    'has_image': has_image,
+                    'points': points
+                }
+
+            return metadata
+
+        except Exception as e:
+            print(f'  ⚠ questions.json 로드 실패 ({json_path}): {e}')
+            return {}
+
+    def calculate_image_based_scores(self, sheet_name, subject, section):
+        """이미지 첨부 여부에 따른 모델별 득점률 계산 (만점 대비 퍼센트)
+
+        Args:
+            sheet_name: 시트명
+            subject: 과목명
+            section: 영역명
+
+        Returns:
+            dict: {
+                'model_stats': {
+                    model_name: {
+                        'with_image_rate': 득점률(%),
+                        'without_image_rate': 득점률(%),
+                        'average_rate': 평균 득점률(%)
+                    }
+                },
+                'with_image_max': 이미지 있는 문제 만점,
+                'without_image_max': 이미지 없는 문제 만점,
+                'with_image_count': 이미지 있는 문제 수,
+                'without_image_count': 이미지 없는 문제 수
+            }
+        """
+        # 문제별 메타데이터 로드
+        metadata = self.load_questions_metadata(subject, section)
+        if not metadata:
+            return None
+
+        # 모델별 응답 로드
+        question_data = self.load_question_answers(sheet_name)
+        questions = question_data['questions']
+        correct_answers = question_data['correct_answers']
+        model_answers = question_data['model_answers']
+
+        # 이미지 있는 문제 / 없는 문제 분류
+        with_image_questions = [q for q in questions if metadata.get(q, {}).get('has_image', False)]
+        without_image_questions = [q for q in questions if not metadata.get(q, {}).get('has_image', False)]
+
+        # 만점 계산
+        with_image_max = sum(metadata[q]['points'] for q in with_image_questions if q in metadata)
+        without_image_max = sum(metadata[q]['points'] for q in without_image_questions if q in metadata)
+
+        # 모델별 득점 및 득점률 계산
+        model_stats = {}
+        for model_name, answers in model_answers.items():
+            with_image_score = 0
+            without_image_score = 0
+
+            # 이미지 있는 문제 득점
+            for q_num in with_image_questions:
+                if q_num in answers and q_num in correct_answers:
+                    if answers[q_num] == correct_answers[q_num]:
+                        with_image_score += metadata[q_num]['points']
+
+            # 이미지 없는 문제 득점
+            for q_num in without_image_questions:
+                if q_num in answers and q_num in correct_answers:
+                    if answers[q_num] == correct_answers[q_num]:
+                        without_image_score += metadata[q_num]['points']
+
+            # 득점률 계산 (만점 대비 퍼센트)
+            with_image_rate = (with_image_score / with_image_max * 100) if with_image_max > 0 else 0
+            without_image_rate = (without_image_score / without_image_max * 100) if without_image_max > 0 else 0
+
+            # 전체 평균 득점률
+            total_score = with_image_score + without_image_score
+            total_max = with_image_max + without_image_max
+            average_rate = (total_score / total_max * 100) if total_max > 0 else 0
+
+            model_stats[model_name] = {
+                'with_image_rate': with_image_rate,
+                'without_image_rate': without_image_rate,
+                'average_rate': average_rate
+            }
+
+        return {
+            'model_stats': model_stats,
+            'with_image_max': with_image_max,
+            'without_image_max': without_image_max,
+            'with_image_count': len(with_image_questions),
+            'without_image_count': len(without_image_questions)
         }
 
 
@@ -1223,6 +1378,137 @@ class ChartGenerator:
 
         return filepath
 
+    def create_overall_image_based_charts(self):
+        """전체 과목 통합 이미지 첨부 여부별 득점률 비교 차트 생성
+
+        - 이미지 있는 문제 득점률 차트 1개
+        - 이미지 없는 문제 득점률 차트 1개
+        """
+        print(f'\n[전체 과목 - 이미지 첨부 여부별 득점률]')
+
+        subjects = self.loader.get_subjects()
+
+        # 모든 과목/섹션의 데이터 수집
+        all_with_image_stats = defaultdict(lambda: {'scores': [], 'max_scores': []})
+        all_without_image_stats = defaultdict(lambda: {'scores': [], 'max_scores': []})
+
+        for subject in subjects:
+            sheets = self.loader.get_subject_sheets(subject)
+
+            for sheet_name, section in sheets:
+                # 이미지 기반 득점률 계산
+                result = self.loader.calculate_image_based_scores(sheet_name, subject, section)
+                if not result:
+                    continue
+
+                model_stats = result['model_stats']
+                with_image_max = result['with_image_max']
+                without_image_max = result['without_image_max']
+
+                # 각 모델의 실제 득점과 만점 수집
+                for model_name, stats in model_stats.items():
+                    # 이미지 있는 문제
+                    if with_image_max > 0:
+                        with_image_score = stats['with_image_rate'] * with_image_max / 100
+                        all_with_image_stats[model_name]['scores'].append(with_image_score)
+                        all_with_image_stats[model_name]['max_scores'].append(with_image_max)
+
+                    # 이미지 없는 문제
+                    if without_image_max > 0:
+                        without_image_score = stats['without_image_rate'] * without_image_max / 100
+                        all_without_image_stats[model_name]['scores'].append(without_image_score)
+                        all_without_image_stats[model_name]['max_scores'].append(without_image_max)
+
+        # 모델별 전체 득점률 계산
+        with_image_rates = {}
+        without_image_rates = {}
+
+        for model_name in all_with_image_stats.keys():
+            # 이미지 있는 문제 전체 득점률
+            total_score = sum(all_with_image_stats[model_name]['scores'])
+            total_max = sum(all_with_image_stats[model_name]['max_scores'])
+            with_image_rates[model_name] = (total_score / total_max * 100) if total_max > 0 else 0
+
+        for model_name in all_without_image_stats.keys():
+            # 이미지 없는 문제 전체 득점률
+            total_score = sum(all_without_image_stats[model_name]['scores'])
+            total_max = sum(all_without_image_stats[model_name]['max_scores'])
+            without_image_rates[model_name] = (total_score / total_max * 100) if total_max > 0 else 0
+
+        # 차트 1: 이미지 있는 문제
+        self._create_single_image_chart(
+            with_image_rates,
+            '이미지 있는 문제',
+            'with_image_accuracy.png'
+        )
+
+        # 차트 2: 이미지 없는 문제
+        self._create_single_image_chart(
+            without_image_rates,
+            '이미지 없는 문제',
+            'without_image_accuracy.png'
+        )
+
+    def _create_single_image_chart(self, rates_dict, title_suffix, filename):
+        """단일 이미지 기반 차트 생성 헬퍼"""
+        if not rates_dict:
+            print(f'  ⚠ {title_suffix} 데이터가 없습니다.')
+            return
+
+        # 득점률 기준 정렬 (내림차순)
+        sorted_items = sorted(rates_dict.items(), key=lambda x: x[1], reverse=True)
+        model_names = [item[0] for item in sorted_items]
+        rates = [item[1] for item in sorted_items]
+
+        # 차트 생성
+        num_models = len(model_names)
+        fig_width = max(8, min(16, 7 + num_models * 0.5))
+
+        fig, ax = plt.subplots(figsize=(fig_width, 7))
+        # 막대 간격 조정 (0.75로 다른 차트와 일관성 유지)
+        x = np.arange(len(model_names)) * 0.75
+
+        # 막대 폭 조정 (다른 차트와 일관성 유지)
+        bar_width = max(0.25, min(0.4, 0.5 - num_models * 0.0075))
+
+        colors = ChartConfig.get_model_colors(model_names)
+
+        # 막대 그래프
+        bars = ax.bar(x, rates, width=bar_width,
+                     color=colors, alpha=0.9, edgecolor='black', linewidth=1)
+
+        # 제목 설정
+        title = f'2026 수능 전체 과목 LLM 모델별 득점률 ({title_suffix})'
+
+        ax.set_ylabel('득점률 (%)', fontsize=13, fontweight='bold')
+        ax.set_title(title, fontsize=16, fontweight='bold', pad=20)
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')
+        ax.set_ylim(0, 110)
+        ax.axhline(y=100, color='gray', linestyle='--', linewidth=1.5, alpha=0.6)
+        ax.grid(axis='y', alpha=0.3, linestyle='--')
+
+        # 득점률 표시
+        for bar, rate in zip(bars, rates):
+            if rate > 0:
+                rate_text = f'{rate:.1f}%' if rate != int(rate) else f'{int(rate)}%'
+                ax.text(bar.get_x() + bar.get_width()/2., rate + 2,
+                       rate_text, ha='center', va='bottom', fontsize=10, fontweight='bold')
+
+        # 워터마크 추가
+        self._add_watermark(ax)
+
+        plt.tight_layout()
+
+        # 파일 저장
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+
+        return filepath
+
 
 def list_subjects(excel_path):
     """사용 가능한 과목 목록 출력"""
@@ -1271,6 +1557,10 @@ def main():
                         help='과목-모델별 상세 비교 차트 생성 안 함')
     parser.add_argument('--no-choice-rate', action='store_true',
                         help='과목별 문항 선지 선택률 차트 생성 안 함')
+    parser.add_argument('--image-based', action='store_true',
+                        help='이미지 첨부 여부별 득점률 비교 차트 생성')
+    parser.add_argument('--no-image-based', action='store_true',
+                        help='이미지 첨부 여부별 득점률 비교 차트 생성 안 함')
 
     args = parser.parse_args()
 
@@ -1286,6 +1576,18 @@ def main():
 
     loader = DataLoader(args.excel)
     generator = ChartGenerator(loader, args.output)
+
+    # 이미지 기반 차트만 생성
+    if args.image_based:
+        try:
+            generator.create_overall_image_based_charts()
+        except Exception as e:
+            print(f'  ✗ 이미지 기반 차트 생성 실패: {e}')
+
+        print(f'\n{"="*60}')
+        print('✅ 차트 생성 완료!')
+        print(f'{"="*60}\n')
+        return
 
     # 전과목 합산 차트만 생성
     if args.overall:
@@ -1332,6 +1634,13 @@ def main():
             generator.create_overall_best_worst_chart()
         except Exception as e:
             print(f'  ✗ 최고/최저점 조합 차트 생성 실패: {e}')
+
+    # 이미지 첨부 여부별 득점률 차트 생성 (기본 생성, --no-image-based 옵션으로 제외 가능)
+    if not args.no_image_based:
+        try:
+            generator.create_overall_image_based_charts()
+        except Exception as e:
+            print(f'  ✗ 이미지 기반 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
