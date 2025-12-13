@@ -8,8 +8,6 @@
 국어/수학 전과목, 영어, 한국사 영역과 더불어
 올해 수능 중 비교적 어렵다는 평이 많은 탐구 과목 4개(생명1/물리1/화학1 및 사회문화)를 대상으로 테스트를 진행했습니다.
 
-※ **GPT-5.2 (xhigh), Claude Opus 4.5** 테스트 중...
-
 ## 주요 과목 종합 성적
 
 ![주요 과목 총점 합 비교](images/overall_comparison.png)
@@ -82,24 +80,26 @@
 
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
-  - GPT-5.1
-  - GPT-5.1 Codex
+  - GPT-5.2 (xhigh)
+  - GPT-5.1 (high)
+  - GPT-5.1 Codex (high)
   - GPT-5.1 Chat
-  - GPT-5 mini
-  - GPT-5 nano
+  - GPT-5 mini (high)
+  - GPT-5 nano (high)
   - GPT-4o (2024-11-20)
 
   ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.1 Chat(Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.1입니다.
 
 - **Google Gemini 시리즈**
-  - Gemini 3 Pro (Preview)
-  - Gemini 2.5 Pro
-  - Gemini 2.5 Flash (2025-09 Preview, Reasoning)
-  - Gemini 2.5 Flash Lite (2025-09 Preview, Reasoning)
+  - Gemini 3 Pro (Preview) (high)
+  - Gemini 2.5 Pro (32K Thinking)
+  - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking)
+  - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking)
 
 - **Anthropic Claude 시리즈**
-  - Claude Sonnet 4.5 (Extended Thinking)
-  - Claude Haiku 4.5 (Extended Thinking)
+  - Claude Opus 4.5 (32K Thinking)
+  - Claude Sonnet 4.5 (32K Thinking)
+  - Claude Haiku 4.5 (32K Thinking)
 
 - **xAI Grok 시리즈**
   - Grok 4
@@ -136,8 +136,10 @@
 #### 국어 - 공통 (76점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **76점** |
 | **Gemini 3 Pro (Preview)** | **76점** |
 | **Gemini 2.5 Pro** | **76점** |
+| **Claude Opus 4.5** | **76점** |
 | **Claude Sonnet 4.5** | **76점** |
 | GPT-5.1 | 74점 |
 | GPT-5.1 Codex | 74점 |
@@ -159,12 +161,14 @@
 #### 국어 - 화법과 작문 (24점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **24점** |
 | **GPT-5.1** | **24점** |
 | **GPT-5.1 Chat** | **24점** |
 | **Gemini 3 Pro (Preview)** | **24점** |
 | **Gemini 2.5 Flash** | **24점** |
 | **Gemini 2.5 Flash Lite** | **24점** |
 | **GPT-5.1 Codex** | **24점** |
+| **Claude Opus 4.5** | **24점** |
 | **Claude Sonnet 4.5** | **24점** |
 | **DeepSeek-V3.2 Exp (Thinking)** | **24점** |
 | **DeepSeek-V3.2 (Thinking)** | **24점** |
@@ -182,9 +186,11 @@
 #### 국어 - 언어와 매체 (24점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **24점** |
 | **Gemini 3 Pro (Preview)** | **24점** |
 | **Gemini 2.5 Pro** | **24점** |
 | **GPT-5.1** | **24점** |
+| **Claude Opus 4.5** | **24점** |
 | GPT-5.1 Codex | 22점 |
 | GPT-5 mini | 22점 |
 | Gemini 2.5 Flash | 22점 |
@@ -232,7 +238,9 @@
 #### 수학 - 공통 (74점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **74점** |
 | **GPT-5.1** | **74점** |
+| **Claude Opus 4.5** | **74점** |
 | **Claude Sonnet 4.5** | **74점** |
 | **Gemini 3 Pro (Preview)** | **74점** |
 | **DeepSeek-V3.2 Exp (Thinking)** | **74점** |
@@ -255,6 +263,7 @@
 #### 수학 - 확률과 통계 (26점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **26점** |
 | **GPT-5.1** | **26점** |
 | **GPT-5.1 Chat** | **26점** |
 | **GPT-5 mini** | **26점** |
@@ -262,6 +271,7 @@
 | **Gemini 3 Pro (Preview)** | **26점** |
 | **Gemini 2.5 Pro** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
+| **Claude Opus 4.5** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
 | **DeepSeek-V3.2 Exp (Thinking)** | **26점** |
 | **DeepSeek-V3.2 (Thinking)** | **26점** |
@@ -278,10 +288,12 @@
 #### 수학 - 미적분 (26점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **26점** |
 | **GPT-5.1** | **26점** |
 | **GPT-5 mini** | **26점** |
 | **Gemini 2.5 Flash** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
+| **Claude Opus 4.5** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
@@ -301,6 +313,7 @@
 #### 수학 - 기하 (26점 만점)
 | 모델 | 점수 |
 |:-----|:------:|
+| **GPT-5.2** | **26점** |
 | **GPT-5.1** | **26점** |
 | **GPT-5 nano** | **26점** |
 | **Gemini 3 Pro (Preview)** | **26점** |
@@ -308,6 +321,7 @@
 | **Gemini 2.5 Flash** | **26점** |
 | **Gemini 2.5 Flash Lite** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
+| **Claude Opus 4.5** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
 | **DeepSeek-V3.2 Exp (Thinking)** | **26점** |
 | **DeepSeek-V3.2 (Thinking)** | **26점** |
