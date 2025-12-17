@@ -92,6 +92,7 @@
 
 - **Google Gemini 시리즈**
   - Gemini 3 Pro (Preview) (high)
+  - Gemini 3 Flash (Preview) (high)
   - Gemini 2.5 Pro (32K Thinking)
   - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking)
   - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking)
@@ -138,6 +139,7 @@
 |:-----|:------:|
 | **GPT-5.2** | **76점** |
 | **Gemini 3 Pro (Preview)** | **76점** |
+| **Gemini 3 Flash (Preview)** | **76점** |
 | **Gemini 2.5 Pro** | **76점** |
 | **Claude Opus 4.5** | **76점** |
 | **Claude Sonnet 4.5** | **76점** |
@@ -165,6 +167,7 @@
 | **GPT-5.1** | **24점** |
 | **GPT-5.1 Chat** | **24점** |
 | **Gemini 3 Pro (Preview)** | **24점** |
+| **Gemini 3 Flash (Preview)** | **24점** |
 | **Gemini 2.5 Flash** | **24점** |
 | **Gemini 2.5 Flash Lite** | **24점** |
 | **GPT-5.1 Codex** | **24점** |
@@ -196,6 +199,7 @@
 | Gemini 2.5 Flash | 22점 |
 | Grok 4 | 22점 |
 | DeepSeek-V3.2 Speciale | 22점 |
+| Gemini 3 Flash (Preview) | 21점 |
 | Claude Sonnet 4.5 | 19점 |
 | GPT-5.1 Chat | 19점 |
 | DeepSeek-V3.2 Exp (Thinking) | 19점 |
@@ -243,6 +247,7 @@
 | **Claude Opus 4.5** | **74점** |
 | **Claude Sonnet 4.5** | **74점** |
 | **Gemini 3 Pro (Preview)** | **74점** |
+| **Gemini 3 Flash (Preview)** | **74점** |
 | **DeepSeek-V3.2 Exp (Thinking)** | **74점** |
 | **DeepSeek-V3.2 (Thinking)** | **74점** |
 | **DeepSeek-V3.2 Speciale** | **74점** |
@@ -269,6 +274,7 @@
 | **GPT-5 mini** | **26점** |
 | **GPT-5 nano** | **26점** |
 | **Gemini 3 Pro (Preview)** | **26점** |
+| **Gemini 3 Flash (Preview)** | **26점** |
 | **Gemini 2.5 Pro** | **26점** |
 | **GPT-5.1 Codex** | **26점** |
 | **Claude Opus 4.5** | **26점** |
@@ -300,6 +306,7 @@
 | **DeepSeek-V3.2 Speciale** | **26점** |
 | GPT-5 nano | 22점 |
 | Gemini 3 Pro (Preview) | 22점 |
+| Gemini 3 Flash (Preview) | 22점 |
 | Gemini 2.5 Pro | 22점 |
 | Gemini 2.5 Flash Lite | 22점 |
 | Claude Haiku 4.5 | 22점 |
@@ -317,6 +324,7 @@
 | **GPT-5.1** | **26점** |
 | **GPT-5 nano** | **26점** |
 | **Gemini 3 Pro (Preview)** | **26점** |
+| **Gemini 3 Flash (Preview)** | **26점** |
 | **Gemini 2.5 Pro** | **26점** |
 | **Gemini 2.5 Flash** | **26점** |
 | **Gemini 2.5 Flash Lite** | **26점** |
