@@ -88,8 +88,9 @@
   - GPT-5 mini (high)
   - GPT-5 nano (high)
   - GPT-4o (2024-11-20)
+  - GPT-OSS 120B (high)
 
-  ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.1 Chat(Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.1입니다.
+  ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.2 Chat(Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.2입니다.
 
 - **Google Gemini 시리즈**
   - Gemini 3 Pro (Preview) (high)
@@ -116,6 +117,7 @@
 
 - **LGAI EXAONE 시리즈**
   - K-EXAONE-236B-A23B (Thinking)
+  - K-EXAONE-236B-A23B (Non-Thinking)
 
 ※ DeepSeek, EXAONE은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
