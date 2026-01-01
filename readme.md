@@ -88,7 +88,7 @@
   - GPT-5 mini (high)
   - GPT-5 nano (high)
   - GPT-4o (2024-11-20)
-  - GPT-OSS 120B (high) (Fireworks AI)
+  - GPT-OSS 120B (high) (via Fireworks AI)
 
   ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.2 Chat(Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.2입니다.
 
@@ -115,7 +115,7 @@
   - DeepSeek V3.2 (Non-Thinking)
   - DeepSeek V3.2 Speciale
 
-- **LGAI EXAONE 시리즈** (FriendliAI)
+- **LGAI EXAONE 시리즈** (via FriendliAI)
   - K-EXAONE-236B-A23B (Thinking)
   - K-EXAONE-236B-A23B (Non-Thinking)
 
