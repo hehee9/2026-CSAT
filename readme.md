@@ -113,7 +113,10 @@
   - DeepSeek V3.2 (Non-Thinking)
   - DeepSeek V3.2 Speciale
 
-  ※ DeepSeek는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+- **LGAI EXAONE 시리즈**
+  - K-EXAONE-236B-A23B (Thinking)
+
+※ DeepSeek, EXAONE은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
 ## 국어 영역
 
@@ -158,6 +161,7 @@
 | GPT-5.1 Chat | 60점 |
 | Claude Haiku 4.5 | 54점 |
 | GPT-4o | 50점 |
+| K-EXAONE 236B A23B | 49점 |
 | GPT-5 nano | 32점 |
 
 #### 국어 - 화법과 작문 (24점 만점)
@@ -182,6 +186,7 @@
 | Grok 4 | 21점 |
 | Grok 4 Fast | 21점 |
 | DeepSeek-V3.2 Speciale | 21점 |
+| K-EXAONE 236B A23B | 21점 |
 | GPT-4o | 17점 |
 | Claude Haiku 4.5 | 17점 |
 | GPT-5 nano | 15점 |
@@ -209,6 +214,7 @@
 | Claude Haiku 4.5 | 15점 |
 | DeepSeek-V3.2 Exp (Non-Thinking) | 13점 |
 | DeepSeek-V3.2 (Non-Thinking) | 13점 |
+| K-EXAONE 236B A23B | 13점 |
 | GPT-5 nano | 11점 |
 | GPT-4o | 10점 |
 
@@ -251,6 +257,7 @@
 | **DeepSeek-V3.2 Exp (Thinking)** | **74점** |
 | **DeepSeek-V3.2 (Thinking)** | **74점** |
 | **DeepSeek-V3.2 Speciale** | **74점** |
+| **K-EXAONE 236B A23B** | **74점** |
 | GPT-5 mini | 70점 |
 | GPT-5 nano | 70점 |
 | Gemini 2.5 Pro | 70점 |
@@ -284,6 +291,7 @@
 | **DeepSeek-V3.2 Speciale** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
+| **K-EXAONE 236B A23B** | **26점** |
 | Gemini 2.5 Flash | 22점 |
 | Gemini 2.5 Flash Lite | 18점 |
 | Claude Haiku 4.5 | 18점 |
@@ -304,6 +312,7 @@
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
 | **DeepSeek-V3.2 Speciale** | **26점** |
+| **K-EXAONE 236B A23B** | **26점** |
 | GPT-5 nano | 22점 |
 | Gemini 3 Pro (Preview) | 22점 |
 | Gemini 3 Flash (Preview) | 22점 |
@@ -338,6 +347,7 @@
 | DeepSeek-V3.2 Speciale | 23점 |
 | GPT-5.1 Chat | 22점 |
 | GPT-5 mini | 22점 |
+| K-EXAONE 236B A23B | 22점 |
 | DeepSeek-V3.2 Exp (Non-Thinking) | 18점 |
 | DeepSeek-V3.2 (Non-Thinking) | 14점 |
 | Claude Haiku 4.5 | 11점 |
@@ -390,6 +400,15 @@
 ![사회문화 1](images/사회문화_score_전체_by_name.png)
 ![사회문화 2](images/사회문화_score_전체_by_score.png)
 ![사회문화 선택률](images/사회문화_choice_rate_전체.png)
+
+---
+
+## 토큰 사용량
+
+토큰 사용량과 점수 간의 상관관계를 분석한 결과입니다.
+성적이 높으면서 토큰 사용량이 적을수록 좋은 모델입니다.
+
+![토큰 사용량](images/score_vs_tokens.png)
 
 ---
 

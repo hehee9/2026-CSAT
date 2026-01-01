@@ -44,6 +44,7 @@ class ChartConfig:
     CLAUDE_COLOR = '#D2691E'    # Claude - 주황색~갈색 (Chocolate)
     GROK_COLOR = '#6A4C93'      # Grok - 약간 어두운 보라색
     DEEPSEEK_COLOR = '#1E3A8A'  # DeepSeek - Gemini보다 어두운 파란색
+    LG_COLOR = '#A50034'        # LG (EXAONE) - 진한 자홍색 (LG 브랜드 컬러)
 
     @staticmethod
     def get_model_colors(models):
@@ -60,6 +61,8 @@ class ChartConfig:
                 colors.append(ChartConfig.GROK_COLOR)
             elif 'DeepSeek' in model or 'deepseek' in model.lower():
                 colors.append(ChartConfig.DEEPSEEK_COLOR)
+            elif 'EXAONE' in model or 'exaone' in model.lower():
+                colors.append(ChartConfig.LG_COLOR)
             else:
                 colors.append('#666666')
         return colors
@@ -331,6 +334,63 @@ class DataLoader:
         except Exception as e:
             print(f'  ⚠ questions.json 로드 실패 ({json_path}): {e}')
             return {}
+
+    def load_model_token_usage(self) -> dict:
+        """모든 과목의 results.json에서 모델별 토큰 사용량 집계
+
+        Returns:
+            dict: {
+                "model_name": {
+                    "total_input_tokens": int,
+                    "total_output_tokens": int,
+                    "total_tokens": int,
+                    "question_count": int
+                },
+                ...
+            }
+        """
+        from collections import defaultdict
+
+        # 결과 저장용
+        model_tokens = defaultdict(lambda: {
+            'total_input_tokens': 0,
+            'total_output_tokens': 0,
+            'total_tokens': 0,
+            'question_count': 0
+        })
+
+        # results.json 파일 경로 목록
+        problems_dir = Path('problems')
+        if not problems_dir.exists():
+            return {}
+
+        # 모든 results.json 파일 탐색
+        results_files = list(problems_dir.rglob('results.json'))
+
+        for results_file in results_files:
+            try:
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+                for result in data.get('results', []):
+                    model_name = result.get('model_name')
+                    if not model_name:
+                        continue
+
+                    input_tokens = result.get('input_tokens', 0) or 0
+                    output_tokens = result.get('output_tokens', 0) or 0
+                    total_tokens = result.get('total_tokens', 0) or 0
+
+                    model_tokens[model_name]['total_input_tokens'] += input_tokens
+                    model_tokens[model_name]['total_output_tokens'] += output_tokens
+                    model_tokens[model_name]['total_tokens'] += total_tokens
+                    model_tokens[model_name]['question_count'] += 1
+
+            except Exception as e:
+                print(f'  ⚠ {results_file} 로드 실패: {e}')
+                continue
+
+        return dict(model_tokens)
 
     def calculate_image_based_scores(self, sheet_name, subject, section):
         """이미지 첨부 여부에 따른 모델별 득점률 계산 (만점 대비 퍼센트)
@@ -1509,6 +1569,203 @@ class ChartGenerator:
 
         return filepath
 
+    def create_score_vs_tokens_chart(self):
+        """전과목 총점 vs 출력 토큰 사용량 산점도 생성"""
+        print('\n[성적 vs 토큰 사용량]')
+
+        # 토큰 데이터 로드
+        token_data = self.loader.load_model_token_usage()
+        if not token_data:
+            print('  ⚠ 토큰 데이터가 없습니다.')
+            return None
+
+        # 모델명 매핑 로드 (JSON 이름 -> Excel 이름)
+        model_mapping = {}
+        mapping_file = Path('model_mapping.json')
+        if mapping_file.exists():
+            try:
+                with open(mapping_file, 'r', encoding='utf-8') as f:
+                    model_mapping = json.load(f)
+            except:
+                pass
+
+        # 전과목 총점 계산 (create_overall_comparison_chart 로직 재활용)
+        subjects = self.loader.get_subjects()
+        model_total_scores = defaultdict(float)
+
+        # 탐구 과목 분류
+        core_subjects = {'국어', '수학', '영어', '한국사'}
+        탐구_subjects = [s for s in subjects if s not in core_subjects]
+        탐구_multiplier = 2 / len(탐구_subjects) if 탐구_subjects else 1
+
+        for subject in subjects:
+            sheets = self.loader.get_subject_sheets(subject)
+
+            # 단일 시트 과목
+            if len(sheets) == 1 and sheets[0][1] == '전체':
+                scores = self.loader.load_scores(sheets[0][0])
+                if not scores:
+                    continue
+
+                if subject in 탐구_subjects:
+                    for model, score in scores.items():
+                        model_total_scores[model] += score * 탐구_multiplier
+                else:
+                    for model, score in scores.items():
+                        model_total_scores[model] += score
+
+            # 공통+선택 과목
+            else:
+                common_sheet = None
+                select_sheets = []
+
+                for sheet_name, part in sheets:
+                    if part == '공통':
+                        common_sheet = (sheet_name, part)
+                    else:
+                        select_sheets.append((sheet_name, part))
+
+                if common_sheet and select_sheets:
+                    common_scores = self.loader.load_scores(common_sheet[0])
+                    if not common_scores:
+                        continue
+
+                    # 선택과목 평균
+                    model_select_avg = defaultdict(float)
+                    for select_sheet_name, _ in select_sheets:
+                        select_scores = self.loader.load_scores(select_sheet_name)
+                        for model, score in select_scores.items():
+                            model_select_avg[model] += score
+
+                    num_selects = len(select_sheets)
+                    for model in model_select_avg.keys():
+                        model_select_avg[model] /= num_selects
+
+                    for model in common_scores.keys():
+                        total = common_scores[model] + model_select_avg.get(model, 0)
+                        model_total_scores[model] += total
+
+        # 토큰 데이터와 점수 데이터 매칭
+        plot_data = []
+        for json_model_name, tokens in token_data.items():
+            # Excel 모델명으로 변환
+            excel_model_name = model_mapping.get(json_model_name, json_model_name)
+
+            # 점수 찾기
+            score = model_total_scores.get(excel_model_name, 0)
+            if score == 0:
+                # 매핑 없이도 시도
+                score = model_total_scores.get(json_model_name, 0)
+
+            if score > 0:
+                plot_data.append({
+                    'model': excel_model_name,
+                    'output_tokens': tokens['total_output_tokens'],
+                    'score': score,
+                    'question_count': tokens['question_count']
+                })
+
+        if not plot_data:
+            print('  ⚠ 매칭되는 점수-토큰 데이터가 없습니다.')
+            return None
+
+        # 상대값 계산 (평균 기준)
+        avg_tokens = np.mean([d['output_tokens'] for d in plot_data])
+        avg_score = np.mean([d['score'] for d in plot_data])
+
+        # 상대값으로 변환 (평균 대비 비율, 0이 중앙)
+        for d in plot_data:
+            d['rel_tokens'] = (d['output_tokens'] - avg_tokens) / avg_tokens * 100 if avg_tokens > 0 else 0
+            d['rel_score'] = (d['score'] - avg_score) / avg_score * 100 if avg_score > 0 else 0
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(10, 8))
+
+        # 데이터 준비
+        model_names = [d['model'] for d in plot_data]
+        rel_tokens = [d['rel_tokens'] for d in plot_data]
+        rel_scores = [d['rel_score'] for d in plot_data]
+        colors = ChartConfig.get_model_colors(model_names)
+
+        # Y축 범위: 만점 450 기준으로 설정 (250~450 범위)
+        MAX_SCORE = 450
+        MIN_SCORE = 250
+        y_max_rel = (MAX_SCORE - avg_score) / avg_score * 100 + 1  # 여유 1%
+        y_min_rel = (MIN_SCORE - avg_score) / avg_score * 100 - 1
+        max_abs_y = max(abs(y_max_rel), abs(y_min_rel))
+
+        # X축 범위 계산
+        max_abs_x = max(abs(min(rel_tokens)) if rel_tokens else 50, abs(max(rel_tokens)) if rel_tokens else 50, 50)
+        max_abs_x *= 1.3
+
+        # 사분면 배경색 (axhspan은 xmin/xmax가 0~1 비율이므로 axvspan 조합 사용)
+        # 좌상단: 고성적 + 저토큰 = 효율적 (연한 초록)
+        ax.fill_between([-max_abs_x, 0], 0, max_abs_y, alpha=0.12, color='#34A853', zorder=0)
+        # 우하단: 저성적 + 고토큰 = 비효율적 (연한 빨강)
+        ax.fill_between([0, max_abs_x], -max_abs_y, 0, alpha=0.12, color='#EA4335', zorder=0)
+
+        # 중앙선 (0, 0)
+        ax.axhline(y=0, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
+        ax.axvline(x=0, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
+
+        # 산점도
+        scatter = ax.scatter(rel_tokens, rel_scores, c=colors, s=250, alpha=0.9,
+                            edgecolors='black', linewidths=2, zorder=3)
+
+        # 모델명 라벨 표시
+        for i, (x, y, model) in enumerate(zip(rel_tokens, rel_scores, model_names)):
+            ax.annotate(model, (x, y), xytext=(12, 8), textcoords='offset points',
+                       fontsize=11, fontweight='bold', zorder=4)
+
+        # 축 설정
+        ax.set_xlim(-max_abs_x, max_abs_x)
+        ax.set_ylim(-max_abs_y, max_abs_y)
+
+        # Y축: 250~450 범위, 50점 간격
+        y_abs_ticks = [250, 300, 350, 400, 450]
+        y_filtered = [(( v - avg_score) / avg_score * 100, v) for v in y_abs_ticks
+                      if -max_abs_y <= (v - avg_score) / avg_score * 100 <= max_abs_y]
+        ax.set_yticks([p for p, v in y_filtered])
+        ax.set_yticklabels([f'{v}' for p, v in y_filtered])
+
+        # X축: K(천) 단위로 표시
+        x_abs_ticks = [2_000_000, 3_000_000, 4_000_000, 5_000_000, 6_000_000]
+        x_filtered = [((v - avg_tokens) / avg_tokens * 100, v) for v in x_abs_ticks
+                      if -max_abs_x <= (v - avg_tokens) / avg_tokens * 100 <= max_abs_x]
+        ax.set_xticks([p for p, v in x_filtered])
+        ax.set_xticklabels([f'{v//1000:,}K' for p, v in x_filtered])
+
+        ax.set_xlabel('출력 토큰 사용량', fontsize=13, fontweight='bold')
+        ax.set_ylabel('전과목 총점 (450점 만점)', fontsize=13, fontweight='bold')
+        ax.set_title('2026 수능 LLM 모델별 성적 vs 토큰 효율성',
+                    fontsize=16, fontweight='bold', pad=20)
+
+
+        # 그리드
+        ax.grid(True, alpha=0.3, linestyle='--', zorder=0)
+
+        # 범례 (평균값 정보) - 차트 위 우측 (다른 그래프와 동일)
+        avg_info = f'평균: {avg_score:.0f}점 / {avg_tokens/1000:,.0f}K 토큰'
+        ax.text(1.0, 1.02, avg_info, transform=ax.transAxes,
+               fontsize=10, va='bottom', ha='right',
+               bbox=dict(boxstyle='round', facecolor='white', alpha=0.8, edgecolor='gray'))
+
+        # 워터마크
+        self._add_watermark(ax)
+
+        plt.tight_layout()
+
+        # 저장
+        filename = 'score_vs_tokens.png'
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        print(f'  📊 {len(plot_data)}개 모델 표시 (평균: {avg_score:.0f}점, {avg_tokens/1000:,.0f}K 토큰)')
+
+        return filepath
+
 
 def list_subjects(excel_path):
     """사용 가능한 과목 목록 출력"""
@@ -1561,6 +1818,8 @@ def main():
                         help='이미지 첨부 여부별 득점률 비교 차트 생성')
     parser.add_argument('--no-image-based', action='store_true',
                         help='이미지 첨부 여부별 득점률 비교 차트 생성 안 함')
+    parser.add_argument('--no-tokens', action='store_true',
+                        help='성적 vs 토큰 사용량 산점도 생성 안 함')
 
     args = parser.parse_args()
 
@@ -1641,6 +1900,13 @@ def main():
             generator.create_overall_image_based_charts()
         except Exception as e:
             print(f'  ✗ 이미지 기반 차트 생성 실패: {e}')
+
+    # 성적 vs 토큰 사용량 산점도 생성 (기본 생성, --no-tokens 옵션으로 제외 가능)
+    if not args.no_tokens:
+        try:
+            generator.create_score_vs_tokens_chart()
+        except Exception as e:
+            print(f'  ✗ 토큰 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
