@@ -4,6 +4,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ## 개요
+
 다양한 LLM 모델의 2026학년도 수능 문제 풀이 결과를 기록하고 통계를 정리한 데이터입니다.
 국어/수학 전과목, 영어, 한국사 영역과 더불어
 올해 수능 중 비교적 어렵다는 평이 많은 탐구 과목 4개(생명1/물리1/화학1 및 사회문화)를 대상으로 테스트를 진행했습니다.
@@ -121,17 +122,14 @@
 ## 국어 영역
 
 ### 종합 성적
-![국어 1](images/국어_average_breakdown_by_name.png)
 ![국어 2](images/국어_average_breakdown_by_score.png)
 ![국어 공통 선택률](images/국어_choice_rate_common.png)
 
 ### 화법과 작문
-![화법과 작문 1](images/국어_breakdown_화작_by_name.png)
 ![화법과 작문 2](images/국어_breakdown_화작_by_score.png)
 ![화법과 작문 선택률](images/국어_choice_rate_화작.png)
 
 ### 언어와 매체
-![언어와 매체 1](images/국어_breakdown_언매_by_name.png)
 ![언어와 매체 2](images/국어_breakdown_언매_by_score.png)
 ![언어와 매체 선택률](images/국어_choice_rate_언매.png)
 
@@ -224,22 +222,18 @@
 
 ### 종합 성적
 
-![수학 1](images/수학_average_breakdown_by_name.png)
 ![수학 2](images/수학_average_breakdown_by_score.png)
 ![수학 공통 선택률](images/수학_choice_rate_common.png)
 
 ### 확률과 통계
-![확률과 통계 1](images/수학_breakdown_확통_by_name.png)
 ![확률과 통계 2](images/수학_breakdown_확통_by_score.png)
 ![확률과 통계 선택률](images/수학_choice_rate_확통.png)
 
 ### 미적분
-![미분과 적분 1](images/수학_breakdown_미적_by_name.png)
 ![미분과 적분 2](images/수학_breakdown_미적_by_score.png)
 ![미적분 선택률](images/수학_choice_rate_미적.png)
 
 ### 기하
-![기하 1](images/수학_breakdown_geometry_by_name.png)
 ![기하 2](images/수학_breakdown_geometry_by_score.png)
 ![기하 선택률](images/수학_choice_rate_geometry.png)
 
@@ -358,7 +352,6 @@
 ## 영어 영역
 
 ### 모델별 성적 (100점 만점)
-![영어 1](images/영어_score_전체_by_name.png)
 ![영어 2](images/영어_score_전체_by_score.png)
 ![영어 선택률](images/영어_choice_rate_전체.png)
 
@@ -367,7 +360,6 @@
 ## 한국사 영역
 
 ### 모델별 성적 (50점 만점)
-![한국사 1](images/한국사_score_전체_by_name.png)
 ![한국사 2](images/한국사_score_전체_by_score.png)
 ![한국사 선택률](images/한국사_choice_rate_전체.png)
 
@@ -377,7 +369,6 @@
 
 ### 물리1
 
-![물리1 1](images/물리1_score_전체_by_name.png)
 ![물리1 2](images/물리1_score_전체_by_score.png)
 ![물리1 선택률](images/물리1_choice_rate_전체.png)
 
@@ -385,30 +376,44 @@
 
 ### 화학1
 
-![화학1 1](images/화학1_score_전체_by_name.png)
 ![화학1 2](images/화학1_score_전체_by_score.png)
 ![화학1 선택률](images/화학1_choice_rate_전체.png)
 
 ### 생명과학1
 
-![생명1 1](images/생명1_score_전체_by_name.png)
 ![생명1 2](images/생명1_score_전체_by_score.png)
 ![생명1 선택률](images/생명1_choice_rate_전체.png)
 
 ### 사회문화
 
-![사회문화 1](images/사회문화_score_전체_by_name.png)
 ![사회문화 2](images/사회문화_score_전체_by_score.png)
 ![사회문화 선택률](images/사회문화_choice_rate_전체.png)
 
 ---
 
-## 토큰 사용량
+## 비용 효율성
 
-토큰 사용량과 점수 간의 상관관계를 분석한 결과입니다.
-성적이 높으면서 토큰 사용량이 적을수록 좋은 모델입니다.
+API 비용(토큰 사용량)과 점수 간의 상관관계를 분석한 결과입니다.
 
-![토큰 사용량](images/score_vs_tokens.png)
+### 비용 vs 성능
+
+![비용 효율성](images/score_vs_cost.png)
+
+공식 공급자가 없는 모델의 경우, OpenRouter의 평균적인 비용을 바탕으로 측정했습니다.
+
+| 모델명 | 입력 비용 | 출력 비용 | 총 비용 |
+| :--- | :--- | :--- | :--- |
+| GPT-OSS 120B | 0.15 | 0.6 | $1.13 |
+| K-EXAONE 236B | 0.23 | 0.92 | $0.34 |
+| K-EXAONE 236B (Thinking) | 0.23 | 0.92 | $3.84 |
+
+※ 1,000,000토큰 당 달러 기준입니다.
+
+※ K-EXAONE의 경우 아직 유료 제공 API가 없어, 비슷한 규모인 Qwen3 235B의 Alibaba 제공 API 비용을 기준으로 삼았습니다.
+
+### 토큰 사용량
+
+![토큰 사용량](images/token_usage_breakdown.png)
 
 ---
 

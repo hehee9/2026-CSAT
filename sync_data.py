@@ -8,6 +8,8 @@ Excel-JSON 양방향 동기화 스크립트
 사용법:
     python sync_data.py export --sheet 국어-공통 --model "GPT-5.1"
     python sync_data.py export --sheet 국어-공통 --all-models
+    python sync_data.py export --all-sheets                      # 모든 과목을 하나의 JSON 배열로 출력
+    python sync_data.py export --all-sheets --output results.json
     python sync_data.py import --json problems/국어/공통/results_verified.json
     python sync_data.py import --all
     python sync_data.py list
@@ -743,6 +745,89 @@ class SyncManager:
 
         return count
 
+    def export_all_sheets_to_json(self, output_path: Path = None,
+                                     model_name: str = None,
+                                     all_models: bool = False) -> Path:
+        """
+        모든 시트를 하나의 JSON 파일로 내보내기 (객체 배열 형태)
+
+        Args:
+            output_path: 출력 경로 (None이면 all_results.json)
+            model_name: 특정 모델만 내보내기
+            all_models: 모든 모델 내보내기
+
+        Returns:
+            저장된 파일 경로
+        """
+        all_data = []
+
+        for sheet_name in self.path_mapper.get_all_sheets():
+            # 시트 존재 확인
+            if sheet_name not in self.excel_handler.get_sheet_names():
+                continue
+
+            # questions.json 존재 확인
+            json_dir = self.path_mapper.sheet_to_json_path(sheet_name)
+            if not json_dir or not (json_dir / 'questions.json').exists():
+                continue
+
+            try:
+                # 모델 목록 결정
+                if model_name:
+                    models_to_export = [model_name]
+                elif all_models:
+                    models_to_export = list(self.excel_handler.get_model_columns(sheet_name).keys())
+                else:
+                    models_to_export = list(self.excel_handler.get_model_columns(sheet_name).keys())
+
+                for model in models_to_export:
+                    try:
+                        answers = self.excel_handler.get_model_answers(sheet_name, model)
+                        json_data = self.converter.excel_to_json(
+                            sheet_name, model, answers, self.excel_handler
+                        )
+                        # 깔끔한 형태로 재구성
+                        json_model_name = list(json_data['model_scores'].keys())[0]
+                        # results에서 불필요한 필드 제거
+                        clean_results = [
+                            {
+                                'question_number': r['question_number'],
+                                'extracted_answer': r['extracted_answer'],
+                                'correct_answer': r['correct_answer'],
+                                'is_correct': r['is_correct'],
+                                'points': r['points'],
+                            }
+                            for r in json_data['results']
+                        ]
+                        clean_data = {
+                            'sheet_name': sheet_name,
+                            'subject': json_data['subject'],
+                            'section': json_data['section'],
+                            'model_name': json_model_name,
+                            'score': json_data['model_scores'][json_model_name],
+                            'total_points': json_data['total_points'],
+                            'correct_count': json_data['correct_count'],
+                            'total_questions': json_data['total_verified'],
+                            'results': clean_results,
+                        }
+                        all_data.append(clean_data)
+                    except Exception as e:
+                        print(f"경고: {sheet_name}/{model} 내보내기 실패 - {e}")
+
+            except Exception as e:
+                print(f"경고: {sheet_name} 처리 실패 - {e}")
+
+        # 출력 경로 결정
+        if output_path is None:
+            output_path = Path('all_results.json')
+
+        # 저장
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(all_data, f, ensure_ascii=False, indent=2)
+
+        print(f"내보내기 완료: {output_path} ({len(all_data)}개 항목)")
+        return output_path
+
     def list_models(self, sheet_name: str = None) -> Dict[str, List[str]]:
         """모델 목록 반환"""
         result = {}
@@ -819,9 +904,14 @@ def main():
   python sync_data.py import --json problems/국어/공통/results_verified.json
   python sync_data.py import --all
 
-  # Excel -> JSON 내보내기
+  # Excel -> JSON 내보내기 (단일 시트)
   python sync_data.py export --sheet 국어-공통 --model "GPT-5.1"
   python sync_data.py export --sheet 국어-공통 --all-models
+
+  # Excel -> JSON 내보내기 (모든 시트를 하나의 JSON 배열로)
+  python sync_data.py export --all-sheets
+  python sync_data.py export --all-sheets --output all_results.json
+  python sync_data.py export --all-sheets --model "GPT-5.1"  # 특정 모델만
 
   # 모델 목록 확인
   python sync_data.py list
@@ -836,7 +926,8 @@ def main():
 
     # Export 명령
     export_parser = subparsers.add_parser('export', help='Excel -> JSON 내보내기')
-    export_parser.add_argument('--sheet', required=True, help='시트 이름 (예: 국어-공통)')
+    export_parser.add_argument('--sheet', help='시트 이름 (예: 국어-공통)')
+    export_parser.add_argument('--all-sheets', action='store_true', help='모든 시트를 하나의 JSON 배열로 내보내기')
     export_parser.add_argument('--model', help='모델 이름')
     export_parser.add_argument('--all-models', action='store_true', help='모든 모델 내보내기')
     export_parser.add_argument('--output', help='출력 파일 경로')
@@ -878,15 +969,26 @@ def main():
 
     # 명령 실행
     if args.command == 'export':
-        if args.all_models:
-            models = sync.list_models(args.sheet).get(args.sheet, [])
-            for model in models:
-                sync.export_to_json(args.sheet, model)
-        elif args.model:
+        if args.all_sheets:
+            # 모든 시트를 하나의 JSON 배열로 내보내기
             output = Path(args.output) if args.output else None
-            sync.export_to_json(args.sheet, args.model, output)
+            sync.export_all_sheets_to_json(
+                output_path=output,
+                model_name=args.model,
+                all_models=args.all_models or (args.model is None)
+            )
+        elif args.sheet:
+            if args.all_models:
+                models = sync.list_models(args.sheet).get(args.sheet, [])
+                for model in models:
+                    sync.export_to_json(args.sheet, model)
+            elif args.model:
+                output = Path(args.output) if args.output else None
+                sync.export_to_json(args.sheet, args.model, output)
+            else:
+                print("--model 또는 --all-models 옵션을 지정하세요.")
         else:
-            print("--model 또는 --all-models 옵션을 지정하세요.")
+            print("--sheet 또는 --all-sheets 옵션을 지정하세요.")
 
     elif args.command == 'import':
         if args.all:

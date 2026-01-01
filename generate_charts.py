@@ -336,7 +336,7 @@ class DataLoader:
             return {}
 
     def load_model_token_usage(self) -> dict:
-        """모든 과목의 results.json에서 모델별 토큰 사용량 집계
+        """모델별 토큰 사용량 로드 (token_usage.json 우선, 없으면 results.json에서 집계)
 
         Returns:
             dict: {
@@ -351,7 +351,23 @@ class DataLoader:
         """
         from collections import defaultdict
 
-        # 결과 저장용
+        problems_dir = Path('problems')
+        if not problems_dir.exists():
+            return {}
+
+        # 1. token_usage.json 우선 확인 (누적 데이터)
+        token_file = problems_dir / 'token_usage.json'
+        if token_file.exists():
+            try:
+                with open(token_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                if data.get('models'):
+                    print(f'  ✓ token_usage.json에서 {len(data["models"])}개 모델 데이터 로드')
+                    return data['models']
+            except Exception as e:
+                print(f'  ⚠ token_usage.json 로드 실패: {e}')
+
+        # 2. Fallback: results.json에서 집계
         model_tokens = defaultdict(lambda: {
             'total_input_tokens': 0,
             'total_output_tokens': 0,
@@ -359,12 +375,6 @@ class DataLoader:
             'question_count': 0
         })
 
-        # results.json 파일 경로 목록
-        problems_dir = Path('problems')
-        if not problems_dir.exists():
-            return {}
-
-        # 모든 results.json 파일 탐색
         results_files = list(problems_dir.rglob('results.json'))
 
         for results_file in results_files:
@@ -391,6 +401,46 @@ class DataLoader:
                 continue
 
         return dict(model_tokens)
+
+    def load_model_prices(self) -> dict:
+        """config.json에서 모델별 토큰 가격 로드
+
+        Returns:
+            dict: {
+                "model_name": {
+                    "input": float (1M 토큰당 $),
+                    "output": float (1M 토큰당 $)
+                },
+                ...
+            }
+        """
+        config_path = Path('problems/config.json')
+        if not config_path.exists():
+            print('  ⚠ problems/config.json을 찾을 수 없습니다.')
+            return {}
+
+        try:
+            with open(config_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            prices = {}
+            for model in data.get('models', []):
+                name = model.get('name')
+                price = model.get('price')
+                if name and price:
+                    prices[name] = {
+                        'input': price.get('input', 0),
+                        'output': price.get('output', 0)
+                    }
+
+            if prices:
+                print(f'  ✓ config.json에서 {len(prices)}개 모델 가격 데이터 로드')
+
+            return prices
+
+        except Exception as e:
+            print(f'  ⚠ config.json 로드 실패: {e}')
+            return {}
 
     def calculate_image_based_scores(self, sheet_name, subject, section):
         """이미지 첨부 여부에 따른 모델별 득점률 계산 (만점 대비 퍼센트)
@@ -1569,14 +1619,20 @@ class ChartGenerator:
 
         return filepath
 
-    def create_score_vs_tokens_chart(self):
-        """전과목 총점 vs 출력 토큰 사용량 산점도 생성"""
-        print('\n[성적 vs 토큰 사용량]')
+    def create_score_vs_cost_chart(self):
+        """전과목 총점 vs API 비용 산점도 생성"""
+        print('\n[성적 vs API 비용]')
 
         # 토큰 데이터 로드
         token_data = self.loader.load_model_token_usage()
         if not token_data:
             print('  ⚠ 토큰 데이터가 없습니다.')
+            return None
+
+        # 가격 데이터 로드
+        price_data = self.loader.load_model_prices()
+        if not price_data:
+            print('  ⚠ 가격 데이터가 없습니다.')
             return None
 
         # 모델명 매핑 로드 (JSON 이름 -> Excel 이름)
@@ -1645,9 +1701,22 @@ class ChartGenerator:
                         total = common_scores[model] + model_select_avg.get(model, 0)
                         model_total_scores[model] += total
 
-        # 토큰 데이터와 점수 데이터 매칭
+        # 토큰/가격 데이터와 점수 데이터 매칭
         plot_data = []
         for json_model_name, tokens in token_data.items():
+            # 가격 정보 확인
+            if json_model_name not in price_data:
+                print(f'  ⚠ {json_model_name}의 가격 정보가 없습니다.')
+                continue
+
+            price = price_data[json_model_name]
+            input_tokens = tokens['total_input_tokens']
+            output_tokens = tokens['total_output_tokens']
+
+            # 비용 계산: (토큰 / 1M) * 가격
+            cost = (input_tokens / 1_000_000 * price['input']) + \
+                   (output_tokens / 1_000_000 * price['output'])
+
             # Excel 모델명으로 변환
             excel_model_name = model_mapping.get(json_model_name, json_model_name)
 
@@ -1660,92 +1729,98 @@ class ChartGenerator:
             if score > 0:
                 plot_data.append({
                     'model': excel_model_name,
-                    'output_tokens': tokens['total_output_tokens'],
+                    'cost': cost,
                     'score': score,
-                    'question_count': tokens['question_count']
+                    'input_tokens': input_tokens,
+                    'output_tokens': output_tokens
                 })
 
         if not plot_data:
-            print('  ⚠ 매칭되는 점수-토큰 데이터가 없습니다.')
+            print('  ⚠ 매칭되는 점수-비용 데이터가 없습니다.')
             return None
 
-        # 상대값 계산 (평균 기준)
-        avg_tokens = np.mean([d['output_tokens'] for d in plot_data])
+        # 평균값 계산 (정보 표시용)
+        avg_cost = np.mean([d['cost'] for d in plot_data])
         avg_score = np.mean([d['score'] for d in plot_data])
-
-        # 상대값으로 변환 (평균 대비 비율, 0이 중앙)
-        for d in plot_data:
-            d['rel_tokens'] = (d['output_tokens'] - avg_tokens) / avg_tokens * 100 if avg_tokens > 0 else 0
-            d['rel_score'] = (d['score'] - avg_score) / avg_score * 100 if avg_score > 0 else 0
 
         # 차트 생성
         fig, ax = plt.subplots(figsize=(10, 8))
 
-        # 데이터 준비
+        # 데이터 준비 (절대값 사용)
         model_names = [d['model'] for d in plot_data]
-        rel_tokens = [d['rel_tokens'] for d in plot_data]
-        rel_scores = [d['rel_score'] for d in plot_data]
+        costs = [d['cost'] for d in plot_data]
+        scores = [d['score'] for d in plot_data]
         colors = ChartConfig.get_model_colors(model_names)
 
-        # Y축 범위: 만점 450 기준으로 설정 (250~450 범위)
-        MAX_SCORE = 450
-        MIN_SCORE = 250
-        y_max_rel = (MAX_SCORE - avg_score) / avg_score * 100 + 1  # 여유 1%
-        y_min_rel = (MIN_SCORE - avg_score) / avg_score * 100 - 1
-        max_abs_y = max(abs(y_max_rel), abs(y_min_rel))
+        # 축 범위 설정
+        MIN_SCORE, MAX_SCORE = 250, 450
+        x_min, x_max = 0, max(costs) * 1.15
+        y_min, y_max = MIN_SCORE, MAX_SCORE
 
-        # X축 범위 계산
-        max_abs_x = max(abs(min(rel_tokens)) if rel_tokens else 50, abs(max(rel_tokens)) if rel_tokens else 50, 50)
-        max_abs_x *= 1.3
+        # 사분면 기준선 (그래프 영역의 중앙값)
+        x_mid = (x_min + x_max) / 2
+        y_mid = (y_min + y_max) / 2
 
-        # 사분면 배경색 (axhspan은 xmin/xmax가 0~1 비율이므로 axvspan 조합 사용)
-        # 좌상단: 고성적 + 저토큰 = 효율적 (연한 초록)
-        ax.fill_between([-max_abs_x, 0], 0, max_abs_y, alpha=0.12, color='#34A853', zorder=0)
-        # 우하단: 저성적 + 고토큰 = 비효율적 (연한 빨강)
-        ax.fill_between([0, max_abs_x], -max_abs_y, 0, alpha=0.12, color='#EA4335', zorder=0)
+        # 사분면 배경색 (Rectangle 패치로 정확한 영역 지정)
+        from matplotlib.patches import Rectangle
+        # 좌상단: 고성적 + 저비용 = 효율적 (연한 초록)
+        rect1 = Rectangle((x_min, y_mid), x_mid - x_min, y_max - y_mid,
+                          facecolor='#34A853', alpha=0.12, edgecolor='none', zorder=0)
+        ax.add_patch(rect1)
+        # 우하단: 저성적 + 고비용 = 비효율적 (연한 빨강)
+        rect2 = Rectangle((x_mid, y_min), x_max - x_mid, y_mid - y_min,
+                          facecolor='#EA4335', alpha=0.12, edgecolor='none', zorder=0)
+        ax.add_patch(rect2)
 
-        # 중앙선 (0, 0)
-        ax.axhline(y=0, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
-        ax.axvline(x=0, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
+        # 중앙선 (그래프 영역의 중앙값)
+        ax.axhline(y=y_mid, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
+        ax.axvline(x=x_mid, color='gray', linestyle='-', linewidth=1.5, alpha=0.7, zorder=1)
 
-        # 산점도
-        scatter = ax.scatter(rel_tokens, rel_scores, c=colors, s=250, alpha=0.9,
+        # 산점도 (절대값으로 배치)
+        scatter = ax.scatter(costs, scores, c=colors, s=250, alpha=0.9,
                             edgecolors='black', linewidths=2, zorder=3)
 
         # 모델명 라벨 표시
-        for i, (x, y, model) in enumerate(zip(rel_tokens, rel_scores, model_names)):
+        for i, (x, y, model) in enumerate(zip(costs, scores, model_names)):
             ax.annotate(model, (x, y), xytext=(12, 8), textcoords='offset points',
                        fontsize=11, fontweight='bold', zorder=4)
 
         # 축 설정
-        ax.set_xlim(-max_abs_x, max_abs_x)
-        ax.set_ylim(-max_abs_y, max_abs_y)
+        ax.set_xlim(x_min, x_max)
+        ax.set_ylim(y_min, y_max)
 
         # Y축: 250~450 범위, 50점 간격
-        y_abs_ticks = [250, 300, 350, 400, 450]
-        y_filtered = [(( v - avg_score) / avg_score * 100, v) for v in y_abs_ticks
-                      if -max_abs_y <= (v - avg_score) / avg_score * 100 <= max_abs_y]
-        ax.set_yticks([p for p, v in y_filtered])
-        ax.set_yticklabels([f'{v}' for p, v in y_filtered])
+        ax.set_yticks([250, 300, 350, 400, 450])
 
-        # X축: K(천) 단위로 표시
-        x_abs_ticks = [2_000_000, 3_000_000, 4_000_000, 5_000_000, 6_000_000]
-        x_filtered = [((v - avg_tokens) / avg_tokens * 100, v) for v in x_abs_ticks
-                      if -max_abs_x <= (v - avg_tokens) / avg_tokens * 100 <= max_abs_x]
-        ax.set_xticks([p for p, v in x_filtered])
-        ax.set_xticklabels([f'{v//1000:,}K' for p, v in x_filtered])
+        # X축: 동적 틱 생성 (비용 단위)
+        max_cost_val = max(costs)
+        if max_cost_val < 1:
+            tick_interval = 0.1
+        elif max_cost_val < 5:
+            tick_interval = 0.5
+        elif max_cost_val < 10:
+            tick_interval = 1
+        else:
+            tick_interval = 2
 
-        ax.set_xlabel('출력 토큰 사용량', fontsize=13, fontweight='bold')
+        x_ticks = []
+        current = 0
+        while current <= x_max:
+            x_ticks.append(current)
+            current += tick_interval
+        ax.set_xticks(x_ticks)
+        ax.set_xticklabels([f'${t:.2f}' if t < 10 else f'${t:.1f}' for t in x_ticks])
+
+        ax.set_xlabel('API 비용 - 누적 (USD)', fontsize=13, fontweight='bold')
         ax.set_ylabel('전과목 총점 (450점 만점)', fontsize=13, fontweight='bold')
-        ax.set_title('2026 수능 LLM 모델별 성적 vs 토큰 효율성',
+        ax.set_title('2026 수능 LLM 모델별 성적 vs API 비용 (247문제 총합)',
                     fontsize=16, fontweight='bold', pad=20)
-
 
         # 그리드
         ax.grid(True, alpha=0.3, linestyle='--', zorder=0)
 
-        # 범례 (평균값 정보) - 차트 위 우측 (다른 그래프와 동일)
-        avg_info = f'평균: {avg_score:.0f}점 / {avg_tokens/1000:,.0f}K 토큰'
+        # 범례 (평균값 정보) - 차트 위 우측
+        avg_info = f'평균: {avg_score:.0f}점 / ${avg_cost:.2f}'
         ax.text(1.0, 1.02, avg_info, transform=ax.transAxes,
                fontsize=10, va='bottom', ha='right',
                bbox=dict(boxstyle='round', facecolor='white', alpha=0.8, edgecolor='gray'))
@@ -1756,13 +1831,129 @@ class ChartGenerator:
         plt.tight_layout()
 
         # 저장
-        filename = 'score_vs_tokens.png'
+        filename = 'score_vs_cost.png'
         filepath = os.path.join(self.output_dir, filename)
         plt.savefig(filepath, dpi=150, bbox_inches='tight')
         plt.close()
 
         print(f'  ✓ {filename}')
-        print(f'  📊 {len(plot_data)}개 모델 표시 (평균: {avg_score:.0f}점, {avg_tokens/1000:,.0f}K 토큰)')
+        print(f'  📊 {len(plot_data)}개 모델 표시 (평균: {avg_score:.0f}점, ${avg_cost:.2f})')
+
+        return filepath
+
+    def create_token_usage_chart(self):
+        """모델별 입출력 토큰 사용량 스택 바 차트 생성"""
+        print('\n[토큰 사용량]')
+
+        # 토큰 데이터 로드
+        token_data = self.loader.load_model_token_usage()
+        if not token_data:
+            print('  ⚠ 토큰 데이터가 없습니다.')
+            return None
+
+        # 모델명 매핑 로드 (JSON 이름 -> Excel 이름)
+        model_mapping = {}
+        mapping_file = Path('model_mapping.json')
+        if mapping_file.exists():
+            try:
+                with open(mapping_file, 'r', encoding='utf-8') as f:
+                    model_mapping = json.load(f)
+            except:
+                pass
+
+        # 데이터 준비
+        plot_data = []
+        for json_model_name, tokens in token_data.items():
+            excel_model_name = model_mapping.get(json_model_name, json_model_name)
+            plot_data.append({
+                'model': excel_model_name,
+                'input_tokens': tokens['total_input_tokens'],
+                'output_tokens': tokens['total_output_tokens'],
+                'total_tokens': tokens['total_tokens']
+            })
+
+        if not plot_data:
+            print('  ⚠ 토큰 데이터가 없습니다.')
+            return None
+
+        # 총 토큰 기준 오름차순 정렬
+        plot_data.sort(key=lambda x: x['total_tokens'])
+
+        # 데이터 추출
+        model_names = [d['model'] for d in plot_data]
+        input_tokens = [d['input_tokens'] for d in plot_data]
+        output_tokens = [d['output_tokens'] for d in plot_data]
+
+        # 차트 생성
+        fig, ax = plt.subplots(figsize=(12, 6))
+
+        x = np.arange(len(model_names))
+        bar_width = 0.6
+
+        # 모델별 색상
+        base_colors = ChartConfig.get_model_colors(model_names)
+        light_colors = [ChartConfig.lighten_color(c, 0.5) for c in base_colors]
+
+        # 하단: 출력 토큰 (진한색)
+        bars1 = ax.bar(x, output_tokens, width=bar_width, label='출력 토큰',
+                       color=base_colors, edgecolor='black', linewidth=0.5)
+
+        # 상단: 입력 토큰 (연한색)
+        bars2 = ax.bar(x, input_tokens, width=bar_width, bottom=output_tokens,
+                       label='입력 토큰',
+                       color=light_colors, edgecolor='black', linewidth=0.5)
+
+        # 입력 + 출력 토큰 수 표시
+        for i, (inp, out) in enumerate(zip(input_tokens, output_tokens)):
+            total = inp + out
+            ax.text(i, total + total * 0.02, f'{inp/1000:,.0f}K + {out/1000:,.0f}K',
+                   ha='center', va='bottom', fontsize=9, fontweight='bold')
+
+        # 축 설정
+        ax.set_xlabel('모델', fontsize=12, fontweight='bold')
+        ax.set_ylabel('토큰 수', fontsize=12, fontweight='bold')
+        ax.set_title('2026 수능 LLM 모델별 토큰 사용량',
+                    fontsize=14, fontweight='bold', pad=15)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_names, rotation=15, ha='right', fontsize=10)
+
+        # Y축 포맷팅 (K 단위)
+        max_total = max(d['total_tokens'] for d in plot_data)
+        if max_total < 1_000_000:
+            tick_interval = 100_000
+        elif max_total < 3_000_000:
+            tick_interval = 500_000
+        else:
+            tick_interval = 1_000_000
+
+        y_max = (int(max_total * 1.15) // tick_interval + 1) * tick_interval
+        y_ticks = list(range(0, y_max + 1, tick_interval))
+        ax.set_yticks(y_ticks)
+        ax.set_yticklabels([f'{t/1000:,.0f}K' for t in y_ticks])
+        ax.set_ylim(0, y_max)
+
+        # 범례 (우상단 박스 밖, 1줄로 입력 토큰이 좌측에 오도록)
+        handles, labels = ax.get_legend_handles_labels()
+        ax.legend(handles[::-1], labels[::-1], loc='lower right', bbox_to_anchor=(1.0, 1.02),
+                 frameon=True, ncol=2, fontsize=10)
+
+        # 그리드
+        ax.grid(True, axis='y', alpha=0.3, linestyle='--')
+
+        # 워터마크
+        self._add_watermark(ax)
+
+        plt.tight_layout()
+
+        # 저장
+        filename = 'token_usage_breakdown.png'
+        filepath = os.path.join(self.output_dir, filename)
+        plt.savefig(filepath, dpi=150, bbox_inches='tight')
+        plt.close()
+
+        print(f'  ✓ {filename}')
+        print(f'  📊 {len(plot_data)}개 모델 표시')
 
         return filepath
 
@@ -1901,12 +2092,17 @@ def main():
         except Exception as e:
             print(f'  ✗ 이미지 기반 차트 생성 실패: {e}')
 
-    # 성적 vs 토큰 사용량 산점도 생성 (기본 생성, --no-tokens 옵션으로 제외 가능)
+    # 성적 vs API 비용 산점도 생성 (기본 생성, --no-tokens 옵션으로 제외 가능)
     if not args.no_tokens:
         try:
-            generator.create_score_vs_tokens_chart()
+            generator.create_score_vs_cost_chart()
         except Exception as e:
-            print(f'  ✗ 토큰 차트 생성 실패: {e}')
+            print(f'  ✗ 비용 차트 생성 실패: {e}')
+
+        try:
+            generator.create_token_usage_chart()
+        except Exception as e:
+            print(f'  ✗ 토큰 사용량 차트 생성 실패: {e}')
 
     print(f'\n{"="*60}')
     print('✅ 차트 생성 완료!')
