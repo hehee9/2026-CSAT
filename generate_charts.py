@@ -794,8 +794,8 @@ class ChartGenerator:
 
         # 차트 생성
         fig, ax = plt.subplots(figsize=(fig_width, 5))
-        # 막대 간격 조정 (0.75로 증가)
-        x = np.arange(len(model_names)) * 0.75
+        # 막대 간격 조정
+        x = np.arange(len(model_names)) * 0.55
         colors = ChartConfig.get_model_colors(model_names)
 
         # 막대 폭 절반 크기 유지
@@ -811,7 +811,7 @@ class ChartGenerator:
         ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
         ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')  # 45도 회전
+        ax.set_xticklabels(model_names, fontsize=8, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, max(total_scores) * 1.15)
         ax.axhline(y=total_max_score, color='gray', linestyle='--', linewidth=1, alpha=0.5, label=f'만점 ({total_max_score}점)')
         ax.grid(axis='y', alpha=0.3)
@@ -821,7 +821,7 @@ class ChartGenerator:
         for i, (bar, score) in enumerate(zip(bars, total_scores)):
             color = 'red' if score == total_max_score else 'black'
             ax.text(bar.get_x() + bar.get_width()/2., score + 1.5,
-                    f'{score}', ha='center', va='bottom', fontsize=11, fontweight='bold', color=color)
+                    f'{score}', ha='center', va='bottom', fontsize=9, fontweight='bold', color=color)
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -876,8 +876,8 @@ class ChartGenerator:
 
         # 차트 생성
         fig, ax = plt.subplots(figsize=(fig_width, 5))
-        # 막대 간격 조정 (0.75로 증가)
-        x = np.arange(len(model_names)) * 0.75
+        # 막대 간격 조정
+        x = np.arange(len(model_names)) * 0.55
 
         # 막대 폭 절반 크기 유지
         bar_width = max(0.2, min(0.4, 0.5 - num_models * 0.01))
@@ -897,7 +897,7 @@ class ChartGenerator:
         ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
         ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')  # 45도 회전
+        ax.set_xticklabels(model_names, fontsize=8, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, 115)  # 상단 여백 증가 (110 -> 115)
         # 범례를 우상단 유지하되 그래프 박스 위로 완전히 빼내기
         ax.legend(fontsize=11, loc='lower right', bbox_to_anchor=(1.0, 1.02), frameon=True)
@@ -909,7 +909,7 @@ class ChartGenerator:
             color = 'red' if total == 100 else 'black'
             # 수정된 부분: f-string에서 '점' 텍스트 제거
             ax.text(x[i], total + 1.5, f'{total}', ha='center', va='bottom',
-                    fontsize=10, fontweight='bold', color=color)
+                    fontsize=8, fontweight='bold', color=color)
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -969,7 +969,7 @@ class ChartGenerator:
 
         # 차트 생성
         fig, ax = plt.subplots(figsize=(fig_width, 5))
-        x = np.arange(len(model_names)) * 0.75
+        x = np.arange(len(model_names)) * 0.55
         bar_width = max(0.2, min(0.4, 0.5 - num_models * 0.01))
 
         # 제작사별 컬러링
@@ -987,7 +987,7 @@ class ChartGenerator:
         ax.set_ylabel('점수 (점)', fontsize=12, fontweight='bold')
         ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')
+        ax.set_xticklabels(model_names, fontsize=8, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, 115)
         ax.legend(fontsize=11, loc='lower right', bbox_to_anchor=(1.0, 1.02), frameon=True)
         ax.grid(axis='y', alpha=0.3)
@@ -1001,7 +1001,7 @@ class ChartGenerator:
             score_text = f'{total:.1f}' if total % 1 != 0 else f'{int(total)}'
 
             ax.text(x[i], total + 1.5, score_text, ha='center', va='bottom',
-                    fontsize=10, fontweight='bold', color=color)
+                    fontsize=8, fontweight='bold', color=color)
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -1034,8 +1034,6 @@ class ChartGenerator:
         # 단일 시트 과목 처리 (예: 영어, 한국사)
         if len(sheets) == 1 and sheets[0][1] == '전체':
             if mode in ['summary', 'all']:
-                # 모델명순/성적순 차트 각각 생성
-                self.create_summary_chart(subject, [sheets[0]], sort_by='name')
                 self.create_summary_chart(subject, [sheets[0]], sort_by='score')
 
             # 선지 선택률 차트 생성 (단일 시트 과목)
@@ -1064,13 +1062,11 @@ class ChartGenerator:
 
         # 선택과목이 2개 이상일 때만 선택과목 평균 차트 생성
         if len(select_sheets) > 1 and mode in ['breakdown', 'all']:
-            self.create_elective_average_chart(subject, common_sheet, select_sheets, sort_by='name')
             self.create_elective_average_chart(subject, common_sheet, select_sheets, sort_by='score')
 
         # 개별 선택과목 breakdown 차트 생성
         if mode in ['breakdown', 'all']:
             for select_sheet in select_sheets:
-                self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='name')
                 self.create_breakdown_chart(subject, common_sheet, select_sheet, sort_by='score')
 
         # 선지 선택률 차트 생성 (공통 + 각 선택과목별)
@@ -1250,7 +1246,7 @@ class ChartGenerator:
             fig.text(0.5, 0.895, subtitle_line2, ha='center', va='top',
                      fontsize=11, style='italic', color='#555', transform=fig.transFigure)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')  # 45도 회전
+        ax.set_xticklabels(model_names, fontsize=9, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, max(total_scores) * 1.15 if total_scores else 100)
         ax.axhline(y=total_max_score, color='gray', linestyle='--', linewidth=1.5, alpha=0.6,
                    label=f'만점 ({total_max_score}점)')
@@ -1268,7 +1264,7 @@ class ChartGenerator:
                 score_text = f'{score:.1f}'
 
             ax.text(bar.get_x() + bar.get_width()/2., score + total_max_score * 0.02,
-                    score_text, ha='center', va='bottom', fontsize=12, fontweight='bold', color=color)
+                    score_text, ha='center', va='bottom', fontsize=10, fontweight='bold', color=color)
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -1451,7 +1447,7 @@ class ChartGenerator:
                 fontsize=11, style='italic', color='#555', transform=fig.transFigure)
 
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names_sorted, fontsize=11, fontweight='bold', rotation=45, ha='right')
+        ax.set_xticklabels(model_names_sorted, fontsize=9, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, max(best_scores) * 1.15 if best_scores else 100)
         ax.axhline(y=actual_max, color='gray', linestyle='--', linewidth=1.5, alpha=0.6,
                   label=f'만점 ({actual_max}점)')
@@ -1464,13 +1460,13 @@ class ChartGenerator:
             color_b = 'red' if score_b == actual_max else 'black'
             score_text_b = f'{int(score_b)}' if score_b == int(score_b) else f'{score_b:.1f}'
             ax.text(bar_b.get_x() + bar_b.get_width()/2., score_b + actual_max * 0.01,
-                   score_text_b, ha='center', va='bottom', fontsize=10, fontweight='bold', color=color_b)
+                   score_text_b, ha='center', va='bottom', fontsize=8, fontweight='bold', color=color_b)
 
             # 최저점
             color_w = 'red' if score_w == actual_max else 'black'
             score_text_w = f'{int(score_w)}' if score_w == int(score_w) else f'{score_w:.1f}'
             ax.text(bar_w.get_x() + bar_w.get_width()/2., score_w + actual_max * 0.01,
-                   score_text_w, ha='center', va='bottom', fontsize=10, fontweight='bold', color=color_w)
+                   score_text_w, ha='center', va='bottom', fontsize=8, fontweight='bold', color=color_w)
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -1593,7 +1589,7 @@ class ChartGenerator:
         ax.set_ylabel('득점률 (%)', fontsize=13, fontweight='bold')
         ax.set_title(title, fontsize=16, fontweight='bold', pad=20)
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, fontsize=11, fontweight='bold', rotation=45, ha='right')
+        ax.set_xticklabels(model_names, fontsize=9, rotation=45, ha='right', rotation_mode='anchor')
         ax.set_ylim(0, 110)
         ax.axhline(y=100, color='gray', linestyle='--', linewidth=1.5, alpha=0.6)
         ax.grid(axis='y', alpha=0.3, linestyle='--')
@@ -1603,7 +1599,7 @@ class ChartGenerator:
             if rate > 0:
                 rate_text = f'{rate:.1f}%' if rate != int(rate) else f'{int(rate)}%'
                 ax.text(bar.get_x() + bar.get_width()/2., rate + 2,
-                       rate_text, ha='center', va='bottom', fontsize=10, fontweight='bold')
+                       rate_text, ha='center', va='bottom', fontsize=11, fontweight='bold')
 
         # 워터마크 추가
         self._add_watermark(ax)
@@ -1780,10 +1776,14 @@ class ChartGenerator:
         scatter = ax.scatter(costs, scores, c=colors, s=250, alpha=0.9,
                             edgecolors='black', linewidths=2, zorder=3)
 
-        # 모델명 라벨 표시
+        # 모델명 라벨 표시 (우측 영역이면 좌측에 배치)
         for i, (x, y, model) in enumerate(zip(costs, scores, model_names)):
-            ax.annotate(model, (x, y), xytext=(12, 8), textcoords='offset points',
-                       fontsize=11, fontweight='bold', zorder=4)
+            if x > x_max * 0.8:
+                ax.annotate(model, (x, y), xytext=(-12, 8), textcoords='offset points',
+                           fontsize=11, fontweight='bold', zorder=4, ha='right')
+            else:
+                ax.annotate(model, (x, y), xytext=(12, 8), textcoords='offset points',
+                           fontsize=11, fontweight='bold', zorder=4)
 
         # 축 설정
         ax.set_xlim(x_min, x_max)
@@ -1813,7 +1813,7 @@ class ChartGenerator:
 
         ax.set_xlabel('API 비용 - 누적 (USD)', fontsize=13, fontweight='bold')
         ax.set_ylabel('전과목 총점 (450점 만점)', fontsize=13, fontweight='bold')
-        ax.set_title('2026 수능 LLM 모델별 성적 vs API 비용 (247문제 총합)',
+        ax.set_title('2026 수능 LLM 모델별 성적 vs API 비용 (누적)',
                     fontsize=16, fontweight='bold', pad=20)
 
         # 그리드
@@ -1916,7 +1916,7 @@ class ChartGenerator:
                     fontsize=14, fontweight='bold', pad=15)
 
         ax.set_xticks(x)
-        ax.set_xticklabels(model_names, rotation=15, ha='right', fontsize=10)
+        ax.set_xticklabels(model_names, fontsize=8, rotation=15, ha='right', rotation_mode='anchor')
 
         # Y축 포맷팅 (K 단위)
         max_total = max(d['total_tokens'] for d in plot_data)

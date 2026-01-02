@@ -552,38 +552,45 @@ class DataConverter:
             'results': results
         }
 
-    def json_to_excel(self, json_data: Dict) -> Tuple[str, Dict[int, any], int]:
+    def json_to_excel(self, json_data: Dict, target_model: str = None) -> List[Tuple[str, Dict[int, any], int]]:
         """
         results_verified.json 데이터를 Excel 형식으로 변환
 
         Args:
             json_data: results_verified.json 데이터
+            target_model: 특정 모델만 변환 (None이면 모든 모델)
 
         Returns:
-            (model_name, {문항번호: 답}, 총점)
+            [(model_name, {문항번호: 답}, 총점), ...] 리스트
         """
-        # 모델 이름 추출 (첫 번째 모델)
         model_scores = json_data.get('model_scores', {})
         if not model_scores:
             raise ValueError("model_scores가 비어있습니다.")
 
-        json_model_name = list(model_scores.keys())[0]
-        excel_model_name = self.model_mapper.json_to_excel(json_model_name)
-        score = model_scores[json_model_name]
+        results_list = []
 
-        # 답안 추출
-        answers = {}
-        for result in json_data.get('results', []):
-            if result['model_name'] == json_model_name:
-                q_num = result['question_number']
-                extracted = result['extracted_answer']
-                # -1은 빈 셀로 변환
-                if extracted == -1:
-                    answers[q_num] = None
-                else:
-                    answers[q_num] = extracted
+        for json_model_name, score in model_scores.items():
+            # 특정 모델만 처리
+            if target_model and json_model_name != target_model:
+                continue
 
-        return excel_model_name, answers, score
+            excel_model_name = self.model_mapper.json_to_excel(json_model_name)
+
+            # 답안 추출
+            answers = {}
+            for result in json_data.get('results', []):
+                if result['model_name'] == json_model_name:
+                    q_num = result['question_number']
+                    extracted = result['extracted_answer']
+                    # -1은 빈 셀로 변환
+                    if extracted == -1:
+                        answers[q_num] = None
+                    else:
+                        answers[q_num] = extracted
+
+            results_list.append((excel_model_name, answers, score))
+
+        return results_list
 
 
 class SyncManager:
@@ -701,33 +708,34 @@ class SyncManager:
             print(f"시트를 찾을 수 없습니다: {sheet_name}")
             return False
 
-        # 데이터 변환
-        json_model_name, answers, score = self.converter.json_to_excel(json_data)
+        # 데이터 변환 (모든 모델 처리)
+        model_data_list = self.converter.json_to_excel(json_data)
 
-        # Excel 모델 이름 결정
-        if excel_name:
-            model_name = excel_name
-        else:
-            model_name = self.model_mapper.json_to_excel(json_model_name)
+        success_count = 0
+        for model_name, answers, score in model_data_list:
+            # Excel 모델 이름 결정 (excel_name이 지정되면 첫 번째 모델에만 적용)
+            if excel_name and success_count == 0:
+                model_name = excel_name
 
-        # 기존 모델 확인
-        existing_models = self.excel_handler.get_model_columns(sheet_name)
+            # 기존 모델 확인
+            existing_models = self.excel_handler.get_model_columns(sheet_name)
 
-        if model_name in existing_models:
-            if update_existing:
-                self.excel_handler.update_model_column(sheet_name, model_name, answers, score)
-                print(f"업데이트 완료: {sheet_name} / {model_name} ({score}점)")
+            if model_name in existing_models:
+                if update_existing:
+                    self.excel_handler.update_model_column(sheet_name, model_name, answers, score)
+                    print(f"업데이트 완료: {sheet_name} / {model_name} ({score}점)")
+                    success_count += 1
+                else:
+                    print(f"'{model_name}' 모델이 이미 존재합니다. (건너뜀)")
             else:
-                print(f"'{model_name}' 모델이 이미 존재합니다. --update 옵션을 사용하세요.")
-                return False
-        else:
-            self.excel_handler.add_model_column(
-                sheet_name, model_name, answers, score,
-                position=position, after_model=after_model
-            )
-            print(f"추가 완료: {sheet_name} / {model_name} ({score}점)")
+                self.excel_handler.add_model_column(
+                    sheet_name, model_name, answers, score,
+                    position=position, after_model=after_model
+                )
+                print(f"추가 완료: {sheet_name} / {model_name} ({score}점)")
+                success_count += 1
 
-        return True
+        return success_count > 0
 
     def import_all(self, update_existing: bool = False) -> int:
         """모든 results_verified.json 가져오기"""
