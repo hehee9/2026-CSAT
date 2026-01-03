@@ -87,6 +87,8 @@ function Dashboard() {
   const [hoveredModel, setHoveredModel] = useState(null)
   const subjectSelectRef = useRef(null)
   const sectionSelectRef = useRef(null)
+  const mainRef = useRef(null)
+  const scrollPositions = useRef({})
 
   // 전체 모델 점수 계산 (과목 필터 적용)
   const overallScores = useMemo(() => {
@@ -199,6 +201,26 @@ function Dashboard() {
 
     return secs
   }, [selectedSubject, subjects, sections])
+
+  /**
+   * @brief 탭 전환 시 스크롤 위치 저장/복원
+   * @param {string} newTab - 새 탭 키
+   */
+  const handleTabChange = useCallback((newTab) => {
+    // 현재 탭 스크롤 위치 저장
+    if (mainRef.current) {
+      scrollPositions.current[activeTab] = mainRef.current.scrollTop
+    }
+
+    setActiveTab(newTab)
+
+    // 새 탭 스크롤 위치 복원 (다음 렌더 사이클에서)
+    requestAnimationFrame(() => {
+      if (mainRef.current) {
+        mainRef.current.scrollTop = scrollPositions.current[newTab] || 0
+      }
+    })
+  }, [activeTab])
 
   /**
    * @brief 과목 선택 시 자동 섹션 설정
@@ -324,6 +346,7 @@ function Dashboard() {
           onClose={sidebar.close}
         />
         <main
+          ref={mainRef}
           className="flex-1 p-4 md:p-6 overflow-auto pb-20 md:pb-6"
           onClick={(e) => {
             // 빈 공간 클릭 시 호버 효과 해제
@@ -342,7 +365,7 @@ function Dashboard() {
                     ? 'bg-blue-500 text-white shadow-md'
                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
                 }`}
-                onClick={() => setActiveTab(tabKey)}
+                onClick={() => handleTabChange(tabKey)}
               >
                 {t(`tabs.${tabKey}`)}
               </button>
@@ -621,7 +644,7 @@ function Dashboard() {
         </main>
       </div>
       <Footer />
-      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
+      <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   )
 }

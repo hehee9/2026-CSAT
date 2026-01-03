@@ -22,6 +22,41 @@ import { ExportButton } from '@/components/common'
 
 const MAX_LINE_LENGTH = 21
 const MAX_LINES = 3
+const MOBILE_WRAP_THRESHOLD = 17
+
+/**
+ * @brief 긴 텍스트를 중간 공백에서 줄바꿈 (모바일용)
+ * @param {string} text - 분할할 텍스트
+ * @param {number} threshold - 줄바꿈 적용 기준 길이
+ * @return {Array<string>} 분할된 줄 배열
+ */
+function _wrapAtMiddle(text, threshold = MOBILE_WRAP_THRESHOLD) {
+  if (text.length < threshold) return [text]
+
+  const middle = Math.floor(text.length / 2)
+
+  // 중간에서 가장 가까운 공백 찾기
+  let leftSpace = text.lastIndexOf(' ', middle)
+  let rightSpace = text.indexOf(' ', middle)
+
+  // 유효한 공백이 없으면 줄바꿈 안 함
+  if (leftSpace <= 0 && rightSpace < 0) return [text]
+
+  // 중간에 더 가까운 공백 선택
+  let breakPoint
+  if (leftSpace <= 0) {
+    breakPoint = rightSpace
+  } else if (rightSpace < 0) {
+    breakPoint = leftSpace
+  } else {
+    breakPoint = (middle - leftSpace <= rightSpace - middle) ? leftSpace : rightSpace
+  }
+
+  return [
+    text.slice(0, breakPoint).trim(),
+    text.slice(breakPoint).trim()
+  ]
+}
 
 /**
  * @brief 텍스트를 최대 길이 기준으로 여러 줄로 분할 (최대 3줄)
@@ -86,9 +121,9 @@ function createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile) {
   const hoverColor = darkMode ? '#60a5fa' : '#1d4ed8'
 
   return function CustomYAxisTick({ x, y, payload }) {
-    // 모바일에서는 짧은 모델명 사용
+    // 모바일에서는 짧은 모델명 사용 + 17자 이상 시 중간 공백에서 줄바꿈
     const displayName = isMobile ? getShortModelName(payload.value) : payload.value
-    const lines = _wrapText(displayName, MAX_LINE_LENGTH)
+    const lines = isMobile ? _wrapAtMiddle(displayName) : _wrapText(displayName, MAX_LINE_LENGTH)
     const lineHeight = 14
     const startY = -((lines.length - 1) * lineHeight) / 2 + 3
     const isHovered = hoveredModel === payload.value

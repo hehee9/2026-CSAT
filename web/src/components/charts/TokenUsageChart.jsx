@@ -277,6 +277,12 @@ export default function TokenUsageChart({
                 </text>
               )}
             />
+            <CartesianGrid
+              horizontal={false}
+              vertical={true}
+              stroke={axisColor}
+              strokeDasharray="3 3"
+            />
             <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
             {/* 출력 토큰 (좌측, 진한 색) */}
             <Bar dataKey="outputTokens" stackId="tokens" name={t('cost.outputTokensShort')} isAnimationActive={false} barSize={20}>
