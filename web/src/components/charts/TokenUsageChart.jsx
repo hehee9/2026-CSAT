@@ -22,6 +22,36 @@ import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
 
 /**
+ * @brief 깔끔한 틱 간격 계산 (100K, 200K, 500K, 1M 등)
+ * @param {number} max - 데이터 최댓값
+ * @param {number} tickCount - 원하는 틱 개수 (기본: 4)
+ * @return {Object} { max, interval, ticks }
+ */
+function _getNiceTokenTicks(max, tickCount = 4) {
+  if (max <= 0) return { max: 500000, interval: 100000, ticks: [0, 100000, 200000, 300000, 400000, 500000] }
+
+  const rawInterval = max / tickCount
+  const magnitude = Math.pow(10, Math.floor(Math.log10(rawInterval)))
+  const residual = rawInterval / magnitude
+
+  // 깔끔한 간격: 1, 2, 5, 10 배수
+  let niceInterval
+  if (residual <= 1.5) niceInterval = 1 * magnitude
+  else if (residual <= 3) niceInterval = 2 * magnitude
+  else if (residual <= 7) niceInterval = 5 * magnitude
+  else niceInterval = 10 * magnitude
+
+  const niceMax = Math.ceil(max / niceInterval) * niceInterval
+
+  const ticks = []
+  for (let i = 0; i <= niceMax; i += niceInterval) {
+    ticks.push(i)
+  }
+
+  return { max: niceMax, interval: niceInterval, ticks }
+}
+
+/**
  * @brief 커스텀 툴팁 컴포넌트
  * @param {Object} props - { active, payload, t }
  */
@@ -198,9 +228,12 @@ export default function TokenUsageChart({
     )
   }
 
-  // 모바일: 세로 스크롤 레이아웃
+  // 모바일: 가로 막대 차트 (ScoreBarChart 스타일)
   if (isMobile) {
-    const maxTotal = Math.max(...chartData.map(d => d.total))
+    const mobileHeight = Math.max(300, chartData.length * 45 + 80)
+
+    // 모바일용 X축 틱 계산 (동적)
+    const { max: xMax, ticks: xTicks } = _getNiceTokenTicks(maxTotal)
 
     return (
       <div ref={ref} className="w-full">
@@ -210,48 +243,69 @@ export default function TokenUsageChart({
           )}
           <ExportButton onClick={() => exportImage(`${t('export.tokenUsage')}.png`)} />
         </div>
-        <div className="overflow-y-auto max-h-[400px] space-y-3">
-          {chartData.map((entry) => {
-            const inputPct = maxTotal > 0 ? (entry.inputTokens / maxTotal) * 100 : 0
-            const outputPct = maxTotal > 0 ? (entry.outputTokens / maxTotal) * 100 : 0
-            const modelColor = getModelColor(entry.model)
-
-            return (
-              <div key={entry.model} className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate max-w-[60%]">
-                    {getShortModelName(entry.model)}
-                  </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400">
-                    {Math.round(entry.total / 1000).toLocaleString()}K
-                  </span>
-                </div>
-                <div className="h-6 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden flex">
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${outputPct}%`,
-                      backgroundColor: modelColor,
-                      opacity: 0.9
-                    }}
-                  />
-                  <div
-                    className="h-full"
-                    style={{
-                      width: `${inputPct}%`,
-                      backgroundColor: modelColor,
-                      opacity: 0.5
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  <span>{t('cost.outputTokensShort')}: {Math.round(entry.outputTokens / 1000).toLocaleString()}K</span>
-                  <span>{t('cost.inputTokensShort')}: {Math.round(entry.inputTokens / 1000).toLocaleString()}K</span>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        <ResponsiveContainer width="100%" height={mobileHeight}>
+          <BarChart
+            data={chartData}
+            layout="vertical"
+            margin={{ top: 10, right: 50, left: 5, bottom: 10 }}
+          >
+            <XAxis
+              type="number"
+              domain={[0, xMax]}
+              ticks={xTicks}
+              tickFormatter={(v) => `${(v / 1000).toLocaleString()}K`}
+              tick={{ fontSize: 10, fill: tickColor }}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+            />
+            <YAxis
+              type="category"
+              dataKey="model"
+              width={100}
+              tickLine={false}
+              axisLine={false}
+              tick={({ x, y, payload }) => (
+                <text
+                  x={x}
+                  y={y}
+                  dy={4}
+                  textAnchor="end"
+                  fontSize={10}
+                  fill={xTickColor}
+                >
+                  {getShortModelName(payload.value)}
+                </text>
+              )}
+            />
+            <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+            {/* 출력 토큰 (좌측, 진한 색) */}
+            <Bar dataKey="outputTokens" stackId="tokens" name={t('cost.outputTokensShort')} isAnimationActive={false} barSize={20}>
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`output-${index}`}
+                  fill={getModelColor(entry.model)}
+                  fillOpacity={0.9}
+                />
+              ))}
+            </Bar>
+            {/* 입력 토큰 (우측, 연한 색) */}
+            <Bar dataKey="inputTokens" stackId="tokens" name={t('cost.inputTokensShort')} isAnimationActive={false} barSize={20}>
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`input-${index}`}
+                  fill={getModelColor(entry.model)}
+                  fillOpacity={0.5}
+                />
+              ))}
+              <LabelList
+                dataKey="total"
+                position="right"
+                formatter={(v) => `${Math.round(v / 1000).toLocaleString()}K`}
+                style={{ fontSize: 9, fill: xTickColor }}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     )
   }

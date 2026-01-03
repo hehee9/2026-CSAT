@@ -460,10 +460,10 @@
     },
     "GPT-4.1": {
       "total_input_tokens": 195264,
-      "total_output_tokens": 225829,
-      "total_tokens": 421093,
+      "total_output_tokens": 226031,
+      "total_tokens": 421295,
       "question_count": 247,
-      "last_updated": "2026-01-03 21:37:27",
+      "last_updated": "2026-01-04 02:22:10",
       "sections": {
         "영어": {
           "input_tokens": 15573,
@@ -522,22 +522,22 @@
         },
         "국어-언매": {
           "input_tokens": 15621,
-          "output_tokens": 7870,
+          "output_tokens": 8142,
           "question_count": 11
         },
         "국어-화작": {
           "input_tokens": 17360,
-          "output_tokens": 6567,
+          "output_tokens": 6497,
           "question_count": 11
         }
       }
     },
     "GPT-4.1 mini": {
       "total_input_tokens": 248139,
-      "total_output_tokens": 265479,
-      "total_tokens": 513618,
+      "total_output_tokens": 264848,
+      "total_tokens": 512987,
       "question_count": 247,
-      "last_updated": "2026-01-03 21:37:27",
+      "last_updated": "2026-01-04 02:22:10",
       "sections": {
         "영어": {
           "input_tokens": 17958,
@@ -596,22 +596,22 @@
         },
         "국어-언매": {
           "input_tokens": 20478,
-          "output_tokens": 9602,
+          "output_tokens": 8442,
           "question_count": 11
         },
         "국어-화작": {
           "input_tokens": 19093,
-          "output_tokens": 7688,
+          "output_tokens": 8217,
           "question_count": 11
         }
       }
     },
     "GPT-4.1 nano": {
       "total_input_tokens": 310411,
-      "total_output_tokens": 204260,
-      "total_tokens": 514671,
+      "total_output_tokens": 203069,
+      "total_tokens": 513480,
       "question_count": 247,
-      "last_updated": "2026-01-03 21:37:27",
+      "last_updated": "2026-01-04 02:22:10",
       "sections": {
         "영어": {
           "input_tokens": 20340,
@@ -670,22 +670,22 @@
         },
         "국어-언매": {
           "input_tokens": 25285,
-          "output_tokens": 7674,
+          "output_tokens": 8031,
           "question_count": 11
         },
         "국어-화작": {
           "input_tokens": 21489,
-          "output_tokens": 5383,
+          "output_tokens": 3835,
           "question_count": 11
         }
       }
     },
     "GPT-4o mini": {
       "total_input_tokens": 2372043,
-      "total_output_tokens": 95791,
-      "total_tokens": 2467834,
+      "total_output_tokens": 96053,
+      "total_tokens": 2468096,
       "question_count": 247,
-      "last_updated": "2026-01-03 21:37:27",
+      "last_updated": "2026-01-04 02:22:10",
       "sections": {
         "영어": {
           "input_tokens": 87033,
@@ -744,12 +744,12 @@
         },
         "국어-언매": {
           "input_tokens": 158541,
-          "output_tokens": 3857,
+          "output_tokens": 3750,
           "question_count": 11
         },
         "국어-화작": {
           "input_tokens": 110808,
-          "output_tokens": 2060,
+          "output_tokens": 2429,
           "question_count": 11
         }
       }
@@ -761,12 +761,12 @@
       "question_count": 247,
       "last_updated": "2026-01-03 23:04:28",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 14145,
           "output_tokens": 43566,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 6732,
           "output_tokens": 22552,
           "question_count": 20
@@ -835,12 +835,12 @@
       "question_count": 247,
       "last_updated": "2026-01-03 23:04:28",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 14145,
           "output_tokens": 20833,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 6732,
           "output_tokens": 10283,
           "question_count": 20

@@ -234,7 +234,7 @@ export default function ScoreBarChart({
           key={data.map(d => d.model).join(',')}
           data={data}
           layout="vertical"
-          margin={{ top: 10, right: 30, left: 10, bottom: 10 }}
+          margin={{ top: 10, right: 30, left: isMobile ? 5 : 10, bottom: 10 }}
           onMouseMove={(state) => {
             if (state?.activeTooltipIndex !== undefined) {
               const model = data[state.activeTooltipIndex]?.model
@@ -257,7 +257,7 @@ export default function ScoreBarChart({
             dataKey="model"
             tickLine={false}
             axisLine={false}
-            width={145}
+            width={isMobile ? 100 : 145}
             tick={createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile)}
           />
           <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />

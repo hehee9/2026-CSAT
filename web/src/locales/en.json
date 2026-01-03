@@ -142,7 +142,8 @@
     "heatmap": "Answer_Status",
     "choiceRate": "Choice_Rate",
     "singleImage": "Export as single image",
-    "multipleImages": "Export cards separately"
+    "individualImages": "Export as individual images",
+    "zipBundle": "Export as ZIP"
   },
   "common": {
     "loading": "Loading data...",

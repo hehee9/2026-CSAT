@@ -6,6 +6,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toPng } from 'html-to-image'
+import JSZip from 'jszip'
 import { getModelColor } from '@/utils/colorUtils'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
@@ -278,6 +279,45 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
     }
   }, [sortedData])
 
+  /**
+   * @brief 카드들을 ZIP으로 내보내기
+   */
+  const exportAsZip = useCallback(async () => {
+    setShowExportOptions(false)
+    const isDark = document.documentElement.classList.contains('dark')
+    const backgroundColor = isDark ? '#111827' : '#ffffff'
+
+    const zip = new JSZip()
+
+    for (let i = 0; i < cardRefs.current.length; i++) {
+      const card = cardRefs.current[i]
+      if (!card) continue
+
+      try {
+        const dataUrl = await toPng(card, {
+          backgroundColor,
+          pixelRatio: 2,
+          style: { padding: '16px' }
+        })
+
+        // base64 → binary
+        const base64 = dataUrl.split(',')[1]
+        const filename = `${sortedData[i]?.model || `card_${i + 1}`}.png`
+        zip.file(filename, base64, { base64: true })
+      } catch (err) {
+        console.error(`카드 ${i + 1} 캡처 실패:`, err)
+      }
+    }
+
+    // ZIP 다운로드
+    const blob = await zip.generateAsync({ type: 'blob' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `${t('charts.scoreTable')}.zip`
+    link.click()
+    URL.revokeObjectURL(link.href)
+  }, [sortedData, t])
+
   if (!data?.length) {
     return (
       <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400">
@@ -308,10 +348,16 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
                   {t('export.singleImage')}
                 </button>
                 <button
-                  className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg border-t border-gray-100 dark:border-gray-700"
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-100 dark:border-gray-700"
                   onClick={exportMultipleImages}
                 >
-                  {t('export.multipleImages')}
+                  {t('export.individualImages')}
+                </button>
+                <button
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg border-t border-gray-100 dark:border-gray-700"
+                  onClick={exportAsZip}
+                >
+                  {t('export.zipBundle')}
                 </button>
               </div>
             )}

@@ -133,7 +133,7 @@ export default function ChoiceSelectionChart({ data, title }) {
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 20, right: 30, left: isMobile ? 15 : 60, bottom: 20 }}
+          margin={{ top: 20, right: 30, left: isMobile ? 10 : 60, bottom: 20 }}
           barCategoryGap="20%"
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={gridColor} />

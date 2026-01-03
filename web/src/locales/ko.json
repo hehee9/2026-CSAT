@@ -142,7 +142,8 @@
     "heatmap": "정답_현황",
     "choiceRate": "선지_선택률",
     "singleImage": "한 장으로 내보내기",
-    "multipleImages": "카드별 개별 내보내기"
+    "individualImages": "개별 이미지로 내보내기",
+    "zipBundle": "ZIP으로 내보내기"
   },
   "common": {
     "loading": "데이터 로드 중...",
