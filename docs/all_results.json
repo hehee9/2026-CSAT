@@ -11970,13 +11970,13 @@
     "subject": "국어",
     "section": "화작",
     "model_name": "GPT-4.1 nano",
-    "score": 0,
+    "score": 16,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 7,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 21489,
-      "output_tokens": 5383
+      "output_tokens": 3835
     },
     "price": {
       "input": 0.1,
@@ -11985,79 +11985,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 3,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 1,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       }
     ]
@@ -12067,13 +12067,13 @@
     "subject": "국어",
     "section": "화작",
     "model_name": "GPT-4o mini",
-    "score": 0,
+    "score": 12,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 6,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 110808,
-      "output_tokens": 2060
+      "output_tokens": 2429
     },
     "price": {
       "input": 0.15,
@@ -12082,72 +12082,72 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 1,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 5,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -12164,13 +12164,13 @@
     "subject": "국어",
     "section": "화작",
     "model_name": "GPT-4.1 mini",
-    "score": 0,
+    "score": 17,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 8,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 19093,
-      "output_tokens": 7688
+      "output_tokens": 8217
     },
     "price": {
       "input": 0.4,
@@ -12179,79 +12179,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 1,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       }
     ]
@@ -12261,13 +12261,13 @@
     "subject": "국어",
     "section": "화작",
     "model_name": "GPT-4.1",
-    "score": 0,
+    "score": 20,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 9,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 17360,
-      "output_tokens": 6567
+      "output_tokens": 6497
     },
     "price": {
       "input": 2.0,
@@ -12276,79 +12276,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 1,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       }
     ]
@@ -15346,13 +15346,13 @@
     "subject": "국어",
     "section": "언매",
     "model_name": "GPT-4.1",
-    "score": 0,
+    "score": 13,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 6,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 15621,
-      "output_tokens": 7870
+      "output_tokens": 8142
     },
     "price": {
       "input": 2.0,
@@ -15361,79 +15361,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 3,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 2,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 1,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       }
     ]
@@ -15443,13 +15443,13 @@
     "subject": "국어",
     "section": "언매",
     "model_name": "GPT-4.1 nano",
-    "score": 0,
+    "score": 7,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 3,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 25285,
-      "output_tokens": 7674
+      "output_tokens": 8031
     },
     "price": {
       "input": 0.1,
@@ -15458,79 +15458,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 3,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 2,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 1,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       }
     ]
@@ -15540,13 +15540,13 @@
     "subject": "국어",
     "section": "언매",
     "model_name": "GPT-4.1 mini",
-    "score": 0,
+    "score": 13,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 6,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 20478,
-      "output_tokens": 9602
+      "output_tokens": 8442
     },
     "price": {
       "input": 0.4,
@@ -15555,79 +15555,79 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 2,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 1,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 41,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 45,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       }
     ]
@@ -15637,13 +15637,13 @@
     "subject": "국어",
     "section": "언매",
     "model_name": "GPT-4o mini",
-    "score": 0,
+    "score": 9,
     "total_points": 24,
-    "correct_count": 0,
+    "correct_count": 4,
     "total_questions": 11,
     "token_usage": {
       "input_tokens": 158541,
-      "output_tokens": 3857
+      "output_tokens": 3750
     },
     "price": {
       "input": 0.15,
@@ -15652,42 +15652,42 @@
     "results": [
       {
         "question_number": 35,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 3,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 36,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 2,
         "is_correct": false,
         "points": 3
       },
       {
         "question_number": 37,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 38,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 39,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 1,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 40,
-        "extracted_answer": -1,
+        "extracted_answer": 1,
         "correct_answer": 2,
         "is_correct": false,
         "points": 2
@@ -15701,23 +15701,23 @@
       },
       {
         "question_number": 42,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3
       },
       {
         "question_number": 43,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 2,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 44,
-        "extracted_answer": -1,
+        "extracted_answer": 4,
         "correct_answer": 4,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -41214,6 +41214,10 @@
     "total_points": 100,
     "correct_count": 42,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 14145,
+      "output_tokens": 20833
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -41545,6 +41549,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 14145,
+      "output_tokens": 43566
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -47200,6 +47208,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 6732,
+      "output_tokens": 22552
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -47356,6 +47368,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 6732,
+      "output_tokens": 10283
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
