@@ -39,6 +39,7 @@ desktop.ini
 
 # Problems folder (copyright-sensitive content)
 problems/
+!problems/token_usage.json
 
 # etc.
 CLAUDE.md
