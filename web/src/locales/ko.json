@@ -140,7 +140,9 @@
     "costAnalysis": "비용_분석",
     "tokenUsage": "토큰_사용량",
     "heatmap": "정답_현황",
-    "choiceRate": "선지_선택률"
+    "choiceRate": "선지_선택률",
+    "singleImage": "한 장으로 내보내기",
+    "multipleImages": "카드별 개별 내보내기"
   },
   "common": {
     "loading": "데이터 로드 중...",

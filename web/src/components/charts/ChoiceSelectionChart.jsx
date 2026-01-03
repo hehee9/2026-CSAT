@@ -3,6 +3,7 @@
  * @brief 문항별 선지 선택률 차트 컴포넌트
  */
 
+import { useState, useEffect } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, LabelList
@@ -88,6 +89,14 @@ export default function ChoiceSelectionChart({ data, title }) {
   const { isDark: darkMode } = useTheme()
   const { ref, exportImage } = useExportImage()
 
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   if (!data?.length) {
     return (
       <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400">
@@ -124,7 +133,7 @@ export default function ChoiceSelectionChart({ data, title }) {
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 20, right: 30, left: 60, bottom: 20 }}
+          margin={{ top: 20, right: 30, left: isMobile ? 15 : 60, bottom: 20 }}
           barCategoryGap="20%"
         >
           <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={gridColor} />

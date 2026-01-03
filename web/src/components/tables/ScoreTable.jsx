@@ -3,8 +3,9 @@
  * @brief 모델별 점수 테이블 (정렬 가능, 세부 점수 토글)
  */
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toPng } from 'html-to-image'
 import { getModelColor } from '@/utils/colorUtils'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
@@ -56,6 +57,26 @@ function ScoreCell({ score, maxScore, decimals = 1 }) {
 }
 
 /**
+ * @brief 25자 초과 모델명에 대해 괄호 앞에서 줄바꿈 처리
+ * @param {string} name - 모델명
+ * @return {React.ReactNode} 포맷된 모델명
+ */
+function _formatModelName(name) {
+  if (name.length <= 25) return name
+  const parenIndex = name.indexOf('(')
+  if (parenIndex > 0) {
+    return (
+      <>
+        {name.slice(0, parenIndex).trim()}
+        <br />
+        <span className="text-sm">{name.slice(parenIndex)}</span>
+      </>
+    )
+  }
+  return name
+}
+
+/**
  * @brief 모바일 카드 뷰의 점수 항목 컴포넌트
  */
 function ScoreItem({ label, score, max }) {
@@ -73,7 +94,7 @@ function ScoreItem({ label, score, max }) {
 /**
  * @brief 모바일용 카드 뷰 컴포넌트
  */
-function CardView({ data, maxScore, hoveredModel, onModelHover, t }) {
+function CardView({ data, maxScore, hoveredModel, onModelHover, t, cardRefs }) {
   return (
     <div className="space-y-3">
       {data.map((row, index) => {
@@ -81,6 +102,7 @@ function CardView({ data, maxScore, hoveredModel, onModelHover, t }) {
         return (
           <div
             key={row.model}
+            ref={cardRefs ? (el) => (cardRefs.current[index] = el) : undefined}
             className={`bg-white dark:bg-gray-800 rounded-lg p-4 border transition-all ${
               isHovered
                 ? 'border-blue-400 dark:border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800'
@@ -96,8 +118,8 @@ function CardView({ data, maxScore, hoveredModel, onModelHover, t }) {
                   className="w-3 h-3 rounded-full shrink-0"
                   style={{ backgroundColor: getModelColor(row.model) }}
                 />
-                <span className="font-semibold text-gray-800 dark:text-gray-200 truncate">
-                  {row.model}
+                <span className="font-semibold text-gray-800 dark:text-gray-200">
+                  {_formatModelName(row.model)}
                 </span>
               </div>
               <span className="text-sm text-gray-400 dark:text-gray-500 shrink-0">
@@ -174,7 +196,10 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
   const { t } = useTranslation()
   const [sortConfig, setSortConfig] = useState({ key: 'total', direction: 'desc' })
   const [isMobile, setIsMobile] = useState(false)
+  const [showExportOptions, setShowExportOptions] = useState(false)
   const { ref, exportImage } = useExportImage()
+  const cardRefs = useRef([])
+  const exportDropdownRef = useRef(null)
 
   // 화면 너비 감지
   useEffect(() => {
@@ -185,6 +210,23 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
     window.addEventListener('resize', checkWidth)
     return () => window.removeEventListener('resize', checkWidth)
   }, [])
+
+  // 내보내기 드롭다운 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (exportDropdownRef.current && !exportDropdownRef.current.contains(e.target)) {
+        setShowExportOptions(false)
+      }
+    }
+    if (showExportOptions) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [showExportOptions])
 
   const sortedData = useMemo(() => {
     if (!data?.length) return []
@@ -204,6 +246,38 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
     }))
   }
 
+  /**
+   * @brief 카드별 개별 이미지 내보내기
+   */
+  const exportMultipleImages = useCallback(async () => {
+    setShowExportOptions(false)
+    const isDark = document.documentElement.classList.contains('dark')
+    const backgroundColor = isDark ? '#111827' : '#ffffff'
+
+    for (let i = 0; i < cardRefs.current.length; i++) {
+      const card = cardRefs.current[i]
+      if (!card) continue
+
+      try {
+        const dataUrl = await toPng(card, {
+          backgroundColor,
+          pixelRatio: 2,
+          style: { padding: '16px' }
+        })
+
+        const link = document.createElement('a')
+        link.download = `${sortedData[i]?.model || `card_${i + 1}`}.png`
+        link.href = dataUrl
+        link.click()
+
+        // 다운로드 간 짧은 딜레이 (브라우저 안정성)
+        await new Promise(resolve => setTimeout(resolve, 100))
+      } catch (err) {
+        console.error(`카드 ${i + 1} 내보내기 실패:`, err)
+      }
+    }
+  }, [sortedData])
+
   if (!data?.length) {
     return (
       <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400">
@@ -220,7 +294,28 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           {title && (
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
           )}
-          <ExportButton onClick={() => exportImage(`${t('charts.scoreTable')}.png`)} />
+          <div ref={exportDropdownRef} className="relative" data-export-hide="true">
+            <ExportButton onClick={() => setShowExportOptions(!showExportOptions)} />
+            {showExportOptions && (
+              <div className="absolute right-0 mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-50">
+                <button
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-t-lg"
+                  onClick={() => {
+                    setShowExportOptions(false)
+                    exportImage(`${t('charts.scoreTable')}.png`)
+                  }}
+                >
+                  {t('export.singleImage')}
+                </button>
+                <button
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-b-lg border-t border-gray-100 dark:border-gray-700"
+                  onClick={exportMultipleImages}
+                >
+                  {t('export.multipleImages')}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
         <CardView
           data={sortedData}
@@ -228,6 +323,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           hoveredModel={hoveredModel}
           onModelHover={onModelHover}
           t={t}
+          cardRefs={cardRefs}
         />
       </div>
     )

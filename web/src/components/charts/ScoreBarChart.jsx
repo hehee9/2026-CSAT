@@ -3,6 +3,7 @@
  * @brief 모델별 점수 가로 막대 차트 컴포넌트
  */
 
+import { useState, useEffect } from 'react'
 import {
   BarChart,
   Bar,
@@ -14,7 +15,7 @@ import {
   Rectangle
 } from 'recharts'
 import { useTranslation } from 'react-i18next'
-import { getModelColor, CHART_COLORS } from '@/utils/colorUtils'
+import { getModelColor, getShortModelName, CHART_COLORS } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
@@ -77,14 +78,17 @@ function _wrapText(text, maxLen) {
  * @param {string} hoveredModel - 현재 호버된 모델명
  * @param {function} onModelHover - 모델 호버 콜백
  * @param {boolean} darkMode - 다크모드 여부
+ * @param {boolean} isMobile - 모바일 여부
  * @return {function} Recharts tick 렌더 함수
  */
-function createCustomYAxisTick(hoveredModel, onModelHover, darkMode) {
+function createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile) {
   const defaultColor = darkMode ? '#d1d5db' : '#374151'
   const hoverColor = darkMode ? '#60a5fa' : '#1d4ed8'
 
   return function CustomYAxisTick({ x, y, payload }) {
-    const lines = _wrapText(payload.value, MAX_LINE_LENGTH)
+    // 모바일에서는 짧은 모델명 사용
+    const displayName = isMobile ? getShortModelName(payload.value) : payload.value
+    const lines = _wrapText(displayName, MAX_LINE_LENGTH)
     const lineHeight = 14
     const startY = -((lines.length - 1) * lineHeight) / 2 + 3
     const isHovered = hoveredModel === payload.value
@@ -183,6 +187,14 @@ export default function ScoreBarChart({
   const { isDark: darkMode } = useTheme()
   const { ref, exportImage } = useExportImage()
 
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   if (!data?.length) {
     return (
       <div className="flex items-center justify-center h-48 text-gray-500 dark:text-gray-400">
@@ -246,7 +258,7 @@ export default function ScoreBarChart({
             tickLine={false}
             axisLine={false}
             width={145}
-            tick={createCustomYAxisTick(hoveredModel, onModelHover, darkMode)}
+            tick={createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile)}
           />
           <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
           <ReferenceLine

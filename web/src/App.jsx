@@ -323,7 +323,15 @@ function Dashboard() {
           isOpen={sidebar.isOpen}
           onClose={sidebar.close}
         />
-        <main className="flex-1 p-4 md:p-6 overflow-auto pb-20 md:pb-6">
+        <main
+          className="flex-1 p-4 md:p-6 overflow-auto pb-20 md:pb-6"
+          onClick={(e) => {
+            // 빈 공간 클릭 시 호버 효과 해제
+            if (e.target === e.currentTarget) {
+              setHoveredModel(null)
+            }
+          }}
+        >
           {/* 탭 네비게이션 (데스크톱) */}
           <div className="desktop-tabs hidden md:flex gap-2 mb-6">
             {TAB_KEYS.map(tabKey => (

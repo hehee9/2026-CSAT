@@ -3,7 +3,7 @@
  * @brief 모델별 토큰 사용량 스택 바 차트
  */
 
-import { useMemo, useState, useCallback } from 'react'
+import { useMemo, useState, useCallback, useEffect } from 'react'
 import {
   BarChart,
   Bar,
@@ -16,7 +16,7 @@ import {
   CartesianGrid
 } from 'recharts'
 import { useTranslation } from 'react-i18next'
-import { getModelColor } from '@/utils/colorUtils'
+import { getModelColor, getShortModelName } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
@@ -114,6 +114,14 @@ export default function TokenUsageChart({
   const { ref, exportImage } = useExportImage()
   const [labelMode, setLabelMode] = useState('total')
 
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   // 데이터 변환 및 정렬
   const chartData = useMemo(() => {
     if (!data || typeof data !== 'object') return []
@@ -190,6 +198,65 @@ export default function TokenUsageChart({
     )
   }
 
+  // 모바일: 세로 스크롤 레이아웃
+  if (isMobile) {
+    const maxTotal = Math.max(...chartData.map(d => d.total))
+
+    return (
+      <div ref={ref} className="w-full">
+        <div className="flex items-start justify-between mb-4">
+          {title && (
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
+          )}
+          <ExportButton onClick={() => exportImage(`${t('export.tokenUsage')}.png`)} />
+        </div>
+        <div className="overflow-y-auto max-h-[400px] space-y-3">
+          {chartData.map((entry) => {
+            const inputPct = maxTotal > 0 ? (entry.inputTokens / maxTotal) * 100 : 0
+            const outputPct = maxTotal > 0 ? (entry.outputTokens / maxTotal) * 100 : 0
+            const modelColor = getModelColor(entry.model)
+
+            return (
+              <div key={entry.model} className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate max-w-[60%]">
+                    {getShortModelName(entry.model)}
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {Math.round(entry.total / 1000).toLocaleString()}K
+                  </span>
+                </div>
+                <div className="h-6 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden flex">
+                  <div
+                    className="h-full"
+                    style={{
+                      width: `${outputPct}%`,
+                      backgroundColor: modelColor,
+                      opacity: 0.9
+                    }}
+                  />
+                  <div
+                    className="h-full"
+                    style={{
+                      width: `${inputPct}%`,
+                      backgroundColor: modelColor,
+                      opacity: 0.5
+                    }}
+                  />
+                </div>
+                <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  <span>{t('cost.outputTokensShort')}: {Math.round(entry.outputTokens / 1000).toLocaleString()}K</span>
+                  <span>{t('cost.inputTokensShort')}: {Math.round(entry.inputTokens / 1000).toLocaleString()}K</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  // 데스크톱: 기존 차트
   return (
     <div ref={ref} className="w-full">
       <div className="flex items-start justify-between mb-2">

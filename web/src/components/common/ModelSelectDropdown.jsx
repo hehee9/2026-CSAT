@@ -81,33 +81,7 @@ export default function ModelSelectDropdown({
         </svg>
       </button>
 
-      {/* 선택된 모델 칩 */}
-      {selected.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-2">
-          {selected.map(model => (
-            <span
-              key={model}
-              className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm"
-            >
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: getModelColor(model) }}
-              />
-              <span className="truncate max-w-[120px]">{model}</span>
-              <button
-                className="w-4 h-4 flex items-center justify-center hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full"
-                onClick={(e) => handleRemoveModel(model, e)}
-              >
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* 드롭다운 메뉴 */}
+      {/* 드롭다운 메뉴 (버튼 바로 아래 고정) */}
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg max-h-64 overflow-y-auto">
           {sortedVendors.map(vendor => {
@@ -156,6 +130,32 @@ export default function ModelSelectDropdown({
               </div>
             )
           })}
+        </div>
+      )}
+
+      {/* 선택된 모델 칩 (드롭다운 아래) */}
+      {selected.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-2">
+          {selected.map(model => (
+            <span
+              key={model}
+              className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+            >
+              <span
+                className="w-2 h-2 rounded-full"
+                style={{ backgroundColor: getModelColor(model) }}
+              />
+              <span className="truncate max-w-[120px]">{model}</span>
+              <button
+                className="w-4 h-4 flex items-center justify-center hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full"
+                onClick={(e) => handleRemoveModel(model, e)}
+              >
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </span>
+          ))}
         </div>
       )}
     </div>

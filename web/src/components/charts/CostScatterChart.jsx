@@ -3,6 +3,7 @@
  * @brief 비용 vs 성능 산점도 차트 컴포넌트
  */
 
+import { useState, useEffect } from 'react'
 import {
   ScatterChart,
   Scatter,
@@ -132,6 +133,17 @@ export default function CostScatterChart({
   const { isDark: darkMode } = useTheme()
   const { ref, exportImage } = useExportImage()
 
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // 모바일에서 높이 축소
+  const chartHeight = isMobile ? 280 : height
+
   // 다크모드용 색상
   const axisColor = darkMode ? '#4b5563' : '#e5e7eb'
   const tickColor = darkMode ? '#9ca3af' : '#6b7280'
@@ -193,7 +205,7 @@ export default function CostScatterChart({
           <ExportButton onClick={() => exportImage(`${t('export.costAnalysis')}.png`)} />
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={height}>
+      <ResponsiveContainer width="100%" height={chartHeight}>
         <ScatterChart margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
           {/* 4분면 배경색 */}
           {/* 좌상: 고성능-저비용 (초록) */}

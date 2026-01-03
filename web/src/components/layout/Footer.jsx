@@ -52,7 +52,7 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 px-6">
+    <footer className="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 px-6 pb-20 md:pb-4">
       <div className="container mx-auto text-center">
         {/* 링크 영역 */}
         <div className="flex justify-center items-center gap-6 mb-3">

@@ -3,9 +3,9 @@
  * @brief 모델별 비용 정보 테이블
  */
 
-import { useState, useMemo, Fragment } from 'react'
+import { useState, useMemo, useEffect, Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { getModelColor } from '@/utils/colorUtils'
+import { getModelColor, getShortModelName } from '@/utils/colorUtils'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
 
@@ -37,6 +37,14 @@ export default function CostTable({ data, title }) {
   })
   const [showHiddenModels, setShowHiddenModels] = useState(false)
   const { ref, exportImage } = useExportImage()
+
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const sortedData = useMemo(() => {
     if (!data?.length) return []
@@ -71,6 +79,79 @@ export default function CostTable({ data, title }) {
     )
   }
 
+  // 모바일: 전치 테이블 (모델을 열로, 항목을 행으로)
+  if (isMobile) {
+    const displayData = withTokens // 토큰 정보 있는 모델만 표시
+
+    const rows = [
+      { key: 'inputPrice', label: t('table.inputPrice'), format: (v) => v ? `$${v.toFixed(2)}` : '-' },
+      { key: 'outputPrice', label: t('table.outputPrice'), format: (v) => v ? `$${v.toFixed(2)}` : '-' },
+      { key: 'inputTokens', label: t('table.inputTokens'), format: (v) => v > 0 ? `${(v / 1000).toFixed(1)}K` : '-' },
+      { key: 'outputTokens', label: t('table.outputTokens'), format: (v) => v > 0 ? `${(v / 1000).toFixed(1)}K` : '-' },
+      { key: 'totalCost', label: t('table.totalCost'), format: (v) => v > 0 ? `$${v.toFixed(4)}` : '-' },
+      { key: 'score', label: t('table.score'), format: (v) => v ? v.toFixed(1) : '-' },
+      { key: 'efficiency', label: t('table.efficiency'), format: (v) => v > 0 ? v.toFixed(1) : '-', bold: true }
+    ]
+
+    return (
+      <div ref={ref} className="w-full">
+        <div className="flex items-start justify-between mb-4">
+          {title && (
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
+          )}
+          <ExportButton onClick={() => exportImage(`${t('export.costAnalysis')}.png`)} />
+        </div>
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-x-auto">
+          <table className="min-w-max text-sm">
+            <thead className="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th className="px-3 py-2 text-left font-semibold text-gray-700 dark:text-gray-300 sticky left-0 bg-gray-50 dark:bg-gray-700 z-10">
+                  {t('table.model')}
+                </th>
+                {displayData.map(d => (
+                  <th key={d.model} className="px-3 py-2 text-center font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                    <div className="flex items-center justify-center gap-1">
+                      <span
+                        className="w-2 h-2 rounded-full shrink-0"
+                        style={{ backgroundColor: getModelColor(d.model) }}
+                      />
+                      <span className="truncate max-w-[80px]">{getShortModelName(d.model)}</span>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(row => (
+                <tr key={row.key} className="border-t border-gray-100 dark:border-gray-700">
+                  <td className="px-3 py-2 text-gray-600 dark:text-gray-400 font-medium whitespace-nowrap sticky left-0 bg-white dark:bg-gray-800 z-10">
+                    {row.label}
+                  </td>
+                  {displayData.map(d => (
+                    <td
+                      key={d.model}
+                      className={`px-3 py-2 text-center whitespace-nowrap ${
+                        row.bold
+                          ? 'font-bold text-blue-600 dark:text-blue-400'
+                          : 'text-gray-600 dark:text-gray-400'
+                      }`}
+                    >
+                      {row.format(d[row.key])}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          * {t('cost.efficiencyFormula')}
+        </p>
+      </div>
+    )
+  }
+
+  // 데스크톱: 기존 테이블
   const columns = [
     { key: 'model', label: t('table.model'), align: 'left' },
     { key: 'inputPrice', label: t('table.inputPrice'), align: 'right' },

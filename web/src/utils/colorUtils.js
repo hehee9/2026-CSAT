@@ -120,6 +120,52 @@ export function getModelColor(modelName) {
 }
 
 /**
+ * @brief 모델명을 짧은 이름으로 변환 (규칙 기반)
+ *
+ * 규칙:
+ * 1. '-'를 띄어쓰기로 변경 (단, 버전 번호 제외: V3.2 등)
+ * 2. 'Preview, ' 제거
+ * 3. K-EXAONE: '236B-A23B' 또는 '236B A23B' 삭제
+ * 4. 괄호 처리:
+ *    - 'Non-Thinking', 'low', 'minimal' → 괄호 전체 제거
+ *    - 'Thinking', 'XXK Thinking', 'high' → 💡로 대체
+ *
+ * @param {string} modelName - 원본 모델명
+ * @return {string} 짧은 모델명
+ */
+export function getShortModelName(modelName) {
+  let name = modelName
+
+  // 1. K-EXAONE 특수 처리: '236B-A23B' 또는 '236B A23B' 제거
+  name = name.replace(/[-\s]?236B[-\s]?A23B/gi, '')
+
+  // 2. 'Preview, ' 제거
+  name = name.replace(/Preview,?\s*/gi, '')
+
+  // 3. 괄호 내용 처리
+  const parenMatch = name.match(/\(([^)]+)\)/)
+  if (parenMatch) {
+    const inner = parenMatch[1].toLowerCase()
+    if (inner.includes('non-thinking') || inner === 'low' || inner === 'minimal') {
+      // Non-Thinking, low, minimal → 괄호 전체 제거
+      name = name.replace(/\s*\([^)]+\)/, '')
+    } else if (inner.includes('thinking') || inner === 'high') {
+      // Thinking, XXK Thinking, high → 💡
+      name = name.replace(/\s*\([^)]+\)/, ' 💡')
+    }
+  }
+
+  // 4. '-'를 띄어쓰기로 (버전 번호 V3.2 등은 유지)
+  // DeepSeek-V3.2 → DeepSeek V3.2, GPT-5.1 → GPT 5.1
+  name = name.replace(/-(?=[A-Za-z])/g, ' ')
+
+  // 5. 중복 공백 정리
+  name = name.replace(/\s+/g, ' ').trim()
+
+  return name
+}
+
+/**
  * @brief HEX 색상을 밝게 조정
  * @param {string} hex - HEX 색상 코드 (예: '#EA4335')
  * @param {number} factor - 밝기 조정 비율 (0~1, 1이면 흰색)

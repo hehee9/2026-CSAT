@@ -140,7 +140,9 @@
     "costAnalysis": "Cost_Analysis",
     "tokenUsage": "Token_Usage",
     "heatmap": "Answer_Status",
-    "choiceRate": "Choice_Rate"
+    "choiceRate": "Choice_Rate",
+    "singleImage": "Export as single image",
+    "multipleImages": "Export cards separately"
   },
   "common": {
     "loading": "Loading data...",
