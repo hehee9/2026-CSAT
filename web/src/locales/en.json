@@ -1,0 +1,165 @@
+{
+  "header": {
+    "title": "2026 CSAT LLM Solution Dashboard",
+    "subtitle": "LLM model performance on Korean SAT problems"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "subjects": "Subject Details",
+    "compare": "Model Comparison",
+    "cost": "Cost Analysis"
+  },
+  "sidebar": {
+    "displayOptions": "Display Options",
+    "showDetail": "Show Details",
+    "hideDetail": "Hide Details",
+    "subjectFilter": "Subject Filter",
+    "modelFilter": "Model Filter",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "sort": "Sort",
+    "exportImage": "Export as image",
+    "sortOptions": {
+      "scoreDesc": "Highest Score",
+      "scoreAsc": "Lowest Score",
+      "nameAsc": "Name (A→Z)",
+      "nameDesc": "Name (Z→A)",
+      "vendor": "By Vendor",
+      "costAsc": "Lowest Cost",
+      "efficiencyDesc": "Highest Efficiency"
+    }
+  },
+  "charts": {
+    "totalScore": "Total Score",
+    "maxPoints": "{{max}} points max",
+    "scoreTable": "Score Table by Model",
+    "selectSubject": "Select Subject",
+    "questionStatus": "Answer Status",
+    "choiceRate": "Choice Selection Rate",
+    "compareModels": "Select models to compare (max 5)",
+    "costVsPerformance": "Cost vs Performance",
+    "tokenUsage": "Total Token Usage",
+    "costInfo": "Cost Information by Model",
+    "modelCompare": "Model Comparison (Normalized by Subject)"
+  },
+  "subjects": {
+    "korean": "Korean",
+    "math": "Math",
+    "english": "English",
+    "history": "Korean History",
+    "exploration": "Science/Social",
+    "common": "Common",
+    "hwajak": "Speech & Writing",
+    "unmae": "Language & Media",
+    "hwakton": "Prob. & Stats",
+    "mijeok": "Calculus",
+    "giha": "Geometry",
+    "physics1": "Physics I",
+    "chemistry1": "Chemistry I",
+    "biology1": "Biology I",
+    "society": "Society & Culture"
+  },
+  "table": {
+    "model": "Model",
+    "korean": "Korean",
+    "math": "Math",
+    "english": "English",
+    "history": "History",
+    "exploration": "Exploration",
+    "total": "Total",
+    "common": "Common",
+    "inputPrice": "Input ($/1M)",
+    "outputPrice": "Output ($/1M)",
+    "inputTokens": "Input Tokens",
+    "outputTokens": "Output Tokens",
+    "totalCost": "Total Cost",
+    "score": "Score",
+    "efficiency": "Efficiency",
+    "showDetail": "Show Details",
+    "hideDetail": "Hide Details"
+  },
+  "heatmap": {
+    "correctCount": "Correct",
+    "accuracy": "Accuracy",
+    "showOX": "Show O/X",
+    "showAnswer": "Show Answers",
+    "question": "Q",
+    "answer": "Answer",
+    "yourAnswer": "Selected",
+    "points": "Points",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "legend": {
+      "correctHigh": "Correct (3+ pts)",
+      "correctLow": "Correct (2 pts)",
+      "incorrectHigh": "Incorrect (3+ pts)",
+      "incorrectLow": "Incorrect (2 pts)"
+    }
+  },
+  "choice": {
+    "title": "Choice Selection Rate",
+    "questionNum": "Q{{num}}",
+    "correctAnswer": "Answer: {{answer}}",
+    "selectionRate": "Selection Rate",
+    "modelCount": "{{count}} models",
+    "legend": {
+      "correct": "Correct Choice",
+      "incorrect": "Incorrect Choice",
+      "highRate": "High Selection",
+      "lowRate": "Low Selection"
+    }
+  },
+  "cost": {
+    "noTokenInfo": "Models without token info",
+    "efficiencyFormula": "Efficiency = (Score/Max × 0.7 + (1-Cost/MaxCost) × 0.3) × 100",
+    "testCost": "Test Cost",
+    "inputTokensShort": "Input",
+    "outputTokensShort": "Output",
+    "tokens": "tokens",
+    "perMillion": "/M",
+    "axisTestCost": "Test Cost ($)",
+    "axisScore": "Score"
+  },
+  "tooltip": {
+    "score": "Score",
+    "points": "pts",
+    "accuracy": "Accuracy",
+    "correctCount": "Correct",
+    "totalQuestions": "questions"
+  },
+  "token": {
+    "total": "Total",
+    "inputOutput": "Input+Output",
+    "hidden": "Hidden"
+  },
+  "export": {
+    "totalScore": "Total_Score",
+    "costAnalysis": "Cost_Analysis",
+    "tokenUsage": "Token_Usage",
+    "heatmap": "Answer_Status",
+    "choiceRate": "Choice_Rate"
+  },
+  "common": {
+    "loading": "Loading data...",
+    "error": "Error occurred",
+    "noData": "No data available",
+    "noCostData": "No cost data available",
+    "score": "Score",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "points": "pts"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English"
+  },
+  "footer": {
+    "lastUpdated": "Last updated",
+    "unofficial": "This is an unofficial project. Not affiliated with KICE."
+  }
+}

@@ -378,3 +378,69 @@ pip install pillow           # Image handling
 5. **Generate charts**: `python generate_charts.py`
 
 The API automation is designed for systematic testing but results must be manually transferred to Excel for chart generation (no automated integration yet).
+
+## Coding Conventions
+
+### 주석 스타일 (Doxygen / KDoc)
+
+모든 주석은 Doxygen / KDoc 스타일로 작성합니다.
+
+```python
+"""
+@brief 함수에 대한 간단한 설명
+
+@param param_name 파라미터 설명
+@return 반환값 설명
+@throws ExceptionType 예외 발생 조건
+"""
+```
+
+### 헬퍼 함수 네이밍
+
+내부적으로만 사용되는 헬퍼 함수는 이름 앞에 언더바(`_`)를 붙입니다.
+
+```python
+# Public API
+def process_message(msg):
+    ...
+
+# Internal helper
+def _parse_extras(extras):
+    ...
+```
+
+## Task Master AI Integration
+
+Task Master를 사용하여 개발 태스크를 관리합니다.
+자세한 workflow 및 명령어는 아래 파일 참고:
+@./.taskmaster/CLAUDE.md
+
+## 작업 지침
+
+### Task Master 상태 관리
+
+- **상위 Task**: `in-progress` 상태를 적극적으로 관리
+- **하위 SubTask**: `in-progress` 상태 변경 불필요, 상위 Task 완료 시 한 번에 `done` 처리
+- **완료 처리**: 사용자 검수 후에만 `done`으로 변경 가능
+
+### 코드 리뷰 프로세스
+
+코드 리뷰는 **두 시점**에서 수행합니다:
+1. **각 SubTask 완료 시**: 해당 SubTask에서 작성한 코드 리뷰
+2. **모든 SubTasks 완료 후**: 전체 Task에 대한 통합 리뷰
+
+**리뷰 체크리스트:**
+1. **요구사항 준수**: Task의 요구사항 및 전체 프로젝트의 요구사항에 부합하는지
+2. **코드 스타일 일관성**: 기존 코드베이스의 스타일과 일치하는지
+3. **개선 가능성**: 안정성, 확장성, 효율성, 보안 측면에서 개선점이 있는지
+4. **코드 연계**: 다른 코드와의 연계가 잘 되는지 (함수 시그니처, 인터페이스 등. 알고 있는 내용으로 검증하지 말고 검색할 것.)
+5. **버전 이슈**: 현재 프로젝트에서 사용 중인 언어 버전, Android 버전에 따른 정책 변경 등에 의해 발생할 수 있는 문제가 있는지. **검색 필수**
+6. **가상 실행**: 실제 코드 동작 시의 흐름을, 예측이 아닌 실제 코드 기반으로 테스트. 다른 파일도 함께 확인했을 때 문제가 없는지
+
+아직 구현되지 않은 다른 코드와의 연계가 필요한 경우가 아니라면, 문제를 발견한 즉시 해결합니다.
+
+### Task 완료 조건
+
+- Task Master의 작업 상태는 **사용자 검수 후에만** `done`으로 변경 가능
+  ※ 모든 SubTasks도 `done`으로 변경해야 함
+- 코드 리뷰 결과와 함께 사용자에게 보고 후 승인을 받아야 함

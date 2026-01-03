@@ -605,6 +605,45 @@ class SyncManager:
         self.model_mapper = ModelNameMapper(model_mapping_path)
         self.excel_handler = ExcelHandler(self.excel_path)
         self.converter = DataConverter(self.path_mapper, self.model_mapper)
+        self._token_usage = self._load_token_usage()
+        self._model_config = self._load_model_config()
+
+    def _load_model_config(self) -> Dict[str, Dict]:
+        """모델 설정 파일 로드 (이름 -> 설정 매핑)"""
+        config_file = self.problems_dir / 'config.json'
+        if config_file.exists():
+            with open(config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            # name을 key로 하는 딕셔너리로 변환
+            return {model['name']: model for model in config.get('models', [])}
+        return {}
+
+    def _get_model_price(self, model_name: str) -> Optional[Dict[str, float]]:
+        """특정 모델의 가격 정보 조회"""
+        model_config = self._model_config.get(model_name, {})
+        return model_config.get('price')
+
+    def _load_token_usage(self) -> Dict:
+        """토큰 사용량 파일 로드"""
+        token_file = self.problems_dir / 'token_usage.json'
+        if token_file.exists():
+            with open(token_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return {}
+
+    def _get_token_usage(self, model_name: str, sheet_name: str) -> Optional[Dict[str, int]]:
+        """특정 모델-시트의 토큰 사용량 조회"""
+        models = self._token_usage.get('models', {})
+        model_data = models.get(model_name, {})
+        sections = model_data.get('sections', {})
+
+        if sheet_name in sections:
+            section_data = sections[sheet_name]
+            return {
+                'input_tokens': section_data.get('input_tokens', 0),
+                'output_tokens': section_data.get('output_tokens', 0)
+            }
+        return None
 
     def export_to_json(self, sheet_name: str, model_name: str,
                        output_path: Path = None) -> Path:
@@ -816,8 +855,16 @@ class SyncManager:
                             'total_points': json_data['total_points'],
                             'correct_count': json_data['correct_count'],
                             'total_questions': json_data['total_verified'],
-                            'results': clean_results,
                         }
+                        # 토큰 사용량 추가 (있는 경우에만)
+                        token_usage = self._get_token_usage(json_model_name, sheet_name)
+                        if token_usage:
+                            clean_data['token_usage'] = token_usage
+                        # 가격 정보 추가 (있는 경우에만)
+                        price = self._get_model_price(json_model_name)
+                        if price:
+                            clean_data['price'] = price
+                        clean_data['results'] = clean_results
                         all_data.append(clean_data)
                     except Exception as e:
                         print(f"경고: {sheet_name}/{model} 내보내기 실패 - {e}")

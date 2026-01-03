@@ -87,7 +87,11 @@
   - GPT-5.1 Chat
   - GPT-5 mini (high)
   - GPT-5 nano (high)
+  - GPT-4.1
+  - GPT-4.1 mini
+  - GPT-4.1 nano
   - GPT-4o (2024-11-20)
+  - GPT-4o mini
   - GPT-OSS 120B (high) (via Fireworks AI)
 
   ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.2 Chat, '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.2입니다.
@@ -96,8 +100,8 @@
   - Gemini 3 Pro (Preview) (high / low)
   - Gemini 3 Flash (Preview) (high / minimal)
   - Gemini 2.5 Pro (32K Thinking)
-  - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking)
-  - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking)
+  - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking / Non-Thinking)
+  - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking / Non-Thinking)
 
 - **Anthropic Claude 시리즈**
   - Claude Opus 4.5 (32K Thinking)
@@ -143,20 +147,21 @@
 |:-----|:------:|
 | **GPT-5.2** | **76점** |
 | **Gemini 3 Pro (high)** | **76점** |
-| **Gemini 3 Pro (low)** | **76점** |
 | **Gemini 3 Flash (high)** | **76점** |
-| **Gemini 3 Flash (minimal)** | **76점** |
 | **Gemini 2.5 Pro** | **76점** |
 | **Claude Opus 4.5** | **76점** |
 | **Claude Sonnet 4.5** | **76점** |
+| **Gemini 3 Flash (minimal)** | **76점** |
+| **Gemini 3 Pro (low)** | **76점** |
 | GPT-5.1 | 74점 |
 | GPT-5.1 Codex | 74점 |
 | Gemini 2.5 Flash | 73점 |
 | DeepSeek V3.2 Speciale | 73점 |
+| Gemini 2.5 Flash (Non-Thinking) | 73점 |
 | Grok 4.1 Fast (Thinking) | 71점 |
 | GPT-5 mini | 69점 |
-| GPT-5.2 (Instant) | 69점 |
 | K-EXAONE 236B (Thinking) | 69점 |
+| GPT-5.2 (Instant) | 69점 |
 | DeepSeek V3.2 Exp (Thinking) | 68점 |
 | Grok 4 | 67점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 67점 |
@@ -166,11 +171,16 @@
 | Gemini 2.5 Flash Lite | 61점 |
 | GPT-5.1 Chat | 60점 |
 | GPT-OSS 120B | 59점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 55점 |
 | Claude Haiku 4.5 | 54점 |
+| GPT-4.1 | 51점 |
 | GPT-4o | 50점 |
 | K-EXAONE 236B (Non-Thinking) | 48점 |
 | Grok 4.1 Fast (Non-Thinking) | 42점 |
+| GPT-4.1 mini | 37점 |
 | GPT-5 nano | 32점 |
+| GPT-4o mini | 23점 |
+| GPT-4.1 nano | 20점 |
 
 #### 국어 - 화법과 작문 (24점 만점)
 | 모델 | 점수 |
@@ -180,9 +190,7 @@
 | **GPT-5.1 Codex** | **24점** |
 | **GPT-5.1 Chat** | **24점** |
 | **Gemini 3 Pro (high)** | **24점** |
-| **Gemini 3 Pro (low)** | **24점** |
 | **Gemini 3 Flash (high)** | **24점** |
-| **Gemini 3 Flash (minimal)** | **24점** |
 | **Gemini 2.5 Flash** | **24점** |
 | **Gemini 2.5 Flash Lite** | **24점** |
 | **Claude Opus 4.5** | **24점** |
@@ -190,21 +198,29 @@
 | **DeepSeek V3.2 Exp (Thinking)** | **24점** |
 | **DeepSeek V3.2 (Thinking)** | **24점** |
 | **DeepSeek V3.2 (Non-Thinking)** | **24점** |
+| **Gemini 3 Flash (minimal)** | **24점** |
+| **Gemini 3 Pro (low)** | **24점** |
 | **Grok 4.1 Fast (Thinking)** | **24점** |
+| **Gemini 2.5 Flash (Non-Thinking)** | **24점** |
 | Gemini 2.5 Pro | 22점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 22점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
 | GPT-5 mini | 21점 |
 | Grok 4 | 21점 |
 | Grok 4 Fast | 21점 |
 | DeepSeek V3.2 Speciale | 21점 |
 | GPT-OSS 120B | 21점 |
+| GPT-4.1 | 20점 |
 | K-EXAONE 236B (Thinking) | 19점 |
 | GPT-4o | 17점 |
 | Claude Haiku 4.5 | 17점 |
 | K-EXAONE 236B (Non-Thinking) | 17점 |
 | Grok 4.1 Fast (Non-Thinking) | 17점 |
+| GPT-4.1 mini | 17점 |
 | GPT-5.2 (Instant) | 16점 |
+| GPT-4.1 nano | 16점 |
 | GPT-5 nano | 15점 |
+| GPT-4o mini | 12점 |
 
 #### 국어 - 언어와 매체 (24점 만점)
 | 모델 | 점수 |
@@ -217,28 +233,34 @@
 | GPT-5.1 Codex | 22점 |
 | GPT-5 mini | 22점 |
 | Gemini 2.5 Flash | 22점 |
-| Gemini 3 Flash (minimal) | 22점 |
 | Grok 4 | 22점 |
 | DeepSeek V3.2 Speciale | 22점 |
 | K-EXAONE 236B (Thinking) | 22점 |
+| Gemini 3 Flash (minimal) | 22점 |
+| Gemini 2.5 Flash (Non-Thinking) | 22점 |
 | Gemini 3 Flash (high) | 21점 |
-| Claude Sonnet 4.5 | 19점 |
 | GPT-5.1 Chat | 19점 |
+| Claude Sonnet 4.5 | 19점 |
 | DeepSeek V3.2 Exp (Thinking) | 19점 |
 | Gemini 2.5 Flash Lite | 17점 |
-| Gemini 3 Pro (low) | 17점 |
 | DeepSeek V3.2 (Thinking) | 17점 |
 | GPT-OSS 120B | 17점 |
+| Gemini 3 Pro (low) | 17점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 17점 |
 | Grok 4.1 Fast (Thinking) | 16점 |
-| Grok 4 Fast | 15점 |
 | Claude Haiku 4.5 | 15점 |
-| GPT-5.2 (Instant) | 15점 |
+| Grok 4 Fast | 15점 |
 | K-EXAONE 236B (Non-Thinking) | 15점 |
+| GPT-5.2 (Instant) | 15점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 13점 |
 | DeepSeek V3.2 (Non-Thinking) | 13점 |
+| GPT-4.1 | 13점 |
+| GPT-4.1 mini | 13점 |
 | GPT-5 nano | 11점 |
 | Grok 4.1 Fast (Non-Thinking) | 11점 |
 | GPT-4o | 10점 |
+| GPT-4o mini | 9점 |
+| GPT-4.1 nano | 7점 |
 
 ---
 
@@ -269,7 +291,6 @@
 | **GPT-5.2** | **74점** |
 | **GPT-5.1** | **74점** |
 | **Gemini 3 Pro (high)** | **74점** |
-| **Gemini 3 Pro (low)** | **74점** |
 | **Gemini 3 Flash (high)** | **74점** |
 | **Claude Opus 4.5** | **74점** |
 | **Claude Sonnet 4.5** | **74점** |
@@ -278,24 +299,31 @@
 | **DeepSeek V3.2 Speciale** | **74점** |
 | **K-EXAONE 236B (Thinking)** | **74점** |
 | **GPT-OSS 120B** | **74점** |
+| **Gemini 3 Pro (low)** | **74점** |
 | GPT-5.1 Codex | 70점 |
 | GPT-5 mini | 70점 |
 | GPT-5 nano | 70점 |
 | Gemini 2.5 Pro | 70점 |
 | Gemini 2.5 Flash | 70점 |
-| Gemini 3 Flash (minimal) | 70점 |
 | Grok 4 | 70점 |
 | Grok 4 Fast | 70점 |
+| Gemini 3 Flash (minimal) | 70점 |
 | Grok 4.1 Fast (Thinking) | 70점 |
+| Gemini 2.5 Flash (Non-Thinking) | 70점 |
 | GPT-5.1 Chat | 66점 |
 | Gemini 2.5 Flash Lite | 66점 |
 | DeepSeek V3.2 (Non-Thinking) | 66점 |
 | K-EXAONE 236B (Non-Thinking) | 66점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 66점 |
 | Claude Haiku 4.5 | 62점 |
 | GPT-5.2 (Instant) | 62점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 58점 |
+| GPT-4.1 | 58점 |
+| GPT-4.1 mini | 58점 |
+| GPT-4.1 nano | 50점 |
 | Grok 4.1 Fast (Non-Thinking) | 46점 |
 | GPT-4o | 44점 |
+| GPT-4o mini | 39점 |
 
 #### 수학 - 확률과 통계 (26점 만점)
 | 모델 | 점수 |
@@ -307,29 +335,35 @@
 | **GPT-5 mini** | **26점** |
 | **GPT-5 nano** | **26점** |
 | **Gemini 3 Pro (high)** | **26점** |
-| **Gemini 3 Pro (low)** | **26점** |
 | **Gemini 3 Flash (high)** | **26점** |
 | **Gemini 2.5 Pro** | **26점** |
 | **Claude Opus 4.5** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
+| **Grok 4** | **26점** |
+| **Grok 4 Fast** | **26점** |
 | **DeepSeek V3.2 Exp (Thinking)** | **26점** |
 | **DeepSeek V3.2 (Thinking)** | **26점** |
 | **DeepSeek V3.2 Speciale** | **26점** |
-| **Grok 4** | **26점** |
-| **Grok 4 Fast** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
 | **K-EXAONE 236B (Thinking)** | **26점** |
+| **Gemini 3 Pro (low)** | **26점** |
+| **Grok 4.1 Fast (Thinking)** | **26점** |
 | Gemini 2.5 Flash | 22점 |
 | GPT-OSS 120B | 22점 |
 | GPT-5.2 (Instant) | 22점 |
+| Gemini 2.5 Flash (Non-Thinking) | 22점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
+| GPT-4o | 18점 |
 | Gemini 2.5 Flash Lite | 18점 |
-| Gemini 3 Flash (minimal) | 18점 |
 | Claude Haiku 4.5 | 18점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
 | DeepSeek V3.2 (Non-Thinking) | 18점 |
 | K-EXAONE 236B (Non-Thinking) | 18점 |
+| Gemini 3 Flash (minimal) | 18점 |
 | Grok 4.1 Fast (Non-Thinking) | 18점 |
-| GPT-4o | 18점 |
+| GPT-4.1 mini | 18점 |
+| GPT-4.1 | 18점 |
+| GPT-4o mini | 18점 |
+| GPT-4.1 nano | 15점 |
 
 #### 수학 - 미적분 (26점 만점)
 | 모델 | 점수 |
@@ -343,15 +377,14 @@
 | **Claude Sonnet 4.5** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
 | **DeepSeek V3.2 Speciale** | **26점** |
 | **K-EXAONE 236B (Thinking)** | **26점** |
 | **GPT-OSS 120B** | **26점** |
+| **Grok 4.1 Fast (Thinking)** | **26점** |
+| **Gemini 2.5 Flash (Non-Thinking)** | **26점** |
 | GPT-5 nano | 22점 |
 | Gemini 3 Pro (high) | 22점 |
-| Gemini 3 Pro (low) | 22점 |
 | Gemini 3 Flash (high) | 22점 |
-| Gemini 3 Flash (minimal) | 22점 |
 | Gemini 2.5 Pro | 22점 |
 | Gemini 2.5 Flash Lite | 22점 |
 | Claude Haiku 4.5 | 22점 |
@@ -359,11 +392,18 @@
 | DeepSeek V3.2 (Non-Thinking) | 22점 |
 | K-EXAONE 236B (Non-Thinking) | 22점 |
 | GPT-5.2 (Instant) | 22점 |
+| Gemini 3 Flash (minimal) | 22점 |
+| Gemini 3 Pro (low) | 22점 |
+| GPT-4.1 mini | 22점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
 | GPT-5.1 Chat | 18점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
 | DeepSeek V3.2 (Thinking) | 18점 |
+| GPT-4.1 | 18점 |
 | Grok 4.1 Fast (Non-Thinking) | 12점 |
 | GPT-4o | 11점 |
+| GPT-4o mini | 11점 |
+| GPT-4.1 nano | 11점 |
 
 #### 수학 - 기하 (26점 만점)
 | 모델 | 점수 |
@@ -373,31 +413,37 @@
 | **GPT-5.1 Codex** | **26점** |
 | **GPT-5 nano** | **26점** |
 | **Gemini 3 Pro (high)** | **26점** |
-| **Gemini 3 Pro (low)** | **26점** |
 | **Gemini 3 Flash (high)** | **26점** |
 | **Gemini 2.5 Pro** | **26점** |
 | **Gemini 2.5 Flash** | **26점** |
 | **Gemini 2.5 Flash Lite** | **26점** |
 | **Claude Opus 4.5** | **26점** |
 | **Claude Sonnet 4.5** | **26점** |
-| **DeepSeek V3.2 Exp (Thinking)** | **26점** |
-| **DeepSeek V3.2 (Thinking)** | **26점** |
 | **Grok 4** | **26점** |
 | **Grok 4 Fast** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
+| **DeepSeek V3.2 Exp (Thinking)** | **26점** |
+| **DeepSeek V3.2 (Thinking)** | **26점** |
 | **K-EXAONE 236B (Thinking)** | **26점** |
+| **Gemini 3 Pro (low)** | **26점** |
+| **Grok 4.1 Fast (Thinking)** | **26점** |
 | DeepSeek V3.2 Speciale | 23점 |
 | GPT-5.1 Chat | 22점 |
 | GPT-5 mini | 22점 |
 | K-EXAONE 236B (Non-Thinking) | 22점 |
 | GPT-OSS 120B | 22점 |
+| Gemini 2.5 Flash (Non-Thinking) | 22점 |
 | DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
 | GPT-5.2 (Instant) | 18점 |
 | Gemini 3 Flash (minimal) | 18점 |
+| GPT-4.1 mini | 18점 |
+| Gemini 2.5 Flash Lite (Non-Thinking) | 18점 |
 | DeepSeek V3.2 (Non-Thinking) | 14점 |
+| GPT-4o mini | 14점 |
 | Claude Haiku 4.5 | 11점 |
-| Grok 4.1 Fast (Non-Thinking) | 8점 |
+| GPT-4.1 | 11점 |
+| GPT-4.1 nano | 11점 |
 | GPT-4o | 8점 |
+| Grok 4.1 Fast (Non-Thinking) | 8점 |
 
 ---
 

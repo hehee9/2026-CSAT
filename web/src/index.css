@@ -1,0 +1,62 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import "tailwindcss";
+
+/**
+ * @brief Tailwind v4 다크모드 설정
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/**
+ * @brief 커스텀 CSS 변수 및 기본 스타일
+ */
+:root {
+  /* 시맨틱 색상 - 라이트 테마 */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-border: #e5e7eb;
+
+  /* 차트/히트맵 색상 */
+  --color-correct-high: #22c55e;
+  --color-correct-low: #86efac;
+  --color-incorrect-high: #ef4444;
+  --color-incorrect-low: #fca5a5;
+  --color-no-data: #f0f0f0;
+
+  /* 모델별 브랜드 색상 */
+  --color-gpt: #EA4335;
+  --color-gemini: #4285F4;
+  --color-claude: #D2691E;
+  --color-grok: #6A4C93;
+  --color-deepseek: #1E3A8A;
+  --color-exaone: #A50034;
+}
+
+/**
+ * @brief 다크 테마 색상
+ */
+.dark {
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #1f2937;
+  --color-bg-tertiary: #374151;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #6b7280;
+  --color-border: #4b5563;
+
+  /* 다크 테마용 차트 색상 */
+  --color-correct-high: #4ade80;
+  --color-correct-low: #166534;
+  --color-incorrect-high: #f87171;
+  --color-incorrect-low: #991b1b;
+  --color-no-data: #374151;
+}
+
+body {
+  font-family: 'Pretendard', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}

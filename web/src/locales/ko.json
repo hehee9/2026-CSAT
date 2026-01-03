@@ -1,0 +1,165 @@
+{
+  "header": {
+    "title": "2026 수능 LLM 풀이 대시보드",
+    "subtitle": "다양한 LLM 모델의 수능 문제 풀이 결과"
+  },
+  "tabs": {
+    "overview": "종합 대시보드",
+    "subjects": "과목별 상세",
+    "compare": "모델 비교",
+    "cost": "비용 분석"
+  },
+  "sidebar": {
+    "displayOptions": "표시 옵션",
+    "showDetail": "세부 점수 표시",
+    "hideDetail": "세부 점수 숨기기",
+    "subjectFilter": "과목 필터",
+    "modelFilter": "모델 필터",
+    "selectAll": "전체 선택",
+    "deselectAll": "전체 해제",
+    "sort": "정렬",
+    "exportImage": "이미지로 내보내기",
+    "sortOptions": {
+      "scoreDesc": "점수 높은 순",
+      "scoreAsc": "점수 낮은 순",
+      "nameAsc": "이름 순 (A→Z)",
+      "nameDesc": "이름 역순 (Z→A)",
+      "vendor": "개발사순",
+      "costAsc": "비용 낮은 순",
+      "efficiencyDesc": "효율 높은 순"
+    }
+  },
+  "charts": {
+    "totalScore": "종합 점수",
+    "maxPoints": "{{max}}점 만점",
+    "scoreTable": "모델별 점수표",
+    "selectSubject": "과목 선택",
+    "questionStatus": "문항별 정답 현황",
+    "choiceRate": "선지 선택률",
+    "compareModels": "비교할 모델 선택 (최대 5개)",
+    "costVsPerformance": "비용 vs 성능",
+    "tokenUsage": "총 토큰 사용량",
+    "costInfo": "모델별 비용 정보",
+    "modelCompare": "모델 비교 (과목별 정규화 점수)"
+  },
+  "subjects": {
+    "korean": "국어",
+    "math": "수학",
+    "english": "영어",
+    "history": "한국사",
+    "exploration": "탐구",
+    "common": "공통",
+    "hwajak": "화작",
+    "unmae": "언매",
+    "hwakton": "확통",
+    "mijeok": "미적",
+    "giha": "기하",
+    "physics1": "물리1",
+    "chemistry1": "화학1",
+    "biology1": "생명1",
+    "society": "사회문화"
+  },
+  "table": {
+    "model": "모델",
+    "korean": "국어",
+    "math": "수학",
+    "english": "영어",
+    "history": "한국사",
+    "exploration": "탐구",
+    "total": "총점",
+    "common": "공통",
+    "inputPrice": "입력 ($/1M)",
+    "outputPrice": "출력 ($/1M)",
+    "inputTokens": "입력 토큰",
+    "outputTokens": "출력 토큰",
+    "totalCost": "총 비용",
+    "score": "총점",
+    "efficiency": "효율",
+    "showDetail": "세부 점수 표시",
+    "hideDetail": "세부 점수 숨기기"
+  },
+  "heatmap": {
+    "correctCount": "정답 수",
+    "accuracy": "정답률",
+    "showOX": "O/X 표시",
+    "showAnswer": "답 번호 표시",
+    "question": "문항",
+    "answer": "정답",
+    "yourAnswer": "선택",
+    "points": "배점",
+    "correct": "정답",
+    "incorrect": "오답",
+    "legend": {
+      "correctHigh": "정답 (3점 이상)",
+      "correctLow": "정답 (2점)",
+      "incorrectHigh": "오답 (3점 이상)",
+      "incorrectLow": "오답 (2점)"
+    }
+  },
+  "choice": {
+    "title": "선지 선택률",
+    "questionNum": "{{num}}번",
+    "correctAnswer": "정답: {{answer}}",
+    "selectionRate": "선택률",
+    "modelCount": "{{count}}개 모델",
+    "legend": {
+      "correct": "정답 선지",
+      "incorrect": "오답 선지",
+      "highRate": "높은 선택률",
+      "lowRate": "낮은 선택률"
+    }
+  },
+  "cost": {
+    "noTokenInfo": "토큰 정보 없는 모델",
+    "efficiencyFormula": "효율 = (점수/만점 × 0.7 + (1-비용/최대비용) × 0.3) × 100",
+    "testCost": "테스트 비용",
+    "inputTokensShort": "입력",
+    "outputTokensShort": "출력",
+    "tokens": "토큰",
+    "perMillion": "/M",
+    "axisTestCost": "테스트 비용 ($)",
+    "axisScore": "총점"
+  },
+  "tooltip": {
+    "score": "점수",
+    "points": "점",
+    "accuracy": "정답률",
+    "correctCount": "정답 수",
+    "totalQuestions": "문항"
+  },
+  "token": {
+    "total": "총합",
+    "inputOutput": "입력+출력",
+    "hidden": "숨김"
+  },
+  "export": {
+    "totalScore": "종합_점수",
+    "costAnalysis": "비용_분석",
+    "tokenUsage": "토큰_사용량",
+    "heatmap": "정답_현황",
+    "choiceRate": "선지_선택률"
+  },
+  "common": {
+    "loading": "데이터 로드 중...",
+    "error": "오류 발생",
+    "noData": "데이터가 없습니다",
+    "noCostData": "비용 데이터가 없습니다",
+    "score": "점수",
+    "correct": "정답",
+    "incorrect": "오답",
+    "points": "점"
+  },
+  "theme": {
+    "light": "라이트 모드",
+    "dark": "다크 모드",
+    "system": "시스템 설정"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English"
+  },
+  "footer": {
+    "lastUpdated": "최종 업데이트",
+    "unofficial": "비공식 프로젝트입니다. 한국교육과정평가원과 관련이 없습니다."
+  }
+}
