@@ -1,6 +1,7 @@
 {
   "header": {
     "title": "2026 수능 LLM 풀이 대시보드",
+    "titleShort": "수능 LLM",
     "subtitle": "다양한 LLM 모델의 수능 문제 풀이 결과"
   },
   "tabs": {
@@ -10,6 +11,7 @@
     "cost": "비용 분석"
   },
   "sidebar": {
+    "settings": "설정",
     "displayOptions": "표시 옵션",
     "showDetail": "세부 점수 표시",
     "hideDetail": "세부 점수 숨기기",
@@ -37,6 +39,7 @@
     "questionStatus": "문항별 정답 현황",
     "choiceRate": "선지 선택률",
     "compareModels": "비교할 모델 선택 (최대 5개)",
+    "modelsSelected": "{{count}}개 선택됨",
     "costVsPerformance": "비용 vs 성능",
     "tokenUsage": "총 토큰 사용량",
     "costInfo": "모델별 비용 정보",

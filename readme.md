@@ -3,6 +3,18 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
+<div align="center">
+
+### [**Interactive Dashboard**](https://hehee9.github.io/2026-CSAT/)
+
+[![Dashboard](https://img.shields.io/badge/Dashboard-Live-brightgreen?style=for-the-badge&logo=github)](https://hehee9.github.io/2026-CSAT/)
+
+**위 링크를 통해 모델별 점수, 과목별 정답률, 비용 분석을 보기 좋게 확인하실 수 있습니다**
+
+</div>
+
+---
+
 ## 개요
 
 다양한 LLM 모델의 2026학년도 수능 문제 풀이 결과를 기록하고 통계를 정리한 데이터입니다.
@@ -629,7 +641,7 @@ $f(x) = \begin{cases} -x^2 & (x < 0) \\ x^2-x & (x \ge 0) \end{cases}$
 ## 라이선스 및 저작권
 
 ### 프로젝트 라이선스
-본 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+본 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE.md) 파일을 참조하세요.
 
 ### 수능 문제 저작권
 - 2026학년도 대학수학능력시험 문제는 **한국교육과정평가원**의 저작물입니다.

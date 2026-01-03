@@ -6,3 +6,4 @@
 export { default as ExportButton } from './ExportButton'
 export { default as ThemeToggle } from './ThemeToggle'
 export { default as LanguageSwitcher } from './LanguageSwitcher'
+export { default as ModelSelectDropdown } from './ModelSelectDropdown'

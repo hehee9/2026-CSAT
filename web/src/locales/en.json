@@ -1,6 +1,7 @@
 {
   "header": {
     "title": "2026 CSAT LLM Solution Dashboard",
+    "titleShort": "CSAT LLM",
     "subtitle": "LLM model performance on Korean SAT problems"
   },
   "tabs": {
@@ -10,6 +11,7 @@
     "cost": "Cost Analysis"
   },
   "sidebar": {
+    "settings": "Settings",
     "displayOptions": "Display Options",
     "showDetail": "Show Details",
     "hideDetail": "Hide Details",
@@ -37,6 +39,7 @@
     "questionStatus": "Answer Status",
     "choiceRate": "Choice Selection Rate",
     "compareModels": "Select models to compare (max 5)",
+    "modelsSelected": "{{count}} selected",
     "costVsPerformance": "Cost vs Performance",
     "tokenUsage": "Total Token Usage",
     "costInfo": "Cost Information by Model",

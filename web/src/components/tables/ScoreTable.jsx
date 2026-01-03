@@ -3,11 +3,14 @@
  * @brief 모델별 점수 테이블 (정렬 가능, 세부 점수 토글)
  */
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getModelColor } from '@/utils/colorUtils'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
+
+/** @brief 모바일 브레이크포인트 */
+const MOBILE_BREAKPOINT = 768
 
 /** @brief 과목별 만점 기준 */
 const MAX_SCORES = {
@@ -53,6 +56,83 @@ function ScoreCell({ score, maxScore, decimals = 1 }) {
 }
 
 /**
+ * @brief 모바일 카드 뷰의 점수 항목 컴포넌트
+ */
+function ScoreItem({ label, score, max }) {
+  const isPerfect = score != null && score >= max
+  return (
+    <div className="text-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
+      <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
+      <div className={`font-medium ${isPerfect ? 'text-red-600 dark:text-red-400' : 'text-gray-800 dark:text-gray-200'}`}>
+        {score != null ? (Number.isInteger(score) ? score : score.toFixed(1)) : '-'}
+      </div>
+    </div>
+  )
+}
+
+/**
+ * @brief 모바일용 카드 뷰 컴포넌트
+ */
+function CardView({ data, maxScore, hoveredModel, onModelHover, t }) {
+  return (
+    <div className="space-y-3">
+      {data.map((row, index) => {
+        const isHovered = hoveredModel === row.model
+        return (
+          <div
+            key={row.model}
+            className={`bg-white dark:bg-gray-800 rounded-lg p-4 border transition-all ${
+              isHovered
+                ? 'border-blue-400 dark:border-blue-500 ring-2 ring-blue-200 dark:ring-blue-800'
+                : 'border-gray-200 dark:border-gray-700'
+            }`}
+            onTouchStart={() => onModelHover?.(row.model)}
+            onTouchEnd={() => onModelHover?.(null)}
+          >
+            {/* 모델 이름 + 순위 */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-3 h-3 rounded-full shrink-0"
+                  style={{ backgroundColor: getModelColor(row.model) }}
+                />
+                <span className="font-semibold text-gray-800 dark:text-gray-200 truncate">
+                  {row.model}
+                </span>
+              </div>
+              <span className="text-sm text-gray-400 dark:text-gray-500 shrink-0">
+                #{index + 1}
+              </span>
+            </div>
+
+            {/* 총점 (큰 폰트) */}
+            <div className="text-center mb-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+              <span className={`text-3xl font-bold ${
+                row.total >= maxScore ? 'text-red-600 dark:text-red-400' : 'text-gray-800 dark:text-gray-200'
+              }`}>
+                {row.total.toFixed(1)}
+              </span>
+              <span className="text-sm text-gray-500 dark:text-gray-400 ml-1">
+                / {maxScore}
+              </span>
+            </div>
+
+            {/* 과목별 점수 그리드 */}
+            <div className="grid grid-cols-3 gap-2 text-sm">
+              <ScoreItem label={t('table.korean')} score={row.korean} max={MAX_SCORES.korean} />
+              <ScoreItem label={t('table.math')} score={row.math} max={MAX_SCORES.math} />
+              <ScoreItem label={t('table.english')} score={row.english} max={MAX_SCORES.english} />
+              <ScoreItem label={t('table.history')} score={row.history} max={MAX_SCORES.history} />
+              <ScoreItem label={t('table.exploration')} score={row.exploration} max={MAX_SCORES.exploration} />
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+/**
  * @brief 정렬 키에 해당하는 값 추출
  */
 function _getSortValue(row, key) {
@@ -93,7 +173,18 @@ function _getSortValue(row, key) {
 export default function ScoreTable({ data, onRowClick, title, showDetail = false, onToggleDetail, maxScore = 450, hoveredModel, onModelHover }) {
   const { t } = useTranslation()
   const [sortConfig, setSortConfig] = useState({ key: 'total', direction: 'desc' })
+  const [isMobile, setIsMobile] = useState(false)
   const { ref, exportImage } = useExportImage()
+
+  // 화면 너비 감지
+  useEffect(() => {
+    const checkWidth = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+    }
+    checkWidth()
+    window.addEventListener('resize', checkWidth)
+    return () => window.removeEventListener('resize', checkWidth)
+  }, [])
 
   const sortedData = useMemo(() => {
     if (!data?.length) return []
@@ -121,6 +212,28 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
     )
   }
 
+  // 모바일: 카드 뷰
+  if (isMobile) {
+    return (
+      <div ref={ref} className="w-full">
+        <div className="flex items-start justify-between mb-4">
+          {title && (
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
+          )}
+          <ExportButton onClick={() => exportImage(`${t('charts.scoreTable')}.png`)} />
+        </div>
+        <CardView
+          data={sortedData}
+          maxScore={maxScore}
+          hoveredModel={hoveredModel}
+          onModelHover={onModelHover}
+          t={t}
+        />
+      </div>
+    )
+  }
+
+  // 데스크톱: 테이블 뷰
   return (
     <div ref={ref} className="w-full">
       <div className="flex items-start justify-between mb-4">

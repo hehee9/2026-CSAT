@@ -7,7 +7,8 @@ import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DataProvider, useData } from '@/hooks/useData'
 import { ThemeProvider } from '@/hooks/useTheme'
-import { Header, Sidebar, Footer } from '@/components/layout'
+import { useSidebar } from '@/hooks/useSidebar'
+import { Header, Sidebar, Footer, BottomNav } from '@/components/layout'
 import {
   ScoreBarChart,
   ScoreBreakdownChart,
@@ -18,6 +19,7 @@ import {
   ChoiceSelectionChart
 } from '@/components/charts'
 import { ScoreTable, CostTable } from '@/components/tables'
+import { ModelSelectDropdown } from '@/components/common'
 import { calculateAllModelScores, getCostData, getMaxScore } from '@/utils/dataTransform'
 import { transformToHeatmapData, transformToRadarData } from '@/utils/heatmapTransform'
 import { transformToChoiceData } from '@/utils/choiceTransform'
@@ -70,6 +72,7 @@ function _translateSubject(name, t) {
 function Dashboard() {
   const { t } = useTranslation()
   const { data, tokenUsage, loading, error, models, subjects, sections } = useData()
+  const sidebar = useSidebar()
 
   const [filters, setFilters] = useState({
     subjects: [],
@@ -310,17 +313,19 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-      <Header />
+      <Header onMenuToggle={sidebar.toggle} />
       <div className="flex flex-1">
         <Sidebar
           filters={filters}
           onFilterChange={setFilters}
           hoveredModel={hoveredModel}
           onModelHover={setHoveredModel}
+          isOpen={sidebar.isOpen}
+          onClose={sidebar.close}
         />
-        <main className="flex-1 p-6 overflow-auto">
-          {/* 탭 네비게이션 */}
-          <div className="flex gap-2 mb-6">
+        <main className="flex-1 p-4 md:p-6 overflow-auto pb-20 md:pb-6">
+          {/* 탭 네비게이션 (데스크톱) */}
+          <div className="desktop-tabs hidden md:flex gap-2 mb-6">
             {TAB_KEYS.map(tabKey => (
               <button
                 key={tabKey}
@@ -487,12 +492,24 @@ function Dashboard() {
               const sortedVendors = getSortedVendors(groupedCompareModels)
 
               return (
-                <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+                <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 md:p-6">
                   <div className="mb-6">
                     <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-3">
                       {t('charts.compareModels')}
                     </h4>
-                    <div className="space-y-3">
+
+                    {/* 모바일: 드롭다운 */}
+                    <div className="md:hidden">
+                      <ModelSelectDropdown
+                        models={sortedModels}
+                        selected={compareModels}
+                        onChange={setCompareModels}
+                        maxSelect={5}
+                      />
+                    </div>
+
+                    {/* 데스크톱: 체크박스 그룹 */}
+                    <div className="hidden md:block space-y-3">
                       {sortedVendors.map(vendor => {
                         const vendorModels = groupedCompareModels[vendor.id]
                         if (!vendorModels?.length) return null
@@ -596,6 +613,7 @@ function Dashboard() {
         </main>
       </div>
       <Footer />
+      <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   )
 }

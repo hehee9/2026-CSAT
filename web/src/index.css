@@ -60,3 +60,48 @@ body {
   background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
 }
+
+/**
+ * @brief Safe area 지원 (iPhone X 이상)
+ */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/**
+ * @brief 모바일 가로 모드 최적화
+ * 화면 너비 768px 미만이더라도 가로 모드 + 충분한 높이면 데스크톱 레이아웃 적용
+ */
+@media (orientation: landscape) and (min-height: 500px) and (max-width: 767px) {
+  /* 하단 네비게이션 숨기기 */
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+
+  /* 상단 탭 표시 */
+  .desktop-tabs {
+    display: flex !important;
+  }
+}
+
+/**
+ * @brief 터치 스크롤 최적화
+ */
+@media (max-width: 767px) {
+  /* 스크롤 영역에 momentum 스크롤 적용 */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 스크롤바 숨기기 (모바일) */
+  .overflow-auto::-webkit-scrollbar,
+  .overflow-y-auto::-webkit-scrollbar {
+    display: none;
+  }
+}
