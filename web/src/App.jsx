@@ -23,7 +23,7 @@ import { ModelSelectDropdown } from '@/components/common'
 import { calculateAllModelScores, getCostData, getMaxScore } from '@/utils/dataTransform'
 import { transformToHeatmapData, transformToRadarData } from '@/utils/heatmapTransform'
 import { transformToChoiceData } from '@/utils/choiceTransform'
-import { getModelColor, getVendor, VENDORS, groupModelsByVendor, getSortedVendors } from '@/utils/colorUtils'
+import { getModelColor, getVendor, VENDORS, groupModelsByVendor, getSortedVendors, getDefaultSelectedModels } from '@/utils/colorUtils'
 
 /**
  * @brief 탭 정의
@@ -89,6 +89,7 @@ function Dashboard() {
   const sectionSelectRef = useRef(null)
   const mainRef = useRef(null)
   const scrollPositions = useRef({})
+  const isInitialLoad = useRef(true)
 
   // 전체 모델 점수 계산 (과목 필터 적용)
   const overallScores = useMemo(() => {
@@ -100,6 +101,21 @@ function Dashboard() {
   const maxScore = useMemo(() => {
     return getMaxScore(filters.subjects)
   }, [filters.subjects])
+
+  /**
+   * @brief 데이터 로드 완료 후 기본 모델 필터 설정
+   * - 각 개발사별 상위 min(floor(50%), 4개) 모델만 기본 활성화 (최소 1개)
+   * - 최초 로드 시에만 적용
+   */
+  useEffect(() => {
+    if (loading || !data?.length || !models?.length || !isInitialLoad.current) return
+
+    const allScores = calculateAllModelScores(data, models, [])
+    const defaultModels = getDefaultSelectedModels(models, allScores)
+
+    setFilters(prev => ({ ...prev, models: defaultModels }))
+    isInitialLoad.current = false
+  }, [loading, data, models])
 
   // 필터 및 정렬 적용
   const filteredScores = useMemo(() => {

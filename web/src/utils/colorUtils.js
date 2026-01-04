@@ -248,3 +248,32 @@ export function isDarkMode() {
   if (typeof document === 'undefined') return false
   return document.documentElement.classList.contains('dark')
 }
+
+/**
+ * @brief 개발사별 상위 모델 기본 선택 목록 계산
+ * @param {string[]} models - 전체 모델명 배열
+ * @param {Array} scoreData - calculateAllModelScores 결과 (총점 내림차순)
+ * @return {string[]} 기본 선택된 모델명 배열
+ *
+ * 규칙: 각 개발사별 min(floor(50%), 4개) 모델 선택 (점수 높은 순, 최소 1개)
+ */
+export function getDefaultSelectedModels(models, scoreData) {
+  const grouped = groupModelsByVendor(models)
+  const scoreMap = new Map(scoreData.map(s => [s.model, s.total]))
+  const result = []
+
+  Object.values(grouped).forEach(vendorModels => {
+    if (vendorModels.length === 0) return
+
+    // 점수 기준 내림차순 정렬
+    const sorted = [...vendorModels].sort((a, b) =>
+      (scoreMap.get(b) || 0) - (scoreMap.get(a) || 0)
+    )
+
+    // min(floor(50%), 4개), 최소 1개 보장
+    const limit = Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 4)
+    result.push(...sorted.slice(0, limit))
+  })
+
+  return result
+}

@@ -909,12 +909,12 @@
       "question_count": 247,
       "last_updated": "2026-01-04 16:13:48",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 17196,
           "output_tokens": 8930,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 18580,
           "output_tokens": 5009,
           "question_count": 20
@@ -983,12 +983,12 @@
       "question_count": 247,
       "last_updated": "2026-01-04 16:13:48",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 17196,
           "output_tokens": 9601,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 18580,
           "output_tokens": 4827,
           "question_count": 20
@@ -1057,12 +1057,12 @@
       "question_count": 247,
       "last_updated": "2026-01-04 17:32:57",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 13318,
           "output_tokens": 90552,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 4828,
           "output_tokens": 114457,
           "question_count": 20
@@ -1131,12 +1131,12 @@
       "question_count": 247,
       "last_updated": "2026-01-04 17:32:57",
       "sections": {
-        "영어-공통": {
+        "영어": {
           "input_tokens": 18197,
           "output_tokens": 36920,
           "question_count": 45
         },
-        "한국사-공통": {
+        "한국사": {
           "input_tokens": 21305,
           "output_tokens": 47032,
           "question_count": 20
