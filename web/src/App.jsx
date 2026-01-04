@@ -90,6 +90,10 @@ function Dashboard() {
   const mainRef = useRef(null)
   const scrollPositions = useRef({})
   const isInitialLoad = useRef(true)
+  const [headerVisible, setHeaderVisible] = useState(false)
+  const [scrolledPastHeader, setScrolledPastHeader] = useState(false)
+  const headerTimeoutRef = useRef(null)
+  const originalHeaderRef = useRef(null)
 
   // 전체 모델 점수 계산 (과목 필터 적용)
   const overallScores = useMemo(() => {
@@ -217,6 +221,39 @@ function Dashboard() {
 
     return secs
   }, [selectedSubject, subjects, sections])
+
+  /**
+   * @brief PC 헤더 스크롤 감지 (원본 헤더가 화면 밖으로 나갔는지)
+   */
+  useEffect(() => {
+    const handleScroll = () => {
+      if (originalHeaderRef.current) {
+        const rect = originalHeaderRef.current.getBoundingClientRect()
+        setScrolledPastHeader(rect.bottom < 0)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  /**
+   * @brief PC 헤더 호버 핸들러
+   */
+  const handleHeaderTriggerEnter = useCallback(() => {
+    if (!scrolledPastHeader) return
+    if (headerTimeoutRef.current) {
+      clearTimeout(headerTimeoutRef.current)
+      headerTimeoutRef.current = null
+    }
+    setHeaderVisible(true)
+  }, [scrolledPastHeader])
+
+  const handleHeaderTriggerLeave = useCallback(() => {
+    headerTimeoutRef.current = setTimeout(() => {
+      setHeaderVisible(false)
+    }, 300)
+  }, [])
 
   /**
    * @brief 탭 전환 시 스크롤 위치 저장/복원
@@ -351,7 +388,27 @@ function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-      <Header onMenuToggle={sidebar.toggle} />
+      {/* PC 헤더 호버 트리거 영역 (스크롤 시에만 활성화) */}
+      {scrolledPastHeader && (
+        <div
+          className="hidden md:block fixed top-0 left-0 right-0 h-3 z-50"
+          onMouseEnter={handleHeaderTriggerEnter}
+        />
+      )}
+      {/* PC 헤더 (스크롤 후 호버 시 표시) */}
+      <div
+        className={`hidden md:block fixed top-0 left-0 right-0 z-40 transition-transform duration-300 ${
+          headerVisible && scrolledPastHeader ? 'translate-y-0' : '-translate-y-full'
+        }`}
+        onMouseEnter={handleHeaderTriggerEnter}
+        onMouseLeave={handleHeaderTriggerLeave}
+      >
+        <Header onMenuToggle={sidebar.toggle} />
+      </div>
+      {/* 원본 헤더 (항상 표시) */}
+      <div ref={originalHeaderRef}>
+        <Header onMenuToggle={sidebar.toggle} />
+      </div>
       <div className="flex flex-1">
         <Sidebar
           filters={filters}

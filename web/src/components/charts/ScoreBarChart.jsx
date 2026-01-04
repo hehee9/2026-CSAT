@@ -12,7 +12,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   ReferenceLine,
-  Rectangle
+  Rectangle,
+  CartesianGrid,
+  LabelList
 } from 'recharts'
 import { useTranslation } from 'react-i18next'
 import { getModelColor, getShortModelName, CHART_COLORS } from '@/utils/colorUtils'
@@ -221,6 +223,7 @@ export default function ScoreBarChart({
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
   const { ref, exportImage } = useExportImage()
+  const [showLabels, setShowLabels] = useState(true)
 
   // 모바일 감지
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
@@ -241,16 +244,103 @@ export default function ScoreBarChart({
   // 최대 점수 계산 (전달되지 않은 경우)
   const computedMaxScore = maxScore ?? Math.max(...data.map(d => d.totalPoints || d.score))
 
-  // 동적 높이 계산: 모델 수에 따라 조정
-  const dynamicHeight = Math.max(height, data.length * 40 + 60)
-
   // 다크모드용 색상
   const cursorColor = darkMode ? 'rgba(55, 65, 81, 0.5)' : '#f3f4f6'
   const axisColor = darkMode ? '#4b5563' : '#e5e7eb'
+  const tickColor = darkMode ? '#9ca3af' : '#6b7280'
+  const xTickColor = darkMode ? '#d1d5db' : '#374151'
+
+  // 모바일: 가로 막대 차트
+  if (isMobile) {
+    const dynamicHeight = Math.max(height, data.length * 40 + 60)
+
+    return (
+      <div ref={ref} className="w-full">
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            {title && (
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
+            )}
+            {subtitle && (
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{subtitle}</p>
+            )}
+          </div>
+          <ExportButton onClick={() => exportImage(`${t('export.totalScore')}.png`)} />
+        </div>
+        <ResponsiveContainer width="100%" height={dynamicHeight}>
+          <BarChart
+            key={data.map(d => d.model).join(',')}
+            data={data}
+            layout="vertical"
+            margin={{ top: 10, right: 30, left: 5, bottom: 10 }}
+            onMouseMove={(state) => {
+              if (state?.activeTooltipIndex !== undefined) {
+                const model = data[state.activeTooltipIndex]?.model
+                if (model && model !== hoveredModel) {
+                  onModelHover?.(model)
+                }
+              }
+            }}
+            onMouseLeave={() => onModelHover?.(null)}
+          >
+            <XAxis
+              type="number"
+              domain={[0, computedMaxScore]}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              tick={{ fill: tickColor }}
+            />
+            <YAxis
+              type="category"
+              dataKey="model"
+              tickLine={false}
+              axisLine={false}
+              width={100}
+              tick={createCustomYAxisTick(hoveredModel, onModelHover, darkMode, true)}
+            />
+            <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+            <ReferenceLine
+              x={computedMaxScore}
+              stroke={CHART_COLORS.perfect}
+              strokeDasharray="3 3"
+              strokeWidth={2}
+            />
+            <Bar
+              dataKey="score"
+              barSize={24}
+              shape={(props) => {
+                const { x, y, width, height, payload } = props
+                const color = payload.color || getModelColor(payload.model)
+                const isHovered = hoveredModel === payload.model
+                const hasHover = hoveredModel !== null
+                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
+                return (
+                  <Rectangle
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={color}
+                    radius={[0, 4, 4, 0]}
+                    opacity={opacity}
+                    style={{ transition: 'opacity 0.15s ease-in-out' }}
+                  />
+                )
+              }}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    )
+  }
+
+  // 데스크톱: 세로 막대 차트 (TokenUsageChart 스타일)
+  // 모델 수에 따른 레이블 글자 크기 (적을수록 크게)
+  const labelFontSize = data.length <= 15 ? 12 : 10
 
   return (
     <div ref={ref} className="w-full">
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-2">
         <div>
           {title && (
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
@@ -264,12 +354,24 @@ export default function ScoreBarChart({
           <ExportButton onClick={() => exportImage(`${t('export.totalScore')}.png`)} />
         </div>
       </div>
-      <ResponsiveContainer width="100%" height={dynamicHeight}>
+      {/* 레이블 표시 토글 */}
+      <div className="flex items-center gap-1 mb-4" data-export-hide="true">
+        <button
+          onClick={() => setShowLabels(!showLabels)}
+          className={`px-2 py-1 text-xs rounded transition-colors ${
+            showLabels
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+          }`}
+        >
+          {t('charts.showScores')}
+        </button>
+      </div>
+      <ResponsiveContainer width="100%" height={600}>
         <BarChart
           key={data.map(d => d.model).join(',')}
           data={data}
-          layout="vertical"
-          margin={{ top: 10, right: 30, left: isMobile ? 5 : 10, bottom: 10 }}
+          margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
           onMouseMove={(state) => {
             if (state?.activeTooltipIndex !== undefined) {
               const model = data[state.activeTooltipIndex]?.model
@@ -281,30 +383,31 @@ export default function ScoreBarChart({
           onMouseLeave={() => onModelHover?.(null)}
         >
           <XAxis
-            type="number"
+            dataKey="model"
+            angle={-45}
+            textAnchor="end"
+            interval={0}
+            tick={{ fontSize: 11, fill: xTickColor }}
+            tickLine={false}
+            axisLine={{ stroke: axisColor }}
+            height={100}
+          />
+          <YAxis
             domain={[0, computedMaxScore]}
             tickLine={false}
             axisLine={{ stroke: axisColor }}
-            tick={{ fill: darkMode ? '#9ca3af' : '#6b7280' }}
+            tick={{ fill: tickColor }}
           />
-          <YAxis
-            type="category"
-            dataKey="model"
-            tickLine={false}
-            axisLine={false}
-            width={isMobile ? 100 : 145}
-            tick={createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile)}
+          <CartesianGrid
+            horizontal={true}
+            vertical={false}
+            stroke={axisColor}
+            strokeDasharray="3 3"
           />
           <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
-          <ReferenceLine
-            x={computedMaxScore}
-            stroke={CHART_COLORS.perfect}
-            strokeDasharray="3 3"
-            strokeWidth={2}
-          />
           <Bar
             dataKey="score"
-            barSize={24}
+            isAnimationActive={false}
             shape={(props) => {
               const { x, y, width, height, payload } = props
               const color = payload.color || getModelColor(payload.model)
@@ -318,13 +421,22 @@ export default function ScoreBarChart({
                   width={width}
                   height={height}
                   fill={color}
-                  radius={[0, 4, 4, 0]}
+                  radius={[4, 4, 0, 0]}
                   opacity={opacity}
                   style={{ transition: 'opacity 0.15s ease-in-out' }}
                 />
               )
             }}
-          />
+          >
+            {showLabels && (
+              <LabelList
+                dataKey="score"
+                position="top"
+                formatter={(v) => v.toFixed(1)}
+                style={{ fontSize: labelFontSize, fill: xTickColor, fontWeight: 500 }}
+              />
+            )}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

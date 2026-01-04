@@ -43,7 +43,8 @@
     "costVsPerformance": "비용 vs 성능",
     "tokenUsage": "총 토큰 사용량",
     "costInfo": "모델별 비용 정보",
-    "modelCompare": "모델 비교 (과목별 정규화 점수)"
+    "modelCompare": "모델 비교 (과목별 정규화 점수)",
+    "showScores": "점수 표시"
   },
   "subjects": {
     "korean": "국어",

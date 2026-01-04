@@ -172,10 +172,11 @@ export default function CostScatterChart({
   const dataMaxCost = Math.max(...validData.map(d => d.totalCost))
   const maxCost = dataMaxCost * 1.1  // 10% 여유
 
-  // Y축 범위 계산 (실제 데이터 기반, 나누어 떨어지는 간격)
+  // Y축 범위 계산 (최대값은 만점 기준, 최소값은 데이터 기반)
   const dataMinScore = Math.min(...validData.map(d => d.score))
-  const dataMaxScore = Math.max(...validData.map(d => d.score))
-  const { min: yMin, max: yMax, interval: yInterval } = getNiceRange(dataMinScore, dataMaxScore)
+  const yMax = maxScore
+  // 최소값을 깔끔한 간격으로 계산
+  const { min: yMin, interval: yInterval } = getNiceRange(dataMinScore, maxScore)
 
   // Y축 틱 생성
   const yTicks = []
@@ -206,12 +207,19 @@ export default function CostScatterChart({
         </div>
       </div>
       <ResponsiveContainer width="100%" height={chartHeight}>
-        <ScatterChart margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-          {/* 4분면 배경색 */}
+        <ScatterChart
+          key={darkMode ? 'dark' : 'light'}
+          margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+        >
+          {/* 다크모드 차트 영역 배경 (gray-800~900 중간: #182130) */}
+          {darkMode && (
+            <ReferenceArea x1={0} x2={maxCost} y1={yMin} y2={yMax} fill="#182130" fillOpacity={1} />
+          )}
+          {/* 4분면 배경색 (다크모드: 투명도 0.4로 대비 강화) */}
           {/* 좌상: 고성능-저비용 (초록) */}
-          <ReferenceArea x1={0} x2={midCost} y1={midScore} y2={yMax} fill={darkMode ? '#22c55e' : '#bbf7d0'} fillOpacity={darkMode ? 0.25 : 0.5} />
+          <ReferenceArea x1={0} x2={midCost} y1={midScore} y2={yMax} fill={darkMode ? '#22c55e' : '#bbf7d0'} fillOpacity={darkMode ? 0.4 : 0.5} />
           {/* 우하: 저성능-고비용 (빨강) */}
-          <ReferenceArea x1={midCost} x2={maxCost} y1={yMin} y2={midScore} fill={darkMode ? '#ef4444' : '#fecaca'} fillOpacity={darkMode ? 0.25 : 0.5} />
+          <ReferenceArea x1={midCost} x2={maxCost} y1={yMin} y2={midScore} fill={darkMode ? '#ef4444' : '#fecaca'} fillOpacity={darkMode ? 0.4 : 0.5} />
           <XAxis
             type="number"
             dataKey="totalCost"

@@ -43,7 +43,8 @@
     "costVsPerformance": "Cost vs Performance",
     "tokenUsage": "Total Token Usage",
     "costInfo": "Cost Information by Model",
-    "modelCompare": "Model Comparison (Normalized by Subject)"
+    "modelCompare": "Model Comparison (Normalized by Subject)",
+    "showScores": "Show Scores"
   },
   "subjects": {
     "korean": "Korean",

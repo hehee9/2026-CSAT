@@ -89,6 +89,25 @@ body {
 }
 
 /**
+ * @brief 차트 컨테이너 포커스 테두리 제거
+ */
+.recharts-wrapper,
+.recharts-wrapper *,
+.recharts-surface,
+.recharts-responsive-container,
+.recharts-responsive-container *,
+svg:focus,
+svg *:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+/* 차트 컨테이너 div 포커스 테두리 제거 */
+div:focus {
+  outline: none !important;
+}
+
+/**
  * @brief 터치 스크롤 최적화
  */
 @media (max-width: 767px) {
