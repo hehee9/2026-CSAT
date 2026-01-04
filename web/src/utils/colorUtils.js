@@ -24,7 +24,7 @@ export const MODEL_COLORS = {
  * - color: 브랜드 색상 (MODEL_COLORS 참조)
  */
 export const VENDORS = [
-  { id: 'openai', name: 'OpenAI', pattern: /gpt/i, color: MODEL_COLORS.GPT },
+  { id: 'openai', name: 'OpenAI', pattern: /gpt|^o\d/i, color: MODEL_COLORS.GPT },
   { id: 'google', name: 'Google', pattern: /gemini/i, color: MODEL_COLORS.Gemini },
   { id: 'anthropic', name: 'Anthropic', pattern: /claude/i, color: MODEL_COLORS.Claude },
   { id: 'xai', name: 'xAI', pattern: /grok/i, color: MODEL_COLORS.Grok },
@@ -97,7 +97,7 @@ export const CHART_COLORS = {
 export function getModelColor(modelName) {
   const name = modelName.toLowerCase()
 
-  if (name.includes('gpt') || name.includes('gpt-')) {
+  if (name.includes('gpt') || /^o\d/.test(name)) {
     return MODEL_COLORS.GPT
   }
   if (name.includes('gemini')) {
