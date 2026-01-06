@@ -1197,20 +1197,6 @@
           "question_count": 11
         }
       }
-    },
-    "o3 (high)": {
-      "total_input_tokens": 64959,
-      "total_output_tokens": 302719,
-      "total_tokens": 367678,
-      "question_count": 80,
-      "last_updated": "2026-01-04 20:55:05"
-    },
-    "o1 (high)": {
-      "total_input_tokens": 64959,
-      "total_output_tokens": 466310,
-      "total_tokens": 531269,
-      "question_count": 80,
-      "last_updated": "2026-01-04 20:55:05"
     }
   }
 }
