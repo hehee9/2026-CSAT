@@ -21,6 +21,10 @@
 국어/수학 전과목, 영어, 한국사 영역과 더불어
 올해 수능 중 비교적 어렵다는 평이 많은 탐구 과목 4개(생명1/물리1/화학1 및 사회문화)를 대상으로 테스트를 진행했습니다.
 
+Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체 성적은 [**대시보드**](https://hehee9.github.io/2026-CSAT/)에서 확인해주세요.
+
+---
+
 ## 주요 과목 종합 성적
 
 ![주요 과목 총점 합 비교](images/overall_comparison.png)
@@ -91,6 +95,8 @@
 - **원본 유지**: PDF 파일 자체나 전체 페이지 캡처는 제공하지 않음
 - 이는 모델이 순수하게 텍스트 이해 능력과 시각 자료 해석 능력을 활용하도록 하기 위함
 
+---
+
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
   - GPT-5.2 (xhigh / Instant)
@@ -120,9 +126,9 @@
   - Gemini 2.0 Flash Lite
 
 - **Anthropic Claude 시리즈**
-  - Claude Opus 4.5 (32K Thinking)
-  - Claude Sonnet 4.5 (32K Thinking)
-  - Claude Haiku 4.5 (32K Thinking)
+  - Claude Opus 4.5 (32K Thinking / Non-Thinking)
+  - Claude Sonnet 4.5 (32K Thinking / Non-Thinking)
+  - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
 
 - **xAI Grok 시리즈**
   - Grok 4
