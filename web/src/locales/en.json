@@ -44,7 +44,19 @@
     "tokenUsage": "Total Token Usage",
     "costInfo": "Cost Information by Model",
     "modelCompare": "Model Comparison (Normalized by Subject)",
-    "showScores": "Show Scores"
+    "showScores": "Show Scores",
+    "viewModes": {
+      "average": "Average",
+      "bestWorst": "Best/Worst",
+      "withImage": "With Image",
+      "withoutImage": "No Image"
+    },
+    "bestScore": "Best",
+    "worstScore": "Worst",
+    "accuracy": "Accuracy",
+    "withImageAccuracy": "Accuracy (Questions with Images)",
+    "withoutImageAccuracy": "Accuracy (Questions without Images)",
+    "bestWorstScore": "Best/Worst Combination"
   },
   "subjects": {
     "korean": "Korean",
@@ -154,7 +166,8 @@
     "score": "Score",
     "correct": "Correct",
     "incorrect": "Incorrect",
-    "points": "pts"
+    "points": "pts",
+    "all": "All"
   },
   "theme": {
     "light": "Light Mode",

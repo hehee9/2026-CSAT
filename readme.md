@@ -21,13 +21,13 @@
 국어/수학 전과목, 영어, 한국사 영역과 더불어
 올해 수능 중 비교적 어렵다는 평이 많은 탐구 과목 4개(생명1/물리1/화학1 및 사회문화)를 대상으로 테스트를 진행했습니다.
 
-Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체 성적은 [**대시보드**](https://hehee9.github.io/2026-CSAT/)에서 확인해주세요.
+Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 성적은 [대시보드](https://hehee9.github.io/2026-CSAT/)에서 확인**해주세요.
 
 ---
 
 ## 주요 과목 종합 성적
 
-![주요 과목 총점 합 비교](images/overall_comparison.png)
+![주요 과목 총점 합 비교](images/전체.png)
 
 > 📊 **평가 과목**: 국어, 수학, 영어, 한국사, 탐구(물리1, 화학1, 생명과학1, 사회문화) (총 450점 만점)
 >
@@ -37,7 +37,7 @@ Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체
 > - 영어, 한국사: 전체 점수
 > - 탐구: 4과목을 2과목 선택으로 환산 (4과목 평균 × 2)
 
-![총점 최고/최저 조합 비교](images/overall_best_worst.png)
+![총점 최고/최저 조합 비교](images/최고_최저.png)
 
 > 📊 **평가 과목**: 위와 동일 (총 450점 만점)
 >
@@ -49,9 +49,9 @@ Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체
 
 ### 이미지 첨부 문제 vs 텍스트 문제 비교
 
-![이미지 있는 문제 득점률](images/with_image_accuracy.png)
+![이미지 있는 문제 득점률](images/이미지O.png)
 
-![이미지 없는 문제 득점률](images/without_image_accuracy.png)
+![이미지 없는 문제 득점률](images/이미지X.png)
 
 > 📊 **평가 범위**: 전체 과목 (국어, 수학, 영어, 한국사, 탐구)
 >
@@ -151,156 +151,16 @@ Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체
 ## 국어 영역
 
 ### 종합 성적
-![국어 2](images/국어_average_breakdown_by_score.png)
-![국어 공통 선택률](images/국어_choice_rate_common.png)
+![국어 2](images/국어.png)
+![국어 공통 선택률](images/정오표_국어.png)
 
 ### 화법과 작문
-![화법과 작문 2](images/국어_breakdown_화작_by_score.png)
-![화법과 작문 선택률](images/국어_choice_rate_화작.png)
+![화법과 작문 2](images/화작.png)
+![화법과 작문 선택률](images/정오표_화작.png)
 
 ### 언어와 매체
-![언어와 매체 2](images/국어_breakdown_언매_by_score.png)
-![언어와 매체 선택률](images/국어_choice_rate_언매.png)
-
-### 영역별 상세 성적
-
-#### 국어 - 공통 (76점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **76점** |
-| **Gemini 3 Pro (high)** | **76점** |
-| **Gemini 3 Flash (high)** | **76점** |
-| **Gemini 2.5 Pro** | **76점** |
-| **Claude Opus 4.5** | **76점** |
-| **Claude Sonnet 4.5** | **76점** |
-| **Gemini 3 Flash (minimal)** | **76점** |
-| **Gemini 3 Pro (low)** | **76점** |
-| **o1 (high)** | **76점** |
-| GPT-5.1 | 74점 |
-| GPT-5.1 Codex | 74점 |
-| Gemini 2.5 Flash | 73점 |
-| DeepSeek V3.2 Speciale | 73점 |
-| Gemini 2.5 Flash (Non-Thinking) | 73점 |
-| o3 (high) | 73점 |
-| Grok 4.1 Fast (Thinking) | 71점 |
-| GPT-5 mini | 69점 |
-| K-EXAONE 236B (Thinking) | 69점 |
-| GPT-5.2 (Instant) | 69점 |
-| Gemini 2.0 Flash | 69점 |
-| DeepSeek V3.2 Exp (Thinking) | 68점 |
-| Grok 4 | 67점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 67점 |
-| DeepSeek V3.2 (Thinking) | 67점 |
-| Grok 4 Fast | 66점 |
-| DeepSeek V3.2 (Non-Thinking) | 66점 |
-| Gemini 2.5 Flash Lite | 61점 |
-| GPT-5.1 Chat | 60점 |
-| GPT-OSS 120B | 59점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 55점 |
-| o4-mini (high) | 55점 |
-| Claude Haiku 4.5 | 54점 |
-| Gemini 2.0 Flash Lite | 52점 |
-| GPT-4.1 | 51점 |
-| GPT-4o | 50점 |
-| o3-mini (high) | 50점 |
-| K-EXAONE 236B (Non-Thinking) | 48점 |
-| Grok 4.1 Fast (Non-Thinking) | 42점 |
-| GPT-4.1 mini | 37점 |
-| GPT-5 nano | 32점 |
-| GPT-4o mini | 23점 |
-| GPT-4.1 nano | 20점 |
-
-#### 국어 - 화법과 작문 (24점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **24점** |
-| **GPT-5.1** | **24점** |
-| **GPT-5.1 Codex** | **24점** |
-| **GPT-5.1 Chat** | **24점** |
-| **Gemini 3 Pro (high)** | **24점** |
-| **Gemini 3 Flash (high)** | **24점** |
-| **Gemini 2.5 Flash** | **24점** |
-| **Gemini 2.5 Flash Lite** | **24점** |
-| **Claude Opus 4.5** | **24점** |
-| **Claude Sonnet 4.5** | **24점** |
-| **DeepSeek V3.2 Exp (Thinking)** | **24점** |
-| **DeepSeek V3.2 (Thinking)** | **24점** |
-| **DeepSeek V3.2 (Non-Thinking)** | **24점** |
-| **Gemini 3 Flash (minimal)** | **24점** |
-| **Gemini 3 Pro (low)** | **24점** |
-| **Grok 4.1 Fast (Thinking)** | **24점** |
-| **Gemini 2.5 Flash (Non-Thinking)** | **24점** |
-| **o3-mini (high)** | **24점** |
-| **o4-mini (high)** | **24점** |
-| **o1 (high)** | **24점** |
-| **o3 (high)** | **24점** |
-| Gemini 2.5 Pro | 22점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 22점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
-| Gemini 2.0 Flash | 22점 |
-| GPT-5 mini | 21점 |
-| Grok 4 | 21점 |
-| Grok 4 Fast | 21점 |
-| DeepSeek V3.2 Speciale | 21점 |
-| GPT-OSS 120B | 21점 |
-| GPT-4.1 | 20점 |
-| Gemini 2.0 Flash Lite | 20점 |
-| K-EXAONE 236B (Thinking) | 19점 |
-| GPT-4o | 17점 |
-| Claude Haiku 4.5 | 17점 |
-| K-EXAONE 236B (Non-Thinking) | 17점 |
-| Grok 4.1 Fast (Non-Thinking) | 17점 |
-| GPT-4.1 mini | 17점 |
-| GPT-5.2 (Instant) | 16점 |
-| GPT-4.1 nano | 16점 |
-| GPT-5 nano | 15점 |
-| GPT-4o mini | 12점 |
-
-#### 국어 - 언어와 매체 (24점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **24점** |
-| **GPT-5.1** | **24점** |
-| **Gemini 3 Pro (high)** | **24점** |
-| **Gemini 2.5 Pro** | **24점** |
-| **Claude Opus 4.5** | **24점** |
-| **o1 (high)** | **24점** |
-| GPT-5.1 Codex | 22점 |
-| GPT-5 mini | 22점 |
-| o3 (high) | 22점 |
-| Gemini 2.5 Flash | 22점 |
-| Grok 4 | 22점 |
-| DeepSeek V3.2 Speciale | 22점 |
-| K-EXAONE 236B (Thinking) | 22점 |
-| Gemini 3 Flash (minimal) | 22점 |
-| Gemini 2.5 Flash (Non-Thinking) | 22점 |
-| Gemini 3 Flash (high) | 21점 |
-| o3-mini (high) | 20점 |
-| o4-mini (high) | 20점 |
-| GPT-5.1 Chat | 19점 |
-| Claude Sonnet 4.5 | 19점 |
-| DeepSeek V3.2 Exp (Thinking) | 19점 |
-| Gemini 2.5 Flash Lite | 17점 |
-| DeepSeek V3.2 (Thinking) | 17점 |
-| GPT-OSS 120B | 17점 |
-| Gemini 3 Pro (low) | 17점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 17점 |
-| Grok 4.1 Fast (Thinking) | 16점 |
-| Claude Haiku 4.5 | 15점 |
-| Grok 4 Fast | 15점 |
-| K-EXAONE 236B (Non-Thinking) | 15점 |
-| GPT-5.2 (Instant) | 15점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 13점 |
-| DeepSeek V3.2 (Non-Thinking) | 13점 |
-| GPT-4.1 | 13점 |
-| GPT-4.1 mini | 13점 |
-| Gemini 2.0 Flash | 13점 |
-| Gemini 2.0 Flash Lite | 13점 |
-| GPT-5 nano | 11점 |
-| Grok 4.1 Fast (Non-Thinking) | 11점 |
-| GPT-4o | 10점 |
-| GPT-4o mini | 9점 |
-| GPT-4.1 nano | 7점 |
+![언어와 매체 2](images/언매.png)
+![언어와 매체 선택률](images/정오표_언매.png)
 
 ---
 
@@ -308,222 +168,35 @@ Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체
 
 ### 종합 성적
 
-![수학 2](images/수학_average_breakdown_by_score.png)
-![수학 공통 선택률](images/수학_choice_rate_common.png)
+![수학 2](images/수학.png)
+![수학 공통 선택률](images/정오표_수학.png)
 
 ### 확률과 통계
-![확률과 통계 2](images/수학_breakdown_확통_by_score.png)
-![확률과 통계 선택률](images/수학_choice_rate_확통.png)
+![확률과 통계 2](images/확통.png)
+![확률과 통계 선택률](images/정오표_확통.png)
 
 ### 미적분
-![미분과 적분 2](images/수학_breakdown_미적_by_score.png)
-![미적분 선택률](images/수학_choice_rate_미적.png)
+![미분과 적분 2](images/미적.png)
+![미적분 선택률](images/정오표_미적.png)
 
 ### 기하
-![기하 2](images/수학_breakdown_geometry_by_score.png)
-![기하 선택률](images/수학_choice_rate_geometry.png)
-
-### 영역별 상세 성적
-
-#### 수학 - 공통 (74점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **74점** |
-| **GPT-5.1** | **74점** |
-| **Gemini 3 Pro (high)** | **74점** |
-| **Gemini 3 Flash (high)** | **74점** |
-| **Claude Opus 4.5** | **74점** |
-| **Claude Sonnet 4.5** | **74점** |
-| **DeepSeek V3.2 Exp (Thinking)** | **74점** |
-| **DeepSeek V3.2 (Thinking)** | **74점** |
-| **DeepSeek V3.2 Speciale** | **74점** |
-| **K-EXAONE 236B (Thinking)** | **74점** |
-| **GPT-OSS 120B** | **74점** |
-| **Gemini 3 Pro (low)** | **74점** |
-| **o3-mini (high)** | **74점** |
-| **o4-mini (high)** | **74점** |
-| **o1 (high)** | **74점** |
-| GPT-5.1 Codex | 70점 |
-| o3 (high) | 70점 |
-| GPT-5 mini | 70점 |
-| GPT-5 nano | 70점 |
-| Gemini 2.5 Pro | 70점 |
-| Gemini 2.5 Flash | 70점 |
-| Grok 4 | 70점 |
-| Grok 4 Fast | 70점 |
-| Gemini 3 Flash (minimal) | 70점 |
-| Grok 4.1 Fast (Thinking) | 70점 |
-| Gemini 2.5 Flash (Non-Thinking) | 70점 |
-| GPT-5.1 Chat | 66점 |
-| Gemini 2.5 Flash Lite | 66점 |
-| DeepSeek V3.2 (Non-Thinking) | 66점 |
-| K-EXAONE 236B (Non-Thinking) | 66점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 66점 |
-| Claude Haiku 4.5 | 62점 |
-| GPT-5.2 (Instant) | 62점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 58점 |
-| GPT-4.1 | 58점 |
-| GPT-4.1 mini | 58점 |
-| Gemini 2.0 Flash | 54점 |
-| GPT-4.1 nano | 50점 |
-| Gemini 2.0 Flash Lite | 50점 |
-| Grok 4.1 Fast (Non-Thinking) | 46점 |
-| GPT-4o | 44점 |
-| GPT-4o mini | 39점 |
-
-#### 수학 - 확률과 통계 (26점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **26점** |
-| **GPT-5.1** | **26점** |
-| **GPT-5.1 Codex** | **26점** |
-| **GPT-5.1 Chat** | **26점** |
-| **GPT-5 mini** | **26점** |
-| **GPT-5 nano** | **26점** |
-| **Gemini 3 Pro (high)** | **26점** |
-| **Gemini 3 Flash (high)** | **26점** |
-| **Gemini 2.5 Pro** | **26점** |
-| **Claude Opus 4.5** | **26점** |
-| **Claude Sonnet 4.5** | **26점** |
-| **Grok 4** | **26점** |
-| **Grok 4 Fast** | **26점** |
-| **DeepSeek V3.2 Exp (Thinking)** | **26점** |
-| **DeepSeek V3.2 (Thinking)** | **26점** |
-| **DeepSeek V3.2 Speciale** | **26점** |
-| **K-EXAONE 236B (Thinking)** | **26점** |
-| **Gemini 3 Pro (low)** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
-| **o3-mini (high)** | **26점** |
-| **o1 (high)** | **26점** |
-| **o3 (high)** | **26점** |
-| Gemini 2.5 Flash | 22점 |
-| GPT-OSS 120B | 22점 |
-| o4-mini (high) | 22점 |
-| GPT-5.2 (Instant) | 22점 |
-| Gemini 2.5 Flash (Non-Thinking) | 22점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
-| GPT-4o | 18점 |
-| Gemini 2.5 Flash Lite | 18점 |
-| Claude Haiku 4.5 | 18점 |
-| Gemini 2.0 Flash | 18점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
-| DeepSeek V3.2 (Non-Thinking) | 18점 |
-| K-EXAONE 236B (Non-Thinking) | 18점 |
-| Gemini 3 Flash (minimal) | 18점 |
-| Grok 4.1 Fast (Non-Thinking) | 18점 |
-| GPT-4.1 mini | 18점 |
-| GPT-4.1 | 18점 |
-| GPT-4o mini | 18점 |
-| GPT-4.1 nano | 15점 |
-| Gemini 2.0 Flash Lite | 15점 |
-
-#### 수학 - 미적분 (26점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **26점** |
-| **GPT-5.1** | **26점** |
-| **GPT-5.1 Codex** | **26점** |
-| **GPT-5 mini** | **26점** |
-| **Gemini 2.5 Flash** | **26점** |
-| **Claude Opus 4.5** | **26점** |
-| **Claude Sonnet 4.5** | **26점** |
-| **Grok 4** | **26점** |
-| **Grok 4 Fast** | **26점** |
-| **DeepSeek V3.2 Speciale** | **26점** |
-| **K-EXAONE 236B (Thinking)** | **26점** |
-| **GPT-OSS 120B** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
-| **Gemini 2.5 Flash (Non-Thinking)** | **26점** |
-| **o3 (high)** | **26점** |
-| GPT-5 nano | 22점 |
-| Gemini 3 Pro (high) | 22점 |
-| Gemini 3 Flash (high) | 22점 |
-| Gemini 2.5 Pro | 22점 |
-| Gemini 2.5 Flash Lite | 22점 |
-| Claude Haiku 4.5 | 22점 |
-| DeepSeek V3.2 Exp (Thinking) | 22점 |
-| DeepSeek V3.2 (Non-Thinking) | 22점 |
-| K-EXAONE 236B (Non-Thinking) | 22점 |
-| GPT-5.2 (Instant) | 22점 |
-| Gemini 3 Flash (minimal) | 22점 |
-| Gemini 3 Pro (low) | 22점 |
-| GPT-4.1 mini | 22점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 22점 |
-| o3-mini (high) | 22점 |
-| o4-mini (high) | 22점 |
-| o1 (high) | 22점 |
-| GPT-5.1 Chat | 18점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
-| DeepSeek V3.2 (Thinking) | 18점 |
-| GPT-4.1 | 18점 |
-| Gemini 2.0 Flash Lite | 15점 |
-| Gemini 2.0 Flash | 14점 |
-| Grok 4.1 Fast (Non-Thinking) | 12점 |
-| GPT-4o | 11점 |
-| GPT-4o mini | 11점 |
-| GPT-4.1 nano | 11점 |
-
-#### 수학 - 기하 (26점 만점)
-| 모델 | 점수 |
-|:-----|:------:|
-| **GPT-5.2** | **26점** |
-| **GPT-5.1** | **26점** |
-| **GPT-5.1 Codex** | **26점** |
-| **GPT-5 nano** | **26점** |
-| **Gemini 3 Pro (high)** | **26점** |
-| **Gemini 3 Flash (high)** | **26점** |
-| **Gemini 2.5 Pro** | **26점** |
-| **Gemini 2.5 Flash** | **26점** |
-| **Gemini 2.5 Flash Lite** | **26점** |
-| **Claude Opus 4.5** | **26점** |
-| **Claude Sonnet 4.5** | **26점** |
-| **Grok 4** | **26점** |
-| **Grok 4 Fast** | **26점** |
-| **DeepSeek V3.2 Exp (Thinking)** | **26점** |
-| **DeepSeek V3.2 (Thinking)** | **26점** |
-| **K-EXAONE 236B (Thinking)** | **26점** |
-| **Gemini 3 Pro (low)** | **26점** |
-| **Grok 4.1 Fast (Thinking)** | **26점** |
-| **o4-mini (high)** | **26점** |
-| **o1 (high)** | **26점** |
-| DeepSeek V3.2 Speciale | 23점 |
-| GPT-5.1 Chat | 22점 |
-| GPT-5 mini | 22점 |
-| K-EXAONE 236B (Non-Thinking) | 22점 |
-| GPT-OSS 120B | 22점 |
-| Gemini 2.5 Flash (Non-Thinking) | 22점 |
-| o3-mini (high) | 22점 |
-| o3 (high) | 22점 |
-| DeepSeek V3.2 Exp (Non-Thinking) | 18점 |
-| GPT-5.2 (Instant) | 18점 |
-| Gemini 3 Flash (minimal) | 18점 |
-| GPT-4.1 mini | 18점 |
-| Gemini 2.5 Flash Lite (Non-Thinking) | 18점 |
-| DeepSeek V3.2 (Non-Thinking) | 14점 |
-| GPT-4o mini | 14점 |
-| Gemini 2.0 Flash | 14점 |
-| Claude Haiku 4.5 | 11점 |
-| Gemini 2.0 Flash Lite | 11점 |
-| GPT-4.1 | 11점 |
-| GPT-4.1 nano | 11점 |
-| GPT-4o | 8점 |
-| Grok 4.1 Fast (Non-Thinking) | 8점 |
-
+![기하 2](images/기하.png)
+![기하 선택률](images/정오표_기하.png)
 ---
 
 ## 영어 영역
 
 ### 모델별 성적 (100점 만점)
-![영어 2](images/영어_score_전체_by_score.png)
-![영어 선택률](images/영어_choice_rate_전체.png)
+![영어 2](images/영어.png)
+![영어 선택률](images/정오표_영어.png)
 
 ---
 
 ## 한국사 영역
 
 ### 모델별 성적 (50점 만점)
-![한국사 2](images/한국사_score_전체_by_score.png)
-![한국사 선택률](images/한국사_choice_rate_전체.png)
+![한국사 2](images/한국사.png)
+![한국사 선택률](images/정오표_한국사.png)
 
 ---
 
@@ -531,25 +204,25 @@ Readme 파일에는 주요 모델의 성적만을 표기하고 있으니, 전체
 
 ### 물리1
 
-![물리1 2](images/물리1_score_전체_by_score.png)
-![물리1 선택률](images/물리1_choice_rate_전체.png)
+![물리1 2](images/물리1.png)
+![물리1 선택률](images/정오표_물리1.png)
 
 > ※ 선이나 화살표가 많은 시각 자료가 포함된 문제에서 오답이 많아 평균적으로 점수가 낮습니다.
 
 ### 화학1
 
-![화학1 2](images/화학1_score_전체_by_score.png)
-![화학1 선택률](images/화학1_choice_rate_전체.png)
+![화학1 2](images/화학1.png)
+![화학1 선택률](images/정오표_화학1.png)
 
 ### 생명과학1
 
-![생명1 2](images/생명1_score_전체_by_score.png)
-![생명1 선택률](images/생명1_choice_rate_전체.png)
+![생명1 2](images/생명1.png)
+![생명1 선택률](images/정오표_생명1.png)
 
 ### 사회문화
 
-![사회문화 2](images/사회문화_score_전체_by_score.png)
-![사회문화 선택률](images/사회문화_choice_rate_전체.png)
+![사회문화 2](images/사회문화.png)
+![사회문화 선택률](images/정오표_사회문화.png)
 
 ---
 
@@ -559,7 +232,7 @@ API 비용(토큰 사용량)과 점수 간의 상관관계를 분석한 결과�
 
 ### 비용 vs 성능
 
-![비용 효율성](images/score_vs_cost.png)
+![비용 효율성](images/비용_분석.png)
 
 공식 공급자가 없는 모델의 경우, OpenRouter의 평균적인 비용을 바탕으로 측정했습니다.
 
@@ -575,7 +248,7 @@ API 비용(토큰 사용량)과 점수 간의 상관관계를 분석한 결과�
 
 ### 토큰 사용량
 
-![토큰 사용량](images/token_usage_breakdown.png)
+![토큰 사용량](images/토큰_사용량.png)
 
 ---
 

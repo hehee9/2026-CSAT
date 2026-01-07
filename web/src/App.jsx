@@ -20,7 +20,7 @@ import {
 } from '@/components/charts'
 import { ScoreTable, CostTable } from '@/components/tables'
 import { ModelSelectDropdown } from '@/components/common'
-import { calculateAllModelScores, getCostData, getMaxScore } from '@/utils/dataTransform'
+import { calculateAllModelScores, getCostData, getMaxScore, calculateBestWorstScores, calculateImageBasedScores } from '@/utils/dataTransform'
 import { transformToHeatmapData, transformToRadarData } from '@/utils/heatmapTransform'
 import { transformToChoiceData } from '@/utils/choiceTransform'
 import { getModelColor, getVendor, VENDORS, groupModelsByVendor, getSortedVendors, getDefaultSelectedModels } from '@/utils/colorUtils'
@@ -71,7 +71,7 @@ function _translateSubject(name, t) {
  */
 function Dashboard() {
   const { t } = useTranslation()
-  const { data, tokenUsage, loading, error, models, subjects, sections } = useData()
+  const { data, tokenUsage, questionsMetadata, loading, error, models, subjects, sections } = useData()
   const sidebar = useSidebar()
 
   const [filters, setFilters] = useState({
@@ -85,6 +85,7 @@ function Dashboard() {
   const [selectedSection, setSelectedSection] = useState('')
   const [compareModels, setCompareModels] = useState([])
   const [hoveredModel, setHoveredModel] = useState(null)
+  const [scoreViewMode, setScoreViewMode] = useState('average')
   const subjectSelectRef = useRef(null)
   const sectionSelectRef = useRef(null)
   const mainRef = useRef(null)
@@ -159,6 +160,40 @@ function Dashboard() {
 
     return result
   }, [overallScores, filters])
+
+  // 보기 모드에 따른 점수 차트 데이터
+  const scoreChartData = useMemo(() => {
+    if (!data?.length || !filteredScores?.length) return []
+
+    const displayModels = filteredScores.map(s => s.model)
+
+    if (scoreViewMode === 'bestWorst') {
+      // 최고/최저 조합 점수
+      const scores = calculateBestWorstScores(data, displayModels)
+      return scores.map(s => ({
+        ...s,
+        color: getModelColor(s.model)
+      }))
+    }
+
+    if (scoreViewMode === 'withImage' || scoreViewMode === 'withoutImage') {
+      // 이미지 O/X 득점률
+      const hasImage = scoreViewMode === 'withImage'
+      const scores = calculateImageBasedScores(data, questionsMetadata, displayModels, hasImage)
+      return scores.map(s => ({
+        ...s,
+        color: getModelColor(s.model)
+      }))
+    }
+
+    // 기본(평균) 모드: filteredScores 사용
+    return filteredScores.map(s => ({
+      model: s.model,
+      score: s.total,
+      totalPoints: maxScore,
+      color: getModelColor(s.model)
+    }))
+  }, [data, filteredScores, questionsMetadata, scoreViewMode, maxScore])
 
   // 비용 데이터 (모델 필터링 + 과목 필터링 적용)
   const costData = useMemo(() => {
@@ -452,14 +487,17 @@ function Dashboard() {
               <>
                 <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
                   <ScoreBarChart
-                    data={filteredScores.map(s => ({
-                      model: s.model,
-                      score: s.total,
-                      totalPoints: maxScore,
-                      color: getModelColor(s.model)
-                    }))}
-                    maxScore={maxScore}
-                    title={`${t('charts.totalScore')} (${t('charts.maxPoints', { max: maxScore })})`}
+                    data={scoreChartData}
+                    maxScore={scoreViewMode === 'bestWorst' ? maxScore : maxScore}
+                    viewMode={scoreViewMode}
+                    onViewModeChange={setScoreViewMode}
+                    showViewModeButtons={true}
+                    title={
+                      scoreViewMode === 'withImage' ? t('charts.withImageAccuracy') :
+                      scoreViewMode === 'withoutImage' ? t('charts.withoutImageAccuracy') :
+                      scoreViewMode === 'bestWorst' ? `${t('charts.bestWorstScore')} (${t('charts.maxPoints', { max: maxScore })})` :
+                      `${t('charts.totalScore')} (${t('charts.maxPoints', { max: maxScore })})`
+                    }
                     subtitle={(() => {
                       if (filters.subjects.length === 0) return null
 
@@ -567,6 +605,7 @@ function Dashboard() {
                       data={heatmapData}
                       models={displayModels}
                       title={`${_translateSubject(selectedSubject, t)} - ${_translateSubject(selectedSection, t)} ${t('charts.questionStatus')}`}
+                      subjectName={`${_translateSubject(selectedSubject, t)}_${_translateSubject(selectedSection, t)}`}
                     />
                   )}
 

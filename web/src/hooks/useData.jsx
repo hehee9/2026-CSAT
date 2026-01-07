@@ -4,7 +4,7 @@
  */
 
 import { createContext, useContext, useState, useEffect } from 'react'
-import { loadAllResults, loadTokenUsage, extractUniqueValues } from '@/utils/dataLoader'
+import { loadAllResults, loadTokenUsage, loadQuestionsMetadata, extractUniqueValues } from '@/utils/dataLoader'
 
 const DataContext = createContext(null)
 
@@ -15,6 +15,7 @@ const DataContext = createContext(null)
 export function DataProvider({ children }) {
   const [data, setData] = useState([])
   const [tokenUsage, setTokenUsage] = useState({})
+  const [questionsMetadata, setQuestionsMetadata] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [subjects, setSubjects] = useState([])
@@ -25,13 +26,15 @@ export function DataProvider({ children }) {
     async function fetchData() {
       try {
         // 병렬로 데이터 로드
-        const [resultsData, usageData] = await Promise.all([
+        const [resultsData, usageData, questionsData] = await Promise.all([
           loadAllResults(),
-          loadTokenUsage()
+          loadTokenUsage(),
+          loadQuestionsMetadata()
         ])
 
         setData(resultsData)
         setTokenUsage(usageData)
+        setQuestionsMetadata(questionsData)
 
         // 메타데이터 추출
         const { subjects, sections, models } = extractUniqueValues(resultsData)
@@ -52,6 +55,7 @@ export function DataProvider({ children }) {
   const value = {
     data,
     tokenUsage,
+    questionsMetadata,
     loading,
     error,
     subjects,
@@ -68,7 +72,7 @@ export function DataProvider({ children }) {
 
 /**
  * @brief 데이터 컨텍스트 사용 훅
- * @return {Object} { data, tokenUsage, loading, error, subjects, sections, models }
+ * @return {Object} { data, tokenUsage, questionsMetadata, loading, error, subjects, sections, models }
  */
 export function useData() {
   const context = useContext(DataContext)

@@ -17,7 +17,7 @@ import {
   LabelList
 } from 'recharts'
 import { useTranslation } from 'react-i18next'
-import { getModelColor, getShortModelName, CHART_COLORS } from '@/utils/colorUtils'
+import { getModelColor, getShortModelName, CHART_COLORS, lightenColor } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage } from '@/hooks/useExportImage'
 import { ExportButton } from '@/components/common'
@@ -25,6 +25,16 @@ import { ExportButton } from '@/components/common'
 const MAX_LINE_LENGTH = 21
 const MAX_LINES = 3
 const MOBILE_WRAP_THRESHOLD = 17
+
+/**
+ * @brief 보기 모드 정의
+ */
+const VIEW_MODES = [
+  { key: 'average', labelKey: 'charts.viewModes.average' },
+  { key: 'bestWorst', labelKey: 'charts.viewModes.bestWorst' },
+  { key: 'withImage', labelKey: 'charts.viewModes.withImage' },
+  { key: 'withoutImage', labelKey: 'charts.viewModes.withoutImage' }
+]
 
 /**
  * @brief 긴 텍스트를 중간 공백에서 줄바꿈 (모바일용)
@@ -203,13 +213,18 @@ function CustomTooltip({ active, payload, t }) {
 
 /**
  * @brief 점수 막대 차트 컴포넌트
- * @param {Object} props - { data, maxScore, title, height, hoveredModel, onModelHover }
+ * @param {Object} props - { data, maxScore, title, height, hoveredModel, onModelHover, viewMode, onViewModeChange }
  * @param {Array} props.data - [{ model, score, totalPoints, correctCount?, totalQuestions? }]
- * @param {number} props.maxScore - 차트 X축 최대값 (기본: 데이터에서 자동 계산)
+ *                             bestWorst 모드: [{ model, best, worst }]
+ *                             이미지 모드: [{ model, rate, score, maxScore }]
+ * @param {number} props.maxScore - 차트 Y축 최대값 (기본: 데이터에서 자동 계산)
  * @param {string} props.title - 차트 제목
  * @param {number} props.height - 차트 높이 (기본: 400)
  * @param {string} props.hoveredModel - 현재 호버된 모델명
  * @param {function} props.onModelHover - 모델 호버 콜백
+ * @param {string} props.viewMode - 보기 모드 ('average' | 'bestWorst' | 'withImage' | 'withoutImage')
+ * @param {function} props.onViewModeChange - 보기 모드 변경 콜백
+ * @param {boolean} props.showViewModeButtons - 보기 모드 버튼 표시 여부
  */
 export default function ScoreBarChart({
   data,
@@ -218,7 +233,10 @@ export default function ScoreBarChart({
   subtitle,
   height = 400,
   hoveredModel,
-  onModelHover
+  onModelHover,
+  viewMode = 'average',
+  onViewModeChange,
+  showViewModeButtons = false
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
@@ -265,7 +283,7 @@ export default function ScoreBarChart({
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{subtitle}</p>
             )}
           </div>
-          <ExportButton onClick={() => exportImage(`${t('export.totalScore')}.png`)} />
+          <ExportButton onClick={() => exportImage(`${subtitle || t('common.all')}.png`)} />
         </div>
         <ResponsiveContainer width="100%" height={dynamicHeight}>
           <BarChart
@@ -351,93 +369,339 @@ export default function ScoreBarChart({
         </div>
         <div className="flex items-start gap-2">
           <span className="hidden text-base text-gray-400 mt-8" data-export-show="true">Github/hehee9</span>
-          <ExportButton onClick={() => exportImage(`${t('export.totalScore')}.png`)} />
+          <ExportButton onClick={() => exportImage(`${subtitle || t('common.all')}.png`)} />
         </div>
       </div>
-      {/* 레이블 표시 토글 */}
-      <div className="flex items-center gap-1 mb-4" data-export-hide="true">
-        <button
-          onClick={() => setShowLabels(!showLabels)}
-          className={`px-2 py-1 text-xs rounded transition-colors ${
-            showLabels
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-          }`}
-        >
-          {t('charts.showScores')}
-        </button>
+      {/* 보기 모드 버튼 + 레이블 표시 토글 */}
+      <div className="flex items-center gap-2 mb-4 flex-wrap" data-export-hide="true">
+        {showViewModeButtons && (
+          <div className="flex gap-1 mr-2">
+            {VIEW_MODES.map(mode => (
+              <button
+                key={mode.key}
+                onClick={() => onViewModeChange?.(mode.key)}
+                className={`px-3 py-1 text-xs rounded transition-colors ${
+                  viewMode === mode.key
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                {t(mode.labelKey)}
+              </button>
+            ))}
+          </div>
+        )}
+        {viewMode !== 'withImage' && viewMode !== 'withoutImage' && (
+          <button
+            onClick={() => setShowLabels(!showLabels)}
+            className={`px-2 py-1 text-xs rounded transition-colors ${
+              showLabels
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+            }`}
+          >
+            {t('charts.showScores')}
+          </button>
+        )}
       </div>
       <ResponsiveContainer width="100%" height={600}>
-        <BarChart
-          key={data.map(d => d.model).join(',')}
-          data={data}
-          margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
-          onMouseMove={(state) => {
-            if (state?.activeTooltipIndex !== undefined) {
-              const model = data[state.activeTooltipIndex]?.model
-              if (model && model !== hoveredModel) {
-                onModelHover?.(model)
+        {viewMode === 'bestWorst' ? (
+          /* 최고/최저 모드: 모델당 두 개 막대 */
+          <BarChart
+            key={`bestWorst-${data.map(d => d.model).join(',')}`}
+            data={data}
+            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            onMouseMove={(state) => {
+              if (state?.activeTooltipIndex !== undefined) {
+                const model = data[state.activeTooltipIndex]?.model
+                if (model && model !== hoveredModel) {
+                  onModelHover?.(model)
+                }
               }
-            }
-          }}
-          onMouseLeave={() => onModelHover?.(null)}
-        >
-          <XAxis
-            dataKey="model"
-            angle={-45}
-            textAnchor="end"
-            interval={0}
-            tick={{ fontSize: 11, fill: xTickColor }}
-            tickLine={false}
-            axisLine={{ stroke: axisColor }}
-            height={100}
-          />
-          <YAxis
-            domain={[0, computedMaxScore]}
-            tickLine={false}
-            axisLine={{ stroke: axisColor }}
-            tick={{ fill: tickColor }}
-          />
-          <CartesianGrid
-            horizontal={true}
-            vertical={false}
-            stroke={axisColor}
-            strokeDasharray="3 3"
-          />
-          <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
-          <Bar
-            dataKey="score"
-            isAnimationActive={false}
-            shape={(props) => {
-              const { x, y, width, height, payload } = props
-              const color = payload.color || getModelColor(payload.model)
-              const isHovered = hoveredModel === payload.model
-              const hasHover = hoveredModel !== null
-              const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
-              return (
-                <Rectangle
-                  x={x}
-                  y={y}
-                  width={width}
-                  height={height}
-                  fill={color}
-                  radius={[4, 4, 0, 0]}
-                  opacity={opacity}
-                  style={{ transition: 'opacity 0.15s ease-in-out' }}
-                />
-              )
             }}
+            onMouseLeave={() => onModelHover?.(null)}
           >
-            {showLabels && (
+            <XAxis
+              dataKey="model"
+              angle={-45}
+              textAnchor="end"
+              interval={0}
+              tick={{ fontSize: 11, fill: xTickColor }}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              height={100}
+            />
+            <YAxis
+              domain={[0, computedMaxScore]}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              tick={{ fill: tickColor }}
+            />
+            <CartesianGrid
+              horizontal={true}
+              vertical={false}
+              stroke={axisColor}
+              strokeDasharray="3 3"
+            />
+            <ReferenceLine
+              y={computedMaxScore}
+              stroke={darkMode ? '#6b7280' : '#9ca3af'}
+              strokeDasharray="3 3"
+              strokeWidth={1.5}
+            />
+            <Tooltip
+              content={({ active, payload }) => {
+                if (!active || !payload?.length) return null
+                const d = payload[0].payload
+                return (
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
+                    <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{d.model}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('charts.bestScore')}: <span className="font-medium">{d.best?.toFixed(1)}</span>{t('tooltip.points')}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('charts.worstScore')}: <span className="font-medium">{d.worst?.toFixed(1)}</span>{t('tooltip.points')}
+                    </p>
+                  </div>
+                )
+              }}
+              cursor={{ fill: cursorColor }}
+            />
+            <Bar
+              dataKey="best"
+              name={t('charts.bestScore')}
+              isAnimationActive={false}
+              shape={(props) => {
+                const { x, y, width, height, payload } = props
+                const color = payload.color || getModelColor(payload.model)
+                const isHovered = hoveredModel === payload.model
+                const hasHover = hoveredModel !== null
+                const opacity = hasHover ? (isHovered ? 0.9 : 0.3) : 0.9
+                return (
+                  <Rectangle
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={color}
+                    radius={[4, 4, 0, 0]}
+                    opacity={opacity}
+                    style={{ transition: 'opacity 0.15s ease-in-out' }}
+                  />
+                )
+              }}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey="best"
+                  position="top"
+                  formatter={(v) => v?.toFixed(1)}
+                  style={{ fontSize: 9, fill: xTickColor, fontWeight: 500 }}
+                />
+              )}
+            </Bar>
+            <Bar
+              dataKey="worst"
+              name={t('charts.worstScore')}
+              isAnimationActive={false}
+              shape={(props) => {
+                const { x, y, width, height, payload } = props
+                const color = payload.color || getModelColor(payload.model)
+                const lightColor = lightenColor(color, 0.5)
+                const isHovered = hoveredModel === payload.model
+                const hasHover = hoveredModel !== null
+                const opacity = hasHover ? (isHovered ? 0.9 : 0.3) : 0.9
+                return (
+                  <Rectangle
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={lightColor}
+                    radius={[4, 4, 0, 0]}
+                    opacity={opacity}
+                    style={{ transition: 'opacity 0.15s ease-in-out' }}
+                  />
+                )
+              }}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey="worst"
+                  position="top"
+                  formatter={(v) => v?.toFixed(1)}
+                  style={{ fontSize: 9, fill: xTickColor, fontWeight: 500 }}
+                />
+              )}
+            </Bar>
+          </BarChart>
+        ) : (viewMode === 'withImage' || viewMode === 'withoutImage') ? (
+          /* 이미지 O/X 모드: 득점률(%) 표시 */
+          <BarChart
+            key={`image-${viewMode}-${data.map(d => d.model).join(',')}`}
+            data={data}
+            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            onMouseMove={(state) => {
+              if (state?.activeTooltipIndex !== undefined) {
+                const model = data[state.activeTooltipIndex]?.model
+                if (model && model !== hoveredModel) {
+                  onModelHover?.(model)
+                }
+              }
+            }}
+            onMouseLeave={() => onModelHover?.(null)}
+          >
+            <XAxis
+              dataKey="model"
+              angle={-45}
+              textAnchor="end"
+              interval={0}
+              tick={{ fontSize: 11, fill: xTickColor }}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              height={100}
+            />
+            <YAxis
+              domain={[0, 110]}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              tick={{ fill: tickColor }}
+              tickFormatter={(v) => `${v}%`}
+            />
+            <CartesianGrid
+              horizontal={true}
+              vertical={false}
+              stroke={axisColor}
+              strokeDasharray="3 3"
+            />
+            <ReferenceLine
+              y={100}
+              stroke={darkMode ? '#6b7280' : '#9ca3af'}
+              strokeDasharray="3 3"
+              strokeWidth={1.5}
+            />
+            <Tooltip
+              content={({ active, payload }) => {
+                if (!active || !payload?.length) return null
+                const d = payload[0].payload
+                return (
+                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
+                    <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{d.model}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('charts.accuracy')}: <span className="font-medium">{d.rate?.toFixed(1)}%</span>
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {t('tooltip.score')}: <span className="font-medium">{d.score?.toFixed(1)}</span> / {d.maxScore}{t('tooltip.points')}
+                    </p>
+                  </div>
+                )
+              }}
+              cursor={{ fill: cursorColor }}
+            />
+            <Bar
+              dataKey="rate"
+              isAnimationActive={false}
+              shape={(props) => {
+                const { x, y, width, height, payload } = props
+                const color = payload.color || getModelColor(payload.model)
+                const isHovered = hoveredModel === payload.model
+                const hasHover = hoveredModel !== null
+                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
+                return (
+                  <Rectangle
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={color}
+                    radius={[4, 4, 0, 0]}
+                    opacity={opacity}
+                    style={{ transition: 'opacity 0.15s ease-in-out' }}
+                  />
+                )
+              }}
+            >
               <LabelList
-                dataKey="score"
+                dataKey="rate"
                 position="top"
-                formatter={(v) => v.toFixed(1)}
+                formatter={(v) => `${v?.toFixed(1)}%`}
                 style={{ fontSize: labelFontSize, fill: xTickColor, fontWeight: 500 }}
               />
-            )}
-          </Bar>
-        </BarChart>
+            </Bar>
+          </BarChart>
+        ) : (
+          /* 기본(평균) 모드 */
+          <BarChart
+            key={data.map(d => d.model).join(',')}
+            data={data}
+            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            onMouseMove={(state) => {
+              if (state?.activeTooltipIndex !== undefined) {
+                const model = data[state.activeTooltipIndex]?.model
+                if (model && model !== hoveredModel) {
+                  onModelHover?.(model)
+                }
+              }
+            }}
+            onMouseLeave={() => onModelHover?.(null)}
+          >
+            <XAxis
+              dataKey="model"
+              angle={-45}
+              textAnchor="end"
+              interval={0}
+              tick={{ fontSize: 11, fill: xTickColor }}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              height={100}
+            />
+            <YAxis
+              domain={[0, computedMaxScore]}
+              tickLine={false}
+              axisLine={{ stroke: axisColor }}
+              tick={{ fill: tickColor }}
+            />
+            <CartesianGrid
+              horizontal={true}
+              vertical={false}
+              stroke={axisColor}
+              strokeDasharray="3 3"
+            />
+            <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+            <Bar
+              dataKey="score"
+              isAnimationActive={false}
+              shape={(props) => {
+                const { x, y, width, height, payload } = props
+                const color = payload.color || getModelColor(payload.model)
+                const isHovered = hoveredModel === payload.model
+                const hasHover = hoveredModel !== null
+                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
+                return (
+                  <Rectangle
+                    x={x}
+                    y={y}
+                    width={width}
+                    height={height}
+                    fill={color}
+                    radius={[4, 4, 0, 0]}
+                    opacity={opacity}
+                    style={{ transition: 'opacity 0.15s ease-in-out' }}
+                  />
+                )
+              }}
+            >
+              {showLabels && (
+                <LabelList
+                  dataKey="score"
+                  position="top"
+                  formatter={(v) => v.toFixed(1)}
+                  style={{ fontSize: labelFontSize, fill: xTickColor, fontWeight: 500 }}
+                />
+              )}
+            </Bar>
+          </BarChart>
+        )}
       </ResponsiveContainer>
     </div>
   )

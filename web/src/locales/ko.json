@@ -44,7 +44,19 @@
     "tokenUsage": "총 토큰 사용량",
     "costInfo": "모델별 비용 정보",
     "modelCompare": "모델 비교 (과목별 정규화 점수)",
-    "showScores": "점수 표시"
+    "showScores": "점수 표시",
+    "viewModes": {
+      "average": "종합",
+      "bestWorst": "최고/최저",
+      "withImage": "이미지O",
+      "withoutImage": "이미지X"
+    },
+    "bestScore": "최고점",
+    "worstScore": "최저점",
+    "accuracy": "정답률",
+    "withImageAccuracy": "이미지 있는 문제 정답률",
+    "withoutImageAccuracy": "이미지 없는 문제 정답률",
+    "bestWorstScore": "최고/최저점 조합"
   },
   "subjects": {
     "korean": "국어",
@@ -140,7 +152,7 @@
     "totalScore": "종합_점수",
     "costAnalysis": "비용_분석",
     "tokenUsage": "토큰_사용량",
-    "heatmap": "정답_현황",
+    "heatmap": "정오표",
     "choiceRate": "선지_선택률",
     "singleImage": "한 장으로 내보내기",
     "individualImages": "개별 이미지로 내보내기",
@@ -154,7 +166,8 @@
     "score": "점수",
     "correct": "정답",
     "incorrect": "오답",
-    "points": "점"
+    "points": "점",
+    "all": "전체"
   },
   "theme": {
     "light": "라이트 모드",

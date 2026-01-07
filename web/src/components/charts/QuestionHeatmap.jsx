@@ -47,12 +47,13 @@ function _getAccuracyColor(accuracy, darkMode) {
 
 /**
  * @brief 문항별 정답/오답 히트맵 컴포넌트
- * @param {Object} props - { data, models, title }
+ * @param {Object} props - { data, models, title, subjectName }
  * @param {Object} props.data - { questionNumber: { modelName: { isCorrect, points } } }
  * @param {Array<string>} props.models - 표시할 모델 목록
  * @param {string} props.title - 차트 제목
+ * @param {string} props.subjectName - 내보내기 파일명용 과목명
  */
-export default function QuestionHeatmap({ data, models, title }) {
+export default function QuestionHeatmap({ data, models, title, subjectName }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
   const [showAnswerNumbers, setShowAnswerNumbers] = useState(false)
@@ -86,7 +87,7 @@ export default function QuestionHeatmap({ data, models, title }) {
           >
             {showAnswerNumbers ? t('heatmap.showOX') : t('heatmap.showAnswer')}
           </button>
-          <ExportButton onClick={() => exportImage(`${t('export.heatmap')}.png`)} />
+          <ExportButton onClick={() => exportImage(`${t('export.heatmap')}_${subjectName || t('common.all')}.png`)} />
         </div>
       </div>
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-x-auto">

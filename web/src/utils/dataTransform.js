@@ -386,6 +386,143 @@ export function getSubjectScores(data, subject, section) {
 }
 
 /**
+ * @brief 최고/최저점 조합 점수 계산 (generate_charts.py create_overall_best_worst_chart 참조)
+ * @param {Array} data - all_results.json 전체 데이터
+ * @param {Array} models - 모델명 배열
+ * @return {Array} [{ model, best, worst, color }] 형태 배열
+ */
+export function calculateBestWorstScores(data, models) {
+  return models
+    .map(model => {
+      const modelData = getModelData(data, model)
+
+      // 고정 점수 (영어, 한국사)
+      const english = _getScore(modelData, '영어', '영어')
+      const history = _getScore(modelData, '한국사', '한국사')
+      const fixedTotal = english + history
+
+      // 국어: 공통 + max/min(화작, 언매)
+      const koreanCommon = _getScore(modelData, '국어', '공통')
+      const koreanElectives = ['화작', '언매']
+        .map(e => _getScore(modelData, '국어', e))
+        .filter(s => s > 0)
+      const koreanBest = koreanCommon + (koreanElectives.length > 0 ? Math.max(...koreanElectives) : 0)
+      const koreanWorst = koreanCommon + (koreanElectives.length > 0 ? Math.min(...koreanElectives) : 0)
+
+      // 수학: 공통 + max/min(확통, 미적, 기하)
+      const mathCommon = _getScore(modelData, '수학', '공통')
+      const mathElectives = ['확통', '미적', '기하']
+        .map(e => _getScore(modelData, '수학', e))
+        .filter(s => s > 0)
+      const mathBest = mathCommon + (mathElectives.length > 0 ? Math.max(...mathElectives) : 0)
+      const mathWorst = mathCommon + (mathElectives.length > 0 ? Math.min(...mathElectives) : 0)
+
+      // 탐구: 4과목 중 2과목 조합의 max/min
+      const explorationSubjects = ['물리1', '화학1', '생명1', '사회문화']
+      const explorationScores = explorationSubjects
+        .map(s => _getScore(modelData, s, '탐구'))
+        .filter(s => s > 0)
+
+      let scienceBest = 0
+      let scienceWorst = 0
+
+      if (explorationScores.length >= 2) {
+        // 모든 2과목 조합
+        const combos = []
+        for (let i = 0; i < explorationScores.length; i++) {
+          for (let j = i + 1; j < explorationScores.length; j++) {
+            combos.push(explorationScores[i] + explorationScores[j])
+          }
+        }
+        scienceBest = Math.max(...combos)
+        scienceWorst = Math.min(...combos)
+      } else if (explorationScores.length === 1) {
+        scienceBest = scienceWorst = explorationScores[0]
+      }
+
+      return {
+        model,
+        best: fixedTotal + koreanBest + mathBest + scienceBest,
+        worst: fixedTotal + koreanWorst + mathWorst + scienceWorst
+      }
+    })
+    .sort((a, b) => b.best - a.best)  // 최고점 기준 정렬
+}
+
+/**
+ * @brief 이미지 기반 득점률 계산 (generate_charts.py calculate_image_based_scores 참조)
+ * @param {Array} data - all_results.json 전체 데이터
+ * @param {Object} questionsMetadata - questions_metadata.json 데이터
+ * @param {Array} models - 모델명 배열
+ * @param {boolean} hasImage - true: 이미지 있는 문제, false: 이미지 없는 문제
+ * @return {Array} [{ model, rate }] 형태 배열 (득점률 내림차순)
+ */
+export function calculateImageBasedScores(data, questionsMetadata, models, hasImage) {
+  if (!questionsMetadata || Object.keys(questionsMetadata).length === 0) {
+    return []
+  }
+
+  const modelStats = {}
+
+  // 모델별 통계 초기화
+  models.forEach(model => {
+    modelStats[model] = { totalScore: 0, totalMax: 0 }
+  })
+
+  // 각 과목-섹션별로 계산
+  Object.entries(questionsMetadata).forEach(([key, questions]) => {
+    // key 형식: "국어-공통", "물리1-탐구" 등
+    const [subject, section] = key.split('-')
+
+    // 이미지 있는/없는 문제 분류
+    const filteredQuestions = Object.entries(questions).filter(([, q]) =>
+      hasImage ? q.hasImage : !q.hasImage
+    )
+
+    if (filteredQuestions.length === 0) return
+
+    // 해당 섹션의 만점 계산
+    const maxScore = filteredQuestions.reduce((sum, [, q]) => sum + (q.points || 0), 0)
+    if (maxScore === 0) return
+
+    // 각 모델의 해당 섹션 데이터 조회
+    models.forEach(model => {
+      const modelSectionData = data.find(d =>
+        d.model_name === model &&
+        d.subject === subject &&
+        d.section === section
+      )
+
+      if (!modelSectionData?.results) return
+
+      // 해당 문제들의 득점 계산
+      let score = 0
+      filteredQuestions.forEach(([qNumStr, qMeta]) => {
+        const qNum = parseInt(qNumStr)
+        const result = modelSectionData.results.find(r => r.question_number === qNum)
+        if (result?.is_correct) {
+          score += qMeta.points || 0
+        }
+      })
+
+      modelStats[model].totalScore += score
+      modelStats[model].totalMax += maxScore
+    })
+  })
+
+  // 득점률 계산 및 정렬
+  return Object.entries(modelStats)
+    .map(([model, stats]) => ({
+      model,
+      rate: stats.totalMax > 0 ? (stats.totalScore / stats.totalMax) * 100 : 0,
+      score: stats.totalScore,
+      maxScore: stats.totalMax
+    }))
+    .filter(m => m.maxScore > 0)  // 데이터가 있는 모델만
+    .sort((a, b) => b.rate - a.rate)  // 득점률 내림차순
+}
+
+/**
  * @brief 비용 데이터 추출 (실제 토큰 사용량 기반)
  * @param {Array} data - all_results.json 전체 데이터
  * @param {Array} overallScores - calculateAllModelScores 결과 또는 filteredScores
