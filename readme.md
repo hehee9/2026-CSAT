@@ -146,7 +146,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - K-EXAONE-236B-A23B (Thinking)
   - K-EXAONE-236B-A23B (Non-Thinking)
 
-- **UpStage Solar 시리즈**
+- **Upstage Solar 시리즈**
   - Solar 3 Pro (high / low)
 
 ※ DeepSeek, EXAONE, Solar는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
