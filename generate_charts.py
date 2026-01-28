@@ -45,6 +45,7 @@ class ChartConfig:
     GROK_COLOR = '#6A4C93'      # Grok - 약간 어두운 보라색
     DEEPSEEK_COLOR = '#1E3A8A'  # DeepSeek - Gemini보다 어두운 파란색
     LG_COLOR = '#A50034'        # LG (EXAONE) - 진한 자홍색 (LG 브랜드 컬러)
+    UPSTAGE_COLOR = '#B19CD9'   # Upstage (Solar) - 연보라색
 
     @staticmethod
     def get_model_colors(models):
@@ -63,6 +64,8 @@ class ChartConfig:
                 colors.append(ChartConfig.DEEPSEEK_COLOR)
             elif 'EXAONE' in model or 'exaone' in model.lower():
                 colors.append(ChartConfig.LG_COLOR)
+            elif 'Solar' in model or 'solar' in model.lower():
+                colors.append(ChartConfig.UPSTAGE_COLOR)
             else:
                 colors.append('#666666')
         return colors

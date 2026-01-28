@@ -146,7 +146,10 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - K-EXAONE-236B-A23B (Thinking)
   - K-EXAONE-236B-A23B (Non-Thinking)
 
-※ DeepSeek, EXAONE은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+- **UpStage Solar 시리즈**
+  - Solar 3 Pro (high / low)
+
+※ DeepSeek, EXAONE, Solar는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
 ## 국어 영역
 
@@ -240,11 +243,11 @@ API 비용(토큰 사용량)과 점수 간의 상관관계를 분석한 결과�
 | :--- | :--- | :--- |
 | GPT-OSS 120B | 0.15 | 0.6 |
 | K-EXAONE 236B | 0.23 | 0.92 |
-| K-EXAONE 236B (Thinking) | 0.23 | 0.92 |
+| Solar 3 Pro | 0.15 | 0.6 |
 
 ※ 1,000,000토큰 당 달러 기준입니다.
 
-※ K-EXAONE의 경우 아직 유료 제공 API가 없어, 비슷한 규모인 Qwen3 235B의 Alibaba 제공 API 비용을 기준으로 삼았습니다.
+※ 아직 유료 제공 API가 없는 경우는 비슷한 규모의 오픈 모델 유료 API 비용을 기준으로 삼았습니다.
 
 ### 토큰 사용량
 

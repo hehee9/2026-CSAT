@@ -562,7 +562,7 @@ export default function ScoreBarChart({
               height={100}
             />
             <YAxis
-              domain={[0, 110]}
+              domain={[0, 100]}
               tickLine={false}
               axisLine={{ stroke: axisColor }}
               tick={{ fill: tickColor }}

@@ -1641,6 +1641,161 @@
           "question_count": 11
         }
       }
+    },
+    "GPT-5.2 Codex": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_tokens": 0,
+      "question_count": 34,
+      "last_updated": "2026-01-15 15:54:23"
+    },
+    "Solar Pro 3 (high)": {
+      "total_input_tokens": 108991,
+      "total_output_tokens": 2327792,
+      "total_tokens": 2436783,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 15568,
+          "output_tokens": 67270,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 4760,
+          "output_tokens": 103840,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5224,
+          "output_tokens": 472929,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6291,
+          "output_tokens": 176845,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 6974,
+          "output_tokens": 329565,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 5887,
+          "output_tokens": 355979,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4150,
+          "output_tokens": 129401,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1486,
+          "output_tokens": 113919,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1708,
+          "output_tokens": 62871,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1644,
+          "output_tokens": 64833,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36614,
+          "output_tokens": 302283,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8662,
+          "output_tokens": 106051,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10023,
+          "output_tokens": 42006,
+          "question_count": 11
+        }
+      }
+    },
+    "Solar Pro 3 (low)": {
+      "total_input_tokens": 110399,
+      "total_output_tokens": 160092,
+      "total_tokens": 270491,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 15751,
+          "output_tokens": 11190,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 4843,
+          "output_tokens": 5957,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5307,
+          "output_tokens": 16953,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6380,
+          "output_tokens": 10555,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 7063,
+          "output_tokens": 16659,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 6366,
+          "output_tokens": 31939,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4238,
+          "output_tokens": 21161,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1521,
+          "output_tokens": 10127,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1737,
+          "output_tokens": 8380,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1673,
+          "output_tokens": 7401,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36744,
+          "output_tokens": 11899,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8706,
+          "output_tokens": 4385,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10070,
+          "output_tokens": 3486,
+          "question_count": 11
+        }
+      }
     }
   }
 }
