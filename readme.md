@@ -142,6 +142,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - DeepSeek V3.2 (Non-Thinking)
   - DeepSeek V3.2 Speciale
 
+- **Moonshot AI Kimi 시리즈**
+  - Kimi K2.5 (Thinking / Non-Thinking)
+
 - **LGAI EXAONE 시리즈** (via FriendliAI)
   - K-EXAONE-236B-A23B (Thinking)
   - K-EXAONE-236B-A23B (Non-Thinking)
@@ -150,6 +153,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Solar 3 Pro (high / low)
 
 ※ DeepSeek, EXAONE, Solar는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+※ Kimi K2.5는 INT4 양자화가 적용되었습니다.
 
 ## 국어 영역
 

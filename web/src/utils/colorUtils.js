@@ -16,6 +16,7 @@ export const MODEL_COLORS = {
   DeepSeek: '#1E3A8A',  // DeepSeek - 어두운 파란색
   EXAONE: '#A50034',    // LG - 자홍색
   Solar: '#B19CD9',     // Upstage - 연보라색
+  Kimi: '#2D2D2D',      // Moonshot - 매우 어두운 회색
   default: '#6B7280'    // 기타 - 회색
 }
 
@@ -32,6 +33,7 @@ export const VENDORS = [
   { id: 'deepseek', name: 'DeepSeek', pattern: /deepseek/i, color: MODEL_COLORS.DeepSeek },
   { id: 'lg', name: 'LG AI Research', pattern: /exaone/i, color: MODEL_COLORS.EXAONE },
   { id: 'upstage', name: 'Upstage', pattern: /solar/i, color: MODEL_COLORS.Solar },
+  { id: 'moonshot', name: 'Moonshot', pattern: /kimi/i, color: MODEL_COLORS.Kimi },
   { id: 'other', name: '기타', pattern: null, color: MODEL_COLORS.default }
 ]
 
@@ -119,6 +121,9 @@ export function getModelColor(modelName) {
   }
   if (name.includes('solar')) {
     return MODEL_COLORS.Solar
+  }
+  if (name.includes('kimi')) {
+    return MODEL_COLORS.Kimi
   }
 
   return MODEL_COLORS.default
