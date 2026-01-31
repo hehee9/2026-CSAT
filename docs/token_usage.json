@@ -1796,6 +1796,154 @@
           "question_count": 11
         }
       }
+    },
+    "Kimi K2.5 (Thinking)": {
+      "total_input_tokens": 267849,
+      "total_output_tokens": 1453485,
+      "total_tokens": 1721334,
+      "question_count": 247,
+      "last_updated": "2026-02-01 01:54:26",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 17861,
+          "output_tokens": 49671,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 21414,
+          "output_tokens": 69259,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 35838,
+          "output_tokens": 280028,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15172,
+          "output_tokens": 115170,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 21654,
+          "output_tokens": 232784,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 20210,
+          "output_tokens": 223305,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 6945,
+          "output_tokens": 95071,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5701,
+          "output_tokens": 72291,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2766,
+          "output_tokens": 81571,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3509,
+          "output_tokens": 43601,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 69057,
+          "output_tokens": 102646,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 23152,
+          "output_tokens": 53338,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 24570,
+          "output_tokens": 34750,
+          "question_count": 11
+        }
+      }
+    },
+    "Kimi K2.5 (Non-Thinking)": {
+      "total_input_tokens": 268841,
+      "total_output_tokens": 371175,
+      "total_tokens": 640016,
+      "question_count": 247,
+      "last_updated": "2026-02-01 01:54:26",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 17906,
+          "output_tokens": 20115,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 21434,
+          "output_tokens": 12079,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 35858,
+          "output_tokens": 65820,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15192,
+          "output_tokens": 24581,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 21948,
+          "output_tokens": 47035,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 20312,
+          "output_tokens": 79453,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7047,
+          "output_tokens": 34286,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5762,
+          "output_tokens": 13959,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2774,
+          "output_tokens": 12069,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3517,
+          "output_tokens": 8376,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 69347,
+          "output_tokens": 34567,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 23163,
+          "output_tokens": 9432,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 24581,
+          "output_tokens": 9403,
+          "question_count": 11
+        }
+      }
     }
   }
 }
