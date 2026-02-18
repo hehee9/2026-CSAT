@@ -145,6 +145,12 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **Moonshot AI Kimi 시리즈**
   - Kimi K2.5 (Thinking / Non-Thinking)
 
+- **Z.ai GLM 시리즈** (via Ollama Cloud)
+  - GLM-5 (Thinking / Non-Thinking)
+
+- **Alibaba Cloud Qwen 시리즈**
+  - Qwen3.5 (Thinking / Non-Thinking)
+
 - **LGAI EXAONE 시리즈** (via FriendliAI)
   - K-EXAONE-236B-A23B (Thinking)
   - K-EXAONE-236B-A23B (Non-Thinking)
@@ -152,7 +158,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **Upstage Solar 시리즈**
   - Solar 3 Pro (high / low)
 
-※ DeepSeek, EXAONE, Solar는 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+※ DeepSeek, EXAONE, Solar, GLM은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 ※ Kimi K2.5는 INT4 양자화가 적용되었습니다.
 
 ## 국어 영역

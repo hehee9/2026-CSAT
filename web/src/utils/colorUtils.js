@@ -17,6 +17,8 @@ export const MODEL_COLORS = {
   EXAONE: '#A50034',    // LG - 자홍색
   Solar: '#B19CD9',     // Upstage - 연보라색
   Kimi: '#2D2D2D',      // Moonshot - 매우 어두운 회색
+  GLM: '#1A73E8',       // Zhipu AI - 파란색
+  Qwen: '#FF6A00',      // Alibaba - 주황색
   default: '#6B7280'    // 기타 - 회색
 }
 
@@ -34,6 +36,8 @@ export const VENDORS = [
   { id: 'lg', name: 'LG AI Research', pattern: /exaone/i, color: MODEL_COLORS.EXAONE },
   { id: 'upstage', name: 'Upstage', pattern: /solar/i, color: MODEL_COLORS.Solar },
   { id: 'moonshot', name: 'Moonshot', pattern: /kimi/i, color: MODEL_COLORS.Kimi },
+  { id: 'zhipu', name: 'Zhipu AI', pattern: /glm/i, color: MODEL_COLORS.GLM },
+  { id: 'alibaba', name: 'Alibaba', pattern: /qwen/i, color: MODEL_COLORS.Qwen },
   { id: 'other', name: '기타', pattern: null, color: MODEL_COLORS.default }
 ]
 
@@ -124,6 +128,12 @@ export function getModelColor(modelName) {
   }
   if (name.includes('kimi')) {
     return MODEL_COLORS.Kimi
+  }
+  if (name.includes('glm')) {
+    return MODEL_COLORS.GLM
+  }
+  if (name.includes('qwen')) {
+    return MODEL_COLORS.Qwen
   }
 
   return MODEL_COLORS.default
