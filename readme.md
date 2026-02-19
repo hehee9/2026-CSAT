@@ -117,7 +117,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.2 Chat, '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.2입니다.
 
 - **Google Gemini 시리즈**
-  - Gemini 3.1 Pro (Preview) (high)
+  - Gemini 3.1 Pro (Preview) (high / low)
   - Gemini 3 Pro (Preview) (high / low)
   - Gemini 3 Flash (Preview) (high / minimal)
   - Gemini 2.5 Pro (32K Thinking)
