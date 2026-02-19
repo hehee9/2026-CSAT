@@ -2018,6 +2018,80 @@
           "question_count": 11
         }
       }
+    },
+    "Gemini 3.1 Pro (Preview, high)": {
+      "total_input_tokens": 192767,
+      "total_output_tokens": 1038308,
+      "total_tokens": 1231075,
+      "question_count": 247,
+      "last_updated": "2026-02-20 03:29:36",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 15751,
+          "output_tokens": 53817,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 13345,
+          "output_tokens": 26064,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 24327,
+          "output_tokens": 243426,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9102,
+          "output_tokens": 92981,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 20190,
+          "output_tokens": 164526,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14671,
+          "output_tokens": 111040,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 5229,
+          "output_tokens": 85619,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 4376,
+          "output_tokens": 64967,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2427,
+          "output_tokens": 47478,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3295,
+          "output_tokens": 21627,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 49398,
+          "output_tokens": 76042,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15073,
+          "output_tokens": 30419,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 15583,
+          "output_tokens": 20302,
+          "question_count": 11
+        }
+      }
     }
   }
 }
