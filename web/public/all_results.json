@@ -3564,6 +3564,10 @@
     "total_points": 76,
     "correct_count": 31,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 86462,
+      "output_tokens": 197747
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -5576,6 +5580,10 @@
     "total_points": 76,
     "correct_count": 31,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 34490,
+      "output_tokens": 330917
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -5830,6 +5838,10 @@
     "total_points": 76,
     "correct_count": 22,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 34558,
+      "output_tokens": 35076
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -6592,6 +6604,10 @@
     "total_points": 76,
     "correct_count": 34,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 49432,
+      "output_tokens": 15436
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -6846,6 +6862,10 @@
     "total_points": 76,
     "correct_count": 34,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 49432,
+      "output_tokens": 29931
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -7100,6 +7120,10 @@
     "total_points": 76,
     "correct_count": 32,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 56365,
+      "output_tokens": 54757
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -7354,6 +7378,10 @@
     "total_points": 76,
     "correct_count": 20,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 56773,
+      "output_tokens": 10587
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -7608,6 +7636,10 @@
     "total_points": 76,
     "correct_count": 10,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 101840,
+      "output_tokens": 9579
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -7862,6 +7894,10 @@
     "total_points": 76,
     "correct_count": 10,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 53058,
+      "output_tokens": 20565
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -8116,6 +8152,10 @@
     "total_points": 76,
     "correct_count": 23,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 52368,
+      "output_tokens": 23007
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -8370,6 +8410,10 @@
     "total_points": 76,
     "correct_count": 17,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 52301,
+      "output_tokens": 26040
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -8624,6 +8668,10 @@
     "total_points": 76,
     "correct_count": 25,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 47749,
+      "output_tokens": 39794
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -8878,6 +8926,10 @@
     "total_points": 76,
     "correct_count": 33,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 47749,
+      "output_tokens": 74069
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -9132,6 +9184,10 @@
     "total_points": 76,
     "correct_count": 24,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 50811,
+      "output_tokens": 10974
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -9386,6 +9442,10 @@
     "total_points": 76,
     "correct_count": 31,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 50811,
+      "output_tokens": 12254
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -9640,6 +9700,10 @@
     "total_points": 76,
     "correct_count": 23,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 50804,
+      "output_tokens": 244707
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -9894,6 +9958,10 @@
     "total_points": 76,
     "correct_count": 25,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 52357,
+      "output_tokens": 110414
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -10148,6 +10216,10 @@
     "total_points": 76,
     "correct_count": 34,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 52154,
+      "output_tokens": 107543
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -10402,6 +10474,10 @@
     "total_points": 76,
     "correct_count": 33,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 52154,
+      "output_tokens": 114470
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -10656,6 +10732,10 @@
     "total_points": 76,
     "correct_count": 33,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 85476,
+      "output_tokens": 29270
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -10910,6 +10990,10 @@
     "total_points": 76,
     "correct_count": 33,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 85476,
+      "output_tokens": 28136
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -11164,6 +11248,10 @@
     "total_points": 76,
     "correct_count": 24,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 85476,
+      "output_tokens": 32391
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -11418,6 +11506,10 @@
     "total_points": 76,
     "correct_count": 24,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 36614,
+      "output_tokens": 302283
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -11672,6 +11764,10 @@
     "total_points": 76,
     "correct_count": 19,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 36744,
+      "output_tokens": 11899
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -11926,6 +12022,10 @@
     "total_points": 76,
     "correct_count": 30,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 69347,
+      "output_tokens": 34567
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -12180,6 +12280,10 @@
     "total_points": 76,
     "correct_count": 27,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 69057,
+      "output_tokens": 102646
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -13446,6 +13550,264 @@
     ]
   },
   {
+    "sheet_name": "국어-공통",
+    "subject": "국어",
+    "section": "공통",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 76,
+    "total_points": 76,
+    "correct_count": 34,
+    "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 49398,
+      "output_tokens": 76042
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 21,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 22,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 23,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 31,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 32,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 33,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 34,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
     "sheet_name": "국어-화작",
     "subject": "국어",
     "section": "화작",
@@ -14756,6 +15118,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 29187,
+      "output_tokens": 45211
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -15480,6 +15846,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 9259,
+      "output_tokens": 61753
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -15573,6 +15943,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 9281,
+      "output_tokens": 12657
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -15852,6 +16226,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15594,
+      "output_tokens": 5154
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -15945,6 +16323,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15594,
+      "output_tokens": 11381
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -16038,6 +16420,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 17023,
+      "output_tokens": 13062
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -16131,6 +16517,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 17155,
+      "output_tokens": 2620
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -16224,6 +16614,10 @@
     "total_points": 24,
     "correct_count": 7,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 21489,
+      "output_tokens": 3835
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -16317,6 +16711,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 110808,
+      "output_tokens": 2429
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -16410,6 +16808,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 19093,
+      "output_tokens": 8217
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -16503,6 +16905,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 17360,
+      "output_tokens": 6497
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -16596,6 +17002,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 13930,
+      "output_tokens": 12541
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -16689,6 +17099,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 13930,
+      "output_tokens": 23716
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -16782,6 +17196,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 18563,
+      "output_tokens": 2199
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -16875,6 +17293,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 18563,
+      "output_tokens": 3665
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -16968,6 +17390,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 14459,
+      "output_tokens": 44512
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -17061,6 +17487,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 19367,
+      "output_tokens": 35186
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -17154,6 +17584,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 17009,
+      "output_tokens": 24840
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -17247,6 +17681,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 17009,
+      "output_tokens": 29909
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -17340,6 +17778,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 28868,
+      "output_tokens": 9553
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -17433,6 +17875,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 28868,
+      "output_tokens": 8921
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -17526,6 +17972,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 28868,
+      "output_tokens": 10240
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -17619,6 +18069,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 10023,
+      "output_tokens": 42006
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -17712,6 +18166,10 @@
     "total_points": 24,
     "correct_count": 7,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 10070,
+      "output_tokens": 3486
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -17805,6 +18263,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24570,
+      "output_tokens": 34750
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -17898,6 +18360,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24581,
+      "output_tokens": 9403
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -18277,6 +18743,103 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 35,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 36,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 37,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 38,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 39,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 40,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 41,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 42,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 43,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 44,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 45,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
+    "sheet_name": "국어-화작",
+    "subject": "국어",
+    "section": "화작",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 24,
+    "total_points": 24,
+    "correct_count": 11,
+    "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15583,
+      "output_tokens": 20302
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -19669,6 +20232,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24491,
+      "output_tokens": 87919
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -20393,6 +20960,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8005,
+      "output_tokens": 157211
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -20486,6 +21057,10 @@
     "total_points": 24,
     "correct_count": 7,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8027,
+      "output_tokens": 13199
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -20765,6 +21340,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15084,
+      "output_tokens": 5287
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -20858,6 +21437,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15084,
+      "output_tokens": 20182
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -20951,6 +21534,10 @@
     "total_points": 24,
     "correct_count": 7,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 13923,
+      "output_tokens": 34311
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -21044,6 +21631,10 @@
     "total_points": 24,
     "correct_count": 5,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 14055,
+      "output_tokens": 4041
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -21137,6 +21728,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15621,
+      "output_tokens": 8142
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -21230,6 +21825,10 @@
     "total_points": 24,
     "correct_count": 3,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 25285,
+      "output_tokens": 8031
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -21323,6 +21922,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 20478,
+      "output_tokens": 8442
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -21416,6 +22019,10 @@
     "total_points": 24,
     "correct_count": 4,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 158541,
+      "output_tokens": 3750
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -21509,6 +22116,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 11778,
+      "output_tokens": 35372
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -21602,6 +22213,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 11778,
+      "output_tokens": 15386
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -21695,6 +22310,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15379,
+      "output_tokens": 4909
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -21788,6 +22407,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15379,
+      "output_tokens": 2791
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -21881,6 +22504,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 11190,
+      "output_tokens": 89814
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -21974,6 +22601,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 21039,
+      "output_tokens": 54091
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -22067,6 +22698,10 @@
     "total_points": 24,
     "correct_count": 11,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15090,
+      "output_tokens": 62380
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -22160,6 +22795,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15090,
+      "output_tokens": 77408
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -22253,6 +22892,10 @@
     "total_points": 24,
     "correct_count": 6,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24172,
+      "output_tokens": 10407
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -22346,6 +22989,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24172,
+      "output_tokens": 9765
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -22439,6 +23086,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 24172,
+      "output_tokens": 8297
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -22532,6 +23183,10 @@
     "total_points": 24,
     "correct_count": 2,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8706,
+      "output_tokens": 4385
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -22625,6 +23280,10 @@
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8662,
+      "output_tokens": 106051
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -22718,6 +23377,10 @@
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 23152,
+      "output_tokens": 53338
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -22811,6 +23474,10 @@
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 23163,
+      "output_tokens": 9432
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -23211,6 +23878,103 @@
         "extracted_answer": 2,
         "correct_answer": 4,
         "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 38,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 39,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 40,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 41,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 42,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 43,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 44,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 45,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      }
+    ]
+  },
+  {
+    "sheet_name": "국어-언매",
+    "subject": "국어",
+    "section": "언매",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 24,
+    "total_points": 24,
+    "correct_count": 11,
+    "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 15073,
+      "output_tokens": 30419
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 35,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 36,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 37,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -25660,6 +26424,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 8083,
+      "output_tokens": 110626
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -27000,6 +27768,10 @@
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 2859,
+      "output_tokens": 137628
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -27170,6 +27942,10 @@
     "total_points": 74,
     "correct_count": 20,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 2903,
+      "output_tokens": 36229
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -27680,6 +28456,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 5251,
+      "output_tokens": 15765
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -27850,6 +28630,10 @@
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 5251,
+      "output_tokens": 31167
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -28020,6 +28804,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 6894,
+      "output_tokens": 51679
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -28190,6 +28978,10 @@
     "total_points": 74,
     "correct_count": 15,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7158,
+      "output_tokens": 10147
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -28360,6 +29152,10 @@
     "total_points": 74,
     "correct_count": 13,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 54200,
+      "output_tokens": 16294
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -28530,6 +29326,10 @@
     "total_points": 74,
     "correct_count": 16,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 10217,
+      "output_tokens": 29797
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -28700,6 +29500,10 @@
     "total_points": 74,
     "correct_count": 18,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 4728,
+      "output_tokens": 31037
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -28870,6 +29674,10 @@
     "total_points": 74,
     "correct_count": 18,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7821,
+      "output_tokens": 41527
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -29040,6 +29848,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 3590,
+      "output_tokens": 102044
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -29210,6 +30022,10 @@
     "total_points": 74,
     "correct_count": 20,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 3590,
+      "output_tokens": 107407
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -29380,6 +30196,10 @@
     "total_points": 74,
     "correct_count": 16,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 5632,
+      "output_tokens": 17891
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -29550,6 +30370,10 @@
     "total_points": 74,
     "correct_count": 17,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 5632,
+      "output_tokens": 18422
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -29720,6 +30544,10 @@
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 8085,
+      "output_tokens": 78625
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -29890,6 +30718,10 @@
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 3176,
+      "output_tokens": 72932
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -30060,6 +30892,10 @@
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 4526,
+      "output_tokens": 69763
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -30230,6 +31066,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 4526,
+      "output_tokens": 136882
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -30400,6 +31240,10 @@
     "total_points": 74,
     "correct_count": 19,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7445,
+      "output_tokens": 16047
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -30570,6 +31414,10 @@
     "total_points": 74,
     "correct_count": 20,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7445,
+      "output_tokens": 16496
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -30740,6 +31588,10 @@
     "total_points": 74,
     "correct_count": 17,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7445,
+      "output_tokens": 17331
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -30910,6 +31762,10 @@
     "total_points": 74,
     "correct_count": 14,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 4238,
+      "output_tokens": 21161
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -31080,6 +31936,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 4150,
+      "output_tokens": 129401
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -31250,6 +32110,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 7047,
+      "output_tokens": 34286
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -31420,6 +32284,10 @@
     "total_points": 74,
     "correct_count": 21,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 6945,
+      "output_tokens": 95071
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -32254,6 +33122,180 @@
         "extracted_answer": 80,
         "correct_answer": 65,
         "is_correct": false,
+        "points": 4
+      },
+      {
+        "question_number": 22,
+        "extracted_answer": 457,
+        "correct_answer": 457,
+        "is_correct": true,
+        "points": 4
+      }
+    ]
+  },
+  {
+    "sheet_name": "수학-공통",
+    "subject": "수학",
+    "section": "공통",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 74,
+    "total_points": 74,
+    "correct_count": 22,
+    "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 5229,
+      "output_tokens": 85619
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 9,
+        "correct_answer": 9,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 16,
+        "correct_answer": 16,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 12,
+        "correct_answer": 12,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 15,
+        "correct_answer": 15,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 130,
+        "correct_answer": 130,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 21,
+        "extracted_answer": 65,
+        "correct_answer": 65,
+        "is_correct": true,
         "points": 4
       },
       {
@@ -33282,6 +34324,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3758,
+      "output_tokens": 52589
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -33838,6 +34884,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1183,
+      "output_tokens": 61512
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -33910,6 +34960,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1199,
+      "output_tokens": 15612
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -34126,6 +35180,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3442,
+      "output_tokens": 16238
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -34198,6 +35256,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3442,
+      "output_tokens": 7264
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -34270,6 +35332,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3049,
+      "output_tokens": 18034
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -34342,6 +35408,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3145,
+      "output_tokens": 3036
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -34414,6 +35484,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3811,
+      "output_tokens": 15126
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -34486,6 +35560,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2879,
+      "output_tokens": 9871
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -34558,6 +35636,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5086,
+      "output_tokens": 9005
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -34630,6 +35712,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 52351,
+      "output_tokens": 5813
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -34702,6 +35788,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1852,
+      "output_tokens": 41469
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -34774,6 +35864,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1852,
+      "output_tokens": 16721
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -34846,6 +35940,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5972,
+      "output_tokens": 7354
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -34918,6 +36016,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5972,
+      "output_tokens": 6231
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -34990,6 +36092,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1341,
+      "output_tokens": 29199
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -35062,6 +36168,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3954,
+      "output_tokens": 32640
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -35134,6 +36244,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2691,
+      "output_tokens": 38413
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -35206,6 +36320,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2691,
+      "output_tokens": 21556
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -35278,6 +36396,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3526,
+      "output_tokens": 6649
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -35350,6 +36472,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3526,
+      "output_tokens": 6369
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -35422,6 +36548,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3526,
+      "output_tokens": 6994
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -35494,6 +36624,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1673,
+      "output_tokens": 7401
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -35566,6 +36700,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1644,
+      "output_tokens": 64833
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -35638,6 +36776,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3517,
+      "output_tokens": 8376
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -35710,6 +36852,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3509,
+      "output_tokens": 43601
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -36005,6 +37151,82 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 23,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 977,
+        "correct_answer": 977,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 262,
+        "correct_answer": 262,
+        "is_correct": true,
+        "points": 4
+      }
+    ]
+  },
+  {
+    "sheet_name": "수학-확통",
+    "subject": "수학",
+    "section": "확통",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 26,
+    "total_points": 26,
+    "correct_count": 8,
+    "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3295,
+      "output_tokens": 21627
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -37082,6 +38304,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3429,
+      "output_tokens": 76911
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -37638,6 +38864,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1229,
+      "output_tokens": 87592
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -37710,6 +38940,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1245,
+      "output_tokens": 26979
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -37926,6 +39160,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2435,
+      "output_tokens": 6939
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -37998,6 +39236,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2435,
+      "output_tokens": 39458
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -38070,6 +39312,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2787,
+      "output_tokens": 39957
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -38142,6 +39388,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2883,
+      "output_tokens": 4351
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -38214,6 +39464,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2501,
+      "output_tokens": 20665
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -38286,6 +39540,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 38231,
+      "output_tokens": 6803
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -38358,6 +39616,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3098,
+      "output_tokens": 17671
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -38430,6 +39692,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3980,
+      "output_tokens": 16681
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -38502,6 +39768,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1618,
+      "output_tokens": 23934
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -38574,6 +39844,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1618,
+      "output_tokens": 56767
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -38646,6 +39920,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3158,
+      "output_tokens": 7069
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -38718,6 +39996,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3158,
+      "output_tokens": 9445
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -38790,6 +40072,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3195,
+      "output_tokens": 74038
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -38862,6 +40148,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1388,
+      "output_tokens": 68920
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -38934,6 +40224,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2363,
+      "output_tokens": 100557
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -39006,6 +40300,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2363,
+      "output_tokens": 38677
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -39078,6 +40376,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3197,
+      "output_tokens": 7916
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -39150,6 +40452,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3197,
+      "output_tokens": 8542
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -39222,6 +40528,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3197,
+      "output_tokens": 7947
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -39294,6 +40604,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1708,
+      "output_tokens": 62871
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -39366,6 +40680,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1737,
+      "output_tokens": 8380
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -39438,6 +40756,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2766,
+      "output_tokens": 81571
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -39510,6 +40832,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2774,
+      "output_tokens": 12069
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -39805,6 +41131,82 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 23,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 97,
+        "correct_answer": 97,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 11,
+        "correct_answer": 11,
+        "is_correct": true,
+        "points": 4
+      }
+    ]
+  },
+  {
+    "sheet_name": "수학-미적",
+    "subject": "수학",
+    "section": "미적",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 26,
+    "total_points": 26,
+    "correct_count": 8,
+    "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 2427,
+      "output_tokens": 47478
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -40882,6 +42284,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5967,
+      "output_tokens": 79904
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -41438,6 +42844,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1022,
+      "output_tokens": 128160
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -41510,6 +42920,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1038,
+      "output_tokens": 33089
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -41726,6 +43140,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 4384,
+      "output_tokens": 7313
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -41798,6 +43216,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 4384,
+      "output_tokens": 31755
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -41870,6 +43292,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3116,
+      "output_tokens": 38910
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -41942,6 +43368,10 @@
     "total_points": 26,
     "correct_count": 3,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3212,
+      "output_tokens": 3161
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -42014,6 +43444,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3503,
+      "output_tokens": 13252
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -42086,6 +43520,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 9636,
+      "output_tokens": 11489
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -42158,6 +43596,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 77711,
+      "output_tokens": 4827
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -42230,6 +43672,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 6759,
+      "output_tokens": 26225
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -42302,6 +43748,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1880,
+      "output_tokens": 56974
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -42374,6 +43824,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1880,
+      "output_tokens": 86576
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -42446,6 +43900,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 4968,
+      "output_tokens": 7382
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -42518,6 +43976,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 4968,
+      "output_tokens": 6684
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -42590,6 +44052,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1200,
+      "output_tokens": 53978
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -42662,6 +44128,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 7094,
+      "output_tokens": 49742
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -42734,6 +44204,10 @@
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3225,
+      "output_tokens": 58253
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -42806,6 +44280,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 3225,
+      "output_tokens": 82915
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -42878,6 +44356,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5735,
+      "output_tokens": 7619
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -42950,6 +44432,10 @@
     "total_points": 26,
     "correct_count": 5,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5735,
+      "output_tokens": 7106
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -43022,6 +44508,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5735,
+      "output_tokens": 7882
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -43094,6 +44584,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1486,
+      "output_tokens": 113919
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -43166,6 +44660,10 @@
     "total_points": 26,
     "correct_count": 4,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1521,
+      "output_tokens": 10127
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -43238,6 +44736,10 @@
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5762,
+      "output_tokens": 13959
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -43310,6 +44812,10 @@
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 5701,
+      "output_tokens": 72291
+    },
     "price": {
       "input": 0.6,
       "output": 3.0
@@ -43605,6 +45111,82 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 23,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 360,
+        "correct_answer": 360,
+        "is_correct": true,
+        "points": 4
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 221,
+        "correct_answer": 221,
+        "is_correct": true,
+        "points": 4
+      }
+    ]
+  },
+  {
+    "sheet_name": "수학-기하",
+    "subject": "수학",
+    "section": "기하",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 26,
+    "total_points": 26,
+    "correct_count": 8,
+    "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 4376,
+      "output_tokens": 64967
+    },
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -48308,6 +49890,10 @@
     "total_points": 100,
     "correct_count": 45,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 20623,
+      "output_tokens": 66948
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -50936,6 +52522,10 @@
     "total_points": 100,
     "correct_count": 41,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 11327,
+      "output_tokens": 141255
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -51267,6 +52857,10 @@
     "total_points": 100,
     "correct_count": 39,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 11417,
+      "output_tokens": 17235
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -52260,6 +53854,10 @@
     "total_points": 100,
     "correct_count": 45,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15796,
+      "output_tokens": 13958
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -52591,6 +54189,10 @@
     "total_points": 100,
     "correct_count": 45,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15791,
+      "output_tokens": 24000
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -52922,6 +54524,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 20533,
+      "output_tokens": 30195
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -53253,6 +54859,10 @@
     "total_points": 100,
     "correct_count": 37,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 21073,
+      "output_tokens": 8391
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -53584,6 +55194,10 @@
     "total_points": 100,
     "correct_count": 34,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 20340,
+      "output_tokens": 11258
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -53915,6 +55529,10 @@
     "total_points": 100,
     "correct_count": 43,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 17958,
+      "output_tokens": 11037
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -54246,6 +55864,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15573,
+      "output_tokens": 13297
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -54577,6 +56199,10 @@
     "total_points": 100,
     "correct_count": 36,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 87033,
+      "output_tokens": 5348
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -54908,6 +56534,10 @@
     "total_points": 100,
     "correct_count": 42,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 14145,
+      "output_tokens": 20833
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -55239,6 +56869,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 14145,
+      "output_tokens": 43566
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -55570,6 +57204,10 @@
     "total_points": 100,
     "correct_count": 40,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 17196,
+      "output_tokens": 9601
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -55901,6 +57539,10 @@
     "total_points": 100,
     "correct_count": 42,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 17196,
+      "output_tokens": 8930
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -56232,6 +57874,10 @@
     "total_points": 100,
     "correct_count": 43,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 13318,
+      "output_tokens": 90552
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -56563,6 +58209,10 @@
     "total_points": 100,
     "correct_count": 43,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 18197,
+      "output_tokens": 36920
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -56894,6 +58544,10 @@
     "total_points": 100,
     "correct_count": 45,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15268,
+      "output_tokens": 35621
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -57225,6 +58879,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15268,
+      "output_tokens": 54749
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -57556,6 +59214,10 @@
     "total_points": 100,
     "correct_count": 45,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 19318,
+      "output_tokens": 19800
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -57887,6 +59549,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 19318,
+      "output_tokens": 22291
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -58218,6 +59884,10 @@
     "total_points": 100,
     "correct_count": 44,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 19318,
+      "output_tokens": 21778
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -58549,6 +60219,10 @@
     "total_points": 100,
     "correct_count": 40,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15568,
+      "output_tokens": 67270
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -58880,6 +60554,10 @@
     "total_points": 100,
     "correct_count": 37,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 15751,
+      "output_tokens": 11190
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -60869,6 +62547,337 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 21,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 22,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 23,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 31,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 32,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 33,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 34,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 35,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 36,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 37,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 38,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 39,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 40,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 41,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 42,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 43,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 44,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 45,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      }
+    ]
+  },
+  {
+    "sheet_name": "영어",
+    "subject": "영어",
+    "section": "영어",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 100,
+    "total_points": 100,
+    "correct_count": 45,
+    "total_questions": 45,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -63381,6 +65390,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18814,
+      "output_tokens": 45395
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -64609,6 +66622,10 @@
     "total_points": 50,
     "correct_count": 19,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 3616,
+      "output_tokens": 119128
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -64765,6 +66782,10 @@
     "total_points": 50,
     "correct_count": 13,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 3656,
+      "output_tokens": 6196
+    },
     "price": {
       "input": 0.23,
       "output": 0.92
@@ -65233,6 +67254,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 13365,
+      "output_tokens": 6168
+    },
     "price": {
       "input": 0.5,
       "output": 3.0
@@ -65389,6 +67414,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 13365,
+      "output_tokens": 11014
+    },
     "price": {
       "input": 2.0,
       "output": 12.0
@@ -65545,6 +67574,10 @@
     "total_points": 50,
     "correct_count": 15,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 9872,
+      "output_tokens": 51667
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -65701,6 +67734,10 @@
     "total_points": 50,
     "correct_count": 16,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 10112,
+      "output_tokens": 7278
+    },
     "price": {
       "input": 0.2,
       "output": 0.5
@@ -65857,6 +67894,10 @@
     "total_points": 50,
     "correct_count": 16,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 20369,
+      "output_tokens": 8234
+    },
     "price": {
       "input": 0.4,
       "output": 1.6
@@ -66013,6 +68054,10 @@
     "total_points": 50,
     "correct_count": 12,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 28408,
+      "output_tokens": 9046
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -66169,6 +68214,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 12668,
+      "output_tokens": 6318
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -66325,6 +68374,10 @@
     "total_points": 50,
     "correct_count": 9,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 265526,
+      "output_tokens": 4229
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -66481,6 +68534,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 6732,
+      "output_tokens": 22552
+    },
     "price": {
       "input": 0.3,
       "output": 2.5
@@ -66637,6 +68694,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 6732,
+      "output_tokens": 10283
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -66793,6 +68854,10 @@
     "total_points": 50,
     "correct_count": 17,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18580,
+      "output_tokens": 4827
+    },
     "price": {
       "input": 0.074,
       "output": 0.3
@@ -66949,6 +69014,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18580,
+      "output_tokens": 5009
+    },
     "price": {
       "input": 0.1,
       "output": 0.4
@@ -67105,6 +69174,10 @@
     "total_points": 50,
     "correct_count": 14,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 4828,
+      "output_tokens": 114457
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -67261,6 +69334,10 @@
     "total_points": 50,
     "correct_count": 19,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 21305,
+      "output_tokens": 47032
+    },
     "price": {
       "input": 1.1,
       "output": 4.4
@@ -67417,6 +69494,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 11728,
+      "output_tokens": 23209
+    },
     "price": {
       "input": 15.0,
       "output": 60.0
@@ -67573,6 +69654,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 11728,
+      "output_tokens": 22221
+    },
     "price": {
       "input": 2.0,
       "output": 8.0
@@ -67729,6 +69814,10 @@
     "total_points": 50,
     "correct_count": 18,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18234,
+      "output_tokens": 11372
+    },
     "price": {
       "input": 1.0,
       "output": 5.0
@@ -67885,6 +69974,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18234,
+      "output_tokens": 10288
+    },
     "price": {
       "input": 5.0,
       "output": 25.0
@@ -68041,6 +70134,10 @@
     "total_points": 50,
     "correct_count": 20,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 18234,
+      "output_tokens": 10333
+    },
     "price": {
       "input": 3.0,
       "output": 15.0
@@ -68197,6 +70294,10 @@
     "total_points": 50,
     "correct_count": 15,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 4843,
+      "output_tokens": 5957
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -68353,6 +70454,10 @@
     "total_points": 50,
     "correct_count": 12,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 4760,
+      "output_tokens": 103840
+    },
     "price": {
       "input": 0.15,
       "output": 0.6
@@ -69292,6 +71397,162 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
+    "sheet_name": "한국사",
+    "subject": "한국사",
+    "section": "한국사",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 50,
+    "total_points": 50,
+    "correct_count": 20,
+    "total_questions": 20,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -77685,6 +79946,162 @@
     ]
   },
   {
+    "sheet_name": "물리1",
+    "subject": "물리1",
+    "section": "탐구",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 43,
+    "total_points": 50,
+    "correct_count": 17,
+    "total_questions": 20,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 3,
+        "correct_answer": 2,
+        "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
     "sheet_name": "화학1",
     "subject": "화학1",
     "section": "탐구",
@@ -85788,6 +88205,162 @@
     "price": {
       "input": 0.6,
       "output": 3.6
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
+    "sheet_name": "화학1",
+    "subject": "화학1",
+    "section": "탐구",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 50,
+    "total_points": 50,
+    "correct_count": 20,
+    "total_questions": 20,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
     },
     "results": [
       {
@@ -94181,6 +96754,162 @@
     ]
   },
   {
+    "sheet_name": "생명1",
+    "subject": "생명1",
+    "section": "탐구",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 50,
+    "total_points": 50,
+    "correct_count": 20,
+    "total_questions": 20,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
     "sheet_name": "사회문화",
     "subject": "사회문화",
     "section": "탐구",
@@ -102382,6 +105111,162 @@
         "extracted_answer": 5,
         "correct_answer": 4,
         "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      }
+    ]
+  },
+  {
+    "sheet_name": "사회문화",
+    "subject": "사회문화",
+    "section": "탐구",
+    "model_name": "Gemini 3.1 Pro (Preview, high)",
+    "score": 47,
+    "total_points": 50,
+    "correct_count": 19,
+    "total_questions": 20,
+    "price": {
+      "input": 2.0,
+      "output": 12.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
         "points": 3
       },
       {

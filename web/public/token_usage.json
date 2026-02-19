@@ -1,5 +1,1950 @@
 {
   "models": {
+    "K-EXAONE-236B-A23B (Non-Thinking)": {
+      "total_input_tokens": 93689,
+      "total_output_tokens": 357787,
+      "total_tokens": 451476,
+      "question_count": 247,
+      "last_updated": "2026-01-02 17:12:02",
+      "sections": {
+        "영어": {
+          "input_tokens": 11417,
+          "output_tokens": 17235,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 3656,
+          "output_tokens": 6196,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 4087,
+          "output_tokens": 38768,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 5190,
+          "output_tokens": 55485,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 5926,
+          "output_tokens": 40402,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 5162,
+          "output_tokens": 26860,
+          "question_count": 20
+        },
+        "국어-공통": {
+          "input_tokens": 34558,
+          "output_tokens": 35076,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8027,
+          "output_tokens": 13199,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 9281,
+          "output_tokens": 12657,
+          "question_count": 11
+        },
+        "수학-공통": {
+          "input_tokens": 2903,
+          "output_tokens": 36229,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1038,
+          "output_tokens": 33089,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1199,
+          "output_tokens": 15612,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1245,
+          "output_tokens": 26979,
+          "question_count": 8
+        }
+      }
+    },
+    "GPT-5.2 (Instant)": {
+      "total_input_tokens": 216745,
+      "total_output_tokens": 104518,
+      "total_tokens": 321263,
+      "question_count": 247,
+      "last_updated": "2026-01-02 06:30:11"
+    },
+    "GPT-OSS 120B (high)": {
+      "total_input_tokens": 137819,
+      "total_output_tokens": 1847449,
+      "total_tokens": 1985268,
+      "question_count": 247,
+      "last_updated": "2026-01-02 01:02:31"
+    },
+    "K-EXAONE-236B-A23B (Thinking)": {
+      "total_input_tokens": 93195,
+      "total_output_tokens": 2974951,
+      "total_tokens": 3068146,
+      "question_count": 247,
+      "last_updated": "2026-01-02 16:22:07",
+      "sections": {
+        "국어-공통": {
+          "input_tokens": 34490,
+          "output_tokens": 330917,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8005,
+          "output_tokens": 157211,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 9259,
+          "output_tokens": 61753,
+          "question_count": 11
+        },
+        "수학-공통": {
+          "input_tokens": 2859,
+          "output_tokens": 137628,
+          "question_count": 22
+        },
+        "수학-확통": {
+          "input_tokens": 1183,
+          "output_tokens": 61512,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1229,
+          "output_tokens": 87592,
+          "question_count": 8
+        },
+        "수학-기하": {
+          "input_tokens": 1022,
+          "output_tokens": 128160,
+          "question_count": 8
+        },
+        "한국사": {
+          "input_tokens": 3616,
+          "output_tokens": 119128,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 4047,
+          "output_tokens": 607157,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 5150,
+          "output_tokens": 403097,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 5886,
+          "output_tokens": 485871,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 5122,
+          "output_tokens": 253670,
+          "question_count": 20
+        },
+        "영어": {
+          "input_tokens": 11327,
+          "output_tokens": 141255,
+          "question_count": 45
+        }
+      }
+    },
+    "Gemini 3 Pro (Preview, low)": {
+      "total_input_tokens": 192048,
+      "total_output_tokens": 484059,
+      "total_tokens": 676107,
+      "question_count": 247,
+      "last_updated": "2026-01-02 16:22:07",
+      "sections": {
+        "국어-공통": {
+          "input_tokens": 49432,
+          "output_tokens": 29931,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15084,
+          "output_tokens": 20182,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 15594,
+          "output_tokens": 11381,
+          "question_count": 11
+        },
+        "수학-공통": {
+          "input_tokens": 5251,
+          "output_tokens": 31167,
+          "question_count": 22
+        },
+        "수학-확통": {
+          "input_tokens": 3442,
+          "output_tokens": 16238,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2435,
+          "output_tokens": 39458,
+          "question_count": 8
+        },
+        "수학-기하": {
+          "input_tokens": 4384,
+          "output_tokens": 31755,
+          "question_count": 8
+        },
+        "한국사": {
+          "input_tokens": 13365,
+          "output_tokens": 11014,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 24347,
+          "output_tokens": 92418,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14691,
+          "output_tokens": 42792,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 19110,
+          "output_tokens": 99658,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9122,
+          "output_tokens": 34065,
+          "question_count": 20
+        },
+        "영어": {
+          "input_tokens": 15791,
+          "output_tokens": 24000,
+          "question_count": 45
+        }
+      }
+    },
+    "Gemini 3 Flash (Preview, minimal)": {
+      "total_input_tokens": 193153,
+      "total_output_tokens": 159669,
+      "total_tokens": 352822,
+      "question_count": 247,
+      "last_updated": "2026-01-02 16:22:07",
+      "sections": {
+        "국어-공통": {
+          "input_tokens": 49432,
+          "output_tokens": 15436,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15084,
+          "output_tokens": 5287,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 15594,
+          "output_tokens": 5154,
+          "question_count": 11
+        },
+        "수학-공통": {
+          "input_tokens": 5251,
+          "output_tokens": 15765,
+          "question_count": 22
+        },
+        "수학-확통": {
+          "input_tokens": 3442,
+          "output_tokens": 7264,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2435,
+          "output_tokens": 6939,
+          "question_count": 8
+        },
+        "수학-기하": {
+          "input_tokens": 4384,
+          "output_tokens": 7313,
+          "question_count": 8
+        },
+        "한국사": {
+          "input_tokens": 13365,
+          "output_tokens": 6168,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 24347,
+          "output_tokens": 19625,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14691,
+          "output_tokens": 20947,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 20210,
+          "output_tokens": 18168,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9122,
+          "output_tokens": 17645,
+          "question_count": 20
+        },
+        "영어": {
+          "input_tokens": 15796,
+          "output_tokens": 13958,
+          "question_count": 45
+        }
+      }
+    },
+    "Grok 4.1 Fast (Thinking)": {
+      "total_input_tokens": 181987,
+      "total_output_tokens": 1082211,
+      "total_tokens": 1264198,
+      "question_count": 247,
+      "last_updated": "2026-01-02 17:12:02",
+      "sections": {
+        "영어": {
+          "input_tokens": 20533,
+          "output_tokens": 30195,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 9872,
+          "output_tokens": 51667,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 12649,
+          "output_tokens": 289068,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 11181,
+          "output_tokens": 143322,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 13715,
+          "output_tokens": 233209,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 10880,
+          "output_tokens": 84040,
+          "question_count": 20
+        },
+        "국어-공통": {
+          "input_tokens": 56365,
+          "output_tokens": 54757,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 13923,
+          "output_tokens": 34311,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17023,
+          "output_tokens": 13062,
+          "question_count": 11
+        },
+        "수학-공통": {
+          "input_tokens": 6894,
+          "output_tokens": 51679,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 3116,
+          "output_tokens": 38910,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3049,
+          "output_tokens": 18034,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2787,
+          "output_tokens": 39957,
+          "question_count": 8
+        }
+      }
+    },
+    "Grok 4.1 Fast (Non-Thinking)": {
+      "total_input_tokens": 184951,
+      "total_output_tokens": 100745,
+      "total_tokens": 285696,
+      "question_count": 247,
+      "last_updated": "2026-01-02 19:01:33",
+      "sections": {
+        "수학-공통": {
+          "input_tokens": 7158,
+          "output_tokens": 10147,
+          "question_count": 22
+        },
+        "수학-미적": {
+          "input_tokens": 2883,
+          "output_tokens": 4351,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3145,
+          "output_tokens": 3036,
+          "question_count": 8
+        },
+        "수학-기하": {
+          "input_tokens": 3212,
+          "output_tokens": 3161,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 56773,
+          "output_tokens": 10587,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 14055,
+          "output_tokens": 4041,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17155,
+          "output_tokens": 2620,
+          "question_count": 11
+        },
+        "영어": {
+          "input_tokens": 21073,
+          "output_tokens": 8391,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 10112,
+          "output_tokens": 7278,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 12889,
+          "output_tokens": 11052,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 11421,
+          "output_tokens": 11706,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 13955,
+          "output_tokens": 11755,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 11120,
+          "output_tokens": 12620,
+          "question_count": 20
+        }
+      }
+    },
+    "GPT-4.1": {
+      "total_input_tokens": 195264,
+      "total_output_tokens": 226031,
+      "total_tokens": 421295,
+      "question_count": 247,
+      "last_updated": "2026-01-04 02:22:10",
+      "sections": {
+        "영어": {
+          "input_tokens": 15573,
+          "output_tokens": 13297,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 12668,
+          "output_tokens": 6318,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 24020,
+          "output_tokens": 20408,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9895,
+          "output_tokens": 15978,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 18470,
+          "output_tokens": 18769,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 15678,
+          "output_tokens": 38790,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4728,
+          "output_tokens": 31037,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 3503,
+          "output_tokens": 13252,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2501,
+          "output_tokens": 20665,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2879,
+          "output_tokens": 9871,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 52368,
+          "output_tokens": 23007,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15621,
+          "output_tokens": 8142,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17360,
+          "output_tokens": 6497,
+          "question_count": 11
+        }
+      }
+    },
+    "GPT-4.1 mini": {
+      "total_input_tokens": 248139,
+      "total_output_tokens": 264848,
+      "total_tokens": 512987,
+      "question_count": 247,
+      "last_updated": "2026-01-04 02:22:10",
+      "sections": {
+        "영어": {
+          "input_tokens": 17958,
+          "output_tokens": 11037,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 20369,
+          "output_tokens": 8234,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 38236,
+          "output_tokens": 24815,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 12092,
+          "output_tokens": 19215,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 23943,
+          "output_tokens": 23312,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 22180,
+          "output_tokens": 34987,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7821,
+          "output_tokens": 41527,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 6759,
+          "output_tokens": 26225,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3098,
+          "output_tokens": 17671,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3811,
+          "output_tokens": 15126,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 52301,
+          "output_tokens": 26040,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 20478,
+          "output_tokens": 8442,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 19093,
+          "output_tokens": 8217,
+          "question_count": 11
+        }
+      }
+    },
+    "GPT-4.1 nano": {
+      "total_input_tokens": 310411,
+      "total_output_tokens": 203069,
+      "total_tokens": 513480,
+      "question_count": 247,
+      "last_updated": "2026-01-04 02:22:10",
+      "sections": {
+        "영어": {
+          "input_tokens": 20340,
+          "output_tokens": 11258,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 28408,
+          "output_tokens": 9046,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 55464,
+          "output_tokens": 19426,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 14553,
+          "output_tokens": 17922,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 32412,
+          "output_tokens": 18920,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 30483,
+          "output_tokens": 27094,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 10217,
+          "output_tokens": 29797,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 9636,
+          "output_tokens": 11489,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3980,
+          "output_tokens": 16681,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 5086,
+          "output_tokens": 9005,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 53058,
+          "output_tokens": 20565,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 25285,
+          "output_tokens": 8031,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 21489,
+          "output_tokens": 3835,
+          "question_count": 11
+        }
+      }
+    },
+    "GPT-4o mini": {
+      "total_input_tokens": 2372043,
+      "total_output_tokens": 96053,
+      "total_tokens": 2468096,
+      "question_count": 247,
+      "last_updated": "2026-01-04 02:22:10",
+      "sections": {
+        "영어": {
+          "input_tokens": 87033,
+          "output_tokens": 5348,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 265526,
+          "output_tokens": 4229,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 639675,
+          "output_tokens": 8059,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 92349,
+          "output_tokens": 9383,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 370272,
+          "output_tokens": 8571,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 323506,
+          "output_tokens": 10968,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 54200,
+          "output_tokens": 16294,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 77711,
+          "output_tokens": 4827,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 38231,
+          "output_tokens": 6803,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 52351,
+          "output_tokens": 5813,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 101840,
+          "output_tokens": 9579,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 158541,
+          "output_tokens": 3750,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 110808,
+          "output_tokens": 2429,
+          "question_count": 11
+        }
+      }
+    },
+    "Gemini 2.5 Flash (2025-09 Preview, Non-Thinking)": {
+      "total_input_tokens": 138575,
+      "total_output_tokens": 1125898,
+      "total_tokens": 1264473,
+      "question_count": 247,
+      "last_updated": "2026-01-03 23:04:28",
+      "sections": {
+        "영어": {
+          "input_tokens": 14145,
+          "output_tokens": 43566,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 6732,
+          "output_tokens": 22552,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 9481,
+          "output_tokens": 185016,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 7488,
+          "output_tokens": 88011,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 10298,
+          "output_tokens": 217571,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 8034,
+          "output_tokens": 149169,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 3590,
+          "output_tokens": 102044,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1880,
+          "output_tokens": 86576,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1618,
+          "output_tokens": 56767,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1852,
+          "output_tokens": 41469,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 47749,
+          "output_tokens": 74069,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 11778,
+          "output_tokens": 35372,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 13930,
+          "output_tokens": 23716,
+          "question_count": 11
+        }
+      }
+    },
+    "Gemini 2.5 Flash Lite (2025-09 Preview, Non-Thinking)": {
+      "total_input_tokens": 138575,
+      "total_output_tokens": 716703,
+      "total_tokens": 855278,
+      "question_count": 247,
+      "last_updated": "2026-01-03 23:04:28",
+      "sections": {
+        "영어": {
+          "input_tokens": 14145,
+          "output_tokens": 20833,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 6732,
+          "output_tokens": 10283,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 9481,
+          "output_tokens": 122309,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 7488,
+          "output_tokens": 42355,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 10298,
+          "output_tokens": 128892,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 8034,
+          "output_tokens": 119274,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 3590,
+          "output_tokens": 107407,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1880,
+          "output_tokens": 56974,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1618,
+          "output_tokens": 23934,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1852,
+          "output_tokens": 16721,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 47749,
+          "output_tokens": 39794,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 11778,
+          "output_tokens": 15386,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 13930,
+          "output_tokens": 12541,
+          "question_count": 11
+        }
+      }
+    },
+    "Gemini 2.0 Flash": {
+      "total_input_tokens": 241012,
+      "total_output_tokens": 139989,
+      "total_tokens": 381001,
+      "question_count": 247,
+      "last_updated": "2026-01-04 16:13:48",
+      "sections": {
+        "영어": {
+          "input_tokens": 17196,
+          "output_tokens": 8930,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 18580,
+          "output_tokens": 5009,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 39389,
+          "output_tokens": 14492,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 11080,
+          "output_tokens": 11526,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 24210,
+          "output_tokens": 13840,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 26074,
+          "output_tokens": 25835,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 5632,
+          "output_tokens": 18422,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 4968,
+          "output_tokens": 6684,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3158,
+          "output_tokens": 7069,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 5972,
+          "output_tokens": 7354,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 50811,
+          "output_tokens": 12254,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15379,
+          "output_tokens": 4909,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 18563,
+          "output_tokens": 3665,
+          "question_count": 11
+        }
+      }
+    },
+    "Gemini 2.0 Flash Lite": {
+      "total_input_tokens": 241012,
+      "total_output_tokens": 129475,
+      "total_tokens": 370487,
+      "question_count": 247,
+      "last_updated": "2026-01-04 16:13:48",
+      "sections": {
+        "영어": {
+          "input_tokens": 17196,
+          "output_tokens": 9601,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 18580,
+          "output_tokens": 4827,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 39389,
+          "output_tokens": 13828,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 11080,
+          "output_tokens": 10551,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 24210,
+          "output_tokens": 12411,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 26074,
+          "output_tokens": 21344,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 5632,
+          "output_tokens": 17891,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 4968,
+          "output_tokens": 7382,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3158,
+          "output_tokens": 9445,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 5972,
+          "output_tokens": 6231,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 50811,
+          "output_tokens": 10974,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15379,
+          "output_tokens": 2791,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 18563,
+          "output_tokens": 2199,
+          "question_count": 11
+        }
+      }
+    },
+    "o3-mini (high)": {
+      "total_input_tokens": 127697,
+      "total_output_tokens": 1961592,
+      "total_tokens": 2089289,
+      "question_count": 247,
+      "last_updated": "2026-01-04 17:32:57",
+      "sections": {
+        "영어": {
+          "input_tokens": 13318,
+          "output_tokens": 90552,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 4828,
+          "output_tokens": 114457,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 4960,
+          "output_tokens": 266910,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 7325,
+          "output_tokens": 181272,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 7570,
+          "output_tokens": 373607,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 6138,
+          "output_tokens": 330732,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 3176,
+          "output_tokens": 72932,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1200,
+          "output_tokens": 53978,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1388,
+          "output_tokens": 68920,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1341,
+          "output_tokens": 29199,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 50804,
+          "output_tokens": 244707,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 11190,
+          "output_tokens": 89814,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 14459,
+          "output_tokens": 44512,
+          "question_count": 11
+        }
+      }
+    },
+    "o4-mini (high)": {
+      "total_input_tokens": 255300,
+      "total_output_tokens": 1385438,
+      "total_tokens": 1640738,
+      "question_count": 247,
+      "last_updated": "2026-01-04 17:32:57",
+      "sections": {
+        "영어": {
+          "input_tokens": 18197,
+          "output_tokens": 36920,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 21305,
+          "output_tokens": 47032,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 40264,
+          "output_tokens": 295600,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 12365,
+          "output_tokens": 119002,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 24929,
+          "output_tokens": 206456,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 23149,
+          "output_tokens": 245692,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 8085,
+          "output_tokens": 78625,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 7094,
+          "output_tokens": 49742,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3195,
+          "output_tokens": 74038,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3954,
+          "output_tokens": 32640,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 52357,
+          "output_tokens": 110414,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 21039,
+          "output_tokens": 54091,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 19367,
+          "output_tokens": 35186,
+          "question_count": 11
+        }
+      }
+    },
+    "o3 (high)": {
+      "total_input_tokens": 187097,
+      "total_output_tokens": 1075042,
+      "total_tokens": 1262139,
+      "question_count": 247,
+      "last_updated": "2026-01-06 16:37:25",
+      "sections": {
+        "영어": {
+          "input_tokens": 15268,
+          "output_tokens": 35621,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 11728,
+          "output_tokens": 22221,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 21760,
+          "output_tokens": 193161,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9575,
+          "output_tokens": 108596,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 17170,
+          "output_tokens": 183336,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14538,
+          "output_tokens": 127140,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4526,
+          "output_tokens": 69763,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 3225,
+          "output_tokens": 58253,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2363,
+          "output_tokens": 38677,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2691,
+          "output_tokens": 21556,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 52154,
+          "output_tokens": 114470,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15090,
+          "output_tokens": 77408,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17009,
+          "output_tokens": 24840,
+          "question_count": 11
+        }
+      }
+    },
+    "o1 (high)": {
+      "total_input_tokens": 187097,
+      "total_output_tokens": 1428227,
+      "total_tokens": 1615324,
+      "question_count": 247,
+      "last_updated": "2026-01-06 16:37:25",
+      "sections": {
+        "영어": {
+          "input_tokens": 15268,
+          "output_tokens": 54749,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 11728,
+          "output_tokens": 23209,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 21760,
+          "output_tokens": 244206,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9575,
+          "output_tokens": 145677,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 17170,
+          "output_tokens": 180171,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14538,
+          "output_tokens": 221616,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4526,
+          "output_tokens": 136882,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 3225,
+          "output_tokens": 82915,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2363,
+          "output_tokens": 100557,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2691,
+          "output_tokens": 38413,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 52154,
+          "output_tokens": 107543,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15090,
+          "output_tokens": 62380,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17009,
+          "output_tokens": 29909,
+          "question_count": 11
+        }
+      }
+    },
+    "Claude Opus 4.5": {
+      "total_input_tokens": 285945,
+      "total_output_tokens": 198641,
+      "total_tokens": 484586,
+      "question_count": 247,
+      "last_updated": "2026-01-06 18:54:09",
+      "sections": {
+        "한국사": {
+          "input_tokens": 18234,
+          "output_tokens": 10288,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 31507,
+          "output_tokens": 20067,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15449,
+          "output_tokens": 18550,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 23940,
+          "output_tokens": 20289,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 19078,
+          "output_tokens": 23108,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7445,
+          "output_tokens": 16047,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5735,
+          "output_tokens": 7619,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3197,
+          "output_tokens": 7916,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3526,
+          "output_tokens": 6369,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 85476,
+          "output_tokens": 29270,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 24172,
+          "output_tokens": 9765,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 28868,
+          "output_tokens": 9553,
+          "question_count": 11
+        },
+        "영어": {
+          "input_tokens": 19318,
+          "output_tokens": 19800,
+          "question_count": 45
+        }
+      }
+    },
+    "Claude Sonnet 4.5": {
+      "total_input_tokens": 285945,
+      "total_output_tokens": 196185,
+      "total_tokens": 482130,
+      "question_count": 247,
+      "last_updated": "2026-01-06 18:54:09",
+      "sections": {
+        "한국사": {
+          "input_tokens": 18234,
+          "output_tokens": 10333,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 31507,
+          "output_tokens": 19628,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15449,
+          "output_tokens": 16721,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 23940,
+          "output_tokens": 19018,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 19078,
+          "output_tokens": 22091,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7445,
+          "output_tokens": 17331,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5735,
+          "output_tokens": 7882,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3197,
+          "output_tokens": 8542,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3526,
+          "output_tokens": 6994,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 85476,
+          "output_tokens": 28136,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 24172,
+          "output_tokens": 8297,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 28868,
+          "output_tokens": 8921,
+          "question_count": 11
+        },
+        "영어": {
+          "input_tokens": 19318,
+          "output_tokens": 22291,
+          "question_count": 45
+        }
+      }
+    },
+    "Claude Haiku 4.5": {
+      "total_input_tokens": 285945,
+      "total_output_tokens": 207813,
+      "total_tokens": 493758,
+      "question_count": 247,
+      "last_updated": "2026-01-06 18:54:09",
+      "sections": {
+        "한국사": {
+          "input_tokens": 18234,
+          "output_tokens": 11372,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 31507,
+          "output_tokens": 20642,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15449,
+          "output_tokens": 18703,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 23940,
+          "output_tokens": 20693,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 19078,
+          "output_tokens": 23389,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7445,
+          "output_tokens": 16496,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5735,
+          "output_tokens": 7106,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3197,
+          "output_tokens": 7947,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3526,
+          "output_tokens": 6649,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 85476,
+          "output_tokens": 32391,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 24172,
+          "output_tokens": 10407,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 28868,
+          "output_tokens": 10240,
+          "question_count": 11
+        },
+        "영어": {
+          "input_tokens": 19318,
+          "output_tokens": 21778,
+          "question_count": 45
+        }
+      }
+    },
+    "Claude Haiku 4.5 (32K Thinking)": {
+      "total_input_tokens": 293108,
+      "total_output_tokens": 1828715,
+      "total_tokens": 2121823,
+      "question_count": 247,
+      "last_updated": "2026-01-07 17:30:44",
+      "sections": {
+        "영어": {
+          "input_tokens": 20623,
+          "output_tokens": 66948,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 18814,
+          "output_tokens": 45395,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 32087,
+          "output_tokens": 321085,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 16029,
+          "output_tokens": 159704,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 24520,
+          "output_tokens": 331112,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 19658,
+          "output_tokens": 253564,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 8083,
+          "output_tokens": 110626,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5967,
+          "output_tokens": 79904,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 3429,
+          "output_tokens": 76911,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3758,
+          "output_tokens": 52589,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 86462,
+          "output_tokens": 197747,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 24491,
+          "output_tokens": 87919,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 29187,
+          "output_tokens": 45211,
+          "question_count": 11
+        }
+      }
+    },
+    "GPT-5.2 Codex": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_tokens": 0,
+      "question_count": 34,
+      "last_updated": "2026-01-15 15:54:23"
+    },
+    "Solar Pro 3 (high)": {
+      "total_input_tokens": 108991,
+      "total_output_tokens": 2327792,
+      "total_tokens": 2436783,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어": {
+          "input_tokens": 15568,
+          "output_tokens": 67270,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 4760,
+          "output_tokens": 103840,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5224,
+          "output_tokens": 472929,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6291,
+          "output_tokens": 176845,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 6974,
+          "output_tokens": 329565,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 5887,
+          "output_tokens": 355979,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4150,
+          "output_tokens": 129401,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1486,
+          "output_tokens": 113919,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1708,
+          "output_tokens": 62871,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1644,
+          "output_tokens": 64833,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36614,
+          "output_tokens": 302283,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8662,
+          "output_tokens": 106051,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10023,
+          "output_tokens": 42006,
+          "question_count": 11
+        }
+      }
+    },
+    "Solar Pro 3 (low)": {
+      "total_input_tokens": 110399,
+      "total_output_tokens": 160092,
+      "total_tokens": 270491,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어": {
+          "input_tokens": 15751,
+          "output_tokens": 11190,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 4843,
+          "output_tokens": 5957,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5307,
+          "output_tokens": 16953,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6380,
+          "output_tokens": 10555,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 7063,
+          "output_tokens": 16659,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 6366,
+          "output_tokens": 31939,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4238,
+          "output_tokens": 21161,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1521,
+          "output_tokens": 10127,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1737,
+          "output_tokens": 8380,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1673,
+          "output_tokens": 7401,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36744,
+          "output_tokens": 11899,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8706,
+          "output_tokens": 4385,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10070,
+          "output_tokens": 3486,
+          "question_count": 11
+        }
+      }
+    },
+    "Kimi K2.5 (Thinking)": {
+      "total_input_tokens": 267849,
+      "total_output_tokens": 1453485,
+      "total_tokens": 1721334,
+      "question_count": 247,
+      "last_updated": "2026-02-01 01:54:26",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 17861,
+          "output_tokens": 49671,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 21414,
+          "output_tokens": 69259,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 35838,
+          "output_tokens": 280028,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15172,
+          "output_tokens": 115170,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 21654,
+          "output_tokens": 232784,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 20210,
+          "output_tokens": 223305,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 6945,
+          "output_tokens": 95071,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5701,
+          "output_tokens": 72291,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2766,
+          "output_tokens": 81571,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3509,
+          "output_tokens": 43601,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 69057,
+          "output_tokens": 102646,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 23152,
+          "output_tokens": 53338,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 24570,
+          "output_tokens": 34750,
+          "question_count": 11
+        }
+      }
+    },
+    "Kimi K2.5 (Non-Thinking)": {
+      "total_input_tokens": 268841,
+      "total_output_tokens": 371175,
+      "total_tokens": 640016,
+      "question_count": 247,
+      "last_updated": "2026-02-01 01:54:26",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 17906,
+          "output_tokens": 20115,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 21434,
+          "output_tokens": 12079,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 35858,
+          "output_tokens": 65820,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 15192,
+          "output_tokens": 24581,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 21948,
+          "output_tokens": 47035,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 20312,
+          "output_tokens": 79453,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7047,
+          "output_tokens": 34286,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5762,
+          "output_tokens": 13959,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2774,
+          "output_tokens": 12069,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3517,
+          "output_tokens": 8376,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 69347,
+          "output_tokens": 34567,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 23163,
+          "output_tokens": 9432,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 24581,
+          "output_tokens": 9403,
+          "question_count": 11
+        }
+      }
+    },
     "Qwen3.5 (Thinking)": {
       "total_input_tokens": 200111,
       "total_output_tokens": 1458731,
@@ -70,6 +2015,80 @@
         "국어-화작": {
           "input_tokens": 15627,
           "output_tokens": 37386,
+          "question_count": 11
+        }
+      }
+    },
+    "Gemini 3.1 Pro (Preview, high)": {
+      "total_input_tokens": 192767,
+      "total_output_tokens": 1038308,
+      "total_tokens": 1231075,
+      "question_count": 247,
+      "last_updated": "2026-02-20 03:29:36",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 15751,
+          "output_tokens": 53817,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 13345,
+          "output_tokens": 26064,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 24327,
+          "output_tokens": 243426,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 9102,
+          "output_tokens": 92981,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 20190,
+          "output_tokens": 164526,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 14671,
+          "output_tokens": 111040,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 5229,
+          "output_tokens": 85619,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 4376,
+          "output_tokens": 64967,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2427,
+          "output_tokens": 47478,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3295,
+          "output_tokens": 21627,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 49398,
+          "output_tokens": 76042,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 15073,
+          "output_tokens": 30419,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 15583,
+          "output_tokens": 20302,
           "question_count": 11
         }
       }
