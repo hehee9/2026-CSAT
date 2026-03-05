@@ -99,6 +99,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
+  - GPT-5.4 (none. high 측정 중)
   - GPT-5.2 (xhigh / Instant)
   - GPT-5.1 (high)
   - GPT-5.1 Codex (high)
@@ -114,7 +115,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GPT-4o mini
   - GPT-OSS 120B (high) (via Fireworks AI)
 
-  ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.2 Chat, '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.2입니다.
+  ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.3 Chat (Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.4입니다.
+  ※ GPT-5.4부터는 xhigh 대신 high로 측정합니다. xhigh는 성능 향상에 비해 너무 오랜 시간이 걸리고, timeout 발생이 빈번해지기 때문입니다.
 
 - **Google Gemini 시리즈**
   - Gemini 3.1 Pro (Preview) (high / low)
