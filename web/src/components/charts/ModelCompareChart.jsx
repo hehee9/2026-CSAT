@@ -127,7 +127,10 @@ export default function ModelCompareChart({
         )}
         <div className="flex items-start gap-2">
           <span className="hidden text-base text-gray-400 mt-8" data-export-show="true">Github/hehee9</span>
-          <ExportButton onClick={() => exportImage(`${t('export.heatmap')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${t('export.heatmap')}.png`)}
+            exportKey="model-compare"
+          />
         </div>
       </div>
       <ResponsiveContainer width="100%" height={height}>

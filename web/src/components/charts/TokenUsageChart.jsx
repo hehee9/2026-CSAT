@@ -241,7 +241,10 @@ export default function TokenUsageChart({
           {title && (
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
           )}
-          <ExportButton onClick={() => exportImage(`${t('export.tokenUsage')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${t('export.tokenUsage')}.png`)}
+            exportKey="token-usage"
+          />
         </div>
         <ResponsiveContainer width="100%" height={mobileHeight}>
           <BarChart
@@ -325,7 +328,10 @@ export default function TokenUsageChart({
         )}
         <div className="flex items-start gap-2">
           <span className="hidden text-base text-gray-400 mt-8" data-export-show="true">Github/hehee9</span>
-          <ExportButton onClick={() => exportImage(`${t('export.tokenUsage')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${t('export.tokenUsage')}.png`)}
+            exportKey="token-usage"
+          />
         </div>
       </div>
       <div className="flex items-center gap-1 mb-4" data-export-hide="true">

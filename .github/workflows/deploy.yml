@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - 'docs/**'
+      - 'images/**'
   workflow_dispatch:
 
 permissions:
@@ -26,19 +29,19 @@ jobs:
         working-directory: web
         run: npm ci
 
-      - name: Copy data files
-        run: |
-          cp all_results.json web/public/
-          cp problems/token_usage.json web/public/ || echo "token_usage.json not found, skipping"
-
-      - name: Build
+      - name: Install Playwright Chromium
         working-directory: web
-        run: npm run build
+        run: npx playwright install --with-deps chromium
+
+      - name: Sync dashboard assets
+        working-directory: web
+        run: npm run sync:assets
 
       - name: Deploy to GitHub Pages
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git add images -f
           git add docs -f
-          git diff --staged --quiet || git commit -m "Deploy to GitHub Pages [skip ci]"
+          git diff --staged --quiet || git commit -m "chore: sync dashboard assets [skip ci]"
           git push || echo "Nothing to push"

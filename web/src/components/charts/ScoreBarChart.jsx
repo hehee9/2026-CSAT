@@ -283,7 +283,10 @@ export default function ScoreBarChart({
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{subtitle}</p>
             )}
           </div>
-          <ExportButton onClick={() => exportImage(`${subtitle || t('common.all')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${subtitle || t('common.all')}.png`)}
+            exportKey="overview-score-chart"
+          />
         </div>
         <ResponsiveContainer width="100%" height={dynamicHeight}>
           <BarChart
@@ -369,7 +372,10 @@ export default function ScoreBarChart({
         </div>
         <div className="flex items-start gap-2">
           <span className="hidden text-base text-gray-400 mt-8" data-export-show="true">Github/hehee9</span>
-          <ExportButton onClick={() => exportImage(`${subtitle || t('common.all')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${subtitle || t('common.all')}.png`)}
+            exportKey="overview-score-chart"
+          />
         </div>
       </div>
       {/* 보기 모드 버튼 + 레이블 표시 토글 */}

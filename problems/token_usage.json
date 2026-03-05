@@ -2320,7 +2320,7 @@
       "total_output_tokens": 145884,
       "total_tokens": 367710,
       "question_count": 247,
-      "last_updated": "2026-03-06 04:59:05",
+      "last_updated": "2026-03-06 07:23:42",
       "sections": {
         "영어-공통": {
           "input_tokens": 16723,
@@ -2385,6 +2385,80 @@
         "국어-화작": {
           "input_tokens": 17885,
           "output_tokens": 3442,
+          "question_count": 11
+        }
+      }
+    },
+    "GPT-5.4 (high)": {
+      "total_input_tokens": 221826,
+      "total_output_tokens": 477092,
+      "total_tokens": 698918,
+      "question_count": 247,
+      "last_updated": "2026-03-06 07:29:40",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 16723,
+          "output_tokens": 13044,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 18336,
+          "output_tokens": 7165,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 30833,
+          "output_tokens": 92330,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 11956,
+          "output_tokens": 43334,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 19689,
+          "output_tokens": 86922,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 18171,
+          "output_tokens": 59105,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 6602,
+          "output_tokens": 32489,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 5314,
+          "output_tokens": 32245,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2650,
+          "output_tokens": 20460,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3166,
+          "output_tokens": 11277,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 51888,
+          "output_tokens": 41326,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 18613,
+          "output_tokens": 27417,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 17885,
+          "output_tokens": 9978,
           "question_count": 11
         }
       }

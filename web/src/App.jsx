@@ -23,7 +23,8 @@ import { ModelSelectDropdown } from '@/components/common'
 import { calculateAllModelScores, getCostData, getMaxScore, calculateBestWorstScores, calculateImageBasedScores } from '@/utils/dataTransform'
 import { transformToHeatmapData, transformToRadarData } from '@/utils/heatmapTransform'
 import { transformToChoiceData } from '@/utils/choiceTransform'
-import { getModelColor, getVendor, VENDORS, groupModelsByVendor, getSortedVendors, getDefaultSelectedModels } from '@/utils/colorUtils'
+import { getModelColor, VENDORS, groupModelsByVendor, getSortedVendors, getDefaultSelectedModels } from '@/utils/colorUtils'
+import { getDashboardQueryState } from '@/utils/urlState'
 
 /**
  * @brief 탭 정의
@@ -56,6 +57,8 @@ const SUBJECT_I18N_KEYS = {
   '사회문화': 'subjects.society'
 }
 
+const INITIAL_QUERY_STATE = getDashboardQueryState()
+
 /**
  * @brief 과목/섹션명 번역 헬퍼
  * @param {string} name - 과목/섹션명
@@ -75,22 +78,22 @@ function Dashboard() {
   const sidebar = useSidebar()
 
   const [filters, setFilters] = useState({
-    subjects: [],
+    subjects: INITIAL_QUERY_STATE.subjects,
     models: [],
     sortBy: 'score_desc',
     showDetail: false
   })
-  const [activeTab, setActiveTab] = useState('overview')
-  const [selectedSubject, setSelectedSubject] = useState('')
-  const [selectedSection, setSelectedSection] = useState('')
+  const [activeTab, setActiveTab] = useState(INITIAL_QUERY_STATE.tab)
+  const [selectedSubject, setSelectedSubject] = useState(INITIAL_QUERY_STATE.selectedSubject)
+  const [selectedSection, setSelectedSection] = useState(INITIAL_QUERY_STATE.selectedSection)
   const [compareModels, setCompareModels] = useState([])
   const [hoveredModel, setHoveredModel] = useState(null)
-  const [scoreViewMode, setScoreViewMode] = useState('average')
+  const [scoreViewMode, setScoreViewMode] = useState(INITIAL_QUERY_STATE.scoreView)
   const subjectSelectRef = useRef(null)
   const sectionSelectRef = useRef(null)
   const mainRef = useRef(null)
   const scrollPositions = useRef({})
-  const isInitialLoad = useRef(true)
+  const [isDefaultModelSelectionReady, setIsDefaultModelSelectionReady] = useState(false)
   const [headerVisible, setHeaderVisible] = useState(false)
   const [scrolledPastHeader, setScrolledPastHeader] = useState(false)
   const headerTimeoutRef = useRef(null)
@@ -113,14 +116,14 @@ function Dashboard() {
    * - 최초 로드 시에만 적용
    */
   useEffect(() => {
-    if (loading || !data?.length || !models?.length || !isInitialLoad.current) return
+    if (loading || !data?.length || !models?.length || isDefaultModelSelectionReady) return
 
     const allScores = calculateAllModelScores(data, models, [])
     const defaultModels = getDefaultSelectedModels(models, allScores)
 
     setFilters(prev => ({ ...prev, models: defaultModels }))
-    isInitialLoad.current = false
-  }, [loading, data, models])
+    setIsDefaultModelSelectionReady(true)
+  }, [loading, data, models, isDefaultModelSelectionReady])
 
   // 필터 및 정렬 적용
   const filteredScores = useMemo(() => {
@@ -422,7 +425,10 @@ function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
+      <div
+      className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col"
+      data-dashboard-ready={!loading && !error && isDefaultModelSelectionReady ? 'true' : 'false'}
+    >
       {/* PC 헤더 호버 트리거 영역 (스크롤 시에만 활성화) */}
       {scrolledPastHeader && (
         <div

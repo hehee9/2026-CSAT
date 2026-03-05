@@ -87,7 +87,10 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
           >
             {showAnswerNumbers ? t('heatmap.showOX') : t('heatmap.showAnswer')}
           </button>
-          <ExportButton onClick={() => exportImage(`${t('export.heatmap')}_${subjectName || t('common.all')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${t('export.heatmap')}_${subjectName || t('common.all')}.png`)}
+            exportKey="question-heatmap"
+          />
         </div>
       </div>
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-x-auto">

@@ -335,7 +335,10 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{title}</h3>
           )}
           <div ref={exportDropdownRef} className="relative" data-export-hide="true">
-            <ExportButton onClick={() => setShowExportOptions(!showExportOptions)} />
+            <ExportButton
+              onClick={() => setShowExportOptions(!showExportOptions)}
+              exportKey="score-table"
+            />
             {showExportOptions && (
               <div className="absolute right-0 mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-50">
                 <button
@@ -397,7 +400,10 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
               {showDetail ? t('table.hideDetail') : t('table.showDetail')}
             </button>
           )}
-          <ExportButton onClick={() => exportImage(`${t('charts.scoreTable')}.png`)} />
+          <ExportButton
+            onClick={() => exportImage(`${t('charts.scoreTable')}.png`)}
+            exportKey="score-table"
+          />
         </div>
       </div>
 

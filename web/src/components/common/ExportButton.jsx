@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next'
 
 /**
  * @brief 이미지 내보내기 버튼
- * @param {Object} props - { onClick, className }
+ * @param {Object} props - { onClick, className, exportKey }
  */
-export default function ExportButton({ onClick, className = '' }) {
+export default function ExportButton({ onClick, className = '', exportKey = '' }) {
   const { t } = useTranslation()
 
   return (
@@ -18,10 +18,11 @@ export default function ExportButton({ onClick, className = '' }) {
       className={`p-2 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-700
                   border border-gray-300 dark:border-gray-600 rounded-lg
                   hover:bg-gray-50 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500
-                  hover:text-gray-700 dark:hover:text-gray-200
-                  active:bg-gray-100 dark:active:bg-gray-500 transition-colors ${className}`}
+      hover:text-gray-700 dark:hover:text-gray-200
+      active:bg-gray-100 dark:active:bg-gray-500 transition-colors ${className}`}
       title={t('sidebar.exportImage', 'Export as image')}
       data-export-hide="true"
+      data-export-key={exportKey || undefined}
     >
       <svg
         className="w-5 h-5"
