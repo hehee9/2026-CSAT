@@ -29,10 +29,6 @@ jobs:
         working-directory: web
         run: npm ci
 
-      - name: Install Playwright Chromium
-        working-directory: web
-        run: npx playwright install --with-deps chromium
-
       - name: Sync dashboard assets
         working-directory: web
         run: npm run sync:assets
@@ -41,7 +37,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add images -f
           git add docs -f
           git diff --staged --quiet || git commit -m "chore: sync dashboard assets [skip ci]"
           git push || echo "Nothing to push"
