@@ -316,7 +316,7 @@ export default function TokenUsageChart({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-        <BenchmarkNote />
+        <BenchmarkNote modelNames={chartData.map(entry => entry.model)} />
       </div>
     )
   }
@@ -409,7 +409,7 @@ export default function TokenUsageChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={chartData.map(entry => entry.model)} />
     </div>
   )
 }

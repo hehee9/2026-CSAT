@@ -713,7 +713,7 @@ export default function ScoreBarChart({
           </BarChart>
         )}
       </ResponsiveContainer>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={data.map(item => item.model)} />
     </div>
   )
 }

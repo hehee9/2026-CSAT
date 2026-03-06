@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { mkdir } from 'node:fs/promises'
+import { access, mkdir } from 'node:fs/promises'
 import process from 'node:process'
 import { chromium } from 'playwright'
 import { createServer } from 'vite'
@@ -109,6 +109,7 @@ async function exportTarget(page, baseUrl, target) {
   await page.locator(`[data-export-key="${target.exportKey}"]`).click()
   const download = await downloadPromise
   await download.saveAs(target.outputPath)
+  await access(target.outputPath)
 
   console.log(`Exported ${target.id} -> ${target.outputPath}`)
 }

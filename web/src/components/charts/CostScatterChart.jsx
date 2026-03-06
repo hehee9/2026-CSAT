@@ -283,7 +283,7 @@ export default function CostScatterChart({
           </Scatter>
         </ScatterChart>
       </ResponsiveContainer>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={validData.map(item => item.model)} />
     </div>
   )
 }

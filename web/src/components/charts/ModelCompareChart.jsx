@@ -209,7 +209,7 @@ export default function ModelCompareChart({
           />
         </RadarChart>
       </ResponsiveContainer>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={showHoveredModel ? [...selectedModels, hoveredModel] : selectedModels} />
     </div>
   )
 }

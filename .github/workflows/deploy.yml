@@ -29,6 +29,10 @@ jobs:
         working-directory: web
         run: npm ci
 
+      - name: Install Playwright Chromium
+        working-directory: web
+        run: npx playwright install --with-deps chromium
+
       - name: Sync dashboard assets
         working-directory: web
         run: npm run sync:assets

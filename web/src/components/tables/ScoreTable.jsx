@@ -376,7 +376,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           t={t}
           cardRefs={cardRefs}
         />
-        <BenchmarkNote />
+        <BenchmarkNote modelNames={sortedData.map(row => row.model)} />
       </div>
     )
   }
@@ -618,7 +618,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           </tbody>
         </table>
       </div>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={sortedData.map(row => row.model)} />
     </div>
   )
 }

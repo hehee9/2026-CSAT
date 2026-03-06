@@ -151,7 +151,7 @@ export default function CostTable({ data, title }) {
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
           * {t('cost.efficiencyFormula')}
         </p>
-        <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" />
+        <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" modelNames={displayData.map(row => row.model)} />
       </div>
     )
   }
@@ -296,7 +296,7 @@ export default function CostTable({ data, title }) {
       <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
         * {t('cost.efficiencyFormula')}
       </p>
-      <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" />
+      <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" modelNames={sortedData.map(row => row.model)} />
     </div>
   )
 }

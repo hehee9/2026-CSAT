@@ -668,8 +668,16 @@ class SyncManager:
         model_data = models.get(model_name, {})
         sections = model_data.get('sections', {})
 
-        if sheet_name in sections:
-            section_data = sections[sheet_name]
+        candidate_keys = [sheet_name]
+        if sheet_name in ['영어', '한국사']:
+            candidate_keys.extend([f'{sheet_name}-공통', sheet_name])
+        elif sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
+            candidate_keys.append(f'탐구-{sheet_name}')
+
+        for key in candidate_keys:
+            if key not in sections:
+                continue
+            section_data = sections[key]
             return {
                 'input_tokens': section_data.get('input_tokens', 0),
                 'output_tokens': section_data.get('output_tokens', 0)

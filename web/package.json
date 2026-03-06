@@ -8,7 +8,7 @@
     "dev": "npm run copy-data && vite",
     "build": "npm run copy-data && vite build",
     "export:images": "node ./scripts/export-readme-images.mjs",
-    "sync:assets": "npm run build",
+    "sync:assets": "npm run build && npm run export:images",
     "sync:assets:one": "npm run export:images --",
     "lint": "eslint .",
     "preview": "vite preview"

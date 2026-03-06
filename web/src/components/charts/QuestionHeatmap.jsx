@@ -223,7 +223,7 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
           <span>{t('common.noData')}</span>
         </div>
       </div>
-      <BenchmarkNote />
+      <BenchmarkNote modelNames={models} />
     </div>
   )
 }
