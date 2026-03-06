@@ -59,6 +59,7 @@ function parseArgs(argv) {
 
 function buildTargetUrl(baseUrl, target) {
   const url = new URL(baseUrl)
+  url.searchParams.set('lang', 'ko')
 
   Object.entries(target.params).forEach(([key, value]) => {
     if (value) {
