@@ -17,8 +17,9 @@ import {
 import { useTranslation } from 'react-i18next'
 import { getModelColor } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 과목별 정규화 기준
@@ -44,7 +45,7 @@ function CustomTooltip({ active, payload, label, t }) {
       <div className="space-y-1">
         {payload.map((entry, index) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
-            {entry.name}: <span className="font-medium">{entry.value?.toFixed(1)}{t('common.points')}</span>
+            {formatModelDisplayName(entry.name)}: <span className="font-medium">{entry.value?.toFixed(1)}{t('common.points')}</span>
           </p>
         ))}
       </div>
@@ -74,7 +75,7 @@ export default function ModelCompareChart({
 }) {
   const { t } = useTranslation()
   const { isDark } = useTheme()
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
 
   // 다크모드용 색상
   const gridColor = isDark ? '#4b5563' : '#e5e7eb'
@@ -159,7 +160,7 @@ export default function ModelCompareChart({
           {showHoveredModel && (
             <Radar
               key={`hover-${hoveredModel}`}
-              name={hoveredModel}
+              name={formatModelDisplayName(hoveredModel)}
               dataKey={hoveredModel}
               stroke={getModelColor(hoveredModel)}
               fill={getModelColor(hoveredModel)}
@@ -174,7 +175,7 @@ export default function ModelCompareChart({
           {selectedModels.map((model) => (
             <Radar
               key={model}
-              name={model}
+              name={formatModelDisplayName(model)}
               dataKey={model}
               stroke={getModelColor(model)}
               fill={getModelColor(model)}
@@ -192,15 +193,15 @@ export default function ModelCompareChart({
               <div className="flex flex-wrap justify-center gap-3 mt-2 min-h-[24px]">
                 {payload.filter(entry => entry.dataKey !== '_grid').map((entry) => (
                   <span
-                    key={entry.value}
+                    key={entry.dataKey}
                     className={`cursor-pointer transition-opacity text-sm ${
-                      hoveredModel && hoveredModel !== entry.value ? 'opacity-40' : ''
+                      hoveredModel && hoveredModel !== entry.dataKey ? 'opacity-40' : ''
                     }`}
                     style={{ color: entry.color }}
-                    onMouseEnter={() => onModelHover?.(entry.value)}
+                    onMouseEnter={() => onModelHover?.(entry.dataKey)}
                     onMouseLeave={() => onModelHover?.(null)}
                   >
-                    ● {entry.value}
+                    ● {formatModelDisplayName(entry.value)}
                   </span>
                 ))}
               </div>
@@ -208,6 +209,7 @@ export default function ModelCompareChart({
           />
         </RadarChart>
       </ResponsiveContainer>
+      <BenchmarkNote />
     </div>
   )
 }

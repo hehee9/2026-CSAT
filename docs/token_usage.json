@@ -2462,6 +2462,35 @@
           "question_count": 11
         }
       }
+    },
+    "GPT-5.4 (xhigh, wrong-only)": {
+      "total_input_tokens": 4808,
+      "total_output_tokens": 75262,
+      "total_tokens": 80070,
+      "question_count": 5,
+      "last_updated": "2026-03-06 13:15:19",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 288,
+          "output_tokens": 4357,
+          "question_count": 1
+        },
+        "탐구-물리1": {
+          "input_tokens": 1926,
+          "output_tokens": 35209,
+          "question_count": 1
+        },
+        "탐구-사회문화": {
+          "input_tokens": 846,
+          "output_tokens": 27957,
+          "question_count": 2
+        },
+        "탐구-화학1": {
+          "input_tokens": 1748,
+          "output_tokens": 7739,
+          "question_count": 1
+        }
+      }
     }
   }
 }

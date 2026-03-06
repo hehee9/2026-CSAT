@@ -7,6 +7,7 @@ import { useRef, useEffect, useState, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useData } from '@/hooks/useData'
 import { groupModelsByVendor, getSortedVendors } from '@/utils/colorUtils'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 모델 필터 컴포넌트
@@ -148,8 +149,8 @@ export default function ModelFilter({ selected, onChange, hoveredModel, onModelH
                           onChange={() => handleModelToggle(model)}
                           className="mr-2 rounded"
                         />
-                        <span className="text-xs text-gray-600 dark:text-gray-400 truncate" title={model}>
-                          {model}
+                        <span className="text-xs text-gray-600 dark:text-gray-400 truncate" title={formatModelDisplayName(model)}>
+                          {formatModelDisplayName(model)}
                         </span>
                       </label>
                     )

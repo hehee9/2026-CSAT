@@ -19,8 +19,9 @@ import {
 import { useTranslation } from 'react-i18next'
 import { getModelColor, getShortModelName, CHART_COLORS, lightenColor } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 const MAX_LINE_LENGTH = 21
 const MAX_LINES = 3
@@ -134,7 +135,7 @@ function createCustomYAxisTick(hoveredModel, onModelHover, darkMode, isMobile) {
 
   return function CustomYAxisTick({ x, y, payload }) {
     // 모바일에서는 짧은 모델명 사용 + 17자 이상 시 중간 공백에서 줄바꿈
-    const displayName = isMobile ? getShortModelName(payload.value) : payload.value
+    const displayName = isMobile ? getShortModelName(payload.value) : formatModelDisplayName(payload.value)
     const lines = isMobile ? _wrapAtMiddle(displayName) : _wrapText(displayName, MAX_LINE_LENGTH)
     const lineHeight = 14
     const startY = -((lines.length - 1) * lineHeight) / 2 + 3
@@ -195,7 +196,7 @@ function CustomTooltip({ active, payload, t }) {
 
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
-      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{data.model}</p>
+      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{formatModelDisplayName(data.model)}</p>
       <p className="text-sm text-gray-600 dark:text-gray-400">
         {t('tooltip.score')}: <span className="font-medium">{displayScore}</span> / {data.totalPoints}{t('tooltip.points')}
       </p>
@@ -240,7 +241,7 @@ export default function ScoreBarChart({
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
   const [showLabels, setShowLabels] = useState(true)
 
   // 모바일 감지
@@ -429,6 +430,7 @@ export default function ScoreBarChart({
           >
             <XAxis
               dataKey="model"
+              tickFormatter={(value) => formatModelDisplayName(value)}
               angle={-45}
               textAnchor="end"
               interval={0}
@@ -559,6 +561,7 @@ export default function ScoreBarChart({
           >
             <XAxis
               dataKey="model"
+              tickFormatter={(value) => formatModelDisplayName(value)}
               angle={-45}
               textAnchor="end"
               interval={0}
@@ -653,6 +656,7 @@ export default function ScoreBarChart({
           >
             <XAxis
               dataKey="model"
+              tickFormatter={(value) => formatModelDisplayName(value)}
               angle={-45}
               textAnchor="end"
               interval={0}
@@ -709,6 +713,7 @@ export default function ScoreBarChart({
           </BarChart>
         )}
       </ResponsiveContainer>
+      <BenchmarkNote />
     </div>
   )
 }

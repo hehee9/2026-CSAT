@@ -69123,6 +69123,337 @@
     ]
   },
   {
+    "sheet_name": "영어",
+    "subject": "영어",
+    "section": "영어",
+    "model_name": "GPT-5.4 (xhigh, wrong-only)",
+    "score": 100,
+    "total_points": 100,
+    "correct_count": 45,
+    "total_questions": 45,
+    "price": {
+      "input": 2.5,
+      "output": 15.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 21,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 22,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 23,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 24,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 25,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 26,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 27,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 28,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 29,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 30,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 31,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 32,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 33,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 34,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 35,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 36,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 37,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 38,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 39,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 40,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 41,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 42,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 43,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 44,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 45,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      }
+    ]
+  },
+  {
     "sheet_name": "한국사",
     "subject": "한국사",
     "section": "한국사",
@@ -87587,6 +87918,162 @@
     ]
   },
   {
+    "sheet_name": "물리1",
+    "subject": "물리1",
+    "section": "탐구",
+    "model_name": "GPT-5.4 (xhigh, wrong-only)",
+    "score": 48,
+    "total_points": 50,
+    "correct_count": 19,
+    "total_questions": 20,
+    "price": {
+      "input": 2.5,
+      "output": 15.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 1,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
     "sheet_name": "화학1",
     "subject": "화학1",
     "section": "탐구",
@@ -96717,6 +97204,162 @@
         "extracted_answer": 5,
         "correct_answer": 4,
         "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
+    "sheet_name": "화학1",
+    "subject": "화학1",
+    "section": "탐구",
+    "model_name": "GPT-5.4 (xhigh, wrong-only)",
+    "score": 50,
+    "total_points": 50,
+    "correct_count": 20,
+    "total_questions": 20,
+    "price": {
+      "input": 2.5,
+      "output": 15.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
         "points": 3
       },
       {
@@ -114987,6 +115630,162 @@
     "subject": "사회문화",
     "section": "탐구",
     "model_name": "GPT-5.4 (high)",
+    "score": 46,
+    "total_points": 50,
+    "correct_count": 18,
+    "total_questions": 20,
+    "price": {
+      "input": 2.5,
+      "output": 15.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 1,
+        "correct_answer": 2,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 4,
+        "correct_answer": 3,
+        "is_correct": false,
+        "points": 2
+      }
+    ]
+  },
+  {
+    "sheet_name": "사회문화",
+    "subject": "사회문화",
+    "section": "탐구",
+    "model_name": "GPT-5.4 (xhigh, wrong-only)",
     "score": 46,
     "total_points": 50,
     "correct_count": 18,

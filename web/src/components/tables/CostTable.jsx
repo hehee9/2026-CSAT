@@ -6,8 +6,9 @@
 import { useState, useMemo, useEffect, Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getModelColor, getShortModelName } from '@/utils/colorUtils'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 정렬 아이콘 컴포넌트
@@ -36,7 +37,7 @@ export default function CostTable({ data, title }) {
     direction: 'desc'
   })
   const [showHiddenModels, setShowHiddenModels] = useState(false)
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
 
   // 모바일 감지
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
@@ -150,6 +151,7 @@ export default function CostTable({ data, title }) {
         <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
           * {t('cost.efficiencyFormula')}
         </p>
+        <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" />
       </div>
     )
   }
@@ -210,7 +212,7 @@ export default function CostTable({ data, title }) {
                     className="inline-block w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: getModelColor(row.model) }}
                   />
-                  {row.model}
+                  {formatModelDisplayName(row.model)}
                 </td>
                 <td className="px-3 py-2 text-right text-gray-600 dark:text-gray-400">
                   ${row.inputPrice?.toFixed(2) ?? '-'}
@@ -266,7 +268,7 @@ export default function CostTable({ data, title }) {
                         className="inline-block w-3 h-3 rounded-full mr-2"
                         style={{ backgroundColor: getModelColor(row.model) }}
                       />
-                      {row.model}
+                      {formatModelDisplayName(row.model)}
                     </td>
                     <td className="px-3 py-2 text-right text-gray-600 dark:text-gray-400">
                       ${row.inputPrice?.toFixed(2) ?? '-'}
@@ -294,6 +296,7 @@ export default function CostTable({ data, title }) {
       <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
         * {t('cost.efficiencyFormula')}
       </p>
+      <BenchmarkNote className="mt-2 text-sm text-gray-500 dark:text-gray-400" />
     </div>
   )
 }

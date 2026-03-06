@@ -5,6 +5,7 @@
 
 import { useMemo } from 'react'
 import { getModelColor } from '@/utils/colorUtils'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 문항별 상세 테이블 컴포넌트
@@ -63,8 +64,8 @@ export default function QuestionDetailTable({ data, models, title }) {
                   className="px-2 py-2 text-center font-medium text-gray-600 whitespace-nowrap"
                   style={{ borderBottom: `2px solid ${getModelColor(model)}` }}
                 >
-                  <span className="text-xs" title={model}>
-                    {model.length > 15 ? `${model.slice(0, 12)}...` : model}
+                  <span className="text-xs" title={formatModelDisplayName(model)}>
+                    {formatModelDisplayName(model).length > 15 ? `${formatModelDisplayName(model).slice(0, 12)}...` : formatModelDisplayName(model)}
                   </span>
                 </th>
               ))}
@@ -105,7 +106,7 @@ export default function QuestionDetailTable({ data, models, title }) {
                       <td
                         key={model}
                         className={`px-2 py-2 text-center ${bgColor} ${textColor}`}
-                        title={`${model}: ${answer ?? '없음'} (${cell?.isCorrect ? '정답' : '오답'})`}
+                        title={`${formatModelDisplayName(model)}: ${answer ?? '없음'} (${cell?.isCorrect ? '정답' : '오답'})`}
                       >
                         {answer ?? '-'}
                       </td>

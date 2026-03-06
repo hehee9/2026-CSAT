@@ -220,6 +220,37 @@ class ExcelHandler:
 
         return answers
 
+    def calculate_score_from_answers(self, sheet_name: str, answers: Dict[int, any]) -> int:
+        """문항별 답안으로 총점 계산"""
+        self._load_workbook()
+        correct_answers = self._get_correct_answers(sheet_name)
+        questions_data = self._load_questions_for_sheet(sheet_name)
+        points_by_question = {q['number']: q['points'] for q in questions_data['questions']}
+
+        score = 0
+        for q_num, correct in correct_answers.items():
+            answer = answers.get(q_num)
+            try:
+                if answer is not None and int(answer) == int(correct):
+                    score += points_by_question.get(q_num, 0)
+            except (ValueError, TypeError):
+                continue
+
+        return score
+
+    def _load_questions_for_sheet(self, sheet_name: str) -> Dict:
+        """시트에 대응하는 questions.json 로드"""
+        json_path = PathMapper(base_dir=Path('.')).sheet_to_json_path(sheet_name)
+        if not json_path:
+            raise ValueError(f"'{sheet_name}' 시트에 대한 경로 매핑을 찾을 수 없습니다.")
+
+        questions_file = json_path / 'questions.json'
+        if not questions_file.exists():
+            raise FileNotFoundError(f"questions.json을 찾을 수 없습니다: {questions_file}")
+
+        with open(questions_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+
     def get_model_score(self, sheet_name: str, model_name: str) -> Optional[int]:
         """특정 모델의 총점 반환"""
         self._load_workbook()
@@ -704,7 +735,8 @@ class SyncManager:
                          position: Optional[int] = None,
                          after_model: Optional[str] = None,
                          update_existing: bool = False,
-                         excel_name: Optional[str] = None) -> bool:
+                         excel_name: Optional[str] = None,
+                         base_model: Optional[str] = None) -> bool:
         """
         JSON -> Excel 가져오기
 
@@ -714,6 +746,7 @@ class SyncManager:
             after_model: 이 모델 다음에 삽입
             update_existing: 기존 데이터 업데이트 여부
             excel_name: Excel에서 사용할 모델 이름 (None이면 매핑 사용)
+            base_model: Excel에서 복사해 올 베이스 모델 이름
 
         Returns:
             성공 여부
@@ -756,19 +789,29 @@ class SyncManager:
             if excel_name and success_count == 0:
                 model_name = excel_name
 
+            merged_answers = dict(answers)
+            if base_model:
+                existing_models = self.excel_handler.get_model_columns(sheet_name)
+                if base_model not in existing_models:
+                    raise ValueError(f"베이스 모델을 찾을 수 없습니다: {sheet_name} / {base_model}")
+                base_answers = self.excel_handler.get_model_answers(sheet_name, base_model)
+                merged_answers = dict(base_answers)
+                merged_answers.update(answers)
+                score = self.excel_handler.calculate_score_from_answers(sheet_name, merged_answers)
+
             # 기존 모델 확인
             existing_models = self.excel_handler.get_model_columns(sheet_name)
 
             if model_name in existing_models:
                 if update_existing:
-                    self.excel_handler.update_model_column(sheet_name, model_name, answers, score)
+                    self.excel_handler.update_model_column(sheet_name, model_name, merged_answers, score)
                     print(f"업데이트 완료: {sheet_name} / {model_name} ({score}점)")
                     success_count += 1
                 else:
                     print(f"'{model_name}' 모델이 이미 존재합니다. (건너뜀)")
             else:
                 self.excel_handler.add_model_column(
-                    sheet_name, model_name, answers, score,
+                    sheet_name, model_name, merged_answers, score,
                     position=position, after_model=after_model
                 )
                 print(f"추가 완료: {sheet_name} / {model_name} ({score}점)")
@@ -995,6 +1038,7 @@ def main():
     import_parser.add_argument('--after', help='이 모델 다음에 삽입')
     import_parser.add_argument('--update', action='store_true', help='기존 데이터 업데이트')
     import_parser.add_argument('--excel-name', help='Excel에서 사용할 모델 이름')
+    import_parser.add_argument('--base-model', help='기존 Excel 컬럼을 베이스로 복사한 뒤 JSON 답안만 덮어쓰기')
 
     # List 명령
     list_parser = subparsers.add_parser('list', help='모델 목록 확인')
@@ -1055,7 +1099,8 @@ def main():
                 position=args.position,
                 after_model=args.after,
                 update_existing=args.update,
-                excel_name=args.excel_name
+                excel_name=args.excel_name,
+                base_model=args.base_model
             )
             if success:
                 sync.excel_handler.save()

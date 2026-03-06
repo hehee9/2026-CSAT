@@ -8,8 +8,9 @@ import { useTranslation } from 'react-i18next'
 import { getModelColor, getHeatmapColor } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
 import { getQuestionNumbers, calculateModelAccuracy } from '@/utils/heatmapTransform'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 문항별 정답률 계산
@@ -58,7 +59,7 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
   const { isDark: darkMode } = useTheme()
   const [showAnswerNumbers, setShowAnswerNumbers] = useState(false)
   const questions = useMemo(() => getQuestionNumbers(data), [data])
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
 
   if (!data || !models?.length || !questions.length) {
     return (
@@ -126,18 +127,18 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
                   style={{
                     borderLeft: `3px solid ${getModelColor(model)}`
                   }}
-                  title={model}
+                  title={formatModelDisplayName(model)}
                 >
-                  {model}
+                  {formatModelDisplayName(model)}
                 </div>
                 {questions.map(q => {
                   const cell = data[q]?.[model]
                   const bgColor = getHeatmapColor(cell?.isCorrect, cell?.points, darkMode)
                   const cellTitle = cell?.isCorrect === undefined
-                    ? `${model} - ${t('heatmap.question')} ${q}: ${t('common.noData')}`
+                    ? `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('common.noData')}`
                     : cell?.isCorrect
-                    ? `${model} - ${t('heatmap.question')} ${q}: ${t('heatmap.correct')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}`
-                    : `${model} - ${t('heatmap.question')} ${q}: ${t('heatmap.incorrect')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}, ${t('heatmap.answer')}: ${cell.correctAnswer}`
+                    ? `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('heatmap.correct')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}`
+                    : `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('heatmap.incorrect')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}, ${t('heatmap.answer')}: ${cell.correctAnswer}`
                   return (
                     <div
                       key={q}
@@ -222,6 +223,7 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
           <span>{t('common.noData')}</span>
         </div>
       </div>
+      <BenchmarkNote />
     </div>
   )
 }

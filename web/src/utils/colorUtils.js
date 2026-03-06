@@ -5,6 +5,8 @@
  * generate_charts.py의 ChartConfig 색상 체계를 JavaScript로 포팅
  */
 
+import { formatModelDisplayName, isPartialBenchmarkModel } from './modelMeta'
+
 /**
  * @brief 브랜드별 색상 상수
  */
@@ -154,7 +156,7 @@ export function getModelColor(modelName) {
  * @return {string} 짧은 모델명
  */
 export function getShortModelName(modelName) {
-  let name = modelName
+  let name = formatModelDisplayName(modelName)
 
   // 1. K-EXAONE 특수 처리: '236B-A23B' 또는 '236B A23B' 제거
   name = name.replace(/[-\s]?236B[-\s]?A23B/gi, '')
@@ -275,10 +277,14 @@ export function isDarkMode() {
  * @param {Array} scoreData - calculateAllModelScores 결과 (총점 내림차순)
  * @return {string[]} 기본 선택된 모델명 배열
  *
- * 규칙: 각 개발사별 min(floor(50%), 4개) 모델 선택 (점수 높은 순, 최소 1개)
+ * 규칙:
+ * - 일반 모델: 각 개발사별 min(floor(50%), 4개) 모델 선택 (점수 높은 순, 최소 1개)
+ * - 부분 벤치마크 모델: 기본 선택에 항상 포함
  */
 export function getDefaultSelectedModels(models, scoreData) {
-  const grouped = groupModelsByVendor(models)
+  const visibleModels = models.filter(model => !isPartialBenchmarkModel(model))
+  const partialModels = models.filter(model => isPartialBenchmarkModel(model))
+  const grouped = groupModelsByVendor(visibleModels)
   const scoreMap = new Map(scoreData.map(s => [s.model, s.total]))
   const result = []
 
@@ -295,5 +301,9 @@ export function getDefaultSelectedModels(models, scoreData) {
     result.push(...sorted.slice(0, limit))
   })
 
-  return result
+  const sortedPartialModels = [...partialModels].sort((a, b) =>
+    (scoreMap.get(b) || 0) - (scoreMap.get(a) || 0)
+  )
+
+  return [...result, ...sortedPartialModels]
 }

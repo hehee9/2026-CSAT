@@ -18,8 +18,9 @@ import {
 import { useTranslation } from 'react-i18next'
 import { getModelColor, getShortModelName } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 깔끔한 틱 간격 계산 (100K, 200K, 500K, 1M 등)
@@ -62,7 +63,7 @@ function CustomTooltip({ active, payload, t }) {
 
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
-      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">{data.model}</p>
+      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">{formatModelDisplayName(data.model)}</p>
       <div className="space-y-1 text-sm">
         <p className="text-gray-600 dark:text-gray-400">
           {t('cost.inputTokensShort')}: <span className="font-medium">{data.inputTokens.toLocaleString()}</span> {t('cost.tokens')}
@@ -141,7 +142,7 @@ export default function TokenUsageChart({
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
   const [labelMode, setLabelMode] = useState('total')
 
   // 모바일 감지
@@ -315,6 +316,7 @@ export default function TokenUsageChart({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+        <BenchmarkNote />
       </div>
     )
   }
@@ -356,6 +358,7 @@ export default function TokenUsageChart({
         >
           <XAxis
             dataKey="model"
+            tickFormatter={(value) => formatModelDisplayName(value)}
             angle={-45}
             textAnchor="end"
             interval={0}
@@ -406,6 +409,7 @@ export default function TokenUsageChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      <BenchmarkNote />
     </div>
   )
 }

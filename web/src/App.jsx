@@ -25,6 +25,7 @@ import { transformToHeatmapData, transformToRadarData } from '@/utils/heatmapTra
 import { transformToChoiceData } from '@/utils/choiceTransform'
 import { getModelColor, VENDORS, groupModelsByVendor, getSortedVendors, getDefaultSelectedModels } from '@/utils/colorUtils'
 import { getDashboardQueryState } from '@/utils/urlState'
+import { formatModelDisplayName, hasPartialBenchmark, isPartialBenchmarkModel } from '@/utils/modelMeta'
 
 /**
  * @brief 탭 정의
@@ -67,6 +68,16 @@ const INITIAL_QUERY_STATE = getDashboardQueryState()
  */
 function _translateSubject(name, t) {
   return SUBJECT_I18N_KEYS[name] ? t(SUBJECT_I18N_KEYS[name]) : name
+}
+
+function _renderPartialBenchmarkNote(show, t) {
+  if (!show) return null
+
+  return (
+    <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+      {t('models.partialWrongOnly')}
+    </p>
+  )
 }
 
 /**
@@ -226,6 +237,19 @@ function Dashboard() {
   const displayModels = useMemo(() => {
     return filteredScores.map(s => s.model)
   }, [filteredScores])
+
+  const overviewHasPartialBenchmark = useMemo(() => {
+    return hasPartialBenchmark(displayModels)
+  }, [displayModels])
+
+  const costHasPartialBenchmark = useMemo(() => {
+    return hasPartialBenchmark(costData.map(item => item.model))
+  }, [costData])
+
+  const compareHasPartialBenchmark = useMemo(() => {
+    if (hasPartialBenchmark(compareModels)) return true
+    return Boolean(hoveredModel && isPartialBenchmarkModel(hoveredModel) && !compareModels.includes(hoveredModel))
+  }, [compareModels, hoveredModel])
 
   // 선지 선택률 데이터
   const choiceData = useMemo(() => {
@@ -560,6 +584,7 @@ function Dashboard() {
                     hoveredModel={hoveredModel}
                     onModelHover={setHoveredModel}
                   />
+                  {_renderPartialBenchmarkNote(overviewHasPartialBenchmark, t)}
                 </div>
                 <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
                   <ScoreTable
@@ -572,6 +597,7 @@ function Dashboard() {
                     hoveredModel={hoveredModel}
                     onModelHover={setHoveredModel}
                   />
+                  {_renderPartialBenchmarkNote(overviewHasPartialBenchmark, t)}
                 </div>
               </>
             )}
@@ -709,7 +735,7 @@ function Dashboard() {
                                         }
                                       }}
                                     />
-                                    <span className="text-sm">{model}</span>
+                                    <span className="text-sm">{formatModelDisplayName(model)}</span>
                                   </label>
                                 )
                               })}
@@ -728,6 +754,7 @@ function Dashboard() {
                     hoveredModel={hoveredModel}
                     onModelHover={setHoveredModel}
                   />
+                  {_renderPartialBenchmarkNote(compareHasPartialBenchmark, t)}
                 </div>
               )
             })()}
@@ -741,6 +768,7 @@ function Dashboard() {
                     title={t('charts.costVsPerformance')}
                     maxScore={maxScore}
                   />
+                  {_renderPartialBenchmarkNote(costHasPartialBenchmark, t)}
                 </div>
                 <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
                   <TokenUsageChart
@@ -755,6 +783,7 @@ function Dashboard() {
                     data={costData}
                     title={t('charts.costInfo')}
                   />
+                  {_renderPartialBenchmarkNote(costHasPartialBenchmark, t)}
                 </div>
               </>
             )}

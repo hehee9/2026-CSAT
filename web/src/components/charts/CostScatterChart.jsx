@@ -18,8 +18,9 @@ import {
 import { useTranslation } from 'react-i18next'
 import { getModelColor } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 커스텀 툴팁 컴포넌트
@@ -32,7 +33,7 @@ function CustomTooltip({ active, payload, t }) {
 
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-3">
-      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">{data.model}</p>
+      <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">{formatModelDisplayName(data.model)}</p>
       <div className="space-y-1 text-sm">
         <p className="text-gray-600 dark:text-gray-400">
           {t('table.score')}: <span className="font-medium">{data.score?.toFixed(1)}</span>{t('common.points')}
@@ -79,7 +80,7 @@ function createCustomLabel(darkMode) {
         className="hidden"
         data-export-show="true"
       >
-        {value}
+        {formatModelDisplayName(value)}
       </text>
     )
   }
@@ -131,7 +132,7 @@ export default function CostScatterChart({
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
 
   // 모바일 감지
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
@@ -282,6 +283,7 @@ export default function CostScatterChart({
           </Scatter>
         </ScatterChart>
       </ResponsiveContainer>
+      <BenchmarkNote />
     </div>
   )
 }

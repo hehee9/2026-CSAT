@@ -11,7 +11,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { BenchmarkNote, ExportButton } from '@/components/common'
 
 /**
  * @brief 선택률에 따른 색상 강도 계산
@@ -188,6 +188,7 @@ export default function ChoiceSelectionChart({ data, title }) {
           <span>{t('choice.legend.incorrect')}</span>
         </div>
       </div>
+      <BenchmarkNote />
     </div>
   )
 }

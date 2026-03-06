@@ -136,6 +136,12 @@
     "axisTestCost": "Test Cost ($)",
     "axisScore": "Score"
   },
+  "models": {
+    "partialWrongOnly": "* GPT-5.4 (xhigh, wrong-only) is a partial experiment that reruns only the questions GPT-5.4 (high) got wrong with xhigh reasoning."
+  },
+  "benchmark": {
+    "noExternalSearch": "※ These results were produced without external web search."
+  },
   "tooltip": {
     "score": "Score",
     "points": "pts",

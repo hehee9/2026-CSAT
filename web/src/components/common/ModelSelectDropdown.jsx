@@ -6,6 +6,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { groupModelsByVendor, getSortedVendors, getModelColor } from '@/utils/colorUtils'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /**
  * @brief 모델 선택 드롭다운 컴포넌트
@@ -118,7 +119,7 @@ export default function ModelSelectDropdown({
                       disabled={isDisabled}
                       onClick={() => handleToggleModel(model)}
                     >
-                      <span className="truncate">{model}</span>
+                      <span className="truncate">{formatModelDisplayName(model)}</span>
                       {isSelected && (
                         <svg className="w-5 h-5 text-blue-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -145,7 +146,7 @@ export default function ModelSelectDropdown({
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: getModelColor(model) }}
               />
-              <span className="truncate max-w-[120px]">{model}</span>
+              <span className="truncate max-w-[120px]">{formatModelDisplayName(model)}</span>
               <button
                 className="w-4 h-4 flex items-center justify-center hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full"
                 onClick={(e) => handleRemoveModel(model, e)}

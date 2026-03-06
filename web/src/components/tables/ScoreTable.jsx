@@ -8,8 +8,9 @@ import { useTranslation } from 'react-i18next'
 import { toPng } from 'html-to-image'
 import JSZip from 'jszip'
 import { getModelColor } from '@/utils/colorUtils'
-import { useExportImage } from '@/hooks/useExportImage'
-import { ExportButton } from '@/components/common'
+import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
+import { BenchmarkNote, ExportButton } from '@/components/common'
+import { formatModelDisplayName } from '@/utils/modelMeta'
 
 /** @brief 모바일 브레이크포인트 */
 const MOBILE_BREAKPOINT = 768
@@ -63,18 +64,19 @@ function ScoreCell({ score, maxScore, decimals = 1 }) {
  * @return {React.ReactNode} 포맷된 모델명
  */
 function _formatModelName(name) {
-  if (name.length <= 25) return name
-  const parenIndex = name.indexOf('(')
+  const displayName = formatModelDisplayName(name)
+  if (displayName.length <= 25) return displayName
+  const parenIndex = displayName.indexOf('(')
   if (parenIndex > 0) {
     return (
       <>
-        {name.slice(0, parenIndex).trim()}
+        {displayName.slice(0, parenIndex).trim()}
         <br />
-        <span className="text-sm">{name.slice(parenIndex)}</span>
+        <span className="text-sm">{displayName.slice(parenIndex)}</span>
       </>
     )
   }
-  return name
+  return displayName
 }
 
 /**
@@ -198,7 +200,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
   const [sortConfig, setSortConfig] = useState({ key: 'total', direction: 'desc' })
   const [isMobile, setIsMobile] = useState(false)
   const [showExportOptions, setShowExportOptions] = useState(false)
-  const { ref, exportImage } = useExportImage()
+  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
   const cardRefs = useRef([])
   const exportDropdownRef = useRef(null)
 
@@ -374,6 +376,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           t={t}
           cardRefs={cardRefs}
         />
+        <BenchmarkNote />
       </div>
     )
   }
@@ -534,7 +537,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
                       className="inline-block w-3 h-3 rounded-full mr-2"
                       style={{ backgroundColor: getModelColor(row.model) }}
                     />
-                    {row.model}
+                    {formatModelDisplayName(row.model)}
                   </td>
 
                   {/* 국어 */}
@@ -615,6 +618,7 @@ export default function ScoreTable({ data, onRowClick, title, showDetail = false
           </tbody>
         </table>
       </div>
+      <BenchmarkNote />
     </div>
   )
 }
