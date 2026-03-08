@@ -153,7 +153,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GLM-5 (Thinking / Non-Thinking)
 
 - **Alibaba Cloud Qwen 시리즈**
-  - Qwen3.5 (Thinking / Non-Thinking)
+  - Qwen3.5 397B (Thinking / Non-Thinking)
+  - Qwen3.5 27B (Thinking / Non-Thinking)
 
 - **LGAI EXAONE 시리즈** (via FriendliAI)
   - K-EXAONE-236B-A23B (Thinking)
