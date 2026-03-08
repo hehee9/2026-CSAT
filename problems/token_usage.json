@@ -2684,6 +2684,80 @@
           "question_count": 11
         }
       }
+    },
+    "Qwen3.5 397B (Non-Thinking)": {
+      "total_input_tokens": 195894,
+      "total_output_tokens": 482618,
+      "total_tokens": 678512,
+      "question_count": 247,
+      "last_updated": "2026-03-09 02:42:22",
+      "sections": {
+        "영어-공통": {
+          "input_tokens": 16801,
+          "output_tokens": 19745,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 11366,
+          "output_tokens": 8409,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 27734,
+          "output_tokens": 74945,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 11118,
+          "output_tokens": 38521,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 17798,
+          "output_tokens": 103868,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 16673,
+          "output_tokens": 76885,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 6200,
+          "output_tokens": 40994,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 4644,
+          "output_tokens": 31819,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 2493,
+          "output_tokens": 23439,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2931,
+          "output_tokens": 19238,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 45791,
+          "output_tokens": 31300,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 16696,
+          "output_tokens": 6766,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 15649,
+          "output_tokens": 6689,
+          "question_count": 11
+        }
+      }
     }
   }
 }
