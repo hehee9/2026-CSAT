@@ -2758,6 +2758,21 @@
           "question_count": 11
         }
       }
+    },
+    "Grok 4.20 Multi-Agent Beta (16 Agents)": {
+      "total_input_tokens": 777280,
+      "total_cached_input_tokens": 487744,
+      "total_output_tokens": 866343,
+      "total_tokens": 1643623,
+      "question_count": 20,
+      "last_updated": "2026-03-12 01:51:50",
+      "sections": {
+        "한국사-공통": {
+          "input_tokens": 777280,
+          "output_tokens": 866343,
+          "question_count": 20
+        }
+      }
     }
   }
 }
