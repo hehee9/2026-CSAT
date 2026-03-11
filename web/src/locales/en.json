@@ -87,6 +87,7 @@
     "inputPrice": "Input ($/1M)",
     "outputPrice": "Output ($/1M)",
     "inputTokens": "Input Tokens",
+    "cachedInputTokens": "Cached Input Tokens",
     "outputTokens": "Output Tokens",
     "totalCost": "Total Cost",
     "score": "Score",
