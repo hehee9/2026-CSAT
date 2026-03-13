@@ -670,7 +670,7 @@ class SyncManager:
 
         candidate_keys = [sheet_name]
         if sheet_name in ['영어', '한국사']:
-            candidate_keys.extend([f'{sheet_name}-공통', sheet_name])
+            candidate_keys = [f'{sheet_name}-공통', sheet_name]
         elif sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
             candidate_keys.append(f'탐구-{sheet_name}')
 

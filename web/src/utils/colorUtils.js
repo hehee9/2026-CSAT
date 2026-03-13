@@ -5,7 +5,7 @@
  * generate_charts.py의 ChartConfig 색상 체계를 JavaScript로 포팅
  */
 
-import { formatModelDisplayName, isPartialBenchmarkModel } from './modelMeta'
+import { formatModelDisplayName } from './modelMeta'
 
 /**
  * @brief 브랜드별 색상 상수
@@ -278,13 +278,11 @@ export function isDarkMode() {
  * @return {string[]} 기본 선택된 모델명 배열
  *
  * 규칙:
- * - 일반 모델: 각 개발사별 min(floor(50%), 4개) 모델 선택 (점수 높은 순, 최소 1개)
- * - 부분 벤치마크 모델: 기본 선택에 항상 포함
+ * - 모든 모델: 각 개발사별 min(floor(50%), 3개) 모델 선택 (점수 높은 순, 최소 1개)
+ * - 부분 벤치마크 모델도 같은 개발사 제한(최대 3개) 안에서 경쟁
  */
 export function getDefaultSelectedModels(models, scoreData) {
-  const visibleModels = models.filter(model => !isPartialBenchmarkModel(model))
-  const partialModels = models.filter(model => isPartialBenchmarkModel(model))
-  const grouped = groupModelsByVendor(visibleModels)
+  const grouped = groupModelsByVendor(models)
   const scoreMap = new Map(scoreData.map(s => [s.model, s.total]))
   const result = []
 
@@ -296,14 +294,10 @@ export function getDefaultSelectedModels(models, scoreData) {
       (scoreMap.get(b) || 0) - (scoreMap.get(a) || 0)
     )
 
-    // min(floor(50%), 4개), 최소 1개 보장
-    const limit = Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 4)
+    // min(floor(50%), 3개), 최소 1개 보장
+    const limit = Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 3)
     result.push(...sorted.slice(0, limit))
   })
 
-  const sortedPartialModels = [...partialModels].sort((a, b) =>
-    (scoreMap.get(b) || 0) - (scoreMap.get(a) || 0)
-  )
-
-  return [...result, ...sortedPartialModels]
+  return result
 }
