@@ -2761,6 +2761,7 @@
     },
     "Grok 4.20 Multi-Agent Beta (16 Agents)": {
       "total_input_tokens": 777280,
+      "total_cached_input_tokens": 487744,
       "total_output_tokens": 866343,
       "total_tokens": 1643623,
       "question_count": 20,
