@@ -1,0 +1,2 @@
+# PNG 이미지를 binary로 선언 — 충돌 시 내용 기반 merge 시도 방지
+docs/images/*.png binary

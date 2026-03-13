@@ -15,7 +15,7 @@ export default defineConfig({
   base: '/2026-CSAT/',
   build: {
     outDir: '../docs',
-    emptyOutDir: true
+    emptyOutDir: false
   },
   resolve: {
     alias: {

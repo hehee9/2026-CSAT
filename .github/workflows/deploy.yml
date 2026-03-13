@@ -33,6 +33,9 @@ jobs:
         working-directory: web
         run: npx playwright install --with-deps chromium
 
+      - name: Clean stale build assets
+        run: rm -rf docs/assets/
+
       - name: Sync dashboard assets
         working-directory: web
         run: npm run sync:assets
