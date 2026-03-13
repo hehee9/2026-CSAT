@@ -537,7 +537,6 @@ export function getCostData(data, overallScores, tokenUsage = {}, subjectFilter 
     if (!priceMap[d.model_name] && d.price) {
       priceMap[d.model_name] = {
         input: d.price.input ?? 0,
-        cachedInput: d.price.cached_input ?? d.price.input ?? 0,
         output: d.price.output ?? 0
       }
     }
@@ -545,23 +544,21 @@ export function getCostData(data, overallScores, tokenUsage = {}, subjectFilter 
 
   // 1단계: 기본 데이터 계산
   const results = overallScores.map(score => {
-    const price = priceMap[score.model] || { input: 0, cachedInput: 0, output: 0 }
+    const price = priceMap[score.model] || { input: 0, output: 0 }
     const usage = tokenUsage[score.model] || {}
 
     // 토큰 계산: 과목 필터 적용
-    let inputTokens, cachedInputTokens, outputTokens
+    let inputTokens, outputTokens
 
     if (subjectFilter.length > 0) {
       // 과목 필터 활성화
       if (!usage.sections) {
         // sections 데이터 없으면 토큰 0으로 설정 (테이블에는 표시)
         inputTokens = 0
-        cachedInputTokens = 0
         outputTokens = 0
       } else {
         // 선택된 과목들의 토큰만 합산
         inputTokens = 0
-        cachedInputTokens = 0
         outputTokens = 0
 
         subjectFilter.forEach(subject => {
@@ -570,7 +567,6 @@ export function getCostData(data, overallScores, tokenUsage = {}, subjectFilter 
             if (sectionKey.startsWith(subject + '-') || sectionKey === subject) {
               const section = usage.sections[sectionKey]
               inputTokens += section.input_tokens || 0
-              cachedInputTokens += section.cached_input_tokens || 0
               outputTokens += section.output_tokens || 0
             }
           })
@@ -579,17 +575,11 @@ export function getCostData(data, overallScores, tokenUsage = {}, subjectFilter 
     } else {
       // 전체 토큰
       inputTokens = usage.total_input_tokens || 0
-      cachedInputTokens = usage.total_cached_input_tokens || 0
       outputTokens = usage.total_output_tokens || 0
     }
 
-    const boundedCachedInputTokens = Math.min(cachedInputTokens, inputTokens)
-    const uncachedInputTokens = Math.max(inputTokens - boundedCachedInputTokens, 0)
-
     // 실제 비용 계산: 토큰 수 × (가격 / 1M)
-    const inputCostActual =
-      uncachedInputTokens * (price.input / 1000000) +
-      boundedCachedInputTokens * (price.cachedInput / 1000000)
+    const inputCostActual = inputTokens * (price.input / 1000000)
     const outputCostActual = outputTokens * (price.output / 1000000)
     const totalCost = inputCostActual + outputCostActual
 
@@ -597,11 +587,8 @@ export function getCostData(data, overallScores, tokenUsage = {}, subjectFilter 
       model: score.model,
       score: score.total,
       inputPrice: price.input,       // $/1M 토큰 가격
-      cachedInputPrice: price.cachedInput,
       outputPrice: price.output,     // $/1M 토큰 가격
       inputTokens,
-      cachedInputTokens: boundedCachedInputTokens,
-      uncachedInputTokens,
       outputTokens,
       totalCost                      // 실제 테스트 비용 ($)
     }

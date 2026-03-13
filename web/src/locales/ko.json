@@ -87,7 +87,6 @@
     "inputPrice": "입력 ($/1M)",
     "outputPrice": "출력 ($/1M)",
     "inputTokens": "입력 토큰",
-    "cachedInputTokens": "캐시 입력 토큰",
     "outputTokens": "출력 토큰",
     "totalCost": "총 비용",
     "score": "총점",

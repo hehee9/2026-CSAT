@@ -46,11 +46,6 @@ function CustomTooltip({ active, payload, t }) {
             {t('cost.inputTokensShort')}: {(data.inputTokens / 1000).toFixed(1)}K {t('cost.tokens')} (${data.inputPrice}{t('cost.perMillion')})
           </p>
         )}
-        {data.cachedInputTokens > 0 && (
-          <p className="text-gray-500 dark:text-gray-400 text-xs">
-            {t('table.cachedInputTokens')}: {(data.cachedInputTokens / 1000).toFixed(1)}K {t('cost.tokens')} (${data.cachedInputPrice}{t('cost.perMillion')})
-          </p>
-        )}
         {data.outputTokens > 0 && (
           <p className="text-gray-500 dark:text-gray-400 text-xs">
             {t('cost.outputTokensShort')}: {(data.outputTokens / 1000).toFixed(1)}K {t('cost.tokens')} (${data.outputPrice}{t('cost.perMillion')})

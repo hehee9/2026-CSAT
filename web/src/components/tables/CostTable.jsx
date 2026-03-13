@@ -88,7 +88,6 @@ export default function CostTable({ data, title }) {
       { key: 'inputPrice', label: t('table.inputPrice'), format: (v) => v ? `$${v.toFixed(2)}` : '-' },
       { key: 'outputPrice', label: t('table.outputPrice'), format: (v) => v ? `$${v.toFixed(2)}` : '-' },
       { key: 'inputTokens', label: t('table.inputTokens'), format: (v) => v > 0 ? `${(v / 1000).toFixed(1)}K` : '-' },
-      { key: 'cachedInputTokens', label: t('table.cachedInputTokens'), format: (v) => v > 0 ? `${(v / 1000).toFixed(1)}K` : '-' },
       { key: 'outputTokens', label: t('table.outputTokens'), format: (v) => v > 0 ? `${(v / 1000).toFixed(1)}K` : '-' },
       { key: 'totalCost', label: t('table.totalCost'), format: (v) => v > 0 ? `$${v.toFixed(4)}` : '-' },
       { key: 'score', label: t('table.score'), format: (v) => v ? v.toFixed(1) : '-' },
@@ -163,7 +162,6 @@ export default function CostTable({ data, title }) {
     { key: 'inputPrice', label: t('table.inputPrice'), align: 'right' },
     { key: 'outputPrice', label: t('table.outputPrice'), align: 'right' },
     { key: 'inputTokens', label: t('table.inputTokens'), align: 'right' },
-    { key: 'cachedInputTokens', label: t('table.cachedInputTokens'), align: 'right' },
     { key: 'outputTokens', label: t('table.outputTokens'), align: 'right' },
     { key: 'totalCost', label: t('table.totalCost'), align: 'right' },
     { key: 'score', label: t('table.score'), align: 'right' },
@@ -228,11 +226,6 @@ export default function CostTable({ data, title }) {
                     : '-'}
                 </td>
                 <td className="px-3 py-2 text-right text-gray-500 dark:text-gray-500">
-                  {row.cachedInputTokens > 0
-                    ? `${(row.cachedInputTokens / 1000).toFixed(1)}K`
-                    : '-'}
-                </td>
-                <td className="px-3 py-2 text-right text-gray-500 dark:text-gray-500">
                   {row.outputTokens > 0
                     ? `${(row.outputTokens / 1000).toFixed(1)}K`
                     : '-'}
@@ -260,7 +253,7 @@ export default function CostTable({ data, title }) {
                   className="border-t border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                   onClick={() => setShowHiddenModels(prev => !prev)}
                 >
-                  <td colSpan={9} className="px-3 py-2 text-sm text-gray-600 dark:text-gray-400">
+                  <td colSpan={8} className="px-3 py-2 text-sm text-gray-600 dark:text-gray-400">
                     <span className="mr-2">{showHiddenModels ? '▼' : '▶'}</span>
                     {t('cost.noTokenInfo')} ({withoutTokens.length})
                   </td>
