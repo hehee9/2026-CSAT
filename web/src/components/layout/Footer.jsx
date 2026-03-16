@@ -3,7 +3,64 @@
  * @brief 대시보드 하단 Footer 컴포넌트
  */
 
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useData } from '@/hooks/useData'
+
+/**
+ * @brief "YYYY-MM-DD HH:mm:ss" 형식 문자열을 Date로 파싱
+ * @param {string} value
+ * @return {Date|null}
+ */
+function parseLastUpdated(value) {
+  if (typeof value !== 'string') return null
+
+  const match = value.match(
+    /^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2}):(\d{2}))?$/
+  )
+
+  if (!match) return null
+
+  const [, year, month, day, hour = '00', minute = '00', second = '00'] = match
+  const parsed = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    Number(hour),
+    Number(minute),
+    Number(second)
+  )
+
+  return Number.isNaN(parsed.getTime()) ? null : parsed
+}
+
+/**
+ * @brief 가장 최근 업데이트 날짜를 로케일에 맞게 포맷
+ * @param {Object} tokenUsage
+ * @param {string} language
+ * @return {string}
+ */
+function formatLastUpdated(tokenUsage, language) {
+  const latest = Object.values(tokenUsage || {})
+    .map(model => parseLastUpdated(model?.last_updated))
+    .filter(Boolean)
+    .sort((a, b) => b.getTime() - a.getTime())[0]
+
+  if (!latest) return '-'
+
+  if (language === 'ko') {
+    const year = latest.getFullYear()
+    const month = String(latest.getMonth() + 1).padStart(2, '0')
+    const day = String(latest.getDate()).padStart(2, '0')
+    return `${year}.${month}.${day}`
+  }
+
+  return new Intl.DateTimeFormat(language || 'en', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(latest)
+}
 
 /**
  * @brief GitHub 아이콘 SVG
@@ -49,7 +106,12 @@ function ExternalLinkIcon() {
  * @brief Footer 컴포넌트
  */
 export default function Footer() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const { tokenUsage } = useData()
+  const lastUpdated = useMemo(
+    () => formatLastUpdated(tokenUsage, i18n.language),
+    [tokenUsage, i18n.language]
+  )
 
   return (
     <footer className="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 px-6 pb-20 md:pb-4">
@@ -83,7 +145,7 @@ export default function Footer() {
 
         {/* 최종 업데이트 */}
         <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-          {t('footer.lastUpdated')}: 2025.01.04
+          {t('footer.lastUpdated')}: {lastUpdated}
         </p>
 
         {/* 면책 조항 */}
