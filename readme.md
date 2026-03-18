@@ -100,6 +100,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
   - GPT-5.4 (xhigh* / high / none)
+  - GPT-5.4 mini (xhigh / none)
+  - GPT-5.4 nano (xhigh / none)
   - GPT-5.2 (xhigh / Instant)
   - GPT-5.1 (high)
   - GPT-5.1 Codex (high)
