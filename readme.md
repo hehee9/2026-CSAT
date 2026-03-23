@@ -165,6 +165,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 - **Upstage Solar 시리즈**
   - Solar 3 Pro (high / low)
+  - Solar 3 Pro 0323 (high / low)
 
 ※ DeepSeek, EXAONE, Solar, GLM은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 ※ Kimi K2.5는 INT4 양자화가 적용되었습니다.
