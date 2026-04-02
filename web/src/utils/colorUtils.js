@@ -32,7 +32,7 @@ export const MODEL_COLORS = {
  */
 export const VENDORS = [
   { id: 'openai', name: 'OpenAI', pattern: /gpt|^o\d/i, color: MODEL_COLORS.GPT },
-  { id: 'google', name: 'Google', pattern: /gemini/i, color: MODEL_COLORS.Gemini },
+  { id: 'google', name: 'Google', pattern: /gemini|gemma/i, color: MODEL_COLORS.Gemini },
   { id: 'anthropic', name: 'Anthropic', pattern: /claude/i, color: MODEL_COLORS.Claude },
   { id: 'xai', name: 'xAI', pattern: /grok/i, color: MODEL_COLORS.Grok },
   { id: 'deepseek', name: 'DeepSeek', pattern: /deepseek/i, color: MODEL_COLORS.DeepSeek },
