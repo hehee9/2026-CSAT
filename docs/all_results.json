@@ -18469,8 +18469,8 @@
       "output_tokens": 20131
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -18727,8 +18727,8 @@
       "output_tokens": 103104
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -18985,8 +18985,8 @@
       "output_tokens": 17595
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -19243,8 +19243,8 @@
       "output_tokens": 71078
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -26365,8 +26365,8 @@
       "output_tokens": 6739
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -26462,8 +26462,8 @@
       "output_tokens": 7397
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -26559,8 +26559,8 @@
       "output_tokens": 23199
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -26656,8 +26656,8 @@
       "output_tokens": 19681
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -33617,8 +33617,8 @@
       "output_tokens": 7543
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -33714,8 +33714,8 @@
       "output_tokens": 6518
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -33811,8 +33811,8 @@
       "output_tokens": 65711
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -33908,8 +33908,8 @@
       "output_tokens": 25526
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -46413,8 +46413,8 @@
       "output_tokens": 69673
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -46587,8 +46587,8 @@
       "output_tokens": 53312
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -46761,8 +46761,8 @@
       "output_tokens": 19672
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -46935,8 +46935,8 @@
       "output_tokens": 46261
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -52461,8 +52461,8 @@
       "output_tokens": 9168
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -52537,8 +52537,8 @@
       "output_tokens": 9658
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -52613,8 +52613,8 @@
       "output_tokens": 47143
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -52689,8 +52689,8 @@
       "output_tokens": 27136
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -58117,8 +58117,8 @@
       "output_tokens": 8792
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -58193,8 +58193,8 @@
       "output_tokens": 53308
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -58269,8 +58269,8 @@
       "output_tokens": 13140
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -58345,8 +58345,8 @@
       "output_tokens": 31696
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -63773,8 +63773,8 @@
       "output_tokens": 15231
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -63849,8 +63849,8 @@
       "output_tokens": 44247
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -63925,8 +63925,8 @@
       "output_tokens": 27663
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -64001,8 +64001,8 @@
       "output_tokens": 31720
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -88077,8 +88077,8 @@
       "output_tokens": 21446
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -88412,8 +88412,8 @@
       "output_tokens": 76921
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -88747,8 +88747,8 @@
       "output_tokens": 47014
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -89082,8 +89082,8 @@
       "output_tokens": 18413
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -100817,8 +100817,8 @@
       "output_tokens": 10074
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -100977,8 +100977,8 @@
       "output_tokens": 20763
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -101137,8 +101137,8 @@
       "output_tokens": 30753
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -101297,8 +101297,8 @@
       "output_tokens": 7100
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -112857,8 +112857,8 @@
       "output_tokens": 45322
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -113017,8 +113017,8 @@
       "output_tokens": 26075
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -113177,8 +113177,8 @@
       "output_tokens": 180411
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -113337,8 +113337,8 @@
       "output_tokens": 132796
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -124897,8 +124897,8 @@
       "output_tokens": 30094
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -125057,8 +125057,8 @@
       "output_tokens": 85110
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -125217,8 +125217,8 @@
       "output_tokens": 194687
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -125377,8 +125377,8 @@
       "output_tokens": 58692
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -136937,8 +136937,8 @@
       "output_tokens": 172801
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -137097,8 +137097,8 @@
       "output_tokens": 138602
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -137257,8 +137257,8 @@
       "output_tokens": 54783
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -137417,8 +137417,8 @@
       "output_tokens": 26871
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -148977,8 +148977,8 @@
       "output_tokens": 32761
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -149137,8 +149137,8 @@
       "output_tokens": 71162
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
@@ -149297,8 +149297,8 @@
       "output_tokens": 137099
     },
     "price": {
-      "input": 0.2,
-      "output": 1.0
+      "input": 0.1,
+      "output": 0.4
     },
     "results": [
       {
@@ -149457,8 +149457,8 @@
       "output_tokens": 19499
     },
     "price": {
-      "input": 0.3,
-      "output": 2.4
+      "input": 0.14,
+      "output": 0.4
     },
     "results": [
       {
