@@ -112,7 +112,7 @@ export function getModelColor(modelName) {
   if (name.includes('gpt') || /^o\d/.test(name)) {
     return MODEL_COLORS.GPT
   }
-  if (name.includes('gemini')) {
+  if (name.includes('gemini') || name.includes('gemma')) {
     return MODEL_COLORS.Gemini
   }
   if (name.includes('claude')) {
