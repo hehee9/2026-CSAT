@@ -131,6 +131,10 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Gemini 2.0 Flash
   - Gemini 2.0 Flash Lite
 
+- **Google Gemma 시리즈**
+  - Gemma 4 31B (high / minimal)
+  - Gemma 4 26B A4B (high / minimal)
+
 - **Anthropic Claude 시리즈**
   - Claude Opus 4.5 (32K Thinking / Non-Thinking)
   - Claude Sonnet 4.5 (32K Thinking / Non-Thinking)
