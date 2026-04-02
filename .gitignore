@@ -46,6 +46,7 @@ CLAUDE.md
 .claude/
 .mcp.json
 prototype.html
+thesis/
 
 # Don't ignore the main Excel file and images
 !2026 수능 LLM 풀이.xlsx

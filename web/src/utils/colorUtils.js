@@ -21,6 +21,7 @@ export const MODEL_COLORS = {
   Kimi: '#2D2D2D',      // Moonshot - 매우 어두운 회색
   GLM: '#1A73E8',       // Zhipu AI - 파란색
   Qwen: '#FF6A00',      // Alibaba - 주황색
+  Kakao: '#FEE500',     // Kakao - 노란색
   default: '#6B7280'    // 기타 - 회색
 }
 
@@ -40,6 +41,7 @@ export const VENDORS = [
   { id: 'moonshot', name: 'Moonshot', pattern: /kimi/i, color: MODEL_COLORS.Kimi },
   { id: 'zhipu', name: 'Zhipu AI', pattern: /glm/i, color: MODEL_COLORS.GLM },
   { id: 'alibaba', name: 'Alibaba', pattern: /qwen/i, color: MODEL_COLORS.Qwen },
+  { id: 'kakao', name: 'Kakao', pattern: /kanana/i, color: MODEL_COLORS.Kakao },
   { id: 'other', name: '기타', pattern: null, color: MODEL_COLORS.default }
 ]
 
@@ -136,6 +138,9 @@ export function getModelColor(modelName) {
   }
   if (name.includes('qwen')) {
     return MODEL_COLORS.Qwen
+  }
+  if (name.includes('kanana')) {
+    return MODEL_COLORS.Kakao
   }
 
   return MODEL_COLORS.default
