@@ -147,6 +147,153 @@
           "question_count": 11
         }
       }
+    },
+    "Kanana-1.5-o 9.8B 2602": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_tokens": 0,
+      "question_count": 10,
+      "last_updated": "2026-04-03 01:30:50",
+      "sections": {
+        "국어-공통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 10
+        }
+      }
+    },
+    "Gemma 4 26B A4B (high)": {
+      "total_input_tokens": 17771,
+      "total_output_tokens": 64192,
+      "total_tokens": 81963,
+      "question_count": 21,
+      "last_updated": "2026-04-03 02:21:32",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 4308,
+          "output_tokens": 9202,
+          "total_tokens": 13510,
+          "question_count": 4
+        },
+        "수학-확통": {
+          "input_tokens": 115,
+          "output_tokens": 861,
+          "total_tokens": 976,
+          "question_count": 1
+        },
+        "국어-공통": {
+          "input_tokens": 11703,
+          "output_tokens": 21132,
+          "total_tokens": 32835,
+          "question_count": 7
+        },
+        "수학-공통": {
+          "input_tokens": 1645,
+          "output_tokens": 32997,
+          "total_tokens": 34642,
+          "question_count": 9
+        }
+      }
+    },
+    "Gemma 4 31B (high)": {
+      "total_input_tokens": 19497,
+      "total_output_tokens": 51214,
+      "total_tokens": 70711,
+      "question_count": 25,
+      "last_updated": "2026-04-03 02:21:32",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 4308,
+          "output_tokens": 7433,
+          "total_tokens": 11741,
+          "question_count": 4
+        },
+        "수학-확통": {
+          "input_tokens": 145,
+          "output_tokens": 2390,
+          "total_tokens": 2535,
+          "question_count": 1
+        },
+        "국어-공통": {
+          "input_tokens": 13489,
+          "output_tokens": 18615,
+          "total_tokens": 32104,
+          "question_count": 8
+        },
+        "수학-공통": {
+          "input_tokens": 1555,
+          "output_tokens": 22776,
+          "total_tokens": 24331,
+          "question_count": 12
+        }
+      }
+    },
+    "Gemma 4 26B A4B": {
+      "total_input_tokens": 21155,
+      "total_output_tokens": 20192,
+      "total_tokens": 41347,
+      "question_count": 24,
+      "last_updated": "2026-04-03 02:21:32",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 5911,
+          "output_tokens": 2449,
+          "total_tokens": 8360,
+          "question_count": 5
+        },
+        "수학-확통": {
+          "input_tokens": 115,
+          "output_tokens": 354,
+          "total_tokens": 469,
+          "question_count": 1
+        },
+        "국어-공통": {
+          "input_tokens": 13489,
+          "output_tokens": 4962,
+          "total_tokens": 18451,
+          "question_count": 8
+        },
+        "수학-공통": {
+          "input_tokens": 1640,
+          "output_tokens": 12427,
+          "total_tokens": 14067,
+          "question_count": 10
+        }
+      }
+    },
+    "Gemma 4 31B": {
+      "total_input_tokens": 19174,
+      "total_output_tokens": 18339,
+      "total_tokens": 37513,
+      "question_count": 21,
+      "last_updated": "2026-04-03 02:21:32",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 5911,
+          "output_tokens": 4244,
+          "total_tokens": 10155,
+          "question_count": 5
+        },
+        "수학-확통": {
+          "input_tokens": 115,
+          "output_tokens": 387,
+          "total_tokens": 502,
+          "question_count": 1
+        },
+        "국어-공통": {
+          "input_tokens": 11881,
+          "output_tokens": 3652,
+          "total_tokens": 15533,
+          "question_count": 7
+        },
+        "수학-공통": {
+          "input_tokens": 1267,
+          "output_tokens": 10056,
+          "total_tokens": 11323,
+          "question_count": 8
+        }
+      }
     }
   }
 }
