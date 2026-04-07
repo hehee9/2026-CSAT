@@ -155,7 +155,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **Moonshot AI Kimi 시리즈**
   - Kimi K2.5 (Thinking / Non-Thinking)
 
-- **Z.ai GLM 시리즈** (via Ollama Cloud)
+- **Z.ai GLM 시리즈**
+  - GLM-5.1 (Thinking / Non-Thinking)
   - GLM-5 (Thinking / Non-Thinking)
 
 - **Alibaba Cloud Qwen 시리즈**
