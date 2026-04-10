@@ -21,7 +21,7 @@ import { getModelColor, getShortModelName, CHART_COLORS, lightenColor } from '@/
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
 import { BenchmarkNote, ExportButton } from '@/components/common'
-import { formatModelDisplayName } from '@/utils/modelMeta'
+import { formatModelDisplayName, getModelFlags } from '@/utils/modelMeta'
 
 const MAX_LINE_LENGTH = 21
 const MAX_LINES = 3
@@ -119,6 +119,98 @@ function _wrapText(text, maxLen) {
   }
 
   return lines
+}
+
+/**
+ * @brief 빗금 패턴 SVG defs (비표준 설정 모델용)
+ * @param {{ darkMode: boolean }} props
+ */
+function HatchPatternDefs({ darkMode }) {
+  const strokeColor = darkMode ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.25)'
+  const shadowRgb = darkMode ? '255,255,255' : '0,0,0'
+  const shadowAlpha = darkMode ? 0.15 : 0.2
+  return (
+    <defs>
+      <pattern
+        id="hatch-nonstandard"
+        patternUnits="userSpaceOnUse"
+        width="6"
+        height="6"
+        patternTransform="rotate(45)"
+      >
+        <line x1="0" y1="0" x2="0" y2="6" stroke={strokeColor} strokeWidth="2" />
+      </pattern>
+      {/* noVision용 내부 그림자 그라데이션 (좌, 우, 상, 하) */}
+      <linearGradient id="shadow-left" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor={`rgba(${shadowRgb},${shadowAlpha})`} />
+        <stop offset="100%" stopColor={`rgba(${shadowRgb},0)`} />
+      </linearGradient>
+      <linearGradient id="shadow-right" x1="1" y1="0" x2="0" y2="0">
+        <stop offset="0%" stopColor={`rgba(${shadowRgb},${shadowAlpha})`} />
+        <stop offset="100%" stopColor={`rgba(${shadowRgb},0)`} />
+      </linearGradient>
+      <linearGradient id="shadow-top" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor={`rgba(${shadowRgb},${shadowAlpha})`} />
+        <stop offset="100%" stopColor={`rgba(${shadowRgb},0)`} />
+      </linearGradient>
+      <linearGradient id="shadow-bottom" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stopColor={`rgba(${shadowRgb},${shadowAlpha})`} />
+        <stop offset="100%" stopColor={`rgba(${shadowRgb},0)`} />
+      </linearGradient>
+    </defs>
+  )
+}
+
+/**
+ * @brief 모델 플래그를 반영한 막대 렌더링 헬퍼
+ * @param {Object} props - Recharts shape props (x, y, width, height, payload)
+ * @param {Object} options - { hoveredModel, darkMode, radius, colorOverride }
+ * @return {JSX.Element} SVG <g> 또는 <Rectangle>
+ */
+/**
+ * @brief noVision 모델용 내부 그림자 오버레이
+ */
+function _InnerShadowOverlay({ x, y, width, height }) {
+  const depth = Math.min(8, width * 0.25)
+  return (
+    <>
+      <rect x={x} y={y} width={depth} height={height} fill="url(#shadow-left)" />
+      <rect x={x + width - depth} y={y} width={depth} height={height} fill="url(#shadow-right)" />
+      <rect x={x} y={y} width={width} height={depth} fill="url(#shadow-top)" />
+      <rect x={x} y={y + height - depth} width={width} height={depth} fill="url(#shadow-bottom)" />
+    </>
+  )
+}
+
+function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride }) {
+  const { x, y, width, height, payload } = props
+  const color = colorOverride || payload.color || getModelColor(payload.model)
+  const isHovered = hoveredModel === payload.model
+  const hasHover = hoveredModel !== null
+  const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
+
+  const flags = getModelFlags(payload.model)
+  const transitionStyle = { transition: 'opacity 0.15s ease-in-out' }
+
+  if (flags.noVision || flags.nonStandard) {
+    return (
+      <g style={transitionStyle} opacity={opacity}>
+        <Rectangle x={x} y={y} width={width} height={height} fill={color} radius={radius} />
+        {flags.noVision && <_InnerShadowOverlay x={x} y={y} width={width} height={height} />}
+        {flags.nonStandard && (
+          <Rectangle x={x} y={y} width={width} height={height} fill="url(#hatch-nonstandard)" radius={radius} />
+        )}
+      </g>
+    )
+  }
+
+  return (
+    <Rectangle
+      x={x} y={y} width={width} height={height}
+      fill={color} radius={radius} opacity={opacity}
+      style={transitionStyle}
+    />
+  )
 }
 
 /**
@@ -327,28 +419,11 @@ export default function ScoreBarChart({
               strokeDasharray="3 3"
               strokeWidth={2}
             />
+            <HatchPatternDefs darkMode={darkMode} />
             <Bar
               dataKey="score"
               barSize={24}
-              shape={(props) => {
-                const { x, y, width, height, payload } = props
-                const color = payload.color || getModelColor(payload.model)
-                const isHovered = hoveredModel === payload.model
-                const hasHover = hoveredModel !== null
-                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
-                return (
-                  <Rectangle
-                    x={x}
-                    y={y}
-                    width={width}
-                    height={height}
-                    fill={color}
-                    radius={[0, 4, 4, 0]}
-                    opacity={opacity}
-                    style={{ transition: 'opacity 0.15s ease-in-out' }}
-                  />
-                )
-              }}
+              shape={(props) => _renderBar(props, { hoveredModel, radius: [0, 4, 4, 0] })}
             />
           </BarChart>
         </ResponsiveContainer>
@@ -475,29 +550,12 @@ export default function ScoreBarChart({
               }}
               cursor={{ fill: cursorColor }}
             />
+            <HatchPatternDefs darkMode={darkMode} />
             <Bar
               dataKey="best"
               name={t('charts.bestScore')}
               isAnimationActive={false}
-              shape={(props) => {
-                const { x, y, width, height, payload } = props
-                const color = payload.color || getModelColor(payload.model)
-                const isHovered = hoveredModel === payload.model
-                const hasHover = hoveredModel !== null
-                const opacity = hasHover ? (isHovered ? 0.9 : 0.3) : 0.9
-                return (
-                  <Rectangle
-                    x={x}
-                    y={y}
-                    width={width}
-                    height={height}
-                    fill={color}
-                    radius={[4, 4, 0, 0]}
-                    opacity={opacity}
-                    style={{ transition: 'opacity 0.15s ease-in-out' }}
-                  />
-                )
-              }}
+              shape={(props) => _renderBar(props, { hoveredModel })}
             >
               {showLabels && (
                 <LabelList
@@ -513,24 +571,8 @@ export default function ScoreBarChart({
               name={t('charts.worstScore')}
               isAnimationActive={false}
               shape={(props) => {
-                const { x, y, width, height, payload } = props
-                const color = payload.color || getModelColor(payload.model)
-                const lightColor = lightenColor(color, 0.5)
-                const isHovered = hoveredModel === payload.model
-                const hasHover = hoveredModel !== null
-                const opacity = hasHover ? (isHovered ? 0.9 : 0.3) : 0.9
-                return (
-                  <Rectangle
-                    x={x}
-                    y={y}
-                    width={width}
-                    height={height}
-                    fill={lightColor}
-                    radius={[4, 4, 0, 0]}
-                    opacity={opacity}
-                    style={{ transition: 'opacity 0.15s ease-in-out' }}
-                  />
-                )
+                const baseColor = props.payload.color || getModelColor(props.payload.model)
+                return _renderBar(props, { hoveredModel, colorOverride: lightenColor(baseColor, 0.5) })
               }}
             >
               {showLabels && (
@@ -607,28 +649,11 @@ export default function ScoreBarChart({
               }}
               cursor={{ fill: cursorColor }}
             />
+            <HatchPatternDefs darkMode={darkMode} />
             <Bar
               dataKey="rate"
               isAnimationActive={false}
-              shape={(props) => {
-                const { x, y, width, height, payload } = props
-                const color = payload.color || getModelColor(payload.model)
-                const isHovered = hoveredModel === payload.model
-                const hasHover = hoveredModel !== null
-                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
-                return (
-                  <Rectangle
-                    x={x}
-                    y={y}
-                    width={width}
-                    height={height}
-                    fill={color}
-                    radius={[4, 4, 0, 0]}
-                    opacity={opacity}
-                    style={{ transition: 'opacity 0.15s ease-in-out' }}
-                  />
-                )
-              }}
+              shape={(props) => _renderBar(props, { hoveredModel })}
             >
               <LabelList
                 dataKey="rate"
@@ -678,28 +703,11 @@ export default function ScoreBarChart({
               strokeDasharray="3 3"
             />
             <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+            <HatchPatternDefs darkMode={darkMode} />
             <Bar
               dataKey="score"
               isAnimationActive={false}
-              shape={(props) => {
-                const { x, y, width, height, payload } = props
-                const color = payload.color || getModelColor(payload.model)
-                const isHovered = hoveredModel === payload.model
-                const hasHover = hoveredModel !== null
-                const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
-                return (
-                  <Rectangle
-                    x={x}
-                    y={y}
-                    width={width}
-                    height={height}
-                    fill={color}
-                    radius={[4, 4, 0, 0]}
-                    opacity={opacity}
-                    style={{ transition: 'opacity 0.15s ease-in-out' }}
-                  />
-                )
-              }}
+              shape={(props) => _renderBar(props, { hoveredModel })}
             >
               {showLabels && (
                 <LabelList

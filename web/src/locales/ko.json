@@ -137,7 +137,8 @@
     "axisScore": "총점"
   },
   "models": {
-    "partialWrongOnly": "* GPT-5.4 (xhigh, wrong-only)은 GPT-5.4 (high)에서 틀린 문항만 xhigh로 다시 푼 부분 실험 결과입니다."
+    "noVision": "멀티모달 미지원",
+    "nonStandard": "high에서 틀린 문항만 xhigh로 처리"
   },
   "benchmark": {
     "noExternalSearch": "※ 외부 검색 없이 실행된 결과입니다."

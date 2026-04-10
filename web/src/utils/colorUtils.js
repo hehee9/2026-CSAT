@@ -283,24 +283,56 @@ export function isDarkMode() {
  * @return {string[]} 기본 선택된 모델명 배열
  *
  * 규칙:
- * - 모든 모델: 각 개발사별 min(floor(50%), 3개) 모델 선택 (점수 높은 순, 최소 1개)
- * - 부분 벤치마크 모델도 같은 개발사 제한(최대 3개) 안에서 경쟁
+ * - 개발사를 최고 총점 모델 기준으로 랭킹하고 상위 50%를 계산
+ * - 상위 50% 개발사: 각 개발사별 min(floor(50%), 3개) 모델 선택 (최소 1개)
+ * - 하위 50% 개발사: 기본 표기 최대 1개
+ * - 동점 개발사는 최고 점수 → 평균 점수 → 개발사 ID 순으로 정렬
+ * - scoreData에 없는 모델은 점수 0으로 처리
  */
 export function getDefaultSelectedModels(models, scoreData) {
   const grouped = groupModelsByVendor(models)
   const scoreMap = new Map(scoreData.map(s => [s.model, s.total]))
   const result = []
+  const vendorEntries = Object.entries(grouped).filter(([, vendorModels]) => vendorModels.length > 0)
 
-  Object.values(grouped).forEach(vendorModels => {
+  const getModelScore = (model) => scoreMap.get(model) || 0
+
+  const vendorRankings = vendorEntries
+    .map(([vendorId, vendorModels]) => {
+      const scores = vendorModels.map(getModelScore)
+      const topScore = scores.length ? Math.max(...scores) : 0
+      const averageScore = scores.length
+        ? scores.reduce((sum, score) => sum + score, 0) / scores.length
+        : 0
+
+      return {
+        vendorId,
+        topScore,
+        averageScore
+      }
+    })
+    .sort((a, b) => {
+      if (b.topScore !== a.topScore) return b.topScore - a.topScore
+      if (b.averageScore !== a.averageScore) return b.averageScore - a.averageScore
+      return a.vendorId.localeCompare(b.vendorId)
+    })
+
+  const topVendorCount = Math.ceil(vendorRankings.length / 2)
+  const topVendorIds = new Set(vendorRankings.slice(0, topVendorCount).map(vendor => vendor.vendorId))
+
+  vendorEntries.forEach(([vendorId, vendorModels]) => {
     if (vendorModels.length === 0) return
 
     // 점수 기준 내림차순 정렬
     const sorted = [...vendorModels].sort((a, b) =>
-      (scoreMap.get(b) || 0) - (scoreMap.get(a) || 0)
+      getModelScore(b) - getModelScore(a)
     )
 
-    // min(floor(50%), 3개), 최소 1개 보장
-    const limit = Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 3)
+    // 상위 50% 개발사는 기존 규칙, 하위 50%는 최대 1개
+    const limit = topVendorIds.has(vendorId)
+      ? Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 3)
+      : 1
+
     result.push(...sorted.slice(0, limit))
   })
 

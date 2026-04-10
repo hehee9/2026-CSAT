@@ -121,10 +121,10 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   * GPT-5.4 xhigh는 high에서 틀린 문제만 재측정한 것입니다. xhigh는 성능 향상에 비해 너무 오랜 시간이 걸리고, timeout 발생이 빈번해지기 때문에 이런 방식으로 처리했습니다.
 
 - **Google Gemini 시리즈**
-  - Gemini 3.1 Pro (Preview) (high / low)
-  - Gemini 3.1 Flash Lite (Preview) (high / minimal)
-  - Gemini 3 Pro (Preview) (high / low)
-  - Gemini 3 Flash (Preview) (high / minimal)
+  - Gemini 3.1 Pro (high / low)
+  - Gemini 3.1 Flash Lite (high / minimal)
+  - Gemini 3 Pro (high / low)
+  - Gemini 3 Flash (high / minimal)
   - Gemini 2.5 Pro (32K Thinking)
   - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking / Non-Thinking)
   - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking / Non-Thinking)
@@ -164,10 +164,14 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Qwen3.5 397B (Thinking / Non-Thinking)
   - Qwen3.5 35B A3B (Thinking / Non-Thinking)
   - Qwen3.5 27B (Thinking / Non-Thinking)
+  - Qwen3.5 9B (Thinking / Non-Thinking)
 
 - **LGAI EXAONE 시리즈** (via FriendliAI)
-  - K-EXAONE-236B-A23B (Thinking)
-  - K-EXAONE-236B-A23B (Non-Thinking)
+  - K-EXAONE (Thinking)
+  - K-EXAONE (Non-Thinking)
+
+- **Kakao Kanana 시리즈**
+  - Kanana-o 9.8B
 
 - **Upstage Solar 시리즈**
   - Solar 3 Pro (high / low)

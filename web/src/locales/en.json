@@ -137,7 +137,8 @@
     "axisScore": "Score"
   },
   "models": {
-    "partialWrongOnly": "* GPT-5.4 (xhigh, wrong-only) is a partial experiment that reruns only the questions GPT-5.4 (high) got wrong with xhigh reasoning."
+    "noVision": "No multimodal support",
+    "nonStandard": "Only wrong answers from high retested with xhigh"
   },
   "benchmark": {
     "noExternalSearch": "※ These results were produced without external web search."
