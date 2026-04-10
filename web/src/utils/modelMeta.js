@@ -4,7 +4,7 @@
  */
 
 const PARTIAL_BENCHMARK_MODELS = {
-  'GPT-5.4 (xhigh, wrong-only)': {
+  'GPT-5.4 (xhigh*)': {
     isPartialBenchmark: true,
     displaySuffix: '*',
     descriptionKey: 'models.partialWrongOnly'
