@@ -145,6 +145,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Grok 4 Fast (Thinking)
   - Grok 4.1 Fast (Thinking / Non-Thinking)
 
+- **Mistral 시리즈**
+  - Mistral Small 4 (Thinking / Non-Thinking)
+
 - **DeepSeek 시리즈**
   - DeepSeek V3.2 Exp (Thinking)
   - DeepSeek V3.2 Exp (Non-Thinking)

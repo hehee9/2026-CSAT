@@ -14,6 +14,7 @@ export const MODEL_COLORS = {
   GPT: '#EA4335',       // OpenAI - 빨간색
   Gemini: '#4285F4',    // Google - 파란색
   Claude: '#D2691E',    // Anthropic - 주황색~갈색
+  Mistral: '#FF6B35',   // Mistral AI - 주황색
   Grok: '#6A4C93',      // xAI - 보라색
   DeepSeek: '#1E3A8A',  // DeepSeek - 어두운 파란색
   EXAONE: '#A50034',    // LG - 자홍색
@@ -34,6 +35,7 @@ export const VENDORS = [
   { id: 'openai', name: 'OpenAI', pattern: /gpt|^o\d/i, color: MODEL_COLORS.GPT },
   { id: 'google', name: 'Google', pattern: /gemini|gemma/i, color: MODEL_COLORS.Gemini },
   { id: 'anthropic', name: 'Anthropic', pattern: /claude/i, color: MODEL_COLORS.Claude },
+  { id: 'mistral', name: 'Mistral AI', pattern: /mistral/i, color: MODEL_COLORS.Mistral },
   { id: 'xai', name: 'xAI', pattern: /grok/i, color: MODEL_COLORS.Grok },
   { id: 'deepseek', name: 'DeepSeek', pattern: /deepseek/i, color: MODEL_COLORS.DeepSeek },
   { id: 'lg', name: 'LG AI Research', pattern: /exaone/i, color: MODEL_COLORS.EXAONE },
@@ -117,6 +119,9 @@ export function getModelColor(modelName) {
   }
   if (name.includes('claude')) {
     return MODEL_COLORS.Claude
+  }
+  if (name.includes('mistral')) {
+    return MODEL_COLORS.Mistral
   }
   if (name.includes('grok')) {
     return MODEL_COLORS.Grok

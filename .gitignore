@@ -76,3 +76,7 @@ node_modules/
 tasks.json
 tasks/ 
 .taskmaster/
+
+# Generated web mirror data
+web/public/all_results.json
+web/public/token_usage.json

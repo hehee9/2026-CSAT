@@ -4218,6 +4218,154 @@
           "question_count": 8
         }
       }
+    },
+    "Mistral Small 4 (Non-Thinking)": {
+      "total_input_tokens": 211072,
+      "total_output_tokens": 142934,
+      "total_tokens": 354006,
+      "question_count": 247,
+      "last_updated": "2026-04-12 17:10:20",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 16034,
+          "output_tokens": 4626,
+          "question_count": 11
+        },
+        "수학-기하": {
+          "input_tokens": 5767,
+          "output_tokens": 7700,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2988,
+          "output_tokens": 9740,
+          "question_count": 8
+        },
+        "국어-언매": {
+          "input_tokens": 17260,
+          "output_tokens": 6249,
+          "question_count": 11
+        },
+        "수학-미적": {
+          "input_tokens": 2745,
+          "output_tokens": 9587,
+          "question_count": 8
+        },
+        "한국사-공통": {
+          "input_tokens": 17519,
+          "output_tokens": 7373,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 10244,
+          "output_tokens": 14295,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 17095,
+          "output_tokens": 19302,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 20326,
+          "output_tokens": 9974,
+          "question_count": 20
+        },
+        "영어-공통": {
+          "input_tokens": 17524,
+          "output_tokens": 8781,
+          "question_count": 45
+        },
+        "국어-공통": {
+          "input_tokens": 46094,
+          "output_tokens": 14643,
+          "question_count": 34
+        },
+        "탐구-물리1": {
+          "input_tokens": 30435,
+          "output_tokens": 8435,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7041,
+          "output_tokens": 22229,
+          "question_count": 22
+        }
+      }
+    },
+    "Mistral Small 4 (Thinking)": {
+      "total_input_tokens": 209172,
+      "total_output_tokens": 1442432,
+      "total_tokens": 1651604,
+      "question_count": 247,
+      "last_updated": "2026-04-12 17:10:20",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 16034,
+          "output_tokens": 20923,
+          "question_count": 11
+        },
+        "수학-기하": {
+          "input_tokens": 5767,
+          "output_tokens": 82203,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 2988,
+          "output_tokens": 41665,
+          "question_count": 8
+        },
+        "국어-언매": {
+          "input_tokens": 17260,
+          "output_tokens": 32056,
+          "question_count": 11
+        },
+        "수학-미적": {
+          "input_tokens": 2745,
+          "output_tokens": 82728,
+          "question_count": 8
+        },
+        "한국사-공통": {
+          "input_tokens": 17519,
+          "output_tokens": 24611,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 10244,
+          "output_tokens": 121302,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 17095,
+          "output_tokens": 267202,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 20326,
+          "output_tokens": 208630,
+          "question_count": 20
+        },
+        "영어-공통": {
+          "input_tokens": 17524,
+          "output_tokens": 54202,
+          "question_count": 45
+        },
+        "국어-공통": {
+          "input_tokens": 46094,
+          "output_tokens": 77540,
+          "question_count": 34
+        },
+        "탐구-물리1": {
+          "input_tokens": 28535,
+          "output_tokens": 260700,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 7041,
+          "output_tokens": 168670,
+          "question_count": 22
+        }
+      }
     }
   }
 }
