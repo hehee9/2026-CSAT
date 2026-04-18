@@ -8,6 +8,11 @@ const PARTIAL_BENCHMARK_MODELS = {
     isPartialBenchmark: true,
     displaySuffix: '*',
     descriptionKey: 'models.partialWrongOnly'
+  },
+  'Claude Opus 4.7 (max*)': {
+    isPartialBenchmark: true,
+    displaySuffix: '*',
+    descriptionKey: 'models.partialWrongOnly'
   }
 }
 
@@ -32,7 +37,7 @@ export function isPartialBenchmarkModel(modelName) {
 export function formatModelDisplayName(modelName) {
   const meta = getModelMeta(modelName)
   if (!meta?.displaySuffix) return modelName
-  if (modelName.endsWith(meta.displaySuffix)) return modelName
+  if (modelName.includes(meta.displaySuffix)) return modelName
   return `${modelName}${meta.displaySuffix}`
 }
 

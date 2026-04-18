@@ -66,9 +66,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ### 테스트 환경
 - **실행 방식**: 각 모델의 공식 API를 통해 진행
-- **추론 설정**:
-  - 추론 예산(reasoning budget): **최대값으로 설정**
-  - 최대 출력 토큰(max output tokens): **최대값으로 설정**
+- **추론 설정**: 최대 출력 토큰 및 추론 예산을 충분히 높게 설정
 - **시스템 프롬프트**: 별도의 시스템 프롬프트 제공하지 않음
 - **외부 도구**: 검색, 계산기 등 외부 도구를 **제공하지 않음**
 - 온도, Top P 등의 설정은 **기본값**으로 유지함. 즉, 측정할 때마다 다소 편차가 있을 수 있음
@@ -117,9 +115,6 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GPT-4o mini
   - GPT-OSS 120B (high) (via Fireworks AI)
 
-  ※ ChatGPT 공식 서비스 기준, 평상시 응답 모델은 GPT-5.3 Chat (Instant), '오래 생각하기' 활성화 시 응답하는 모델은 GPT-5.4입니다.
-  * GPT-5.4 xhigh는 high에서 틀린 문제만 재측정한 것입니다. xhigh는 성능 향상에 비해 너무 오랜 시간이 걸리고, timeout 발생이 빈번해지기 때문에 이런 방식으로 처리했습니다.
-
 - **Google Gemini 시리즈**
   - Gemini 3.1 Pro (high / low)
   - Gemini 3.1 Flash Lite (high / minimal)
@@ -136,6 +131,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Gemma 4 26B A4B (high / minimal)
 
 - **Anthropic Claude 시리즈**
+  - Claude Opus 4.7 (max* / high / none)
   - Claude Opus 4.5 (32K Thinking / Non-Thinking)
   - Claude Sonnet 4.5 (32K Thinking / Non-Thinking)
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
@@ -179,6 +175,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **Upstage Solar 시리즈**
   - Solar 3 Pro (high / low)
   - Solar 3 Pro 0323 (high / low)
+
+※ * GPT-5.4 (xhigh), Claude Opus 4.7 (max)는 high에서 틀린 문제만 재측정한 것입니다. 성능 향상에 비해 들어가는 시간과 비용이 너무 커져 이 방식으로 처리한 점 양해 바랍니다.
 
 ※ DeepSeek, EXAONE, Solar, GLM은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
