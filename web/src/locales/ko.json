@@ -138,7 +138,7 @@
   },
   "models": {
     "noVision": "멀티모달 미지원",
-    "nonStandard": "high에서 틀린 문항만 xhigh로 처리"
+    "nonStandard": "high에서 틀린 문항만 더 높은 추론으로 처리"
   },
   "benchmark": {
     "noExternalSearch": "※ 외부 검색 없이 실행된 결과입니다."

@@ -152,6 +152,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - DeepSeek V3.2 Speciale
 
 - **Moonshot AI Kimi 시리즈**
+  - Kimi K2.6 (Thinking / Non-Thinking)
   - Kimi K2.5 (Thinking / Non-Thinking)
 
 - **Z.ai GLM 시리즈**
@@ -180,7 +181,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ※ DeepSeek, EXAONE, Solar, GLM은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
 
-※ Kimi K2.5는 INT4 양자화가 적용되었습니다.
+※ Kimi K2.5, K2.6에는 INT4 양자화가 적용되었습니다.
 
 ※ Solar 3 Pro 0323은 다시 확인해봤지만 high / low로 설정한 게 맞습니다. 왜 low가 토큰도 더 많이 쓰고 점수도 더 높은지는 불명입니다.
 
