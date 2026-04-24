@@ -95,10 +95,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ---
 
-> ※ GPT-5.5는 아직 API가 공개되지 않았습니다
-
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
+  - GPT-5.5 (xhigh* / high / none)
   - GPT-5.4 (xhigh* / high / none)
   - GPT-5.4 mini (xhigh / none)
   - GPT-5.4 nano (xhigh / none)

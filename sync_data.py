@@ -627,6 +627,12 @@ class DataConverter:
 class SyncManager:
     """동기화 관리"""
 
+    WRONG_ONLY_BASE_MODELS = {
+        'GPT-5.5 (xhigh*)': 'GPT-5.5 (high)',
+        'GPT-5.4 (xhigh*)': 'GPT-5.4 (high)',
+        'Claude Opus 4.7 (max*)': 'Claude Opus 4.7 (high)',
+    }
+
     def __init__(self, excel_path: Path, problems_dir: Path = None,
                  model_mapping_path: Path = None):
         self.excel_path = Path(excel_path)
@@ -827,6 +833,88 @@ class SyncManager:
 
         return success_count > 0
 
+    def _infer_wrong_only_base_model(self, json_data: Dict, sheet_name: str) -> Optional[str]:
+        """부분 검증 wrong-only 파일이면 Excel 베이스 모델을 추론한다."""
+        model_scores = json_data.get('model_scores', {})
+        if len(model_scores) != 1:
+            return None
+
+        model_name = next(iter(model_scores))
+        base_model = self.WRONG_ONLY_BASE_MODELS.get(model_name)
+        if not base_model:
+            return None
+
+        try:
+            max_score = self.excel_handler.get_max_score(sheet_name)
+        except Exception:
+            return None
+
+        total_points = json_data.get('total_points')
+        total_verified = json_data.get('total_verified')
+        if total_points is not None and total_points < max_score:
+            return base_model
+
+        # 점수 합은 우연히 만점과 같을 수 있으니 문항 수도 함께 방어적으로 확인
+        try:
+            questions = self.excel_handler._load_questions_for_sheet(sheet_name)
+            expected_count = len(questions.get('questions', []))
+        except Exception:
+            expected_count = None
+        if expected_count and total_verified is not None and total_verified < expected_count:
+            return base_model
+
+        return None
+
+    def _materialize_missing_wrong_only_targets(self) -> int:
+        """wrong-only target 모델이 없는 시트에는 base 모델 답안을 복사해 채운다.
+
+        GPT-5.5 (xhigh*)처럼 틀린 문항만 재실행한 모델은 오답이 없던 과목의
+        JSON 결과가 따로 생기지 않는다. 하지만 Excel/dashboard에서는 하나의
+        전체 모델처럼 보여야 하므로, target 모델이 적어도 한 시트에 존재하면
+        나머지 시트는 base 모델 컬럼을 그대로 복사한다.
+        """
+        materialized_count = 0
+        sheets = self.path_mapper.get_all_sheets()
+        sheet_models = {
+            sheet_name: self.excel_handler.get_model_columns(sheet_name)
+            for sheet_name in sheets
+            if sheet_name in self.excel_handler.get_sheet_names()
+        }
+
+        for target_model, base_model in self.WRONG_ONLY_BASE_MODELS.items():
+            target_exists_anywhere = any(
+                target_model in models
+                for models in sheet_models.values()
+            )
+            if not target_exists_anywhere:
+                continue
+
+            for sheet_name, models in sheet_models.items():
+                if target_model in models:
+                    continue
+                if base_model not in models:
+                    continue
+
+                base_answers = self.excel_handler.get_model_answers(sheet_name, base_model)
+                score = self.excel_handler.get_model_score(sheet_name, base_model)
+                if score is None:
+                    score = self.excel_handler.calculate_score_from_answers(sheet_name, base_answers)
+
+                self.excel_handler.add_model_column(
+                    sheet_name,
+                    target_model,
+                    dict(base_answers),
+                    score,
+                    after_model=base_model,
+                )
+                print(f"wrong-only 보정 추가: {sheet_name} / {target_model} <= {base_model} ({score}점)")
+                materialized_count += 1
+
+                # 다음 target 처리에서 최신 컬럼 상태를 보도록 갱신
+                sheet_models[sheet_name] = self.excel_handler.get_model_columns(sheet_name)
+
+        return materialized_count
+
     def import_all(self, update_existing: bool = False) -> int:
         """모든 results_verified.json 가져오기"""
         count = 0
@@ -835,8 +923,33 @@ class SyncManager:
             if json_dir:
                 json_file = json_dir / 'results_verified.json'
                 if json_file.exists():
-                    if self.import_from_json(json_file, update_existing=update_existing):
+                    base_model = None
+                    try:
+                        with open(json_file, 'r', encoding='utf-8') as f:
+                            json_data = json.load(f)
+                        base_model = self._infer_wrong_only_base_model(json_data, sheet_name)
+                        if base_model:
+                            model_name = next(iter(json_data.get('model_scores', {})))
+                            existing_models = self.excel_handler.get_model_columns(sheet_name)
+                            if base_model not in existing_models:
+                                print(
+                                    f"경고: {sheet_name} / {model_name}은 부분 검증 파일이지만 "
+                                    f"베이스 모델 '{base_model}' 컬럼이 없어 건너뜁니다."
+                                )
+                                continue
+                            print(f"부분 검증 병합: {sheet_name} / {model_name} <= {base_model}")
+                    except Exception as e:
+                        print(f"경고: {json_file} 부분 검증 확인 실패 - {e}")
+
+                    if self.import_from_json(
+                        json_file,
+                        update_existing=update_existing,
+                        base_model=base_model,
+                    ):
                         count += 1
+
+        materialized_count = self._materialize_missing_wrong_only_targets()
+        count += materialized_count
 
         if count > 0:
             self.excel_handler.save()
