@@ -95,6 +95,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ---
 
+> ※ GPT-5.5는 아직 API가 공개되지 않았습니다
+
 ## 테스트 모델
 - **OpenAI GPT 시리즈**
   - GPT-5.4 (xhigh* / high / none)
@@ -145,11 +147,13 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Mistral Small 4 (Thinking / Non-Thinking)
 
 - **DeepSeek 시리즈**
-  - DeepSeek V3.2 Exp (Thinking)
-  - DeepSeek V3.2 Exp (Non-Thinking)
+  - DeepSeek V4 Flash (None / Max)
+  - DeepSeek V4 Pro (None / Max)
+  - DeepSeek V3.2 Speciale
   - DeepSeek V3.2 (Thinking)
   - DeepSeek V3.2 (Non-Thinking)
-  - DeepSeek V3.2 Speciale
+  - DeepSeek V3.2 Exp (Thinking)
+  - DeepSeek V3.2 Exp (Non-Thinking)
 
 - **Moonshot AI Kimi 시리즈**
   - Kimi K2.6 (Thinking / Non-Thinking)
