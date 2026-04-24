@@ -86,29 +86,44 @@ function CustomTooltip({ active, payload, t }) {
 const LABEL_MODES = [
   { id: 'total', labelKey: 'token.total' },
   { id: 'split', labelKey: 'token.inputOutput' },
+  { id: 'outputRatio', labelKey: 'token.outputRatio' },
   { id: 'none', labelKey: 'token.hidden' }
 ]
+
+function formatOutputRatioLabel(entry) {
+  if (!Number.isFinite(entry?.outputRatio)) return '-'
+  return `${Math.round(entry.outputRatio * 100)}%`
+}
+
+function getTokenLabel(entry, mode) {
+  if (!entry || mode === 'none') return null
+
+  if (mode === 'total') {
+    const totalK = Math.round(entry.total / 1000)
+    return `${totalK.toLocaleString()}K`
+  }
+
+  if (mode === 'outputRatio') {
+    return formatOutputRatioLabel(entry)
+  }
+
+  const inputK = Math.round(entry.inputTokens / 1000)
+  const outputK = Math.round(entry.outputTokens / 1000)
+  return `${inputK.toLocaleString()}K + ${outputK.toLocaleString()}K`
+}
 
 /**
  * @brief 커스텀 레이블 렌더러
  * @param {Object} props - Recharts LabelList props
- * @param {string} mode - 'total' | 'split' | 'none'
+ * @param {string} mode - 'total' | 'split' | 'outputRatio' | 'none'
  * @param {boolean} darkMode - 다크모드 여부
  */
 function CustomLabel({ x, y, width, index, mode, chartData, darkMode }) {
   if (mode === 'none' || index === undefined || !chartData[index]) return null
 
   const entry = chartData[index]
-  let label
-
-  if (mode === 'total') {
-    const totalK = Math.round(entry.total / 1000)
-    label = `${totalK.toLocaleString()}K`
-  } else {
-    const inputK = Math.round(entry.inputTokens / 1000)
-    const outputK = Math.round(entry.outputTokens / 1000)
-    label = `${inputK.toLocaleString()}K + ${outputK.toLocaleString()}K`
-  }
+  const label = getTokenLabel(entry, mode)
+  if (!label) return null
 
   return (
     <text
@@ -117,6 +132,27 @@ function CustomLabel({ x, y, width, index, mode, chartData, darkMode }) {
       textAnchor="middle"
       fill={darkMode ? '#d1d5db' : '#374151'}
       fontSize={11}
+      fontWeight="500"
+    >
+      {label}
+    </text>
+  )
+}
+
+function CustomMobileLabel({ x, y, width, height, index, mode, chartData, darkMode }) {
+  if (mode === 'none' || index === undefined || !chartData[index]) return null
+
+  const entry = chartData[index]
+  const label = getTokenLabel(entry, mode)
+  if (!label) return null
+
+  return (
+    <text
+      x={x + width + 6}
+      y={y + height / 2 + 4}
+      textAnchor="start"
+      fill={darkMode ? '#d1d5db' : '#374151'}
+      fontSize={9}
       fontWeight="500"
     >
       {label}
@@ -153,6 +189,24 @@ export default function TokenUsageChart({
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const renderLabelModeButtons = () => (
+    <div className="flex items-center gap-1 mb-4" data-export-hide="true">
+      {LABEL_MODES.map(mode => (
+        <button
+          key={mode.id}
+          onClick={() => setLabelMode(mode.id)}
+          className={`px-2 py-1 text-xs rounded transition-colors ${
+            labelMode === mode.id
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+          }`}
+        >
+          {t(mode.labelKey)}
+        </button>
+      ))}
+    </div>
+  )
+
   // 데이터 변환 및 정렬
   const chartData = useMemo(() => {
     if (!data || typeof data !== 'object') return []
@@ -187,14 +241,22 @@ export default function TokenUsageChart({
           // 전체 토큰 (필터 없음)
           inputTokens = usage.total_input_tokens || 0
           outputTokens = usage.total_output_tokens || 0
-          total = usage.total_tokens || 0
+          total = usage.total_tokens || inputTokens + outputTokens
         }
 
-        return { model, inputTokens, outputTokens, total }
+        const outputRatio = inputTokens > 0 ? outputTokens / inputTokens : Infinity
+
+        return { model, inputTokens, outputTokens, total, outputRatio }
       })
       .filter(Boolean)
-      .sort((a, b) => a.total - b.total) // 총량 오름차순
-  }, [data, models, subjectFilter])
+      .sort((a, b) => {
+        if (labelMode === 'outputRatio') {
+          if (a.outputRatio !== b.outputRatio) return a.outputRatio - b.outputRatio
+        }
+        if (a.total !== b.total) return a.total - b.total
+        return a.model.localeCompare(b.model)
+      })
+  }, [data, models, subjectFilter, labelMode])
 
   // Y축 최대값 및 틱 계산
   const maxTotal = chartData.length ? Math.max(...chartData.map(d => d.total)) : 0
@@ -212,6 +274,9 @@ export default function TokenUsageChart({
   // 레이블 렌더러 메모이제이션
   const renderLabel = useCallback((props) => (
     <CustomLabel {...props} mode={labelMode} chartData={chartData} darkMode={darkMode} />
+  ), [labelMode, chartData, darkMode])
+  const renderMobileLabel = useCallback((props) => (
+    <CustomMobileLabel {...props} mode={labelMode} chartData={chartData} darkMode={darkMode} />
   ), [labelMode, chartData, darkMode])
 
   // 다크모드용 색상
@@ -247,6 +312,7 @@ export default function TokenUsageChart({
             exportKey="token-usage"
           />
         </div>
+        {renderLabelModeButtons()}
         <ResponsiveContainer width="100%" height={mobileHeight}>
           <BarChart
             data={chartData}
@@ -310,8 +376,7 @@ export default function TokenUsageChart({
               <LabelList
                 dataKey="total"
                 position="right"
-                formatter={(v) => `${Math.round(v / 1000).toLocaleString()}K`}
-                style={{ fontSize: 9, fill: xTickColor }}
+                content={renderMobileLabel}
               />
             </Bar>
           </BarChart>
@@ -336,21 +401,7 @@ export default function TokenUsageChart({
           />
         </div>
       </div>
-      <div className="flex items-center gap-1 mb-4" data-export-hide="true">
-        {LABEL_MODES.map(mode => (
-          <button
-            key={mode.id}
-            onClick={() => setLabelMode(mode.id)}
-            className={`px-2 py-1 text-xs rounded transition-colors ${
-              labelMode === mode.id
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-            }`}
-          >
-            {t(mode.labelKey)}
-          </button>
-        ))}
-      </div>
+      {renderLabelModeButtons()}
       <ResponsiveContainer width="100%" height={height}>
         <BarChart
           data={chartData}

@@ -153,6 +153,7 @@
   "token": {
     "total": "총합",
     "inputOutput": "입력+출력",
+    "outputRatio": "출력 비율",
     "hidden": "숨김"
   },
   "export": {

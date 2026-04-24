@@ -5579,11 +5579,19 @@
     "sheet_name": "국어-공통",
     "subject": "국어",
     "section": "공통",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 69,
     "total_points": 76,
     "correct_count": 31,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 34490,
+      "output_tokens": 330917
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -5829,11 +5837,19 @@
     "sheet_name": "국어-공통",
     "subject": "국어",
     "section": "공통",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 48,
     "total_points": 76,
     "correct_count": 22,
     "total_questions": 34,
+    "token_usage": {
+      "input_tokens": 34558,
+      "output_tokens": 35076
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -26407,11 +26423,19 @@
     "sheet_name": "국어-화작",
     "subject": "국어",
     "section": "화작",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 19,
     "total_points": 24,
     "correct_count": 9,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 9259,
+      "output_tokens": 61753
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 35,
@@ -26496,11 +26520,19 @@
     "sheet_name": "국어-화작",
     "subject": "국어",
     "section": "화작",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 17,
     "total_points": 24,
     "correct_count": 8,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 9281,
+      "output_tokens": 12657
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 35,
@@ -35482,11 +35514,19 @@
     "sheet_name": "국어-언매",
     "subject": "국어",
     "section": "언매",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 22,
     "total_points": 24,
     "correct_count": 10,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8005,
+      "output_tokens": 157211
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 35,
@@ -35571,11 +35611,19 @@
     "sheet_name": "국어-언매",
     "subject": "국어",
     "section": "언매",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 15,
     "total_points": 24,
     "correct_count": 7,
     "total_questions": 11,
+    "token_usage": {
+      "input_tokens": 8027,
+      "output_tokens": 13199
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 35,
@@ -46251,11 +46299,19 @@
     "sheet_name": "수학-공통",
     "subject": "수학",
     "section": "공통",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 74,
     "total_points": 74,
     "correct_count": 22,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 2859,
+      "output_tokens": 137628
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -46417,11 +46473,19 @@
     "sheet_name": "수학-공통",
     "subject": "수학",
     "section": "공통",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 66,
     "total_points": 74,
     "correct_count": 20,
     "total_questions": 22,
+    "token_usage": {
+      "input_tokens": 2903,
+      "output_tokens": 36229
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -60485,11 +60549,19 @@
     "sheet_name": "수학-확통",
     "subject": "수학",
     "section": "확통",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 26,
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1183,
+      "output_tokens": 61512
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -60553,11 +60625,19 @@
     "sheet_name": "수학-확통",
     "subject": "수학",
     "section": "확통",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 18,
     "total_points": 26,
     "correct_count": 6,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1199,
+      "output_tokens": 15612
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -67565,11 +67645,19 @@
     "sheet_name": "수학-미적",
     "subject": "수학",
     "section": "미적",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 26,
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1229,
+      "output_tokens": 87592
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -67633,11 +67721,19 @@
     "sheet_name": "수학-미적",
     "subject": "수학",
     "section": "미적",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 22,
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1245,
+      "output_tokens": 26979
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -74645,11 +74741,19 @@
     "sheet_name": "수학-기하",
     "subject": "수학",
     "section": "기하",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 26,
     "total_points": 26,
     "correct_count": 8,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1022,
+      "output_tokens": 128160
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -74713,11 +74817,19 @@
     "sheet_name": "수학-기하",
     "subject": "수학",
     "section": "기하",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 22,
     "total_points": 26,
     "correct_count": 7,
     "total_questions": 8,
+    "token_usage": {
+      "input_tokens": 1038,
+      "output_tokens": 33089
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 23,
@@ -87423,11 +87535,19 @@
     "sheet_name": "영어",
     "subject": "영어",
     "section": "영어",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 91,
     "total_points": 100,
     "correct_count": 41,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 11327,
+      "output_tokens": 141255
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -87750,11 +87870,19 @@
     "sheet_name": "영어",
     "subject": "영어",
     "section": "영어",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 86,
     "total_points": 100,
     "correct_count": 39,
     "total_questions": 45,
+    "token_usage": {
+      "input_tokens": 11417,
+      "output_tokens": 17235
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -115258,11 +115386,19 @@
     "sheet_name": "한국사",
     "subject": "한국사",
     "section": "한국사",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 48,
     "total_points": 50,
     "correct_count": 19,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 3616,
+      "output_tokens": 119128
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -115410,11 +115546,19 @@
     "sheet_name": "한국사",
     "subject": "한국사",
     "section": "한국사",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 34,
     "total_points": 50,
     "correct_count": 13,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 3656,
+      "output_tokens": 6196
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -130318,11 +130462,19 @@
     "sheet_name": "물리1",
     "subject": "물리1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 28,
     "total_points": 50,
     "correct_count": 11,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 4047,
+      "output_tokens": 607157
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -130470,11 +130622,19 @@
     "sheet_name": "물리1",
     "subject": "물리1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 26,
     "total_points": 50,
     "correct_count": 11,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 4087,
+      "output_tokens": 38768
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -145378,11 +145538,19 @@
     "sheet_name": "화학1",
     "subject": "화학1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 43,
     "total_points": 50,
     "correct_count": 17,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5150,
+      "output_tokens": 403097
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -145530,11 +145698,19 @@
     "sheet_name": "화학1",
     "subject": "화학1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 24,
     "total_points": 50,
     "correct_count": 10,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5190,
+      "output_tokens": 55485
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -160438,11 +160614,19 @@
     "sheet_name": "생명1",
     "subject": "생명1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 38,
     "total_points": 50,
     "correct_count": 15,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5886,
+      "output_tokens": 485871
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -160590,11 +160774,19 @@
     "sheet_name": "생명1",
     "subject": "생명1",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 25,
     "total_points": 50,
     "correct_count": 10,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5926,
+      "output_tokens": 40402
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -175498,11 +175690,19 @@
     "sheet_name": "사회문화",
     "subject": "사회문화",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Thinking)",
+    "model_name": "K-EXAONE (Thinking)",
     "score": 32,
     "total_points": 50,
     "correct_count": 12,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5122,
+      "output_tokens": 253670
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
@@ -175650,11 +175850,19 @@
     "sheet_name": "사회문화",
     "subject": "사회문화",
     "section": "탐구",
-    "model_name": "K-EXAONE-236B-A23B (Non-Thinking)",
+    "model_name": "K-EXAONE (Non-Thinking)",
     "score": 23,
     "total_points": 50,
     "correct_count": 9,
     "total_questions": 20,
+    "token_usage": {
+      "input_tokens": 5162,
+      "output_tokens": 26860
+    },
+    "price": {
+      "input": 0.23,
+      "output": 0.92
+    },
     "results": [
       {
         "question_number": 1,
