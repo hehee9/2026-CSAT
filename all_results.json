@@ -127043,9 +127043,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.2 (xhigh)",
-    "score": 45,
+    "score": 47,
     "total_points": 50,
-    "correct_count": 18,
+    "correct_count": 19,
     "total_questions": 20,
     "price": {
       "input": 1.75,
@@ -127166,9 +127166,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -127199,163 +127199,7 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.1 (high)",
-    "score": 38,
-    "total_points": 50,
-    "correct_count": 15,
-    "total_questions": 20,
-    "price": {
-      "input": 1.25,
-      "output": 10.0
-    },
-    "results": [
-      {
-        "question_number": 1,
-        "extracted_answer": 3,
-        "correct_answer": 3,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 2,
-        "extracted_answer": 4,
-        "correct_answer": 4,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 3,
-        "extracted_answer": 3,
-        "correct_answer": 3,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 4,
-        "extracted_answer": 5,
-        "correct_answer": 4,
-        "is_correct": false,
-        "points": 3
-      },
-      {
-        "question_number": 5,
-        "extracted_answer": 1,
-        "correct_answer": 1,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 6,
-        "extracted_answer": 3,
-        "correct_answer": 2,
-        "is_correct": false,
-        "points": 3
-      },
-      {
-        "question_number": 7,
-        "extracted_answer": 3,
-        "correct_answer": 3,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 8,
-        "extracted_answer": 5,
-        "correct_answer": 5,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 9,
-        "extracted_answer": 3,
-        "correct_answer": 3,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 10,
-        "extracted_answer": 5,
-        "correct_answer": 5,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 11,
-        "extracted_answer": 3,
-        "correct_answer": 2,
-        "is_correct": false,
-        "points": 2
-      },
-      {
-        "question_number": 12,
-        "extracted_answer": 1,
-        "correct_answer": 1,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 13,
-        "extracted_answer": 4,
-        "correct_answer": 5,
-        "is_correct": false,
-        "points": 2
-      },
-      {
-        "question_number": 14,
-        "extracted_answer": 2,
-        "correct_answer": 2,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 15,
-        "extracted_answer": 1,
-        "correct_answer": 1,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 16,
-        "extracted_answer": 5,
-        "correct_answer": 5,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 17,
-        "extracted_answer": 4,
-        "correct_answer": 5,
-        "is_correct": false,
-        "points": 2
-      },
-      {
-        "question_number": 18,
-        "extracted_answer": 2,
-        "correct_answer": 2,
-        "is_correct": true,
-        "points": 2
-      },
-      {
-        "question_number": 19,
-        "extracted_answer": 4,
-        "correct_answer": 4,
-        "is_correct": true,
-        "points": 3
-      },
-      {
-        "question_number": 20,
-        "extracted_answer": 1,
-        "correct_answer": 1,
-        "is_correct": true,
-        "points": 3
-      }
-    ]
-  },
-  {
-    "sheet_name": "물리1",
-    "subject": "물리1",
-    "section": "탐구",
-    "model_name": "GPT-5.1 Codex",
-    "score": 34,
+    "score": 36,
     "total_points": 50,
     "correct_count": 14,
     "total_questions": 20,
@@ -127429,6 +127273,162 @@
       },
       {
         "question_number": 10,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 11,
+        "extracted_answer": 3,
+        "correct_answer": 2,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 12,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 13,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 14,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 15,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 16,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 17,
+        "extracted_answer": 4,
+        "correct_answer": 5,
+        "is_correct": false,
+        "points": 2
+      },
+      {
+        "question_number": 18,
+        "extracted_answer": 2,
+        "correct_answer": 2,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 19,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 20,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 3
+      }
+    ]
+  },
+  {
+    "sheet_name": "물리1",
+    "subject": "물리1",
+    "section": "탐구",
+    "model_name": "GPT-5.1 Codex",
+    "score": 36,
+    "total_points": 50,
+    "correct_count": 15,
+    "total_questions": 20,
+    "price": {
+      "input": 1.25,
+      "output": 10.0
+    },
+    "results": [
+      {
+        "question_number": 1,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 2,
+        "extracted_answer": 4,
+        "correct_answer": 4,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 3,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 4,
+        "extracted_answer": 5,
+        "correct_answer": 4,
+        "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 5,
+        "extracted_answer": 1,
+        "correct_answer": 1,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 6,
+        "extracted_answer": 3,
+        "correct_answer": 2,
+        "is_correct": false,
+        "points": 3
+      },
+      {
+        "question_number": 7,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 8,
+        "extracted_answer": 5,
+        "correct_answer": 5,
+        "is_correct": true,
+        "points": 2
+      },
+      {
+        "question_number": 9,
+        "extracted_answer": 3,
+        "correct_answer": 3,
+        "is_correct": true,
+        "points": 3
+      },
+      {
+        "question_number": 10,
         "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
@@ -127478,9 +127478,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -127627,14 +127627,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -127790,7 +127790,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": -1,
+        "extracted_answer": 2,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -127939,14 +127939,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 3,
+        "extracted_answer": 4,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -127979,9 +127979,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-4o",
-    "score": 16,
+    "score": 14,
     "total_points": 50,
-    "correct_count": 7,
+    "correct_count": 6,
     "total_questions": 20,
     "price": {
       "input": 2.5,
@@ -128102,9 +128102,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 3,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -128447,9 +128447,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 2.5 Pro (32K Thinking)",
-    "score": 30,
+    "score": 32,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "price": {
       "input": 1.25,
@@ -128570,9 +128570,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -128603,9 +128603,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 2.5 Flash (2025-09 Preview, 24K Thinking)",
-    "score": 30,
+    "score": 32,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "price": {
       "input": 0.3,
@@ -128726,9 +128726,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -128759,9 +128759,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking)",
-    "score": 31,
+    "score": 33,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "price": {
       "input": 0.1,
@@ -128882,9 +128882,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -128915,9 +128915,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Opus 4.5 (32K Thinking)",
-    "score": 35,
+    "score": 33,
     "total_points": 50,
-    "correct_count": 14,
+    "correct_count": 13,
     "total_questions": 20,
     "price": {
       "input": 5.0,
@@ -129038,9 +129038,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 3,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -129354,7 +129354,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -129387,9 +129387,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Grok 4",
-    "score": 29,
+    "score": 31,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "price": {
       "input": 3.0,
@@ -129510,9 +129510,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -129666,7 +129666,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -131062,7 +131062,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -131095,9 +131095,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 3 Pro (low)",
-    "score": 40,
+    "score": 42,
     "total_points": 50,
-    "correct_count": 16,
+    "correct_count": 17,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 24347,
@@ -131222,9 +131222,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -131255,9 +131255,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 3 Flash (minimal)",
-    "score": 37,
+    "score": 39,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 24347,
@@ -131382,9 +131382,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -131695,16 +131695,16 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 3,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -131855,7 +131855,7 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 1,
+        "extracted_answer": 4,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -132175,7 +132175,7 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 2,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -132375,9 +132375,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 2.5 Flash (2025-09 Preview, Non-Thinking)",
-    "score": 33,
+    "score": 35,
     "total_points": 50,
-    "correct_count": 13,
+    "correct_count": 14,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 9481,
@@ -132502,9 +132502,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -132662,7 +132662,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 2,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -133335,9 +133335,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "o1 (high)",
-    "score": 29,
+    "score": 27,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 11,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 21760,
@@ -133462,9 +133462,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 3,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -133495,9 +133495,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "o3 (high)",
-    "score": 35,
+    "score": 33,
     "total_points": 50,
-    "correct_count": 14,
+    "correct_count": 13,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 21760,
@@ -133615,14 +133615,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 5,
+        "extracted_answer": 2,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 1,
+        "extracted_answer": 2,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -133655,9 +133655,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Sonnet 4.5",
-    "score": 24,
+    "score": 26,
     "total_points": 50,
-    "correct_count": 9,
+    "correct_count": 10,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 31507,
@@ -133782,9 +133782,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 2,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -133815,9 +133815,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Haiku 4.5",
-    "score": 20,
+    "score": 22,
     "total_points": 50,
-    "correct_count": 8,
+    "correct_count": 9,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 31507,
@@ -133935,9 +133935,9 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -133975,9 +133975,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Opus 4.5",
-    "score": 32,
+    "score": 30,
     "total_points": 50,
-    "correct_count": 13,
+    "correct_count": 12,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 31507,
@@ -134102,9 +134102,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 4,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -134455,9 +134455,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Kimi K2.5 (Thinking)",
-    "score": 33,
+    "score": 31,
     "total_points": 50,
-    "correct_count": 14,
+    "correct_count": 13,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 35838,
@@ -134582,9 +134582,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 4,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -135214,7 +135214,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -135247,9 +135247,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.5 397B (Thinking)",
-    "score": 40,
+    "score": 42,
     "total_points": 50,
-    "correct_count": 16,
+    "correct_count": 17,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27694,
@@ -135374,9 +135374,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -135567,9 +135567,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 3.1 Pro (low)",
-    "score": 37,
+    "score": 39,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 24327,
@@ -135694,9 +135694,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -135727,9 +135727,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 3.1 Flash Lite (high)",
-    "score": 33,
+    "score": 35,
     "total_points": 50,
-    "correct_count": 13,
+    "correct_count": 14,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 24347,
@@ -135854,9 +135854,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -135887,9 +135887,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemini 3.1 Flash Lite (minimal)",
-    "score": 30,
+    "score": 28,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 11,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 24347,
@@ -136007,14 +136007,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 5,
+        "extracted_answer": 2,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 2,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -136174,7 +136174,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 2,
+        "extracted_answer": 1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -136207,9 +136207,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.4 (high)",
-    "score": 48,
+    "score": 50,
     "total_points": 50,
-    "correct_count": 19,
+    "correct_count": 20,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 30833,
@@ -136334,9 +136334,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -136367,9 +136367,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.4 (xhigh*)",
-    "score": 48,
+    "score": 50,
     "total_points": 50,
-    "correct_count": 19,
+    "correct_count": 20,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 30833,
@@ -136494,9 +136494,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -136847,9 +136847,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.5 35B A3B (Thinking)",
-    "score": 43,
+    "score": 45,
     "total_points": 50,
-    "correct_count": 17,
+    "correct_count": 18,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27694,
@@ -136974,9 +136974,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -137127,16 +137127,16 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 4,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -137327,9 +137327,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.4 mini (xhigh)",
-    "score": 45,
+    "score": 47,
     "total_points": 50,
-    "correct_count": 18,
+    "correct_count": 19,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 30833,
@@ -137454,9 +137454,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -137607,7 +137607,7 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 2,
+        "extracted_answer": 4,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -137647,9 +137647,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.4 mini (none)",
-    "score": 14,
+    "score": 16,
     "total_points": 50,
-    "correct_count": 6,
+    "correct_count": 7,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 30833,
@@ -137767,9 +137767,9 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -138127,9 +138127,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.6 Plus (Non-Thinking)",
-    "score": 31,
+    "score": 29,
     "total_points": 50,
-    "correct_count": 13,
+    "correct_count": 12,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27734,
@@ -138254,9 +138254,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 4,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -138287,9 +138287,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.6 Plus (Thinking)",
-    "score": 37,
+    "score": 39,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27694,
@@ -138414,9 +138414,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -138447,9 +138447,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemma 4 26B A4B",
-    "score": 23,
+    "score": 25,
     "total_points": 50,
-    "correct_count": 9,
+    "correct_count": 10,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 9481,
@@ -138574,9 +138574,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -138767,9 +138767,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Gemma 4 26B A4B (high)",
-    "score": 27,
+    "score": 29,
     "total_points": 50,
-    "correct_count": 11,
+    "correct_count": 12,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 9481,
@@ -138894,9 +138894,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -139054,7 +139054,7 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 3,
+        "extracted_answer": 4,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -139523,14 +139523,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": -1,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -139563,9 +139563,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.5 9B (Non-Thinking)",
-    "score": 30,
+    "score": 32,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27734,
@@ -139690,9 +139690,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -139723,9 +139723,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Qwen3.5 9B (Thinking)",
-    "score": 39,
+    "score": 41,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 27694,
@@ -139850,9 +139850,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -139883,9 +139883,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Mistral Small 4 (Non-Thinking)",
-    "score": 14,
+    "score": 12,
     "total_points": 50,
-    "correct_count": 6,
+    "correct_count": 5,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 30435,
@@ -140003,16 +140003,16 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 2,
+        "extracted_answer": -1,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 5,
+        "extracted_answer": 2,
         "correct_answer": 5,
-        "is_correct": true,
+        "is_correct": false,
         "points": 2
       },
       {
@@ -140359,9 +140359,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Opus 4.7 (high)",
-    "score": 37,
+    "score": 39,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 38036,
@@ -140486,9 +140486,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -140519,9 +140519,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Claude Opus 4.7 (max*)",
-    "score": 37,
+    "score": 39,
     "total_points": 50,
-    "correct_count": 15,
+    "correct_count": 16,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 38036,
@@ -140646,9 +140646,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -140679,9 +140679,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Kimi K2.6 (Thinking)",
-    "score": 40,
+    "score": 42,
     "total_points": 50,
-    "correct_count": 16,
+    "correct_count": 17,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 35800,
@@ -140806,9 +140806,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -140839,9 +140839,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "Kimi K2.6 (Non-Thinking)",
-    "score": 26,
+    "score": 28,
     "total_points": 50,
-    "correct_count": 10,
+    "correct_count": 11,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 35800,
@@ -140959,14 +140959,14 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 3,
         "correct_answer": 5,
         "is_correct": false,
         "points": 2
@@ -141639,9 +141639,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.5 (xhigh*)",
-    "score": 48,
+    "score": 50,
     "total_points": 50,
-    "correct_count": 19,
+    "correct_count": 20,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 32117,
@@ -141766,9 +141766,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -141799,9 +141799,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.5 (none)",
-    "score": 29,
+    "score": 31,
     "total_points": 50,
-    "correct_count": 12,
+    "correct_count": 13,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 32117,
@@ -141919,9 +141919,9 @@
       },
       {
         "question_number": 16,
-        "extracted_answer": 4,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
@@ -141959,9 +141959,9 @@
     "subject": "물리1",
     "section": "탐구",
     "model_name": "GPT-5.5 (high)",
-    "score": 48,
+    "score": 50,
     "total_points": 50,
-    "correct_count": 19,
+    "correct_count": 20,
     "total_questions": 20,
     "token_usage": {
       "input_tokens": 32117,
@@ -142086,9 +142086,9 @@
       },
       {
         "question_number": 17,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 2
       },
       {
