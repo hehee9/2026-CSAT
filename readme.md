@@ -166,6 +166,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 - **Alibaba Cloud Qwen 시리즈**
   - Qwen3.6 Plus (Thinking / Non-Thinking)
+  - Qwen3.6 27B (Thinking / Non-Thinking)
   - Qwen3.5 397B (Thinking / Non-Thinking)
   - Qwen3.5 35B A3B (Thinking / Non-Thinking)
   - Qwen3.5 27B (Thinking / Non-Thinking)
