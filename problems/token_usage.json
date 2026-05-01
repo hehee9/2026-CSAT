@@ -5405,74 +5405,74 @@
     },
     "Grok 4.3": {
       "total_input_tokens": 238551,
-      "total_output_tokens": 80319,
-      "total_tokens": 318870,
+      "total_output_tokens": 1482302,
+      "total_tokens": 1720853,
       "question_count": 247,
-      "last_updated": "2026-05-01 14:34:00",
+      "last_updated": "2026-05-01 15:06:42",
       "sections": {
         "국어-화작": {
           "input_tokens": 19101,
-          "output_tokens": 3186,
+          "output_tokens": 24774,
           "question_count": 11
         },
         "한국사-공통": {
           "input_tokens": 18754,
-          "output_tokens": 4832,
+          "output_tokens": 49542,
           "question_count": 20
         },
         "수학-확통": {
           "input_tokens": 3793,
-          "output_tokens": 3536,
+          "output_tokens": 24942,
           "question_count": 8
         },
         "수학-공통": {
           "input_tokens": 8510,
-          "output_tokens": 8434,
+          "output_tokens": 66998,
           "question_count": 22
         },
         "영어-공통": {
           "input_tokens": 21388,
-          "output_tokens": 6979,
+          "output_tokens": 53882,
           "question_count": 45
         },
         "국어-언매": {
           "input_tokens": 19243,
-          "output_tokens": 3708,
+          "output_tokens": 78801,
           "question_count": 11
         },
         "국어-공통": {
           "input_tokens": 55668,
-          "output_tokens": 10747,
+          "output_tokens": 152340,
           "question_count": 34
         },
         "수학-기하": {
           "input_tokens": 5511,
-          "output_tokens": 3592,
+          "output_tokens": 71697,
           "question_count": 8
         },
         "탐구-사회문화": {
           "input_tokens": 13752,
-          "output_tokens": 6812,
+          "output_tokens": 155830,
           "question_count": 20
         },
         "수학-미적": {
           "input_tokens": 3318,
-          "output_tokens": 3790,
+          "output_tokens": 64575,
           "question_count": 8
         },
         "탐구-화학1": {
           "input_tokens": 18879,
-          "output_tokens": 8276,
+          "output_tokens": 175569,
           "question_count": 20
         },
         "탐구-물리1": {
           "input_tokens": 30441,
-          "output_tokens": 9871,
+          "output_tokens": 345990,
           "question_count": 20
         },
         "탐구-생명1": {
           "input_tokens": 20193,
-          "output_tokens": 6556,
+          "output_tokens": 217362,
           "question_count": 20
         }
       }
