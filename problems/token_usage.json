@@ -5476,6 +5476,80 @@
           "question_count": 20
         }
       }
+    },
+    "GPT-5.5 Instant": {
+      "total_input_tokens": 201897,
+      "total_output_tokens": 159599,
+      "total_tokens": 361496,
+      "question_count": 247,
+      "last_updated": "2026-05-06 18:07:41",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 17313,
+          "output_tokens": 3407,
+          "question_count": 11
+        },
+        "국어-언매": {
+          "input_tokens": 16917,
+          "output_tokens": 5458,
+          "question_count": 11
+        },
+        "국어-공통": {
+          "input_tokens": 51707,
+          "output_tokens": 9943,
+          "question_count": 34
+        },
+        "수학-공통": {
+          "input_tokens": 6030,
+          "output_tokens": 16019,
+          "question_count": 22
+        },
+        "수학-확통": {
+          "input_tokens": 2861,
+          "output_tokens": 5936,
+          "question_count": 8
+        },
+        "수학-기하": {
+          "input_tokens": 4627,
+          "output_tokens": 11521,
+          "question_count": 8
+        },
+        "영어-공통": {
+          "input_tokens": 16155,
+          "output_tokens": 5255,
+          "question_count": 45
+        },
+        "수학-미적": {
+          "input_tokens": 2439,
+          "output_tokens": 10879,
+          "question_count": 8
+        },
+        "한국사-공통": {
+          "input_tokens": 14409,
+          "output_tokens": 3312,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 25489,
+          "output_tokens": 23804,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 16029,
+          "output_tokens": 24528,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 10256,
+          "output_tokens": 14691,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 17665,
+          "output_tokens": 24846,
+          "question_count": 20
+        }
+      }
     }
   }
 }
