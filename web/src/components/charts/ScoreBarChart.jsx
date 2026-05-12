@@ -157,6 +157,9 @@ function HatchPatternDefs({ darkMode }) {
         <stop offset="0%" stopColor={`rgba(${shadowRgb},${shadowAlpha})`} />
         <stop offset="100%" stopColor={`rgba(${shadowRgb},0)`} />
       </linearGradient>
+      <filter id="post-exam-cutoff-glow" x="-8%" y="-24%" width="116%" height="148%">
+        <feGaussianBlur stdDeviation="1.35" />
+      </filter>
     </defs>
   )
 }
@@ -182,6 +185,24 @@ function _InnerShadowOverlay({ x, y, width, height }) {
   )
 }
 
+/**
+ * @brief 지식 컷오프가 수능 이후인 모델용 모델 색상 그림자
+ */
+function _PostExamKnowledgeCutoffGlow({ x, y, width, height, radius, color }) {
+  return (
+    <Rectangle
+      x={x - 0.5}
+      y={y - 0.5}
+      width={width + 1}
+      height={height + 1}
+      fill={color}
+      opacity={0.9}
+      radius={radius}
+      filter="url(#post-exam-cutoff-glow)"
+    />
+  )
+}
+
 function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride }) {
   const { x, y, width, height, payload } = props
   const color = colorOverride || payload.color || getModelColor(payload.model)
@@ -192,9 +213,12 @@ function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride 
   const flags = getModelFlags(payload.model)
   const transitionStyle = { transition: 'opacity 0.15s ease-in-out' }
 
-  if (flags.noVision || flags.nonStandard) {
+  if (flags.noVision || flags.nonStandard || flags.postExamKnowledgeCutoff) {
     return (
       <g style={transitionStyle} opacity={opacity}>
+        {flags.postExamKnowledgeCutoff && (
+          <_PostExamKnowledgeCutoffGlow x={x} y={y} width={width} height={height} radius={radius} color={color} />
+        )}
         <Rectangle x={x} y={y} width={width} height={height} fill={color} radius={radius} />
         {flags.noVision && <_InnerShadowOverlay x={x} y={y} width={width} height={height} />}
         {flags.nonStandard && (

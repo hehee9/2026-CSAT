@@ -20,7 +20,7 @@ import { getModelColor, getShortModelName } from '@/utils/colorUtils'
 import { useTheme } from '@/hooks/useTheme'
 import { useExportImage, README_EXPORT_WIDTH } from '@/hooks/useExportImage'
 import { BenchmarkNote, ExportButton } from '@/components/common'
-import { formatModelDisplayName } from '@/utils/modelMeta'
+import { formatModelDisplayName, getModelFlags } from '@/utils/modelMeta'
 
 /**
  * @brief 깔끔한 틱 간격 계산 (100K, 200K, 500K, 1M 등)
@@ -89,6 +89,48 @@ const LABEL_MODES = [
   { id: 'outputRatio', labelKey: 'token.outputRatio' },
   { id: 'none', labelKey: 'token.hidden' }
 ]
+
+function TokenKnowledgeCutoffGlowDefs() {
+  return (
+    <defs>
+      <filter id="token-post-exam-cutoff-glow" x="-8%" y="-24%" width="116%" height="148%">
+        <feGaussianBlur stdDeviation="1.35" />
+      </filter>
+    </defs>
+  )
+}
+
+function TokenBarShape(props) {
+  const { x, y, width, height, fill, fillOpacity, payload } = props
+  if (!Number.isFinite(x) || !Number.isFinite(y) || width <= 0 || height <= 0) return null
+
+  const color = fill || getModelColor(payload.model)
+  const flags = getModelFlags(payload.model)
+
+  return (
+    <g>
+      {flags.postExamKnowledgeCutoff && (
+        <rect
+          x={x - 0.5}
+          y={y - 0.5}
+          width={width + 1}
+          height={height + 1}
+          fill={color}
+          opacity={0.9}
+          filter="url(#token-post-exam-cutoff-glow)"
+        />
+      )}
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill={color}
+        fillOpacity={fillOpacity}
+      />
+    </g>
+  )
+}
 
 function formatOutputRatioLabel(entry) {
   if (!Number.isFinite(entry?.outputRatio)) return '-'
@@ -236,11 +278,12 @@ export default function TokenUsageChart({
           })
 
           total = inputTokens + outputTokens
-          if (total === 0) return null // 해당 과목 데이터 없음
+          if (total <= 0) return null // 해당 과목 데이터 없음
         } else {
           // 전체 토큰 (필터 없음)
           inputTokens = usage.total_input_tokens || 0
           outputTokens = usage.total_output_tokens || 0
+          if (Number.isFinite(usage.total_tokens) && usage.total_tokens <= 0) return null
           total = usage.total_tokens || inputTokens + outputTokens
         }
 
@@ -248,7 +291,7 @@ export default function TokenUsageChart({
 
         return { model, inputTokens, outputTokens, total, outputRatio }
       })
-      .filter(Boolean)
+      .filter(entry => entry && entry.total > 0)
       .sort((a, b) => {
         if (labelMode === 'outputRatio') {
           if (a.outputRatio !== b.outputRatio) return a.outputRatio - b.outputRatio
@@ -354,8 +397,16 @@ export default function TokenUsageChart({
               strokeDasharray="3 3"
             />
             <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+            <TokenKnowledgeCutoffGlowDefs />
             {/* 출력 토큰 (좌측, 진한 색) */}
-            <Bar dataKey="outputTokens" stackId="tokens" name={t('cost.outputTokensShort')} isAnimationActive={false} barSize={20}>
+            <Bar
+              dataKey="outputTokens"
+              stackId="tokens"
+              name={t('cost.outputTokensShort')}
+              isAnimationActive={false}
+              barSize={20}
+              shape={TokenBarShape}
+            >
               {chartData.map((entry, index) => (
                 <Cell
                   key={`output-${index}`}
@@ -365,7 +416,14 @@ export default function TokenUsageChart({
               ))}
             </Bar>
             {/* 입력 토큰 (우측, 연한 색) */}
-            <Bar dataKey="inputTokens" stackId="tokens" name={t('cost.inputTokensShort')} isAnimationActive={false} barSize={20}>
+            <Bar
+              dataKey="inputTokens"
+              stackId="tokens"
+              name={t('cost.inputTokensShort')}
+              isAnimationActive={false}
+              barSize={20}
+              shape={TokenBarShape}
+            >
               {chartData.map((entry, index) => (
                 <Cell
                   key={`input-${index}`}
@@ -433,8 +491,15 @@ export default function TokenUsageChart({
             strokeDasharray="3 3"
           />
           <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
+          <TokenKnowledgeCutoffGlowDefs />
           {/* 출력 토큰 (하단, 진한 색) */}
-          <Bar dataKey="outputTokens" stackId="tokens" name={t('cost.outputTokensShort')} isAnimationActive={false}>
+          <Bar
+            dataKey="outputTokens"
+            stackId="tokens"
+            name={t('cost.outputTokensShort')}
+            isAnimationActive={false}
+            shape={TokenBarShape}
+          >
             {chartData.map((entry, index) => (
               <Cell
                 key={`output-${index}`}
@@ -444,7 +509,13 @@ export default function TokenUsageChart({
             ))}
           </Bar>
           {/* 입력 토큰 (상단, 연한 색) */}
-          <Bar dataKey="inputTokens" stackId="tokens" name={t('cost.inputTokensShort')} isAnimationActive={false}>
+          <Bar
+            dataKey="inputTokens"
+            stackId="tokens"
+            name={t('cost.inputTokensShort')}
+            isAnimationActive={false}
+            shape={TokenBarShape}
+          >
             {chartData.map((entry, index) => (
               <Cell
                 key={`input-${index}`}

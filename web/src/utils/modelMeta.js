@@ -1,6 +1,6 @@
 /**
  * @file modelMeta.js
- * @brief 모델 메타데이터 유틸리티 (부분 벤치마크, 이미지 미지원, 비표준 설정)
+ * @brief 모델 메타데이터 유틸리티 (부분 벤치마크, 이미지 미지원, 비표준 설정, 지식 컷오프)
  */
 
 const PARTIAL_BENCHMARK_MODELS = {
@@ -25,6 +25,11 @@ const PARTIAL_BENCHMARK_MODELS = {
  * @brief 이미지 인식 미지원 모델 패턴
  */
 const NO_VISION_PATTERNS = [/^deepseek/i, /exaone/i, /^solar/i, /^glm/i]
+
+/**
+ * @brief 수능 이후 지식 컷오프 모델 패턴
+ */
+const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [/^GPT-5\.5\b/, /^Claude Opus 4\.7\b/, /^Grok 4\.3\b/]
 
 /**
  * @brief 비표준 설정 모델 (부분 벤치마크 모델과 동일)
@@ -69,25 +74,36 @@ export function isNonStandard(modelName) {
 }
 
 /**
+ * @brief 지식 컷오프가 수능 이후인 모델 여부
+ * @param {string} modelName - 모델명
+ * @return {boolean}
+ */
+export function hasPostExamKnowledgeCutoff(modelName) {
+  return POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS.some(p => p.test(modelName))
+}
+
+/**
  * @brief 모델의 시각적 플래그 반환
  * @param {string} modelName - 모델명
- * @return {{ noVision: boolean, nonStandard: boolean }}
+ * @return {{ noVision: boolean, nonStandard: boolean, postExamKnowledgeCutoff: boolean }}
  */
 export function getModelFlags(modelName) {
   return {
     noVision: hasNoVision(modelName),
-    nonStandard: isNonStandard(modelName)
+    nonStandard: isNonStandard(modelName),
+    postExamKnowledgeCutoff: hasPostExamKnowledgeCutoff(modelName)
   }
 }
 
 /**
  * @brief 모델 목록에 플래그가 있는 모델이 포함되어 있는지 확인
  * @param {string[]} models - 모델명 배열
- * @return {{ hasNoVision: boolean, hasNonStandard: boolean }}
+ * @return {{ hasNoVision: boolean, hasNonStandard: boolean, hasPostExamKnowledgeCutoff: boolean }}
  */
 export function getAnyModelFlags(models = []) {
   return {
     hasNoVision: models.some(hasNoVision),
-    hasNonStandard: models.some(isNonStandard)
+    hasNonStandard: models.some(isNonStandard),
+    hasPostExamKnowledgeCutoff: models.some(hasPostExamKnowledgeCutoff)
   }
 }

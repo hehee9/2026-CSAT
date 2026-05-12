@@ -67,17 +67,12 @@ export function useExportImage({
     const overflowElements = element.querySelectorAll('[class*="overflow"]')
     const originalOverflows = Array.from(overflowElements).map(el => el.style.overflow)
 
-    // 캡처 전: data-export-show 요소 표시 (워터마크 등)
-    const exportShowElements = element.querySelectorAll('[data-export-show="true"]')
+    let exportShowElements = []
 
     try {
       const isDark = _isDarkMode()
       overflowElements.forEach(el => {
         el.style.overflow = 'visible'
-      })
-
-      exportShowElements.forEach(el => {
-        el.classList.remove('hidden')
       })
 
       if (resolvedExportWidth) {
@@ -87,6 +82,14 @@ export function useExportImage({
         window.dispatchEvent(new Event('resize'))
         await _waitForFrames(2)
       }
+
+      // 캡처 전: data-export-show 요소 표시 (워터마크, 내보내기 전용 라벨 등)
+      // 폭 조절 뒤에 다시 조회해야 Recharts가 재배치하며 새로 만든 라벨도 잡힌다.
+      exportShowElements = Array.from(element.querySelectorAll('[data-export-show="true"]'))
+      exportShowElements.forEach(el => {
+        el.classList.remove('hidden')
+      })
+      await _waitForFrames(2)
 
       // scrollWidth/scrollHeight로 실제 콘텐츠 크기 측정
       const width = element.scrollWidth + exportPadding * 2
@@ -122,7 +125,8 @@ export function useExportImage({
         el.style.overflow = originalOverflows[i]
       })
 
-      exportShowElements.forEach(el => {
+      const currentExportShowElements = element.querySelectorAll('[data-export-show="true"]')
+      new Set([...exportShowElements, ...currentExportShowElements]).forEach(el => {
         el.classList.add('hidden')
       })
 

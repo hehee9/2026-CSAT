@@ -138,7 +138,8 @@
   },
   "models": {
     "noVision": "No multimodal support",
-    "nonStandard": "Only wrong answers from high retested with xhigh"
+    "nonStandard": "Only wrong answers from high retested with xhigh",
+    "postExamKnowledgeCutoff": "Knowledge cutoff is after the CSAT"
   },
   "benchmark": {
     "noExternalSearch": "※ These results were produced without external web search."

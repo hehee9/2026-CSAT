@@ -12,8 +12,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   ReferenceLine,
-  ReferenceArea,
-  LabelList
+  ReferenceArea
 } from 'recharts'
 import { useTranslation } from 'react-i18next'
 import { getModelColor } from '@/utils/colorUtils'
@@ -58,32 +57,6 @@ function CustomTooltip({ active, payload, t }) {
       </div>
     </div>
   )
-}
-
-/**
- * @brief 커스텀 레이블 렌더러 생성 함수 (내보내기 시에만 표시)
- * @param {boolean} darkMode - 다크모드 여부
- * @return {function} LabelList content 렌더러
- */
-function createCustomLabel(darkMode) {
-  const fillColor = darkMode ? '#d1d5db' : '#374151'
-  return function CustomLabel(props) {
-    const { x, y, value } = props
-    return (
-      <text
-        x={x}
-        y={y - 16}
-        textAnchor="middle"
-        fill={fillColor}
-        fontSize={11}
-        fontWeight="500"
-        className="hidden"
-        data-export-show="true"
-      >
-        {formatModelDisplayName(value)}
-      </text>
-    )
-  }
 }
 
 /**
@@ -265,22 +238,31 @@ export default function CostScatterChart({
             shape={(props) => {
               const { cx, cy, payload } = props
               return (
-                <circle
-                  cx={cx}
-                  cy={cy}
-                  r={7}
-                  fill={getModelColor(payload.model)}
-                  stroke={darkMode ? '#ffffff' : '#000000'}
-                  strokeWidth={0.6}
-                />
+                <g>
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={7}
+                    fill={getModelColor(payload.model)}
+                    stroke={darkMode ? '#ffffff' : '#000000'}
+                    strokeWidth={0.6}
+                  />
+                  <text
+                    x={cx}
+                    y={cy - 16}
+                    textAnchor="middle"
+                    fill={darkMode ? '#d1d5db' : '#374151'}
+                    fontSize={11}
+                    fontWeight="500"
+                    className="hidden"
+                    data-export-show="true"
+                  >
+                    {formatModelDisplayName(payload.model)}
+                  </text>
+                </g>
               )
             }}
-          >
-            <LabelList
-              dataKey="model"
-              content={createCustomLabel(darkMode)}
-            />
-          </Scatter>
+          />
         </ScatterChart>
       </ResponsiveContainer>
       <BenchmarkNote modelNames={validData.map(item => item.model)} />
