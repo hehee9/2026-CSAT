@@ -120,6 +120,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GPT-OSS 120B (high) (via Fireworks AI)
 
 - **Google Gemini 시리즈**
+  - Gemini 3.5 Flash (high / minimal)
   - Gemini 3.1 Pro (high / low)
   - Gemini 3.1 Flash Lite (high / minimal)
   - Gemini 3 Pro (high / low)
