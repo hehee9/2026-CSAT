@@ -8,10 +8,7 @@ const webRoot = path.resolve(__dirname, '..')
 const repoRoot = path.resolve(webRoot, '..')
 const publicDir = path.join(webRoot, 'public')
 
-async function _writeModelMetadata() {
-  const configPath = path.join(repoRoot, 'problems', 'config.json')
-  const outputPath = path.join(publicDir, 'model_metadata.json')
-  const config = JSON.parse(await readFile(configPath, 'utf8'))
+function _metadataFromConfig(config) {
   const metadata = {}
 
   for (const model of config.models || []) {
@@ -21,8 +18,30 @@ async function _writeModelMetadata() {
     }
   }
 
+  return metadata
+}
+
+async function _writeModelMetadata() {
+  const configPath = path.join(repoRoot, 'problems', 'config.json')
+  const fallbackPath = path.join(webRoot, 'model_metadata.json')
+  const outputPath = path.join(publicDir, 'model_metadata.json')
+  let metadata
+  let sourcePath = configPath
+
+  try {
+    const config = JSON.parse(await readFile(configPath, 'utf8'))
+    metadata = _metadataFromConfig(config)
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error
+    }
+    metadata = JSON.parse(await readFile(fallbackPath, 'utf8'))
+    sourcePath = fallbackPath
+    console.warn(`Using fallback model metadata: ${path.relative(repoRoot, fallbackPath)}`)
+  }
+
   await writeFile(outputPath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8')
-  console.log(`Generated ${path.relative(repoRoot, outputPath)} from ${path.relative(repoRoot, configPath)}`)
+  console.log(`Generated ${path.relative(repoRoot, outputPath)} from ${path.relative(repoRoot, sourcePath)}`)
 }
 
 async function _copyIfExists(sourcePath, targetPath, options = {}) {
