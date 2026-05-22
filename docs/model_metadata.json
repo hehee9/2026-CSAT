@@ -1,0 +1,65 @@
+{
+  "o3-mini (high)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Flash (None)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Flash (Max)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Pro (None)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Pro (Max)": {
+    "supportsVision": false
+  },
+  "DeepSeek V3.2 (Non-Thinking)": {
+    "supportsVision": false
+  },
+  "DeepSeek V3.2 (Thinking)": {
+    "supportsVision": false
+  },
+  "DeepSeek V3.2 Speciale": {
+    "supportsVision": false
+  },
+  "K-EXAONE (Thinking)": {
+    "supportsVision": false
+  },
+  "K-EXAONE (Non-Thinking)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 (high)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 (low)": {
+    "supportsVision": false
+  },
+  "GPT-OSS 120B (high)": {
+    "supportsVision": false
+  },
+  "GLM-5 (Thinking)": {
+    "supportsVision": false
+  },
+  "GLM-5 (Non-Thinking)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 0323 (high)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 0323 (low)": {
+    "supportsVision": false
+  },
+  "Qwen3.7 Max (Non-Thinking)": {
+    "supportsVision": false
+  },
+  "Qwen3.7 Max (Thinking)": {
+    "supportsVision": false
+  },
+  "GLM-5.1 (Thinking)": {
+    "supportsVision": false
+  },
+  "GLM-5.1 (Non-Thinking)": {
+    "supportsVision": false
+  }
+}
