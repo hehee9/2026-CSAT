@@ -84,6 +84,25 @@ export async function loadTokenUsage() {
 }
 
 /**
+ * @brief 안전한 모델 메타데이터 로드
+ * @return {Promise<Object>} 모델별 메타데이터 ({ modelName: { supportsVision } })
+ */
+export async function loadModelMetadata() {
+  const basePath = import.meta.env.BASE_URL || '/'
+  try {
+    const response = await fetch(`${basePath}model_metadata.json`)
+    if (!response.ok) {
+      console.warn('모델 메타데이터 없음')
+      return {}
+    }
+    return response.json()
+  } catch {
+    console.warn('모델 메타데이터 로드 실패')
+    return {}
+  }
+}
+
+/**
  * @brief questions_metadata.json 데이터를 fetch로 로드
  * @return {Promise<Object>} 과목-섹션별 문제 메타데이터 (이미지 유무, 배점)
  */

@@ -81,3 +81,4 @@ tasks/
 # Generated web mirror data
 web/public/all_results.json
 web/public/token_usage.json
+web/public/model_metadata.json

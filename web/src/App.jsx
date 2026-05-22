@@ -75,7 +75,7 @@ function _translateSubject(name, t) {
  */
 function Dashboard() {
   const { t } = useTranslation()
-  const { data, tokenUsage, questionsMetadata, loading, error, models, subjects, sections } = useData()
+  const { data, tokenUsage, modelMetadata, questionsMetadata, loading, error, models, subjects, sections } = useData()
   const sidebar = useSidebar()
 
   const [filters, setFilters] = useState({
@@ -562,6 +562,7 @@ function Dashboard() {
                     })()}
                     hoveredModel={hoveredModel}
                     onModelHover={setHoveredModel}
+                    modelMetadata={modelMetadata}
                   />
                 </div>
                 <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
@@ -615,6 +616,7 @@ function Dashboard() {
                       models={displayModels}
                       title={`${_translateSubject(selectedSubject, t)} - ${_translateSubject(selectedSection, t)} ${t('charts.questionStatus')}`}
                       subjectName={`${_translateSubject(selectedSubject, t)}_${_translateSubject(selectedSection, t)}`}
+                      modelMetadata={modelMetadata}
                     />
                   )}
 
@@ -751,6 +753,7 @@ function Dashboard() {
                     models={displayModels}
                     subjectFilter={filters.subjects}
                     title={t('charts.tokenUsage')}
+                    modelMetadata={modelMetadata}
                   />
                 </div>
                 <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">

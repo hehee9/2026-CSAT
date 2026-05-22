@@ -22,11 +22,6 @@ const PARTIAL_BENCHMARK_MODELS = {
 }
 
 /**
- * @brief 이미지 인식 미지원 모델 패턴
- */
-const NO_VISION_PATTERNS = [/^deepseek/i, /exaone/i, /^solar/i, /^glm/i]
-
-/**
  * @brief 수능 이후 지식 컷오프 모델 패턴
  */
 const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [/^GPT-5\.5\b/, /^Claude Opus 4\.7\b/, /^Grok 4\.3\b/]
@@ -58,10 +53,11 @@ export function hasPartialBenchmark(models = []) {
 /**
  * @brief 이미지 미지원 모델 여부
  * @param {string} modelName - 모델명
+ * @param {Object} modelMetadata - 모델별 메타데이터
  * @return {boolean}
  */
-export function hasNoVision(modelName) {
-  return NO_VISION_PATTERNS.some(p => p.test(modelName))
+export function hasNoVision(modelName, modelMetadata = {}) {
+  return modelMetadata?.[modelName]?.supportsVision === false
 }
 
 /**
@@ -85,11 +81,12 @@ export function hasPostExamKnowledgeCutoff(modelName) {
 /**
  * @brief 모델의 시각적 플래그 반환
  * @param {string} modelName - 모델명
+ * @param {Object} modelMetadata - 모델별 메타데이터
  * @return {{ noVision: boolean, nonStandard: boolean, postExamKnowledgeCutoff: boolean }}
  */
-export function getModelFlags(modelName) {
+export function getModelFlags(modelName, modelMetadata = {}) {
   return {
-    noVision: hasNoVision(modelName),
+    noVision: hasNoVision(modelName, modelMetadata),
     nonStandard: isNonStandard(modelName),
     postExamKnowledgeCutoff: hasPostExamKnowledgeCutoff(modelName)
   }
@@ -98,11 +95,12 @@ export function getModelFlags(modelName) {
 /**
  * @brief 모델 목록에 플래그가 있는 모델이 포함되어 있는지 확인
  * @param {string[]} models - 모델명 배열
+ * @param {Object} modelMetadata - 모델별 메타데이터
  * @return {{ hasNoVision: boolean, hasNonStandard: boolean, hasPostExamKnowledgeCutoff: boolean }}
  */
-export function getAnyModelFlags(models = []) {
+export function getAnyModelFlags(models = [], modelMetadata = {}) {
   return {
-    hasNoVision: models.some(hasNoVision),
+    hasNoVision: models.some(model => hasNoVision(model, modelMetadata)),
     hasNonStandard: models.some(isNonStandard),
     hasPostExamKnowledgeCutoff: models.some(hasPostExamKnowledgeCutoff)
   }

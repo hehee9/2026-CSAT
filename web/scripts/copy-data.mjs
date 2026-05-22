@@ -1,12 +1,29 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { cp, mkdir } from 'node:fs/promises'
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const webRoot = path.resolve(__dirname, '..')
 const repoRoot = path.resolve(webRoot, '..')
 const publicDir = path.join(webRoot, 'public')
+
+async function _writeModelMetadata() {
+  const configPath = path.join(repoRoot, 'problems', 'config.json')
+  const outputPath = path.join(publicDir, 'model_metadata.json')
+  const config = JSON.parse(await readFile(configPath, 'utf8'))
+  const metadata = {}
+
+  for (const model of config.models || []) {
+    if (!model?.name) continue
+    metadata[model.name] = {
+      supportsVision: model.supports_vision !== false
+    }
+  }
+
+  await writeFile(outputPath, `${JSON.stringify(metadata, null, 2)}\n`, 'utf8')
+  console.log(`Generated ${path.relative(repoRoot, outputPath)} from ${path.relative(repoRoot, configPath)}`)
+}
 
 async function _copyIfExists(sourcePath, targetPath, options = {}) {
   try {
@@ -36,6 +53,8 @@ export async function copyDataFiles() {
     path.join(publicDir, 'token_usage.json'),
     { optional: true }
   )
+
+  await _writeModelMetadata()
 }
 
 if (process.argv[1] === __filename) {

@@ -4,6 +4,7 @@
  */
 
 import { useTranslation } from 'react-i18next'
+import { useData } from '@/hooks/useData'
 import { getAnyModelFlags } from '@/utils/modelMeta'
 import { MODEL_COLORS } from '@/utils/colorUtils'
 
@@ -86,10 +87,12 @@ function _LegendSwatch({ type }) {
 
 export default function BenchmarkNote({
   className = 'mt-3 text-sm text-gray-500 dark:text-gray-400',
-  modelNames = []
+  modelNames = [],
+  modelMetadata
 }) {
   const { t } = useTranslation()
-  const flags = getAnyModelFlags(modelNames)
+  const { modelMetadata: contextModelMetadata } = useData()
+  const flags = getAnyModelFlags(modelNames, modelMetadata ?? contextModelMetadata)
 
   return (
     <div className={className}>

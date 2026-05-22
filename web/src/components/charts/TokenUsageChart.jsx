@@ -101,11 +101,11 @@ function TokenKnowledgeCutoffGlowDefs() {
 }
 
 function TokenBarShape(props) {
-  const { x, y, width, height, fill, fillOpacity, payload } = props
+  const { x, y, width, height, fill, fillOpacity, payload, modelMetadata = {} } = props
   if (!Number.isFinite(x) || !Number.isFinite(y) || width <= 0 || height <= 0) return null
 
   const color = fill || getModelColor(payload.model)
-  const flags = getModelFlags(payload.model)
+  const flags = getModelFlags(payload.model, modelMetadata)
 
   return (
     <g>
@@ -216,7 +216,8 @@ export default function TokenUsageChart({
   models = null,
   subjectFilter = [],
   height = 600,
-  title
+  title,
+  modelMetadata = {}
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
@@ -321,6 +322,9 @@ export default function TokenUsageChart({
   const renderMobileLabel = useCallback((props) => (
     <CustomMobileLabel {...props} mode={labelMode} chartData={chartData} darkMode={darkMode} />
   ), [labelMode, chartData, darkMode])
+  const renderTokenBarShape = useCallback((props) => (
+    <TokenBarShape {...props} modelMetadata={modelMetadata} />
+  ), [modelMetadata])
 
   // 다크모드용 색상
   const axisColor = darkMode ? '#4b5563' : '#e5e7eb'
@@ -405,7 +409,7 @@ export default function TokenUsageChart({
               name={t('cost.outputTokensShort')}
               isAnimationActive={false}
               barSize={20}
-              shape={TokenBarShape}
+              shape={renderTokenBarShape}
             >
               {chartData.map((entry, index) => (
                 <Cell
@@ -422,7 +426,7 @@ export default function TokenUsageChart({
               name={t('cost.inputTokensShort')}
               isAnimationActive={false}
               barSize={20}
-              shape={TokenBarShape}
+              shape={renderTokenBarShape}
             >
               {chartData.map((entry, index) => (
                 <Cell
@@ -439,7 +443,7 @@ export default function TokenUsageChart({
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-        <BenchmarkNote modelNames={chartData.map(entry => entry.model)} />
+        <BenchmarkNote modelNames={chartData.map(entry => entry.model)} modelMetadata={modelMetadata} />
       </div>
     )
   }
@@ -498,7 +502,7 @@ export default function TokenUsageChart({
             stackId="tokens"
             name={t('cost.outputTokensShort')}
             isAnimationActive={false}
-            shape={TokenBarShape}
+            shape={renderTokenBarShape}
           >
             {chartData.map((entry, index) => (
               <Cell
@@ -514,7 +518,7 @@ export default function TokenUsageChart({
             stackId="tokens"
             name={t('cost.inputTokensShort')}
             isAnimationActive={false}
-            shape={TokenBarShape}
+            shape={renderTokenBarShape}
           >
             {chartData.map((entry, index) => (
               <Cell
@@ -531,7 +535,7 @@ export default function TokenUsageChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <BenchmarkNote modelNames={chartData.map(entry => entry.model)} />
+      <BenchmarkNote modelNames={chartData.map(entry => entry.model)} modelMetadata={modelMetadata} />
     </div>
   )
 }

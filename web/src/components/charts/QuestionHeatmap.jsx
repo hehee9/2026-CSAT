@@ -48,13 +48,13 @@ function _getAccuracyColor(accuracy, darkMode) {
 
 /**
  * @brief 문항별 정답/오답 히트맵 컴포넌트
- * @param {Object} props - { data, models, title, subjectName }
+ * @param {Object} props - { data, models, title, subjectName, modelMetadata }
  * @param {Object} props.data - { questionNumber: { modelName: { isCorrect, points } } }
  * @param {Array<string>} props.models - 표시할 모델 목록
  * @param {string} props.title - 차트 제목
  * @param {string} props.subjectName - 내보내기 파일명용 과목명
  */
-export default function QuestionHeatmap({ data, models, title, subjectName }) {
+export default function QuestionHeatmap({ data, models, title, subjectName, modelMetadata = {} }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
   const [showAnswerNumbers, setShowAnswerNumbers] = useState(false)
@@ -223,7 +223,7 @@ export default function QuestionHeatmap({ data, models, title, subjectName }) {
           <span>{t('common.noData')}</span>
         </div>
       </div>
-      <BenchmarkNote modelNames={models} />
+      <BenchmarkNote modelNames={models} modelMetadata={modelMetadata} />
     </div>
   )
 }

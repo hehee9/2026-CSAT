@@ -203,14 +203,14 @@ function _PostExamKnowledgeCutoffGlow({ x, y, width, height, radius, color }) {
   )
 }
 
-function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride }) {
+function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride, modelMetadata = {} }) {
   const { x, y, width, height, payload } = props
   const color = colorOverride || payload.color || getModelColor(payload.model)
   const isHovered = hoveredModel === payload.model
   const hasHover = hoveredModel !== null
   const opacity = hasHover ? (isHovered ? 1 : 0.3) : 1
 
-  const flags = getModelFlags(payload.model)
+  const flags = getModelFlags(payload.model, modelMetadata)
   const transitionStyle = { transition: 'opacity 0.15s ease-in-out' }
 
   if (flags.noVision || flags.nonStandard || flags.postExamKnowledgeCutoff) {
@@ -353,7 +353,8 @@ export default function ScoreBarChart({
   onModelHover,
   viewMode = 'average',
   onViewModeChange,
-  showViewModeButtons = false
+  showViewModeButtons = false,
+  modelMetadata = {}
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
@@ -447,7 +448,7 @@ export default function ScoreBarChart({
             <Bar
               dataKey="score"
               barSize={24}
-              shape={(props) => _renderBar(props, { hoveredModel, radius: [0, 4, 4, 0] })}
+              shape={(props) => _renderBar(props, { hoveredModel, radius: [0, 4, 4, 0], modelMetadata })}
             />
           </BarChart>
         </ResponsiveContainer>
@@ -579,7 +580,7 @@ export default function ScoreBarChart({
               dataKey="best"
               name={t('charts.bestScore')}
               isAnimationActive={false}
-              shape={(props) => _renderBar(props, { hoveredModel })}
+              shape={(props) => _renderBar(props, { hoveredModel, modelMetadata })}
             >
               {showLabels && (
                 <LabelList
@@ -596,7 +597,7 @@ export default function ScoreBarChart({
               isAnimationActive={false}
               shape={(props) => {
                 const baseColor = props.payload.color || getModelColor(props.payload.model)
-                return _renderBar(props, { hoveredModel, colorOverride: lightenColor(baseColor, 0.5) })
+                return _renderBar(props, { hoveredModel, colorOverride: lightenColor(baseColor, 0.5), modelMetadata })
               }}
             >
               {showLabels && (
@@ -677,7 +678,7 @@ export default function ScoreBarChart({
             <Bar
               dataKey="rate"
               isAnimationActive={false}
-              shape={(props) => _renderBar(props, { hoveredModel })}
+              shape={(props) => _renderBar(props, { hoveredModel, modelMetadata })}
             >
               <LabelList
                 dataKey="rate"
@@ -731,7 +732,7 @@ export default function ScoreBarChart({
             <Bar
               dataKey="score"
               isAnimationActive={false}
-              shape={(props) => _renderBar(props, { hoveredModel })}
+              shape={(props) => _renderBar(props, { hoveredModel, modelMetadata })}
             >
               {showLabels && (
                 <LabelList
@@ -745,7 +746,7 @@ export default function ScoreBarChart({
           </BarChart>
         )}
       </ResponsiveContainer>
-      <BenchmarkNote modelNames={data.map(item => item.model)} />
+      <BenchmarkNote modelNames={data.map(item => item.model)} modelMetadata={modelMetadata} />
     </div>
   )
 }
