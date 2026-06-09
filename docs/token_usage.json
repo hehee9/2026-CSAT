@@ -5920,6 +5920,80 @@
           "question_count": 20
         }
       }
+    },
+    "Claude Fable 5 (high)": {
+      "sections": {
+        "국어-언매": {
+          "input_tokens": 27522,
+          "output_tokens": 11737,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 30318,
+          "output_tokens": 9529,
+          "question_count": 11
+        },
+        "국어-공통": {
+          "input_tokens": 85960,
+          "output_tokens": 32398,
+          "question_count": 34
+        },
+        "수학-기하": {
+          "input_tokens": 6265,
+          "output_tokens": 11438,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 3954,
+          "output_tokens": 9218,
+          "question_count": 8
+        },
+        "수학-공통": {
+          "input_tokens": 8238,
+          "output_tokens": 21988,
+          "question_count": 22
+        },
+        "수학-미적": {
+          "input_tokens": 3330,
+          "output_tokens": 17173,
+          "question_count": 8
+        },
+        "영어-공통": {
+          "input_tokens": 24563,
+          "output_tokens": 25810,
+          "question_count": 45
+        },
+        "탐구-물리1": {
+          "input_tokens": 37916,
+          "output_tokens": 57329,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 22894,
+          "output_tokens": 28875,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 25210,
+          "output_tokens": 725,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 18215,
+          "output_tokens": 26926,
+          "question_count": 20
+        },
+        "한국사-공통": {
+          "input_tokens": 22935,
+          "output_tokens": 10744,
+          "question_count": 20
+        }
+      },
+      "total_input_tokens": 317320,
+      "total_output_tokens": 263890,
+      "total_tokens": 581210,
+      "question_count": 247,
+      "last_updated": "2026-06-10 02:38:04"
     }
   }
 }
