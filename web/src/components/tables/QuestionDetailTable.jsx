@@ -7,6 +7,18 @@ import { useMemo } from 'react'
 import { getModelColor } from '@/utils/colorUtils'
 import { formatModelDisplayName } from '@/utils/modelMeta'
 
+/** @description Check whether a detail table cell represents a refused response */
+function _isRefusalCell(cell) {
+  return cell?.answerStatus === 'refusal' || cell?.extractedAnswer === -2
+}
+
+/** @description Format model answer values for table display */
+function _formatAnswer(cell) {
+  if (_isRefusalCell(cell)) return '검열'
+  if (cell?.extractedAnswer === -1) return '-'
+  return cell?.extractedAnswer ?? '-'
+}
+
 /**
  * @brief 문항별 상세 테이블 컴포넌트
  * @param {Object} props - { data, models, title }
@@ -89,12 +101,15 @@ export default function QuestionDetailTable({ data, models, title }) {
                   </td>
                   {models.map(model => {
                     const cell = data[qNum]?.[model]
-                    const answer = cell?.extractedAnswer
+                    const answer = _formatAnswer(cell)
 
                     let bgColor = 'bg-gray-100'
                     let textColor = 'text-gray-400'
 
-                    if (cell?.isCorrect === true) {
+                    if (_isRefusalCell(cell)) {
+                      bgColor = 'bg-purple-100'
+                      textColor = 'text-purple-800'
+                    } else if (cell?.isCorrect === true) {
                       bgColor = points >= 3 ? 'bg-green-200' : 'bg-green-100'
                       textColor = 'text-green-800'
                     } else if (cell?.isCorrect === false) {
@@ -106,9 +121,9 @@ export default function QuestionDetailTable({ data, models, title }) {
                       <td
                         key={model}
                         className={`px-2 py-2 text-center ${bgColor} ${textColor}`}
-                        title={`${formatModelDisplayName(model)}: ${answer ?? '없음'} (${cell?.isCorrect ? '정답' : '오답'})`}
+                        title={`${formatModelDisplayName(model)}: ${answer} (${_isRefusalCell(cell) ? '검열/응답 거부' : cell?.isCorrect ? '정답' : '오답'})`}
                       >
-                        {answer ?? '-'}
+                        {answer}
                       </td>
                     )
                   })}
@@ -136,6 +151,10 @@ export default function QuestionDetailTable({ data, models, title }) {
         <div className="flex items-center gap-1">
           <div className="w-4 h-4 rounded bg-red-100" />
           <span>오답 (2점)</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded bg-purple-100" />
+          <span>검열/응답 거부</span>
         </div>
       </div>
     </div>

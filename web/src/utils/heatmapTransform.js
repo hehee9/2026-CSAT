@@ -26,7 +26,9 @@ export function transformToHeatmapData(data, subject, section) {
         isCorrect: result.is_correct,
         points: result.points,
         extractedAnswer: result.extracted_answer,
-        correctAnswer: result.correct_answer
+        correctAnswer: result.correct_answer,
+        answerStatus: result.answer_status || (result.extracted_answer === -1 ? 'no_answer' : 'answered'),
+        providerStopReason: result.provider_stop_reason || null
       }
     })
   })

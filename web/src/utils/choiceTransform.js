@@ -54,7 +54,12 @@ export function transformToChoiceData(heatmapData, models, subject = '', section
 
     models.forEach(model => {
       const cell = heatmapData[qNum]?.[model]
-      if (cell && cell.extractedAnswer) {
+      if (
+        cell
+        && cell.answerStatus === 'answered'
+        && cell.extractedAnswer >= 1
+        && cell.extractedAnswer <= 5
+      ) {
         choices[cell.extractedAnswer]++
         validModels++
         if (!correctAnswer) correctAnswer = cell.correctAnswer

@@ -31,6 +31,28 @@ from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.styles.colors import Color
 
 
+REFUSAL_ANSWER = -2
+NO_ANSWER = -1
+REFUSAL_MARKERS = {"-2", "(검열)", "검열", "Refusal", "refusal"}
+
+
+def normalize_answer_value(answer):
+    """답안 값을 JSON 채점용 숫자와 상태로 변환한다."""
+    if answer is None or answer == '' or str(answer).strip() == '':
+        return NO_ANSWER, 'no_answer'
+
+    answer_text = str(answer).strip()
+    if answer == NO_ANSWER or answer_text in {'-1', '(포기)'}:
+        return NO_ANSWER, 'no_answer'
+    if answer_text in REFUSAL_MARKERS:
+        return REFUSAL_ANSWER, 'refusal'
+
+    try:
+        return int(answer), 'answered'
+    except (ValueError, TypeError):
+        return NO_ANSWER, 'parse_failed'
+
+
 class PathMapper:
     """Excel 시트명과 JSON 경로 간 매핑"""
 
@@ -230,8 +252,9 @@ class ExcelHandler:
         score = 0
         for q_num, correct in correct_answers.items():
             answer = answers.get(q_num)
+            normalized_answer, _ = normalize_answer_value(answer)
             try:
-                if answer is not None and int(answer) == int(correct):
+                if normalized_answer == int(correct):
                     score += points_by_question.get(q_num, 0)
             except (ValueError, TypeError):
                 continue
@@ -371,6 +394,7 @@ class ExcelHandler:
         center_align = Alignment(horizontal='center', vertical='center')
         red_font = Font(color='FF0000')
         red_bold_font = Font(color='FF0000', bold=True)
+        purple_font = Font(color='7C3AED')
 
         # 정답 데이터 가져오기
         correct_answers = self._get_correct_answers(sheet_name)
@@ -393,8 +417,10 @@ class ExcelHandler:
                         answer = answers[q_num]
                         correct = correct_answers.get(q_num)
 
-                        # 무응답 (-1, None, 빈 문자열)
-                        if answer is None or answer == -1 or answer == "":
+                        if answer == REFUSAL_ANSWER or str(answer).strip() in REFUSAL_MARKERS:
+                            cell.value = "(검열)"
+                            cell.font = purple_font
+                        elif answer is None or answer == NO_ANSWER or answer == "":
                             cell.value = "(포기)"
                             cell.font = red_font
                         else:
@@ -440,6 +466,7 @@ class ExcelHandler:
         bold_font = Font(bold=True)
         center_align = Alignment(horizontal='center', vertical='center')
         red_font = Font(color='FF0000')
+        purple_font = Font(color='7C3AED')
 
         # 정답 데이터 가져오기
         correct_answers = self._get_correct_answers(sheet_name)
@@ -463,8 +490,10 @@ class ExcelHandler:
                         answer = answers[q_num]
                         correct = correct_answers.get(q_num)
 
-                        # 무응답 (-1, None, 빈 문자열)
-                        if answer is None or answer == -1 or answer == "":
+                        if answer == REFUSAL_ANSWER or str(answer).strip() in REFUSAL_MARKERS:
+                            cell.value = "(검열)"
+                            cell.font = purple_font
+                        elif answer is None or answer == NO_ANSWER or answer == "":
                             cell.value = "(포기)"
                             cell.font = red_font
                         else:
@@ -541,17 +570,7 @@ class DataConverter:
             points = q['points']
 
             extracted = answers.get(q_num)
-
-            # 답안 정규화
-            if extracted is None or extracted == '' or str(extracted).strip() == '':
-                extracted_normalized = -1
-            elif str(extracted).strip() == '(포기)':
-                extracted_normalized = -1
-            else:
-                try:
-                    extracted_normalized = int(extracted)
-                except (ValueError, TypeError):
-                    extracted_normalized = -1
+            extracted_normalized, answer_status = normalize_answer_value(extracted)
 
             is_correct = (extracted_normalized == correct_answer)
             if is_correct:
@@ -566,6 +585,8 @@ class DataConverter:
                 'is_correct': is_correct,
                 'points': points,
                 'needs_manual_review': False,
+                'answer_status': answer_status,
+                'provider_stop_reason': 'refusal' if answer_status == 'refusal' else None,
                 'raw_response': ''
             })
 
@@ -613,8 +634,10 @@ class DataConverter:
                 if result['model_name'] == json_model_name:
                     q_num = result['question_number']
                     extracted = result['extracted_answer']
-                    # -1은 빈 셀로 변환
-                    if extracted == -1:
+                    answer_status = result.get('answer_status')
+                    if answer_status == 'refusal' or extracted == REFUSAL_ANSWER:
+                        answers[q_num] = "(검열)"
+                    elif extracted == NO_ANSWER:
                         answers[q_num] = None
                     else:
                         answers[q_num] = extracted
@@ -1007,6 +1030,8 @@ class SyncManager:
                                 'correct_answer': r['correct_answer'],
                                 'is_correct': r['is_correct'],
                                 'points': r['points'],
+                                'answer_status': r.get('answer_status'),
+                                'provider_stop_reason': r.get('provider_stop_reason'),
                             }
                             for r in json_data['results']
                         ]

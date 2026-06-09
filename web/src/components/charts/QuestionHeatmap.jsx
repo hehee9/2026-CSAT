@@ -46,6 +46,18 @@ function _getAccuracyColor(accuracy, darkMode) {
   return `hsl(${hue}, 50%, ${lightness}%)`
 }
 
+/** @description Check whether a heatmap cell represents a refused response */
+function _isRefusalCell(cell) {
+  return cell?.answerStatus === 'refusal' || cell?.extractedAnswer === -2
+}
+
+/** @description Format an answer value for compact heatmap cells */
+function _formatAnswer(cell, t) {
+  if (_isRefusalCell(cell)) return t('heatmap.refusalShort')
+  if (cell?.extractedAnswer === -1) return '-'
+  return cell?.extractedAnswer ?? '-'
+}
+
 /**
  * @brief 문항별 정답/오답 히트맵 컴포넌트
  * @param {Object} props - { data, models, title, subjectName, modelMetadata }
@@ -133,9 +145,14 @@ export default function QuestionHeatmap({ data, models, title, subjectName, mode
                 </div>
                 {questions.map(q => {
                   const cell = data[q]?.[model]
-                  const bgColor = getHeatmapColor(cell?.isCorrect, cell?.points, darkMode)
+                  const isRefusal = _isRefusalCell(cell)
+                  const bgColor = isRefusal
+                    ? (darkMode ? '#581c87' : '#d8b4fe')
+                    : getHeatmapColor(cell?.isCorrect, cell?.points, darkMode)
                   const cellTitle = cell?.isCorrect === undefined
                     ? `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('common.noData')}`
+                    : isRefusal
+                    ? `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('heatmap.refusal')} (${cell.points}${t('common.points')}) - ${t('heatmap.answer')}: ${cell.correctAnswer}`
                     : cell?.isCorrect
                     ? `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('heatmap.correct')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}`
                     : `${formatModelDisplayName(model)} - ${t('heatmap.question')} ${q}: ${t('heatmap.incorrect')} (${cell.points}${t('common.points')}) - ${t('heatmap.yourAnswer')}: ${cell.extractedAnswer}, ${t('heatmap.answer')}: ${cell.correctAnswer}`
@@ -149,15 +166,20 @@ export default function QuestionHeatmap({ data, models, title, subjectName, mode
                       {showAnswerNumbers ? (
                         // 답 번호 모드: 숫자 표시
                         <span className={`font-bold text-xs ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>
-                          {cell?.extractedAnswer ?? '-'}
+                          {_formatAnswer(cell, t)}
                         </span>
                       ) : (
                         // O/X 모드
                         <>
+                          {isRefusal && (
+                            <span className={`font-bold text-xs ${darkMode ? 'text-gray-100' : 'text-purple-900'}`}>
+                              {t('heatmap.refusalShort')}
+                            </span>
+                          )}
                           {cell?.isCorrect === true && (
                             <span className={`font-bold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>○</span>
                           )}
-                          {cell?.isCorrect === false && (
+                          {cell?.isCorrect === false && !isRefusal && (
                             <span className={`font-bold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>✕</span>
                           )}
                         </>
@@ -217,6 +239,10 @@ export default function QuestionHeatmap({ data, models, title, subjectName, mode
         <div className="flex items-center gap-1">
           <div className="w-4 h-4 rounded" style={{ backgroundColor: darkMode ? '#991b1b' : '#fca5a5' }} />
           <span>{t('heatmap.legend.incorrectLow')}</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: darkMode ? '#581c87' : '#d8b4fe' }} />
+          <span>{t('heatmap.legend.refusal')}</span>
         </div>
         <div className="flex items-center gap-1">
           <div className="w-4 h-4 rounded" style={{ backgroundColor: darkMode ? '#374151' : '#f0f0f0' }} />

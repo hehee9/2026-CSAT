@@ -136,6 +136,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Gemma 4 26B A4B (high / minimal)
 
 - **Anthropic Claude 시리즈**
+  - Claude Fable 5 (high)
   - Claude Opus 4.7 (max* / high / none)
   - Claude Opus 4.5 (32K Thinking / Non-Thinking)
   - Claude Sonnet 4.5 (32K Thinking / Non-Thinking)
@@ -187,13 +188,11 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Solar 3 Pro (high / low)
   - Solar 3 Pro 0323 (high / low)
 
-※ * GPT-5.4 (xhigh), Claude Opus 4.7 (max)는 high에서 틀린 문제만 재측정한 것입니다. 성능 향상에 비해 들어가는 시간과 비용이 너무 커져 이 방식으로 처리한 점 양해 바랍니다.
+※ * GPT-5.5/5.4 (xhigh), Claude Opus 4.7 (max)는 high에서 틀린 문제만 재측정한 것입니다. 성능 향상에 비해 들어가는 시간과 비용이 너무 커져 이 방식으로 처리한 점 양해 바랍니다.
 
-※ DeepSeek, EXAONE, Solar, GLM은 이미지 인식이 불가능해 텍스트로만 진행했습니다.
+※ 이미지 인식이 불가능한 모델은 텍스트로만 진행했습니다.
 
-※ Kimi K2.5, K2.6에는 INT4 양자화가 적용되었습니다.
-
-※ Solar 3 Pro 0323은 다시 확인해봤지만 high / low로 설정한 게 맞습니다. 왜 low가 토큰도 더 많이 쓰고 점수도 더 높은지는 불명입니다.
+※ Claude Fable 5는 너무 비싸서 high로만 돌립니다.
 
 ## 국어 영역
 

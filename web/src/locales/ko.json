@@ -105,11 +105,14 @@
     "points": "배점",
     "correct": "정답",
     "incorrect": "오답",
+    "refusal": "검열/응답 거부",
+    "refusalShort": "검",
     "legend": {
       "correctHigh": "정답 (3점 이상)",
       "correctLow": "정답 (2점)",
       "incorrectHigh": "오답 (3점 이상)",
-      "incorrectLow": "오답 (2점)"
+      "incorrectLow": "오답 (2점)",
+      "refusal": "검열/응답 거부"
     }
   },
   "choice": {

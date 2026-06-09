@@ -105,11 +105,14 @@
     "points": "Points",
     "correct": "Correct",
     "incorrect": "Incorrect",
+    "refusal": "Refusal",
+    "refusalShort": "C",
     "legend": {
       "correctHigh": "Correct (3+ pts)",
       "correctLow": "Correct (2 pts)",
       "incorrectHigh": "Incorrect (3+ pts)",
-      "incorrectLow": "Incorrect (2 pts)"
+      "incorrectLow": "Incorrect (2 pts)",
+      "refusal": "Refusal"
     }
   },
   "choice": {
