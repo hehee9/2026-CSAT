@@ -1,6 +1,174 @@
 {
+  "GPT-5.5 (xhigh*)": {
+    "supportsVision": true
+  },
+  "GPT-5.5 (high)": {
+    "supportsVision": true
+  },
+  "GPT-5.5 (none)": {
+    "supportsVision": true
+  },
+  "GPT-5.5 Instant": {
+    "supportsVision": true
+  },
+  "GPT-5.4 (xhigh*)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 (high)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 (none)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 mini (xhigh)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 mini (none)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 nano (xhigh)": {
+    "supportsVision": true
+  },
+  "GPT-5.4 nano (none)": {
+    "supportsVision": true
+  },
+  "GPT-5.2 (xhigh)": {
+    "supportsVision": true
+  },
+  "GPT-5.2 (Instant)": {
+    "supportsVision": true
+  },
+  "GPT-5.1 (high)": {
+    "supportsVision": true
+  },
+  "GPT-5.2 Codex": {
+    "supportsVision": true
+  },
+  "GPT-5.1 Codex": {
+    "supportsVision": true
+  },
+  "GPT-5.1 Chat": {
+    "supportsVision": true
+  },
+  "GPT-5 mini (high)": {
+    "supportsVision": true
+  },
+  "GPT-5 nano (high)": {
+    "supportsVision": true
+  },
+  "o1 (high)": {
+    "supportsVision": true
+  },
+  "o3 (high)": {
+    "supportsVision": true
+  },
   "o3-mini (high)": {
     "supportsVision": false
+  },
+  "o4-mini (high)": {
+    "supportsVision": true
+  },
+  "GPT-4.1": {
+    "supportsVision": true
+  },
+  "GPT-4.1 mini": {
+    "supportsVision": true
+  },
+  "GPT-4.1 nano": {
+    "supportsVision": true
+  },
+  "GPT-4o": {
+    "supportsVision": true
+  },
+  "GPT-4o mini": {
+    "supportsVision": true
+  },
+  "Claude Fable 5 (high)": {
+    "supportsVision": true
+  },
+  "Claude Opus 4.7": {
+    "supportsVision": true
+  },
+  "Claude Opus 4.7 (high)": {
+    "supportsVision": true
+  },
+  "Claude Opus 4.7 (max*)": {
+    "supportsVision": true
+  },
+  "Claude Opus 4.5 (32K Thinking)": {
+    "supportsVision": true
+  },
+  "Claude Opus 4.5": {
+    "supportsVision": true
+  },
+  "Claude Sonnet 4.5 (32K Thinking)": {
+    "supportsVision": true
+  },
+  "Claude Sonnet 4.5": {
+    "supportsVision": true
+  },
+  "Claude Haiku 4.5 (32K Thinking)": {
+    "supportsVision": true
+  },
+  "Claude Haiku 4.5": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Pro (high)": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Pro (low)": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Flash-Lite (Preview, high)": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Flash-Lite (Preview, minimal)": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Flash-Lite (high)": {
+    "supportsVision": true
+  },
+  "Gemini 3.1 Flash-Lite (minimal)": {
+    "supportsVision": true
+  },
+  "Gemini 3 Pro (high)": {
+    "supportsVision": true
+  },
+  "Gemini 3 Pro (low)": {
+    "supportsVision": true
+  },
+  "Gemini 2.5 Pro (32K Thinking)": {
+    "supportsVision": true
+  },
+  "Gemini 3.5 Flash (high)": {
+    "supportsVision": true
+  },
+  "Gemini 3.5 Flash (minimal)": {
+    "supportsVision": true
+  },
+  "Gemini 3 Flash (high)": {
+    "supportsVision": true
+  },
+  "Gemini 3 Flash (minimal)": {
+    "supportsVision": true
+  },
+  "Gemini 2.5 Flash (2025-09 Preview, 24K Thinking)": {
+    "supportsVision": true
+  },
+  "Gemini 2.5 Flash (2025-09 Preview, Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking)": {
+    "supportsVision": true
+  },
+  "Gemini 2.5 Flash Lite (2025-09 Preview, Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Gemini 2.0 Flash": {
+    "supportsVision": true
+  },
+  "Gemini 2.0 Flash Lite": {
+    "supportsVision": true
   },
   "DeepSeek V4 Flash (None)": {
     "supportsVision": false
@@ -23,6 +191,27 @@
   "DeepSeek V3.2 Speciale": {
     "supportsVision": false
   },
+  "Grok 4": {
+    "supportsVision": true
+  },
+  "Grok 4 Fast (Thinking)": {
+    "supportsVision": true
+  },
+  "Grok 4.1 Fast (Thinking)": {
+    "supportsVision": true
+  },
+  "Grok 4.1 Fast (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Grok 4.20 Multi-Agent Beta (4 Agents)": {
+    "supportsVision": true
+  },
+  "Grok 4.3 (none)": {
+    "supportsVision": true
+  },
+  "Grok 4.3 (high)": {
+    "supportsVision": true
+  },
   "K-EXAONE (Thinking)": {
     "supportsVision": false
   },
@@ -38,11 +227,47 @@
   "GPT-OSS 120B (high)": {
     "supportsVision": false
   },
+  "Kimi K2.5 (Thinking)": {
+    "supportsVision": true
+  },
+  "Kimi K2.5 (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Kimi K2.6 (Thinking)": {
+    "supportsVision": true
+  },
+  "Kimi K2.6 (Non-Thinking)": {
+    "supportsVision": true
+  },
   "GLM-5 (Thinking)": {
     "supportsVision": false
   },
   "GLM-5 (Non-Thinking)": {
     "supportsVision": false
+  },
+  "Qwen3.5 397B (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 397B (Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 27B (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 27B (Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 35B A3B (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 35B A3B (Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 9B (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.5 9B (Thinking)": {
+    "supportsVision": true
   },
   "Solar Pro 3 0323 (high)": {
     "supportsVision": false
@@ -50,16 +275,49 @@
   "Solar Pro 3 0323 (low)": {
     "supportsVision": false
   },
+  "Kanana-o 9.8B": {
+    "supportsVision": true
+  },
+  "Qwen3.6 Plus (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.6 Plus (Thinking)": {
+    "supportsVision": true
+  },
   "Qwen3.7 Max (Non-Thinking)": {
     "supportsVision": false
   },
   "Qwen3.7 Max (Thinking)": {
     "supportsVision": false
   },
+  "Qwen3.6 27B (Non-Thinking)": {
+    "supportsVision": true
+  },
+  "Qwen3.6 27B (Thinking)": {
+    "supportsVision": true
+  },
+  "Gemma 4 26B A4B": {
+    "supportsVision": true
+  },
+  "Gemma 4 26B A4B (high)": {
+    "supportsVision": true
+  },
+  "Gemma 4 31B": {
+    "supportsVision": true
+  },
+  "Gemma 4 31B (high)": {
+    "supportsVision": true
+  },
   "GLM-5.1 (Thinking)": {
     "supportsVision": false
   },
   "GLM-5.1 (Non-Thinking)": {
     "supportsVision": false
+  },
+  "Mistral Small 4 (Thinking)": {
+    "supportsVision": true
+  },
+  "Mistral Small 4 (Non-Thinking)": {
+    "supportsVision": true
   }
 }
