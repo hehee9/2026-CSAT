@@ -4,17 +4,32 @@
  */
 
 /**
- * @brief all_results.json 데이터를 fetch로 로드
+ * @brief 결과 JSON 데이터를 fetch로 로드
+ * @param {'default' | 'hard'} mode - 벤치마크 모드
  * @return {Promise<Array>} 파싱된 JSON 배열
  * @throws {Error} 데이터 로드 실패 시
  */
-export async function loadAllResults() {
+export async function loadAllResults(mode = 'default') {
   const basePath = import.meta.env.BASE_URL || '/'
-  const response = await fetch(`${basePath}all_results.json`)
+  const fileName = mode === 'hard' ? 'hard_all_results.json' : 'all_results.json'
+  const response = await fetch(`${basePath}${fileName}`)
   if (!response.ok) {
+    if (mode === 'hard') {
+      console.warn('고난도 결과 데이터 없음')
+      return []
+    }
     throw new Error(`데이터 로드 실패: ${response.status}`)
   }
-  return response.json()
+  const text = await response.text()
+  try {
+    return JSON.parse(text)
+  } catch (error) {
+    if (mode === 'hard') {
+      console.warn('고난도 결과 데이터 파싱 실패 또는 파일 없음')
+      return []
+    }
+    throw error
+  }
 }
 
 /**
@@ -64,13 +79,15 @@ export function getModelData(data, modelName) {
 }
 
 /**
- * @brief token_usage.json 데이터를 fetch로 로드
+ * @brief 토큰 사용량 데이터를 fetch로 로드
+ * @param {'default' | 'hard'} mode - 벤치마크 모드
  * @return {Promise<Object>} 모델별 토큰 사용량 객체
  */
-export async function loadTokenUsage() {
+export async function loadTokenUsage(mode = 'default') {
   const basePath = import.meta.env.BASE_URL || '/'
+  const fileName = mode === 'hard' ? 'hard_token_usage.json' : 'token_usage.json'
   try {
-    const response = await fetch(`${basePath}token_usage.json`)
+    const response = await fetch(`${basePath}${fileName}`)
     if (!response.ok) {
       console.warn('토큰 사용량 데이터 없음')
       return {}

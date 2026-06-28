@@ -73,9 +73,9 @@ function _translateSubject(name, t) {
 /**
  * @brief 대시보드 메인 컴포넌트
  */
-function Dashboard() {
+function Dashboard({ benchmarkMode = 'default', onBenchmarkModeChange }) {
   const { t } = useTranslation()
-  const { data, tokenUsage, modelMetadata, questionsMetadata, loading, error, models, subjects, sections } = useData()
+  const { data, tokenUsage, modelMetadata, questionsMetadata, loading, error, models, subjects, sections, dataMode } = useData()
   const sidebar = useSidebar()
 
   const [filters, setFilters] = useState({
@@ -90,6 +90,7 @@ function Dashboard() {
   const [compareModels, setCompareModels] = useState([])
   const [hoveredModel, setHoveredModel] = useState(null)
   const [scoreViewMode, setScoreViewMode] = useState(INITIAL_QUERY_STATE.scoreView)
+  const [isModelSelectionTouched, setIsModelSelectionTouched] = useState(false)
   const subjectSelectRef = useRef(null)
   const sectionSelectRef = useRef(null)
   const mainRef = useRef(null)
@@ -99,6 +100,24 @@ function Dashboard() {
   const [scrolledPastHeader, setScrolledPastHeader] = useState(false)
   const headerTimeoutRef = useRef(null)
   const originalHeaderRef = useRef(null)
+
+  useEffect(() => {
+    setIsDefaultModelSelectionReady(false)
+    setSelectedSubject('')
+    setSelectedSection('')
+  }, [benchmarkMode])
+
+  const _areArraysEqual = useCallback((a = [], b = []) => {
+    if (a.length !== b.length) return false
+    return a.every((value, index) => value === b[index])
+  }, [])
+
+  const handleFilterChange = useCallback((nextFilters) => {
+    if (!_areArraysEqual(filters.models, nextFilters.models)) {
+      setIsModelSelectionTouched(true)
+    }
+    setFilters(nextFilters)
+  }, [_areArraysEqual, filters.models])
 
   // 전체 모델 점수 계산 (과목 필터 적용)
   const overallScores = useMemo(() => {
@@ -113,20 +132,42 @@ function Dashboard() {
 
   /**
    * @brief 데이터 로드 완료 후 기본 모델 필터 설정
-   * - 개발사를 최고 총점 모델 기준으로 랭킹해 상위 50%/하위 50%로 구분
-   * - 상위 50% 개발사: 각 개발사별 상위 min(floor(50%), 3개) 모델 기본 활성화
-   * - 하위 50% 개발사: 기본 활성화 최대 1개
-   * - 최초 로드 시에만 적용
+   * - 모델 필터를 건드리지 않은 상태에서는 각 모드의 기본 표시 규칙 적용
+   * - 모델 필터를 건드린 뒤에는 새 모드에 있는 선택 모델 유지
+   * - 유지되는 모델이 없으면 각 모드의 기본 표시 규칙 적용
+   * - 비교 탭 선택 모델도 새 모드에 있는 모델만 유지
    */
   useEffect(() => {
-    if (loading || !data?.length || !models?.length || isDefaultModelSelectionReady) return
+    if (loading || isDefaultModelSelectionReady) return
+    if (dataMode !== benchmarkMode) return
+
+    if (!data?.length || !models?.length) {
+      setFilters(prev => ({ ...prev, models: [] }))
+      setCompareModels([])
+      setIsDefaultModelSelectionReady(true)
+      return
+    }
 
     const allScores = calculateAllModelScores(data, models, [])
     const defaultModels = getDefaultSelectedModels(models, allScores)
+    const availableModels = new Set(models)
 
-    setFilters(prev => ({ ...prev, models: defaultModels }))
+    setFilters(prev => {
+      const retainedModels = prev.models.filter(model => availableModels.has(model))
+      if (!isModelSelectionTouched) {
+        return {
+          ...prev,
+          models: defaultModels
+        }
+      }
+      return {
+        ...prev,
+        models: retainedModels.length > 0 ? retainedModels : defaultModels
+      }
+    })
+    setCompareModels(prev => prev.filter(model => availableModels.has(model)))
     setIsDefaultModelSelectionReady(true)
-  }, [loading, data, models, isDefaultModelSelectionReady])
+  }, [loading, data, models, dataMode, benchmarkMode, isDefaultModelSelectionReady, isModelSelectionTouched])
 
   // 필터 및 정렬 적용
   const filteredScores = useMemo(() => {
@@ -407,7 +448,10 @@ function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
+      <div
+        className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900"
+        data-benchmark-mode={benchmarkMode}
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400">{t('common.loading')}</p>
@@ -430,6 +474,7 @@ function Dashboard() {
   return (
       <div
       className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col"
+      data-benchmark-mode={benchmarkMode}
       data-dashboard-ready={!loading && !error && isDefaultModelSelectionReady ? 'true' : 'false'}
     >
       {/* PC 헤더 호버 트리거 영역 (스크롤 시에만 활성화) */}
@@ -447,16 +492,24 @@ function Dashboard() {
         onMouseEnter={handleHeaderTriggerEnter}
         onMouseLeave={handleHeaderTriggerLeave}
       >
-        <Header onMenuToggle={sidebar.toggle} />
+        <Header
+          onMenuToggle={sidebar.toggle}
+          mode={benchmarkMode}
+          onModeChange={onBenchmarkModeChange}
+        />
       </div>
       {/* 원본 헤더 (항상 표시) */}
       <div ref={originalHeaderRef}>
-        <Header onMenuToggle={sidebar.toggle} />
+        <Header
+          onMenuToggle={sidebar.toggle}
+          mode={benchmarkMode}
+          onModeChange={onBenchmarkModeChange}
+        />
       </div>
       <div className="flex flex-1">
         <Sidebar
           filters={filters}
-          onFilterChange={setFilters}
+          onFilterChange={handleFilterChange}
           hoveredModel={hoveredModel}
           onModelHover={setHoveredModel}
           isOpen={sidebar.isOpen}
@@ -777,10 +830,28 @@ function Dashboard() {
  * @brief App 루트 컴포넌트
  */
 export default function App() {
+  const [benchmarkMode, setBenchmarkMode] = useState(INITIAL_QUERY_STATE.mode)
+
+  const handleBenchmarkModeChange = useCallback((nextMode) => {
+    setBenchmarkMode(nextMode)
+    if (typeof window === 'undefined') return
+
+    const url = new URL(window.location.href)
+    if (nextMode === 'hard') {
+      url.searchParams.set('mode', 'hard')
+    } else {
+      url.searchParams.delete('mode')
+    }
+    window.history.replaceState({}, '', url)
+  }, [])
+
   return (
     <ThemeProvider>
-      <DataProvider>
-        <Dashboard />
+      <DataProvider mode={benchmarkMode}>
+        <Dashboard
+          benchmarkMode={benchmarkMode}
+          onBenchmarkModeChange={handleBenchmarkModeChange}
+        />
       </DataProvider>
     </ThemeProvider>
   )

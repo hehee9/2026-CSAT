@@ -288,9 +288,11 @@ export function isDarkMode() {
  * @return {string[]} 기본 선택된 모델명 배열
  *
  * 규칙:
- * - 개발사를 최고 총점 모델 기준으로 랭킹하고 상위 50%를 계산
- * - 상위 50% 개발사: 각 개발사별 min(floor(50%), 3개) 모델 선택 (최소 1개)
- * - 하위 50% 개발사: 기본 표기 최대 1개
+ * - 개발사가 6개 이상이면 최고 총점 모델 기준으로 개발사 상위 50%를 계산
+ * - 개발사가 6개 이상이면 상위 50% 개발사만 여러 모델 선택
+ * - 개발사가 5개 이하이면 모든 개발사가 여러 모델 선택
+ * - 여러 모델 선택 대상 개발사: min(floor(50%), 3개) 모델 선택 (최소 1개)
+ * - 그 외 개발사: 기본 표기 최대 1개
  * - 동점 개발사는 최고 점수 → 평균 점수 → 개발사 ID 순으로 정렬
  * - scoreData에 없는 모델은 점수 0으로 처리
  */
@@ -302,39 +304,46 @@ export function getDefaultSelectedModels(models, scoreData) {
 
   const getModelScore = (model) => scoreMap.get(model) || 0
 
-  const vendorRankings = vendorEntries
-    .map(([vendorId, vendorModels]) => {
-      const scores = vendorModels.map(getModelScore)
-      const topScore = scores.length ? Math.max(...scores) : 0
-      const averageScore = scores.length
-        ? scores.reduce((sum, score) => sum + score, 0) / scores.length
-        : 0
+  const multiModelVendorIds = new Set(vendorEntries.map(([vendorId]) => vendorId))
+  if (vendorEntries.length >= 6) {
+    const vendorRankings = vendorEntries
+      .map(([vendorId, vendorModels]) => {
+        const scores = vendorModels.map(getModelScore)
+        const topScore = scores.length ? Math.max(...scores) : 0
+        const averageScore = scores.length
+          ? scores.reduce((sum, score) => sum + score, 0) / scores.length
+          : 0
 
-      return {
-        vendorId,
-        topScore,
-        averageScore
-      }
-    })
-    .sort((a, b) => {
-      if (b.topScore !== a.topScore) return b.topScore - a.topScore
-      if (b.averageScore !== a.averageScore) return b.averageScore - a.averageScore
-      return a.vendorId.localeCompare(b.vendorId)
-    })
+        return {
+          vendorId,
+          topScore,
+          averageScore
+        }
+      })
+      .sort((a, b) => {
+        if (b.topScore !== a.topScore) return b.topScore - a.topScore
+        if (b.averageScore !== a.averageScore) return b.averageScore - a.averageScore
+        return a.vendorId.localeCompare(b.vendorId)
+      })
 
-  const topVendorCount = Math.ceil(vendorRankings.length / 2)
-  const topVendorIds = new Set(vendorRankings.slice(0, topVendorCount).map(vendor => vendor.vendorId))
+    const topVendorCount = Math.ceil(vendorRankings.length / 2)
+    multiModelVendorIds.clear()
+    vendorRankings.slice(0, topVendorCount).forEach(vendor => {
+      multiModelVendorIds.add(vendor.vendorId)
+    })
+  }
 
   vendorEntries.forEach(([vendorId, vendorModels]) => {
     if (vendorModels.length === 0) return
 
     // 점수 기준 내림차순 정렬
-    const sorted = [...vendorModels].sort((a, b) =>
-      getModelScore(b) - getModelScore(a)
-    )
+    const sorted = [...vendorModels].sort((a, b) => {
+      const scoreDiff = getModelScore(b) - getModelScore(a)
+      if (scoreDiff !== 0) return scoreDiff
+      return a.localeCompare(b)
+    })
 
-    // 상위 50% 개발사는 기존 규칙, 하위 50%는 최대 1개
-    const limit = topVendorIds.has(vendorId)
+    const limit = multiModelVendorIds.has(vendorId)
       ? Math.min(Math.max(1, Math.floor(vendorModels.length * 0.5)), 3)
       : 1
 

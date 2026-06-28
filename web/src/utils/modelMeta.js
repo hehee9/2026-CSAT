@@ -24,7 +24,12 @@ const PARTIAL_BENCHMARK_MODELS = {
 /**
  * @brief 수능 이후 지식 컷오프 모델 패턴
  */
-const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [/^GPT-5\.5\b/, /^Claude Opus 4\.7\b/, /^Grok 4\.3\b/]
+const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [
+  /^GPT-5\.5\b/,
+  /^Claude Opus 4\.8\b/,
+  /^Claude Opus 4\.7\b/,
+  /^Grok 4\.3\b/
+]
 
 /**
  * @brief 비표준 설정 모델 (부분 벤치마크 모델과 동일)

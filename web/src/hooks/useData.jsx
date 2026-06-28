@@ -10,9 +10,9 @@ const DataContext = createContext(null)
 
 /**
  * @brief 데이터 제공자 컴포넌트
- * @param {Object} props - children
+ * @param {Object} props - { children, mode }
  */
-export function DataProvider({ children }) {
+export function DataProvider({ children, mode = 'default' }) {
   const [data, setData] = useState([])
   const [tokenUsage, setTokenUsage] = useState({})
   const [modelMetadata, setModelMetadata] = useState({})
@@ -22,17 +22,23 @@ export function DataProvider({ children }) {
   const [subjects, setSubjects] = useState([])
   const [sections, setSections] = useState({})
   const [models, setModels] = useState([])
+  const [dataMode, setDataMode] = useState(null)
 
   useEffect(() => {
+    let cancelled = false
+
     async function fetchData() {
       try {
+        setError(null)
         // 병렬로 데이터 로드
         const [resultsData, usageData, modelMetadataData, questionsData] = await Promise.all([
-          loadAllResults(),
-          loadTokenUsage(),
+          loadAllResults(mode),
+          loadTokenUsage(mode),
           loadModelMetadata(),
           loadQuestionsMetadata()
         ])
+
+        if (cancelled) return
 
         setData(resultsData)
         setTokenUsage(usageData)
@@ -44,16 +50,22 @@ export function DataProvider({ children }) {
         setSubjects(subjects)
         setSections(sections)
         setModels(models)
+        setDataMode(mode)
 
         setLoading(false)
       } catch (err) {
+        if (cancelled) return
         setError(err.message)
         setLoading(false)
       }
     }
 
     fetchData()
-  }, [])
+
+    return () => {
+      cancelled = true
+    }
+  }, [mode])
 
   const value = {
     data,
@@ -64,7 +76,8 @@ export function DataProvider({ children }) {
     error,
     subjects,
     sections,
-    models
+    models,
+    dataMode
   }
 
   return (
@@ -76,7 +89,7 @@ export function DataProvider({ children }) {
 
 /**
  * @brief 데이터 컨텍스트 사용 훅
- * @return {Object} { data, tokenUsage, modelMetadata, questionsMetadata, loading, error, subjects, sections, models }
+ * @return {Object} { data, tokenUsage, modelMetadata, questionsMetadata, loading, error, subjects, sections, models, dataMode }
  */
 export function useData() {
   const context = useContext(DataContext)

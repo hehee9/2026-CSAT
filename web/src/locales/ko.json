@@ -2,7 +2,11 @@
   "header": {
     "title": "2026 수능 LLM 풀이 대시보드",
     "titleShort": "수능 LLM",
-    "subtitle": "다양한 LLM 모델의 수능 문제 풀이 결과"
+    "subtitle": "다양한 LLM 모델의 수능 문제 풀이 결과",
+    "modeDefault": "기본",
+    "modeHard": "고난도",
+    "modeDefaultDesc": "모든 문제를 1개씩 따로 해결합니다",
+    "modeHardDesc": "과목 단위로 모든 문제를 동시에 해결합니다"
   },
   "tabs": {
     "overview": "종합 대시보드",
@@ -142,7 +146,7 @@
   "models": {
     "noVision": "멀티모달 미지원",
     "nonStandard": "high에서 틀린 문항만 더 높은 추론으로 처리",
-    "postExamKnowledgeCutoff": "지식 컷오프가 수능 이후"
+    "postExamKnowledgeCutoff": "문제 학습 가능성 있음"
   },
   "benchmark": {
     "noExternalSearch": "※ 외부 검색 없이 실행된 결과입니다."

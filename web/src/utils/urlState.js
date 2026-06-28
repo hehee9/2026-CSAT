@@ -6,6 +6,7 @@
 const VALID_TABS = new Set(['overview', 'subjects', 'compare', 'cost'])
 const VALID_SCORE_VIEWS = new Set(['average', 'bestWorst', 'withImage', 'withoutImage'])
 const VALID_THEMES = new Set(['light', 'dark'])
+const VALID_MODES = new Set(['default', 'hard'])
 
 function _getSearchParams() {
   if (typeof window === 'undefined') return new URLSearchParams()
@@ -37,7 +38,8 @@ export function getDashboardQueryState() {
     subjects: _getListValue(params.get('subjects')),
     selectedSubject: params.get('selectedSubject') || '',
     selectedSection: params.get('selectedSection') || '',
-    theme: _getEnumValue(params.get('theme'), VALID_THEMES, '')
+    theme: _getEnumValue(params.get('theme'), VALID_THEMES, ''),
+    mode: _getEnumValue(params.get('mode'), VALID_MODES, 'default')
   }
 }
 

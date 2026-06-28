@@ -68,8 +68,20 @@ export async function copyDataFiles() {
   )
 
   await _copyIfExists(
+    path.join(repoRoot, 'hard_all_results.json'),
+    path.join(publicDir, 'hard_all_results.json'),
+    { optional: true }
+  )
+
+  await _copyIfExists(
     path.join(repoRoot, 'problems', 'token_usage.json'),
     path.join(publicDir, 'token_usage.json'),
+    { optional: true }
+  )
+
+  await _copyIfExists(
+    path.join(repoRoot, 'problems', 'hard_token_usage.json'),
+    path.join(publicDir, 'hard_token_usage.json'),
     { optional: true }
   )
 

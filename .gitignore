@@ -31,6 +31,7 @@ desktop.ini
 *.tmp
 *.bak
 *.log
+tmp/
 
 # Project specific
 *.xlsx~
@@ -38,11 +39,14 @@ desktop.ini
 .~lock.*
 
 # Problems folder (copyright-sensitive content)
-problems/
+problems/**
+!problems/
 !problems/token_usage.json
+!problems/hard_token_usage.json
 
 # etc.
 CLAUDE.md
+AGENTS.md
 .claude/
 .mcp.json
 prototype.html
@@ -82,3 +86,11 @@ tasks/
 web/public/all_results.json
 web/public/token_usage.json
 web/public/model_metadata.json
+
+# Unfinished PDF to Markdown extraction tooling
+scripts/import_suneung_pdfs*.py
+scripts/audit_*conversion*.py
+scripts/audit_*glyph*.py
+scripts/audit_generated_math_outputs.py
+scripts/build_historical_glyph_review_queue.py
+scripts/font_maps/

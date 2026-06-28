@@ -276,11 +276,8 @@ function _calculateSubjectScore(modelData, subject) {
     score: _getScore(modelData, subject, sect)
   }))
 
-  // 선택과목 평균 (데이터가 있는 것만)
-  const validElectives = electives.filter(e => e.score > 0)
-  const electiveAvg = validElectives.length > 0
-    ? validElectives.reduce((sum, e) => sum + e.score, 0) / validElectives.length
-    : 0
+  // 선택과목 평균은 0점도 실제 성적으로 포함한다.
+  const electiveAvg = electives.reduce((sum, e) => sum + e.score, 0) / electiveNames.length
 
   return {
     common,
@@ -303,11 +300,8 @@ function _calculateExplorationScore(modelData) {
     score: _getScore(modelData, subj, '탐구')
   }))
 
-  // 데이터가 있는 과목만으로 평균 계산
-  const validSubjects = subjects.filter(s => s.score > 0)
-  const average = validSubjects.length > 0
-    ? validSubjects.reduce((sum, s) => sum + s.score, 0) / validSubjects.length
-    : 0
+  // 총점 계산은 응시 가능 탐구 4과목 전체를 기준으로 한다.
+  const average = subjects.reduce((sum, s) => sum + s.score, 0) / explorationSubjects.length
 
   return {
     subjects,
@@ -405,7 +399,6 @@ export function calculateBestWorstScores(data, models) {
       const koreanCommon = _getScore(modelData, '국어', '공통')
       const koreanElectives = ['화작', '언매']
         .map(e => _getScore(modelData, '국어', e))
-        .filter(s => s > 0)
       const koreanBest = koreanCommon + (koreanElectives.length > 0 ? Math.max(...koreanElectives) : 0)
       const koreanWorst = koreanCommon + (koreanElectives.length > 0 ? Math.min(...koreanElectives) : 0)
 
@@ -413,15 +406,13 @@ export function calculateBestWorstScores(data, models) {
       const mathCommon = _getScore(modelData, '수학', '공통')
       const mathElectives = ['확통', '미적', '기하']
         .map(e => _getScore(modelData, '수학', e))
-        .filter(s => s > 0)
       const mathBest = mathCommon + (mathElectives.length > 0 ? Math.max(...mathElectives) : 0)
       const mathWorst = mathCommon + (mathElectives.length > 0 ? Math.min(...mathElectives) : 0)
 
-      // 탐구: 4과목 중 2과목 조합의 max/min
+      // 탐구: 0점도 실제 성적이므로 4과목 모두를 2과목 조합 후보로 사용
       const explorationSubjects = ['물리1', '화학1', '생명1', '사회문화']
       const explorationScores = explorationSubjects
         .map(s => _getScore(modelData, s, '탐구'))
-        .filter(s => s > 0)
 
       let scienceBest = 0
       let scienceWorst = 0

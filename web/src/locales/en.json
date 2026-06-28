@@ -2,7 +2,11 @@
   "header": {
     "title": "2026 CSAT LLM Solution Dashboard",
     "titleShort": "CSAT LLM",
-    "subtitle": "LLM model performance on Korean SAT problems"
+    "subtitle": "LLM model performance on Korean SAT problems",
+    "modeDefault": "Default",
+    "modeHard": "Hard",
+    "modeDefaultDesc": "Solves each question individually",
+    "modeHardDesc": "Solves all questions in a subject at once"
   },
   "tabs": {
     "overview": "Overview",
@@ -142,7 +146,7 @@
   "models": {
     "noVision": "No multimodal support",
     "nonStandard": "Only wrong answers from high retested with xhigh",
-    "postExamKnowledgeCutoff": "Knowledge cutoff is after the CSAT"
+    "postExamKnowledgeCutoff": "Possible exposure to exam content"
   },
   "benchmark": {
     "noExternalSearch": "※ These results were produced without external web search."

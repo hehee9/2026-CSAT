@@ -34,6 +34,8 @@ from openpyxl.styles.colors import Color
 REFUSAL_ANSWER = -2
 NO_ANSWER = -1
 REFUSAL_MARKERS = {"-2", "(검열)", "검열", "Refusal", "refusal"}
+DEFAULT_EXCEL_PATH = Path('2026 수능 LLM 풀이.xlsx')
+DEFAULT_HARD_EXCEL_PATH = Path('2026 수능 LLM 풀이 hard.xlsx')
 
 
 def normalize_answer_value(answer):
@@ -51,6 +53,39 @@ def normalize_answer_value(answer):
         return int(answer), 'answered'
     except (ValueError, TypeError):
         return NO_ANSWER, 'parse_failed'
+
+
+def _create_hard_excel_template(source_path: Path, target_path: Path):
+    """기존 Excel에서 정답 구조만 남긴 hard 전용 템플릿을 만든다."""
+    if not source_path.exists():
+        raise FileNotFoundError(f"hard Excel 템플릿 원본을 찾을 수 없습니다: {source_path}")
+
+    workbook = load_workbook(source_path)
+    for sheet_name in workbook.sheetnames:
+        ws = workbook[sheet_name]
+        header_row = None
+        for row_idx in range(1, min(6, ws.max_row + 1)):
+            cell_value = ws.cell(row=row_idx, column=1).value
+            if cell_value and '문항 번호' in str(cell_value):
+                header_row = row_idx
+                break
+
+        if not header_row:
+            continue
+
+        answer_col = 2
+        for col_idx in range(1, ws.max_column + 1):
+            cell_value = ws.cell(row=header_row, column=col_idx).value
+            if cell_value and str(cell_value).strip() == '정답':
+                answer_col = col_idx
+                break
+
+        if ws.max_column > answer_col:
+            ws.delete_cols(answer_col + 1, ws.max_column - answer_col)
+
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    workbook.save(target_path)
+    print(f"hard Excel 템플릿 생성 완료: {target_path}")
 
 
 class PathMapper:
@@ -657,9 +692,14 @@ class SyncManager:
     }
 
     def __init__(self, excel_path: Path, problems_dir: Path = None,
-                 model_mapping_path: Path = None):
+                 model_mapping_path: Path = None, hard_mode: bool = False):
         self.excel_path = Path(excel_path)
         self.problems_dir = problems_dir or Path('problems')
+        self.hard_mode = hard_mode
+        self.verified_filename = 'hard_results_verified.json' if hard_mode else 'results_verified.json'
+        self.raw_results_filename = 'hard_results.json' if hard_mode else 'results.json'
+        self.all_results_filename = 'hard_all_results.json' if hard_mode else 'all_results.json'
+        self.token_usage_filename = 'hard_token_usage.json' if hard_mode else 'token_usage.json'
 
         self.path_mapper = PathMapper(base_dir=Path('.'))
         self.model_mapper = ModelNameMapper(model_mapping_path)
@@ -685,7 +725,7 @@ class SyncManager:
 
     def _load_token_usage(self) -> Dict:
         """토큰 사용량 파일 로드"""
-        token_file = self.problems_dir / 'token_usage.json'
+        token_file = self.problems_dir / self.token_usage_filename
         if token_file.exists():
             with open(token_file, 'r', encoding='utf-8') as f:
                 return json.load(f)
@@ -739,7 +779,7 @@ class SyncManager:
             json_dir = self.path_mapper.sheet_to_json_path(sheet_name)
             if not json_dir:
                 raise ValueError(f"'{sheet_name}'에 대한 경로 매핑이 없습니다.")
-            output_path = json_dir / 'results_verified.json'
+            output_path = json_dir / self.verified_filename
 
         # 기존 파일이 있으면 병합
         if output_path.exists():
@@ -939,12 +979,12 @@ class SyncManager:
         return materialized_count
 
     def import_all(self, update_existing: bool = False) -> int:
-        """모든 results_verified.json 가져오기"""
+        """모든 검증 결과 JSON 가져오기"""
         count = 0
         for sheet_name in self.path_mapper.get_all_sheets():
             json_dir = self.path_mapper.sheet_to_json_path(sheet_name)
             if json_dir:
-                json_file = json_dir / 'results_verified.json'
+                json_file = json_dir / self.verified_filename
                 if json_file.exists():
                     base_model = None
                     try:
@@ -1063,13 +1103,190 @@ class SyncManager:
 
         # 출력 경로 결정
         if output_path is None:
-            output_path = Path('all_results.json')
+            output_path = Path(self.all_results_filename)
 
         # 저장
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(all_data, f, ensure_ascii=False, indent=2)
 
         print(f"내보내기 완료: {output_path} ({len(all_data)}개 항목)")
+        return output_path
+
+    def _load_hard_token_usage(self) -> Dict:
+        """hard 토큰 사용량 파일 로드"""
+        token_file = self.problems_dir / 'hard_token_usage.json'
+        if token_file.exists():
+            with open(token_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return {}
+
+    def _get_hard_token_usage(self, token_data: Dict, model_name: str, sheet_name: str) -> Optional[Dict[str, int]]:
+        """hard 집계용 모델-시트 토큰 사용량 조회"""
+        models = token_data.get('models', {})
+        model_data = models.get(model_name, {})
+        sections = model_data.get('sections', {})
+
+        candidate_keys = [sheet_name]
+        subject, section = self.path_mapper.get_subject_section(sheet_name)
+        candidate_keys.append(f"{subject}-{section}")
+        if subject in ['영어', '한국사']:
+            candidate_keys.append(f"{subject}-공통")
+        if sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
+            candidate_keys.append(f"탐구-{sheet_name}")
+
+        for key in candidate_keys:
+            if key in sections:
+                return sections[key]
+        return None
+
+    def _get_dashboard_subject_section(self, sheet_name: str, subject: str,
+                                       section: str) -> Tuple[str, str]:
+        """대시보드 계산식에 맞는 과목/섹션 표기 반환"""
+        if sheet_name in ['영어', '한국사']:
+            return sheet_name, sheet_name
+        if sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
+            return sheet_name, '탐구'
+        return subject, section
+
+    def _build_hard_verified_export_items(self, sheet_name: str, verified_file: Path,
+                                          token_data: Dict,
+                                          model_name: str = None) -> List[Dict]:
+        """hard 검증 결과를 대시보드용 all_results 구조로 변환"""
+        with open(verified_file, 'r', encoding='utf-8') as f:
+            verified_data = json.load(f)
+
+        results_by_model = defaultdict(list)
+        for result in verified_data.get('results', []):
+            json_model_name = result.get('model_name')
+            if not json_model_name:
+                continue
+            if model_name and json_model_name != model_name:
+                continue
+            results_by_model[json_model_name].append(result)
+
+        export_items = []
+        total_points = verified_data.get('total_points', 0)
+        model_scores = verified_data.get('model_scores', {})
+
+        for json_model_name, model_results in sorted(results_by_model.items()):
+            model_results.sort(key=lambda item: item.get('question_number', 0))
+            clean_results = [
+                {
+                    'question_number': r.get('question_number'),
+                    'extracted_answer': r.get('extracted_answer'),
+                    'correct_answer': r.get('correct_answer'),
+                    'is_correct': r.get('is_correct'),
+                    'points': r.get('points'),
+                    'answer_status': r.get('answer_status'),
+                    'provider_stop_reason': r.get('provider_stop_reason'),
+                }
+                for r in model_results
+            ]
+
+            score = model_scores.get(json_model_name)
+            if score is None:
+                score = sum((r.get('points') or 0) for r in model_results if r.get('is_correct'))
+
+            dashboard_subject, dashboard_section = self._get_dashboard_subject_section(
+                sheet_name, verified_data.get('subject'), verified_data.get('section')
+            )
+            clean_data = {
+                'sheet_name': sheet_name,
+                'subject': dashboard_subject,
+                'section': dashboard_section,
+                'model_name': json_model_name,
+                'score': score,
+                'total_points': total_points,
+                'correct_count': sum(1 for r in model_results if r.get('is_correct')),
+                'total_questions': len(model_results),
+                'results': clean_results
+            }
+
+            token_usage = self._get_hard_token_usage(token_data, json_model_name, sheet_name)
+            if token_usage:
+                clean_data['token_usage'] = token_usage
+
+            price = self._get_model_price(json_model_name)
+            if price:
+                clean_data['price'] = price
+
+            export_items.append(clean_data)
+
+        return export_items
+
+    def export_hard_all_sections_to_json(self, output_path: Path = None,
+                                         model_name: str = None) -> Path:
+        """
+        hard_results.json 파일들을 hard_all_results.json 형식으로 내보내기
+
+        검증 결과가 있으면 점수와 문항별 결과를 포함하고, 없으면 토큰 메타데이터만 포함한다.
+        """
+        all_data = []
+        hard_token_usage = self._load_hard_token_usage()
+
+        for sheet_name in self.path_mapper.get_all_sheets():
+            json_dir = self.path_mapper.sheet_to_json_path(sheet_name)
+            if not json_dir:
+                continue
+
+            hard_file = json_dir / 'hard_results.json'
+            if not hard_file.exists():
+                continue
+
+            try:
+                verified_file = json_dir / 'hard_results_verified.json'
+                if verified_file.exists():
+                    all_data.extend(self._build_hard_verified_export_items(
+                        sheet_name, verified_file, hard_token_usage, model_name
+                    ))
+                    continue
+
+                with open(hard_file, 'r', encoding='utf-8') as f:
+                    hard_data = json.load(f)
+
+                subject = hard_data.get('subject')
+                section = hard_data.get('section')
+                dashboard_subject, dashboard_section = self._get_dashboard_subject_section(
+                    sheet_name, subject, section
+                )
+                for result in hard_data.get('results', []):
+                    json_model_name = result.get('model_name')
+                    if not json_model_name:
+                        continue
+                    if model_name and json_model_name != model_name:
+                        continue
+
+                    clean_data = {
+                        'sheet_name': sheet_name,
+                        'subject': dashboard_subject,
+                        'section': dashboard_section,
+                        'model_name': json_model_name,
+                        'score': None,
+                        'total_points': 0,
+                        'correct_count': None,
+                        'total_questions': 0,
+                        'results': []
+                    }
+
+                    token_usage = self._get_hard_token_usage(hard_token_usage, json_model_name, sheet_name)
+                    if token_usage:
+                        clean_data['token_usage'] = token_usage
+
+                    price = self._get_model_price(json_model_name)
+                    if price:
+                        clean_data['price'] = price
+
+                    all_data.append(clean_data)
+            except Exception as e:
+                print(f"경고: {hard_file} 내보내기 실패 - {e}")
+
+        if output_path is None:
+            output_path = Path('hard_all_results.json')
+
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(all_data, f, ensure_ascii=False, indent=2)
+
+        print(f"hard 내보내기 완료: {output_path} ({len(all_data)}개 항목)")
         return output_path
 
     def list_models(self, sheet_name: str = None) -> Dict[str, List[str]]:
@@ -1147,6 +1364,7 @@ def main():
   # JSON -> Excel 가져오기
   python sync_data.py import --json problems/국어/공통/results_verified.json
   python sync_data.py import --all
+  python sync_data.py import --all --hard
 
   # Excel -> JSON 내보내기 (단일 시트)
   python sync_data.py export --sheet 국어-공통 --model "GPT-5.1"
@@ -1156,6 +1374,7 @@ def main():
   python sync_data.py export --all-sheets
   python sync_data.py export --all-sheets --output all_results.json
   python sync_data.py export --all-sheets --model "GPT-5.1"  # 특정 모델만
+  python sync_data.py export --all-sheets --hard
 
   # 모델 목록 확인
   python sync_data.py list
@@ -1175,6 +1394,7 @@ def main():
     export_parser.add_argument('--model', help='모델 이름')
     export_parser.add_argument('--all-models', action='store_true', help='모든 모델 내보내기')
     export_parser.add_argument('--output', help='출력 파일 경로')
+    export_parser.add_argument('--hard', action='store_true', help='hard 전용 Excel/JSON 파일 사용')
 
     # Import 명령
     import_parser = subparsers.add_parser('import', help='JSON -> Excel 가져오기')
@@ -1185,17 +1405,20 @@ def main():
     import_parser.add_argument('--update', action='store_true', help='기존 데이터 업데이트')
     import_parser.add_argument('--excel-name', help='Excel에서 사용할 모델 이름')
     import_parser.add_argument('--base-model', help='기존 Excel 컬럼을 베이스로 복사한 뒤 JSON 답안만 덮어쓰기')
+    import_parser.add_argument('--hard', action='store_true', help='hard 전용 Excel/JSON 파일 사용')
 
     # List 명령
     list_parser = subparsers.add_parser('list', help='모델 목록 확인')
     list_parser.add_argument('--sheet', help='특정 시트만')
+    list_parser.add_argument('--hard', action='store_true', help='hard 전용 Excel 사용')
 
     # Validate 명령
     validate_parser = subparsers.add_parser('validate', help='데이터 검증')
     validate_parser.add_argument('--sheet', help='특정 시트만')
+    validate_parser.add_argument('--hard', action='store_true', help='hard 전용 Excel/JSON 파일 사용')
 
     # 공통 옵션
-    parser.add_argument('--excel', default='2026 수능 LLM 풀이.xlsx',
+    parser.add_argument('--excel', default=None,
                         help='Excel 파일 경로')
     parser.add_argument('--mapping', default='model_mapping.json',
                         help='모델 이름 매핑 파일')
@@ -1206,10 +1429,18 @@ def main():
         parser.print_help()
         return
 
+    hard_mode = getattr(args, 'hard', False)
+    excel_path = Path(args.excel) if args.excel else (
+        DEFAULT_HARD_EXCEL_PATH if hard_mode else DEFAULT_EXCEL_PATH
+    )
+    if hard_mode and not excel_path.exists():
+        _create_hard_excel_template(DEFAULT_EXCEL_PATH, excel_path)
+
     # SyncManager 초기화
     sync = SyncManager(
-        excel_path=Path(args.excel),
-        model_mapping_path=Path(args.mapping)
+        excel_path=excel_path,
+        model_mapping_path=Path(args.mapping),
+        hard_mode=hard_mode
     )
 
     # 명령 실행
@@ -1217,11 +1448,17 @@ def main():
         if args.all_sheets:
             # 모든 시트를 하나의 JSON 배열로 내보내기
             output = Path(args.output) if args.output else None
-            sync.export_all_sheets_to_json(
-                output_path=output,
-                model_name=args.model,
-                all_models=args.all_models or (args.model is None)
-            )
+            if hard_mode:
+                sync.export_hard_all_sections_to_json(
+                    output_path=output,
+                    model_name=args.model,
+                )
+            else:
+                sync.export_all_sheets_to_json(
+                    output_path=output,
+                    model_name=args.model,
+                    all_models=args.all_models or (args.model is None)
+                )
         elif args.sheet:
             if args.all_models:
                 models = sync.list_models(args.sheet).get(args.sheet, [])

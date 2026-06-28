@@ -23,6 +23,8 @@
 
 Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 성적은 [대시보드](https://hehee9.github.io/2026-CSAT/)에서 확인**해주세요.
 
+2026.06.28 이후 추가된 **고난도 모드**의 경우는 대시보드의 **[고난도](https://hehee9.github.io/2026-CSAT/?mode=hard)** 버튼을 활성화해주세요.
+
 **2026.04.25 기준 물리1 16/17번의 문제 이미지를 서로 반대로 첨부하고 있던 것을 확인해, 해당 두 문항만 전수 재시도 처리했습니다**
 
 ---
@@ -62,6 +64,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 > - 텍스트 문제: 이미지가 없는 문제들의 득점률 (실제 점수 / 만점 × 100%)
 > - 모든 과목과 영역의 점수를 통합하여 계산
 
+---
+
 ## 테스트 환경 및 주의사항
 
 **중요: 본 테스트는 API를 통한 환경에서 수행되었습니다.**
@@ -94,11 +98,18 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **이미지 처리**: 문제에 포함된 이미지(그래프, 도표, 그림 등)만 별도로 캡처하여 제공
 - **원본 유지**: PDF 파일 자체나 전체 페이지 캡처는 제공하지 않음
 - 이는 모델이 순수하게 텍스트 이해 능력과 시각 자료 해석 능력을 활용하도록 하기 위함
+- **고난도 모드**: 각 섹션(과목)별로 모든 문제를 한 번에 풀게 함
 
 ---
 
 ## 테스트 모델
+
+### 기본
+
 - **OpenAI GPT 시리즈**
+  - ~~GPT-5.6 Sol (max* / high / none)~~
+  - ~~GPT-5.6 Terra (xhigh* / high / none)~~
+  - ~~GPT-5.6 Luna (xhigh / none)~~
   - GPT-5.5 (xhigh* / high / none)
   - GPT-5.5 Instant
   - GPT-5.4 (xhigh* / high / none)
@@ -122,14 +133,14 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **Google Gemini 시리즈**
   - Gemini 3.5 Flash (high / minimal)
   - Gemini 3.1 Pro (high / low)
-  - Gemini 3.1 Flash Lite (high / minimal)
+  - Gemini 3.1 Flash-Lite (high / minimal)
   - Gemini 3 Pro (high / low)
   - Gemini 3 Flash (high / minimal)
   - Gemini 2.5 Pro (32K Thinking)
   - Gemini 2.5 Flash (2025-09 Preview, 24K Thinking / Non-Thinking)
-  - Gemini 2.5 Flash Lite (2025-09 Preview, 24K Thinking / Non-Thinking)
+  - Gemini 2.5 Flash-Lite (2025-09 Preview, 24K Thinking / Non-Thinking)
   - Gemini 2.0 Flash
-  - Gemini 2.0 Flash Lite
+  - Gemini 2.0 Flash-Lite
 
 - **Google Gemma 시리즈**
   - Gemma 4 31B (high / minimal)
@@ -188,11 +199,33 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Solar 3 Pro (high / low)
   - Solar 3 Pro 0323 (high / low)
 
-※ * GPT-5.5/5.4 (xhigh), Claude Opus 4.7 (max)는 high에서 틀린 문제만 재측정한 것입니다. 성능 향상에 비해 들어가는 시간과 비용이 너무 커져 이 방식으로 처리한 점 양해 바랍니다.
+※ * GPT-5.x (xhigh), Claude Opus 4.7 (max)는 high에서 틀린 문제만 재측정한 것입니다. 성능 향상에 비해 들어가는 시간과 비용이 너무 커져 이 방식으로 처리한 점 양해 바랍니다.
+
+※ Claude Fable 5는 다수의 생명 문제 풀이 중 검열에 걸려 점수가 낮습니다.
+
+### 고난도
+
+- **OpenAI GPT 시리즈**
+  - GPT-5.5 (high / none)
+  - GPT-5.4 mini (xhigh / none)
+  - GPT-5.4 nano (xhigh / none)
+
+- **Google Gemma 시리즈**
+  - Gemma 4 31B (high / minimal)
+  - Gemma 4 26B A4B (high / minimal)
+
+- **Anthropic Claude 시리즈**
+  - Claude Opus 4.8 (high / none)
+  - Claude Sonnet 4.6 (high / none)
+  - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
+
+- **DeepSeek 시리즈**
+  - DeepSeek V4 Flash (Max / None)
+  - DeepSeek V4 Pro (Max / None)
 
 ※ 이미지 인식이 불가능한 모델은 텍스트로만 진행했습니다.
 
-※ Claude Fable 5는 다수의 생명 문제 풀이 중 검열에 걸려 점수가 낮습니다.
+---
 
 ## 국어 영역
 
@@ -228,6 +261,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ### 기하
 ![기하 2](https://hehee9.github.io/2026-CSAT/images/기하.png)
 ![기하 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_기하.png)
+
 ---
 
 ## 영어 영역
