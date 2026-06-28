@@ -210,6 +210,11 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GPT-5.4 mini (xhigh / none)
   - GPT-5.4 nano (xhigh / none)
 
+- **Google Gemini 시리즈**
+  - Gemini 3.5 Flash (high / minimal)
+  - Gemini 3.1 Pro (high / low)
+  - Gemini 3.1 Flash-Lite (high / minimal)
+
 - **Google Gemma 시리즈**
   - Gemma 4 31B (high / minimal)
   - Gemma 4 26B A4B (high / minimal)

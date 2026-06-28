@@ -5,3 +5,4 @@ matplotlib>=3.7.0
 numpy>=1.24.0
 requests>=2.31.0
 pdfplumber>=0.11.0
+google-genai>=1.50.0
