@@ -72,6 +72,8 @@ For **Hard Mode**, added after 2026-06-28, enable the **[Hard](https://hehee9.gi
 
 **Important: This test was conducted through API environments.**
 
+> However, GPT-5.5 Pro was run in a tools-disabled web environment through [custom GPTs](https://chatgpt.com/g/g-69ecacbb8fac8191b0eb07e39c62496c-gpt-pro).
+
 ### Test Environment
 - **Execution method**: Tested through each model's official API.
 - **Reasoning settings**: Maximum output tokens and reasoning budgets were set sufficiently high.
@@ -209,6 +211,7 @@ Therefore, **performance may differ from official website or app results.**
 
 - **OpenAI GPT series**
   - GPT-5.5 (high / none)
+  - GPT-5.5 Pro (xhigh, GPTs)
   - GPT-5.4 mini (xhigh / none)
   - GPT-5.4 nano (xhigh / none)
   - o1 (high)

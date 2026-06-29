@@ -8,12 +8,13 @@ const webRoot = path.resolve(__dirname, '..')
 const repoRoot = path.resolve(webRoot, '..')
 const publicDir = path.join(webRoot, 'public')
 
-function _metadataFromConfig(config) {
-  const metadata = {}
+function _metadataFromConfig(config, fallbackMetadata = {}) {
+  const metadata = { ...fallbackMetadata }
 
   for (const model of config.models || []) {
     if (!model?.name) continue
     metadata[model.name] = {
+      ...metadata[model.name],
       supportsVision: model.supports_vision !== false
     }
   }
@@ -27,15 +28,24 @@ async function _writeModelMetadata() {
   const outputPath = path.join(publicDir, 'model_metadata.json')
   let metadata
   let sourcePath = configPath
+  let fallbackMetadata = {}
 
   try {
-    const config = JSON.parse(await readFile(configPath, 'utf8'))
-    metadata = _metadataFromConfig(config)
+    fallbackMetadata = JSON.parse(await readFile(fallbackPath, 'utf8'))
   } catch (error) {
     if (error.code !== 'ENOENT') {
       throw error
     }
-    metadata = JSON.parse(await readFile(fallbackPath, 'utf8'))
+  }
+
+  try {
+    const config = JSON.parse(await readFile(configPath, 'utf8'))
+    metadata = _metadataFromConfig(config, fallbackMetadata)
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error
+    }
+    metadata = fallbackMetadata
     sourcePath = fallbackPath
     console.warn(`Using fallback model metadata: ${path.relative(repoRoot, fallbackPath)}`)
   }

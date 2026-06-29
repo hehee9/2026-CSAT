@@ -1,6 +1,6 @@
 /**
  * @file modelMeta.js
- * @brief 모델 메타데이터 유틸리티 (부분 벤치마크, 이미지 미지원, 비표준 설정, 지식 컷오프)
+ * @brief 모델 메타데이터 유틸리티 (부분 벤치마크, 이미지 미지원, 비표준 설정, 지식 컷오프, 웹 서비스 환경)
  */
 
 const PARTIAL_BENCHMARK_MODELS = {
@@ -19,6 +19,10 @@ const PARTIAL_BENCHMARK_MODELS = {
     displaySuffix: '*',
     descriptionKey: 'models.partialWrongOnly'
   }
+}
+
+const MODEL_DISPLAY_NAMES = {
+  'GPT-5.5 Pro': 'GPT-5.5 Pro (xhigh, GPTs)'
 }
 
 /**
@@ -46,9 +50,10 @@ export function isPartialBenchmarkModel(modelName) {
 
 export function formatModelDisplayName(modelName) {
   const meta = getModelMeta(modelName)
-  if (!meta?.displaySuffix) return modelName
-  if (modelName.includes(meta.displaySuffix)) return modelName
-  return `${modelName}${meta.displaySuffix}`
+  const displayName = MODEL_DISPLAY_NAMES[modelName] || modelName
+  if (!meta?.displaySuffix) return displayName
+  if (displayName.includes(meta.displaySuffix)) return displayName
+  return `${displayName}${meta.displaySuffix}`
 }
 
 export function hasPartialBenchmark(models = []) {
@@ -84,16 +89,27 @@ export function hasPostExamKnowledgeCutoff(modelName) {
 }
 
 /**
+ * @brief 도구 차단 웹 서비스 환경에서 실행한 모델 여부
+ * @param {string} modelName - 모델명
+ * @param {Object} modelMetadata - 모델별 메타데이터
+ * @return {boolean}
+ */
+export function hasWebServiceNoTools(modelName, modelMetadata = {}) {
+  return modelMetadata?.[modelName]?.webServiceNoTools === true
+}
+
+/**
  * @brief 모델의 시각적 플래그 반환
  * @param {string} modelName - 모델명
  * @param {Object} modelMetadata - 모델별 메타데이터
- * @return {{ noVision: boolean, nonStandard: boolean, postExamKnowledgeCutoff: boolean }}
+ * @return {{ noVision: boolean, nonStandard: boolean, postExamKnowledgeCutoff: boolean, webServiceNoTools: boolean }}
  */
 export function getModelFlags(modelName, modelMetadata = {}) {
   return {
     noVision: hasNoVision(modelName, modelMetadata),
     nonStandard: isNonStandard(modelName),
-    postExamKnowledgeCutoff: hasPostExamKnowledgeCutoff(modelName)
+    postExamKnowledgeCutoff: hasPostExamKnowledgeCutoff(modelName),
+    webServiceNoTools: hasWebServiceNoTools(modelName, modelMetadata)
   }
 }
 
@@ -101,12 +117,13 @@ export function getModelFlags(modelName, modelMetadata = {}) {
  * @brief 모델 목록에 플래그가 있는 모델이 포함되어 있는지 확인
  * @param {string[]} models - 모델명 배열
  * @param {Object} modelMetadata - 모델별 메타데이터
- * @return {{ hasNoVision: boolean, hasNonStandard: boolean, hasPostExamKnowledgeCutoff: boolean }}
+ * @return {{ hasNoVision: boolean, hasNonStandard: boolean, hasPostExamKnowledgeCutoff: boolean, hasWebServiceNoTools: boolean }}
  */
 export function getAnyModelFlags(models = [], modelMetadata = {}) {
   return {
     hasNoVision: models.some(model => hasNoVision(model, modelMetadata)),
     hasNonStandard: models.some(isNonStandard),
-    hasPostExamKnowledgeCutoff: models.some(hasPostExamKnowledgeCutoff)
+    hasPostExamKnowledgeCutoff: models.some(hasPostExamKnowledgeCutoff),
+    hasWebServiceNoTools: models.some(model => hasWebServiceNoTools(model, modelMetadata))
   }
 }

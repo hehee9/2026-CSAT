@@ -3487,6 +3487,93 @@
         }
       },
       "request_count": 13
+    },
+    "GPT-5.5 Pro": {
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "total_tokens": 0,
+      "question_count": 13,
+      "last_updated": "2026-06-29 22:33:07",
+      "sections": {
+        "국어-공통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "국어-언매": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "국어-화작": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "수학-공통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "수학-기하": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "수학-미적": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "수학-확통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "영어-공통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "탐구-물리1": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "탐구-사회문화": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "탐구-생명1": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "탐구-화학1": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        },
+        "한국사-공통": {
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "total_tokens": 0,
+          "question_count": 1
+        }
+      }
     }
   }
 }

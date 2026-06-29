@@ -10,11 +10,28 @@ import { MODEL_COLORS } from '@/utils/colorUtils'
 
 /**
  * @brief 범례용 미니 사각형 SVG
- * @param {{ type: 'noVision' | 'nonStandard' | 'postExamKnowledgeCutoff' }} props
+ * @param {{ type: 'noVision' | 'nonStandard' | 'postExamKnowledgeCutoff' | 'webServiceNoTools' }} props
  */
 function _LegendSwatch({ type }) {
   const size = 14
   const d = 3
+  if (type === 'webServiceNoTools') {
+    return (
+      <svg width={size} height={size} className="inline-block align-middle mr-1 shrink-0">
+        <defs>
+          <pattern id="legend-web-service-no-tools-checker" patternUnits="userSpaceOnUse" width="6" height="6">
+            <rect x="0" y="0" width="3" height="3" fill="rgba(255,255,255,0.32)" />
+            <rect x="3" y="3" width="3" height="3" fill="rgba(255,255,255,0.32)" />
+            <rect x="3" y="0" width="3" height="3" fill="rgba(0,0,0,0.10)" />
+            <rect x="0" y="3" width="3" height="3" fill="rgba(0,0,0,0.10)" />
+          </pattern>
+        </defs>
+        <rect width={size} height={size} rx={2} fill="#888" />
+        <rect width={size} height={size} rx={2} fill="url(#legend-web-service-no-tools-checker)" />
+      </svg>
+    )
+  }
+
   if (type === 'postExamKnowledgeCutoff') {
     const colors = [MODEL_COLORS.GPT, MODEL_COLORS.Claude, MODEL_COLORS.Grok]
     const barWidth = 4
@@ -97,7 +114,7 @@ export default function BenchmarkNote({
   return (
     <div className={className}>
       <p>{t('benchmark.noExternalSearch')}</p>
-      {(flags.hasNoVision || flags.hasNonStandard || flags.hasPostExamKnowledgeCutoff) && (
+      {(flags.hasNoVision || flags.hasNonStandard || flags.hasPostExamKnowledgeCutoff || flags.hasWebServiceNoTools) && (
         <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1">
           {flags.hasNoVision && (
             <span className="inline-flex items-center">
@@ -115,6 +132,12 @@ export default function BenchmarkNote({
             <span className="inline-flex items-center">
               <_LegendSwatch type="postExamKnowledgeCutoff" />
               {t('models.postExamKnowledgeCutoff')}
+            </span>
+          )}
+          {flags.hasWebServiceNoTools && (
+            <span className="inline-flex items-center">
+              <_LegendSwatch type="webServiceNoTools" />
+              {t('models.webServiceNoTools')}
             </span>
           )}
         </div>

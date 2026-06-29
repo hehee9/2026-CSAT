@@ -72,6 +72,8 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 **중요: 본 테스트는 API를 통한 환경에서 수행되었습니다.**
 
+> 단, GPT-5.5 Pro는 [커스텀 GPTs](https://chatgpt.com/g/g-69ecacbb8fac8191b0eb07e39c62496c-gpt-pro)를 통해 도구를 차단한 웹 환경에서 진행했습니다.
+
 ### 테스트 환경
 - **실행 방식**: 각 모델의 공식 API를 통해 진행
 - **추론 설정**: 최대 출력 토큰 및 추론 예산을 충분히 높게 설정
@@ -209,6 +211,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 - **OpenAI GPT 시리즈**
   - GPT-5.5 (high / none)
+  - GPT-5.5 Pro (xhigh, GPTs)
   - GPT-5.4 mini (xhigh / none)
   - GPT-5.4 nano (xhigh / none)
   - o1 (high)

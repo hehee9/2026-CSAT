@@ -127,6 +127,8 @@ function _wrapText(text, maxLen) {
  */
 function HatchPatternDefs({ darkMode }) {
   const strokeColor = darkMode ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.25)'
+  const checkerLight = darkMode ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.24)'
+  const checkerDark = darkMode ? 'rgba(0,0,0,0.16)' : 'rgba(0,0,0,0.08)'
   const shadowRgb = darkMode ? '255,255,255' : '0,0,0'
   const shadowAlpha = darkMode ? 0.15 : 0.2
   return (
@@ -139,6 +141,17 @@ function HatchPatternDefs({ darkMode }) {
         patternTransform="rotate(45)"
       >
         <line x1="0" y1="0" x2="0" y2="6" stroke={strokeColor} strokeWidth="2" />
+      </pattern>
+      <pattern
+        id="web-service-no-tools-checker"
+        patternUnits="userSpaceOnUse"
+        width="16"
+        height="16"
+      >
+        <rect x="0" y="0" width="8" height="8" fill={checkerLight} />
+        <rect x="8" y="8" width="8" height="8" fill={checkerLight} />
+        <rect x="8" y="0" width="8" height="8" fill={checkerDark} />
+        <rect x="0" y="8" width="8" height="8" fill={checkerDark} />
       </pattern>
       {/* noVision용 내부 그림자 그라데이션 (좌, 우, 상, 하) */}
       <linearGradient id="shadow-left" x1="0" y1="0" x2="1" y2="0">
@@ -203,6 +216,22 @@ function _PostExamKnowledgeCutoffGlow({ x, y, width, height, radius, color }) {
   )
 }
 
+/**
+ * @brief 도구 차단 웹 서비스 환경 모델용 체크무늬 오버레이
+ */
+function _WebServiceNoToolsChecker({ x, y, width, height, radius }) {
+  return (
+    <Rectangle
+      x={x}
+      y={y}
+      width={width}
+      height={height}
+      fill="url(#web-service-no-tools-checker)"
+      radius={radius}
+    />
+  )
+}
+
 function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride, modelMetadata = {} }) {
   const { x, y, width, height, payload } = props
   const color = colorOverride || payload.color || getModelColor(payload.model)
@@ -213,7 +242,7 @@ function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride,
   const flags = getModelFlags(payload.model, modelMetadata)
   const transitionStyle = { transition: 'opacity 0.15s ease-in-out' }
 
-  if (flags.noVision || flags.nonStandard || flags.postExamKnowledgeCutoff) {
+  if (flags.noVision || flags.nonStandard || flags.postExamKnowledgeCutoff || flags.webServiceNoTools) {
     return (
       <g style={transitionStyle} opacity={opacity}>
         {flags.postExamKnowledgeCutoff && (
@@ -223,6 +252,9 @@ function _renderBar(props, { hoveredModel, radius = [4, 4, 0, 0], colorOverride,
         {flags.noVision && <_InnerShadowOverlay x={x} y={y} width={width} height={height} />}
         {flags.nonStandard && (
           <Rectangle x={x} y={y} width={width} height={height} fill="url(#hatch-nonstandard)" radius={radius} />
+        )}
+        {flags.webServiceNoTools && (
+          <_WebServiceNoToolsChecker x={x} y={y} width={width} height={height} radius={radius} />
         )}
       </g>
     )

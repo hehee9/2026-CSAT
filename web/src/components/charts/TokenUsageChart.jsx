@@ -90,12 +90,26 @@ const LABEL_MODES = [
   { id: 'none', labelKey: 'token.hidden' }
 ]
 
-function TokenKnowledgeCutoffGlowDefs() {
+function TokenKnowledgeCutoffGlowDefs({ darkMode }) {
+  const checkerLight = darkMode ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.24)'
+  const checkerDark = darkMode ? 'rgba(0,0,0,0.16)' : 'rgba(0,0,0,0.08)'
+
   return (
     <defs>
       <filter id="token-post-exam-cutoff-glow" x="-8%" y="-24%" width="116%" height="148%">
         <feGaussianBlur stdDeviation="1.35" />
       </filter>
+      <pattern
+        id="token-web-service-no-tools-checker"
+        patternUnits="userSpaceOnUse"
+        width="16"
+        height="16"
+      >
+        <rect x="0" y="0" width="8" height="8" fill={checkerLight} />
+        <rect x="8" y="8" width="8" height="8" fill={checkerLight} />
+        <rect x="8" y="0" width="8" height="8" fill={checkerDark} />
+        <rect x="0" y="8" width="8" height="8" fill={checkerDark} />
+      </pattern>
     </defs>
   )
 }
@@ -128,6 +142,15 @@ function TokenBarShape(props) {
         fill={color}
         fillOpacity={fillOpacity}
       />
+      {flags.webServiceNoTools && (
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill="url(#token-web-service-no-tools-checker)"
+        />
+      )}
     </g>
   )
 }
@@ -323,8 +346,8 @@ export default function TokenUsageChart({
     <CustomMobileLabel {...props} mode={labelMode} chartData={chartData} darkMode={darkMode} />
   ), [labelMode, chartData, darkMode])
   const renderTokenBarShape = useCallback((props) => (
-    <TokenBarShape {...props} modelMetadata={modelMetadata} />
-  ), [modelMetadata])
+    <TokenBarShape {...props} modelMetadata={modelMetadata} darkMode={darkMode} />
+  ), [modelMetadata, darkMode])
 
   // 다크모드용 색상
   const axisColor = darkMode ? '#4b5563' : '#e5e7eb'
@@ -401,7 +424,7 @@ export default function TokenUsageChart({
               strokeDasharray="3 3"
             />
             <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
-            <TokenKnowledgeCutoffGlowDefs />
+            <TokenKnowledgeCutoffGlowDefs darkMode={darkMode} />
             {/* 출력 토큰 (좌측, 진한 색) */}
             <Bar
               dataKey="outputTokens"
@@ -495,7 +518,7 @@ export default function TokenUsageChart({
             strokeDasharray="3 3"
           />
           <Tooltip content={<CustomTooltip t={t} />} cursor={{ fill: cursorColor }} />
-          <TokenKnowledgeCutoffGlowDefs />
+          <TokenKnowledgeCutoffGlowDefs darkMode={darkMode} />
           {/* 출력 토큰 (하단, 진한 색) */}
           <Bar
             dataKey="outputTokens"

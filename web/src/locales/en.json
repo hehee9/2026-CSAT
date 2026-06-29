@@ -146,7 +146,8 @@
   "models": {
     "noVision": "No multimodal support",
     "nonStandard": "Only wrong answers from high retested with xhigh",
-    "postExamKnowledgeCutoff": "Possible exposure to exam content"
+    "postExamKnowledgeCutoff": "Possible exposure to exam content",
+    "webServiceNoTools": "Web service environment with tools disabled"
   },
   "benchmark": {
     "noExternalSearch": "※ These results were produced without external web search."
