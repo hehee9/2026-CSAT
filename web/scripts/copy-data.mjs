@@ -59,7 +59,7 @@ async function _copyIfExists(sourcePath, targetPath, options = {}) {
   }
 }
 
-export async function copyDataFiles() {
+export async function copyDataFiles(options = {}) {
   await mkdir(publicDir, { recursive: true })
 
   await _copyIfExists(
@@ -67,11 +67,13 @@ export async function copyDataFiles() {
     path.join(publicDir, 'all_results.json')
   )
 
-  await _copyIfExists(
-    path.join(repoRoot, 'hard_all_results.json'),
-    path.join(publicDir, 'hard_all_results.json'),
-    { optional: true }
-  )
+  if (!options.skipHard) {
+    await _copyIfExists(
+      path.join(repoRoot, 'hard_all_results.json'),
+      path.join(publicDir, 'hard_all_results.json'),
+      { optional: true }
+    )
+  }
 
   await _copyIfExists(
     path.join(repoRoot, 'problems', 'token_usage.json'),
@@ -79,17 +81,21 @@ export async function copyDataFiles() {
     { optional: true }
   )
 
-  await _copyIfExists(
-    path.join(repoRoot, 'problems', 'hard_token_usage.json'),
-    path.join(publicDir, 'hard_token_usage.json'),
-    { optional: true }
-  )
+  if (!options.skipHard) {
+    await _copyIfExists(
+      path.join(repoRoot, 'problems', 'hard_token_usage.json'),
+      path.join(publicDir, 'hard_token_usage.json'),
+      { optional: true }
+    )
+  }
 
   await _writeModelMetadata()
 }
 
 if (process.argv[1] === __filename) {
-  copyDataFiles().catch((error) => {
+  copyDataFiles({
+    skipHard: process.argv.includes('--skip-hard')
+  }).catch((error) => {
     console.error(error)
     process.exit(1)
   })

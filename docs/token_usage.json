@@ -1353,154 +1353,6 @@
       "question_count": 34,
       "last_updated": "2026-01-15 15:54:23"
     },
-    "Solar Pro 3 (high)": {
-      "total_input_tokens": 108991,
-      "total_output_tokens": 2327792,
-      "total_tokens": 2436783,
-      "question_count": 247,
-      "last_updated": "2026-01-28 23:16:37",
-      "sections": {
-        "영어": {
-          "input_tokens": 15568,
-          "output_tokens": 67270,
-          "question_count": 45
-        },
-        "한국사": {
-          "input_tokens": 4760,
-          "output_tokens": 103840,
-          "question_count": 20
-        },
-        "탐구-물리1": {
-          "input_tokens": 5224,
-          "output_tokens": 472929,
-          "question_count": 20
-        },
-        "탐구-사회문화": {
-          "input_tokens": 6291,
-          "output_tokens": 176845,
-          "question_count": 20
-        },
-        "탐구-생명1": {
-          "input_tokens": 6974,
-          "output_tokens": 329565,
-          "question_count": 20
-        },
-        "탐구-화학1": {
-          "input_tokens": 5887,
-          "output_tokens": 355979,
-          "question_count": 20
-        },
-        "수학-공통": {
-          "input_tokens": 4150,
-          "output_tokens": 129401,
-          "question_count": 22
-        },
-        "수학-기하": {
-          "input_tokens": 1486,
-          "output_tokens": 113919,
-          "question_count": 8
-        },
-        "수학-미적": {
-          "input_tokens": 1708,
-          "output_tokens": 62871,
-          "question_count": 8
-        },
-        "수학-확통": {
-          "input_tokens": 1644,
-          "output_tokens": 64833,
-          "question_count": 8
-        },
-        "국어-공통": {
-          "input_tokens": 36614,
-          "output_tokens": 302283,
-          "question_count": 34
-        },
-        "국어-언매": {
-          "input_tokens": 8662,
-          "output_tokens": 106051,
-          "question_count": 11
-        },
-        "국어-화작": {
-          "input_tokens": 10023,
-          "output_tokens": 42006,
-          "question_count": 11
-        }
-      }
-    },
-    "Solar Pro 3 (low)": {
-      "total_input_tokens": 110399,
-      "total_output_tokens": 160092,
-      "total_tokens": 270491,
-      "question_count": 247,
-      "last_updated": "2026-01-28 23:16:37",
-      "sections": {
-        "영어": {
-          "input_tokens": 15751,
-          "output_tokens": 11190,
-          "question_count": 45
-        },
-        "한국사": {
-          "input_tokens": 4843,
-          "output_tokens": 5957,
-          "question_count": 20
-        },
-        "탐구-물리1": {
-          "input_tokens": 5307,
-          "output_tokens": 16953,
-          "question_count": 20
-        },
-        "탐구-사회문화": {
-          "input_tokens": 6380,
-          "output_tokens": 10555,
-          "question_count": 20
-        },
-        "탐구-생명1": {
-          "input_tokens": 7063,
-          "output_tokens": 16659,
-          "question_count": 20
-        },
-        "탐구-화학1": {
-          "input_tokens": 6366,
-          "output_tokens": 31939,
-          "question_count": 20
-        },
-        "수학-공통": {
-          "input_tokens": 4238,
-          "output_tokens": 21161,
-          "question_count": 22
-        },
-        "수학-기하": {
-          "input_tokens": 1521,
-          "output_tokens": 10127,
-          "question_count": 8
-        },
-        "수학-미적": {
-          "input_tokens": 1737,
-          "output_tokens": 8380,
-          "question_count": 8
-        },
-        "수학-확통": {
-          "input_tokens": 1673,
-          "output_tokens": 7401,
-          "question_count": 8
-        },
-        "국어-공통": {
-          "input_tokens": 36744,
-          "output_tokens": 11899,
-          "question_count": 34
-        },
-        "국어-언매": {
-          "input_tokens": 8706,
-          "output_tokens": 4385,
-          "question_count": 11
-        },
-        "국어-화작": {
-          "input_tokens": 10070,
-          "output_tokens": 3486,
-          "question_count": 11
-        }
-      }
-    },
     "Kimi K2.5 (Thinking)": {
       "total_input_tokens": 267849,
       "total_output_tokens": 1453485,
@@ -2547,154 +2399,6 @@
         "탐구-생명1": {
           "input_tokens": 19689,
           "output_tokens": 15181,
-          "question_count": 20
-        }
-      }
-    },
-    "Solar Pro 3 0323 (high)": {
-      "total_input_tokens": 108790,
-      "total_output_tokens": 1102084,
-      "total_tokens": 1210874,
-      "question_count": 247,
-      "last_updated": "2026-03-23 20:10:37",
-      "sections": {
-        "국어-화작": {
-          "input_tokens": 10005,
-          "output_tokens": 13864,
-          "question_count": 11
-        },
-        "국어-언매": {
-          "input_tokens": 8635,
-          "output_tokens": 30427,
-          "question_count": 11
-        },
-        "국어-공통": {
-          "input_tokens": 36524,
-          "output_tokens": 115734,
-          "question_count": 34
-        },
-        "수학-확통": {
-          "input_tokens": 1623,
-          "output_tokens": 25432,
-          "question_count": 8
-        },
-        "수학-공통": {
-          "input_tokens": 4096,
-          "output_tokens": 90699,
-          "question_count": 22
-        },
-        "영어-공통": {
-          "input_tokens": 15457,
-          "output_tokens": 26707,
-          "question_count": 45
-        },
-        "한국사-공통": {
-          "input_tokens": 4715,
-          "output_tokens": 30811,
-          "question_count": 20
-        },
-        "수학-미적": {
-          "input_tokens": 1687,
-          "output_tokens": 104415,
-          "question_count": 8
-        },
-        "탐구-화학1": {
-          "input_tokens": 6241,
-          "output_tokens": 167269,
-          "question_count": 20
-        },
-        "탐구-사회문화": {
-          "input_tokens": 6240,
-          "output_tokens": 67051,
-          "question_count": 20
-        },
-        "탐구-생명1": {
-          "input_tokens": 6926,
-          "output_tokens": 190937,
-          "question_count": 20
-        },
-        "수학-기하": {
-          "input_tokens": 1465,
-          "output_tokens": 85937,
-          "question_count": 8
-        },
-        "탐구-물리1": {
-          "input_tokens": 5176,
-          "output_tokens": 152801,
-          "question_count": 20
-        }
-      }
-    },
-    "Solar Pro 3 0323 (low)": {
-      "total_input_tokens": 109579,
-      "total_output_tokens": 1948367,
-      "total_tokens": 2057946,
-      "question_count": 247,
-      "last_updated": "2026-03-23 20:10:37",
-      "sections": {
-        "국어-화작": {
-          "input_tokens": 10049,
-          "output_tokens": 35981,
-          "question_count": 11
-        },
-        "국어-언매": {
-          "input_tokens": 8679,
-          "output_tokens": 79685,
-          "question_count": 11
-        },
-        "국어-공통": {
-          "input_tokens": 36660,
-          "output_tokens": 203609,
-          "question_count": 34
-        },
-        "수학-확통": {
-          "input_tokens": 1655,
-          "output_tokens": 32712,
-          "question_count": 8
-        },
-        "수학-공통": {
-          "input_tokens": 4184,
-          "output_tokens": 104817,
-          "question_count": 22
-        },
-        "영어-공통": {
-          "input_tokens": 15637,
-          "output_tokens": 90561,
-          "question_count": 45
-        },
-        "한국사-공통": {
-          "input_tokens": 4795,
-          "output_tokens": 83964,
-          "question_count": 20
-        },
-        "수학-미적": {
-          "input_tokens": 1719,
-          "output_tokens": 70955,
-          "question_count": 8
-        },
-        "탐구-화학1": {
-          "input_tokens": 6321,
-          "output_tokens": 287466,
-          "question_count": 20
-        },
-        "탐구-사회문화": {
-          "input_tokens": 6320,
-          "output_tokens": 172978,
-          "question_count": 20
-        },
-        "탐구-생명1": {
-          "input_tokens": 7006,
-          "output_tokens": 305111,
-          "question_count": 20
-        },
-        "수학-기하": {
-          "input_tokens": 1298,
-          "output_tokens": 46091,
-          "question_count": 8
-        },
-        "탐구-물리1": {
-          "input_tokens": 5256,
-          "output_tokens": 434437,
           "question_count": 20
         }
       }
@@ -5992,6 +5696,302 @@
           "input_tokens": 15594,
           "output_tokens": 4199,
           "question_count": 11
+        }
+      }
+    },
+    "Solar Pro 3 (0126, high)": {
+      "total_input_tokens": 108991,
+      "total_output_tokens": 2327792,
+      "total_tokens": 2436783,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어": {
+          "input_tokens": 15568,
+          "output_tokens": 67270,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 4760,
+          "output_tokens": 103840,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5224,
+          "output_tokens": 472929,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6291,
+          "output_tokens": 176845,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 6974,
+          "output_tokens": 329565,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 5887,
+          "output_tokens": 355979,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4150,
+          "output_tokens": 129401,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1486,
+          "output_tokens": 113919,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1708,
+          "output_tokens": 62871,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1644,
+          "output_tokens": 64833,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36614,
+          "output_tokens": 302283,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8662,
+          "output_tokens": 106051,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10023,
+          "output_tokens": 42006,
+          "question_count": 11
+        }
+      }
+    },
+    "Solar Pro 3 (0126, low)": {
+      "total_input_tokens": 110399,
+      "total_output_tokens": 160092,
+      "total_tokens": 270491,
+      "question_count": 247,
+      "last_updated": "2026-01-28 23:16:37",
+      "sections": {
+        "영어": {
+          "input_tokens": 15751,
+          "output_tokens": 11190,
+          "question_count": 45
+        },
+        "한국사": {
+          "input_tokens": 4843,
+          "output_tokens": 5957,
+          "question_count": 20
+        },
+        "탐구-물리1": {
+          "input_tokens": 5307,
+          "output_tokens": 16953,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6380,
+          "output_tokens": 10555,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 7063,
+          "output_tokens": 16659,
+          "question_count": 20
+        },
+        "탐구-화학1": {
+          "input_tokens": 6366,
+          "output_tokens": 31939,
+          "question_count": 20
+        },
+        "수학-공통": {
+          "input_tokens": 4238,
+          "output_tokens": 21161,
+          "question_count": 22
+        },
+        "수학-기하": {
+          "input_tokens": 1521,
+          "output_tokens": 10127,
+          "question_count": 8
+        },
+        "수학-미적": {
+          "input_tokens": 1737,
+          "output_tokens": 8380,
+          "question_count": 8
+        },
+        "수학-확통": {
+          "input_tokens": 1673,
+          "output_tokens": 7401,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 36744,
+          "output_tokens": 11899,
+          "question_count": 34
+        },
+        "국어-언매": {
+          "input_tokens": 8706,
+          "output_tokens": 4385,
+          "question_count": 11
+        },
+        "국어-화작": {
+          "input_tokens": 10070,
+          "output_tokens": 3486,
+          "question_count": 11
+        }
+      }
+    },
+    "Solar Pro 3 (low)": {
+      "total_input_tokens": 109579,
+      "total_output_tokens": 1948367,
+      "total_tokens": 2057946,
+      "question_count": 247,
+      "last_updated": "2026-03-23 20:10:37",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 10049,
+          "output_tokens": 35981,
+          "question_count": 11
+        },
+        "국어-언매": {
+          "input_tokens": 8679,
+          "output_tokens": 79685,
+          "question_count": 11
+        },
+        "국어-공통": {
+          "input_tokens": 36660,
+          "output_tokens": 203609,
+          "question_count": 34
+        },
+        "수학-확통": {
+          "input_tokens": 1655,
+          "output_tokens": 32712,
+          "question_count": 8
+        },
+        "수학-공통": {
+          "input_tokens": 4184,
+          "output_tokens": 104817,
+          "question_count": 22
+        },
+        "영어-공통": {
+          "input_tokens": 15637,
+          "output_tokens": 90561,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 4795,
+          "output_tokens": 83964,
+          "question_count": 20
+        },
+        "수학-미적": {
+          "input_tokens": 1719,
+          "output_tokens": 70955,
+          "question_count": 8
+        },
+        "탐구-화학1": {
+          "input_tokens": 6321,
+          "output_tokens": 287466,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6320,
+          "output_tokens": 172978,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 7006,
+          "output_tokens": 305111,
+          "question_count": 20
+        },
+        "수학-기하": {
+          "input_tokens": 1298,
+          "output_tokens": 46091,
+          "question_count": 8
+        },
+        "탐구-물리1": {
+          "input_tokens": 5256,
+          "output_tokens": 434437,
+          "question_count": 20
+        }
+      }
+    },
+    "Solar Pro 3 (high)": {
+      "total_input_tokens": 108790,
+      "total_output_tokens": 1102084,
+      "total_tokens": 1210874,
+      "question_count": 247,
+      "last_updated": "2026-03-23 20:10:37",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 10005,
+          "output_tokens": 13864,
+          "question_count": 11
+        },
+        "국어-언매": {
+          "input_tokens": 8635,
+          "output_tokens": 30427,
+          "question_count": 11
+        },
+        "국어-공통": {
+          "input_tokens": 36524,
+          "output_tokens": 115734,
+          "question_count": 34
+        },
+        "수학-확통": {
+          "input_tokens": 1623,
+          "output_tokens": 25432,
+          "question_count": 8
+        },
+        "수학-공통": {
+          "input_tokens": 4096,
+          "output_tokens": 90699,
+          "question_count": 22
+        },
+        "영어-공통": {
+          "input_tokens": 15457,
+          "output_tokens": 26707,
+          "question_count": 45
+        },
+        "한국사-공통": {
+          "input_tokens": 4715,
+          "output_tokens": 30811,
+          "question_count": 20
+        },
+        "수학-미적": {
+          "input_tokens": 1687,
+          "output_tokens": 104415,
+          "question_count": 8
+        },
+        "탐구-화학1": {
+          "input_tokens": 6241,
+          "output_tokens": 167269,
+          "question_count": 20
+        },
+        "탐구-사회문화": {
+          "input_tokens": 6240,
+          "output_tokens": 67051,
+          "question_count": 20
+        },
+        "탐구-생명1": {
+          "input_tokens": 6926,
+          "output_tokens": 190937,
+          "question_count": 20
+        },
+        "수학-기하": {
+          "input_tokens": 1465,
+          "output_tokens": 85937,
+          "question_count": 8
+        },
+        "탐구-물리1": {
+          "input_tokens": 5176,
+          "output_tokens": 152801,
+          "question_count": 20
         }
       }
     }
