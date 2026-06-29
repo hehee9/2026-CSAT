@@ -21,7 +21,6 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple
-from collections import defaultdict
 from copy import deepcopy
 
 import pandas as pd
@@ -1112,182 +1111,19 @@ class SyncManager:
         print(f"내보내기 완료: {output_path} ({len(all_data)}개 항목)")
         return output_path
 
-    def _load_hard_token_usage(self) -> Dict:
-        """hard 토큰 사용량 파일 로드"""
-        token_file = self.problems_dir / 'hard_token_usage.json'
-        if token_file.exists():
-            with open(token_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        return {}
-
-    def _get_hard_token_usage(self, token_data: Dict, model_name: str, sheet_name: str) -> Optional[Dict[str, int]]:
-        """hard 집계용 모델-시트 토큰 사용량 조회"""
-        models = token_data.get('models', {})
-        model_data = models.get(model_name, {})
-        sections = model_data.get('sections', {})
-
-        candidate_keys = [sheet_name]
-        subject, section = self.path_mapper.get_subject_section(sheet_name)
-        candidate_keys.append(f"{subject}-{section}")
-        if subject in ['영어', '한국사']:
-            candidate_keys.append(f"{subject}-공통")
-        if sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
-            candidate_keys.append(f"탐구-{sheet_name}")
-
-        for key in candidate_keys:
-            if key in sections:
-                return sections[key]
-        return None
-
-    def _get_dashboard_subject_section(self, sheet_name: str, subject: str,
-                                       section: str) -> Tuple[str, str]:
-        """대시보드 계산식에 맞는 과목/섹션 표기 반환"""
-        if sheet_name in ['영어', '한국사']:
-            return sheet_name, sheet_name
-        if sheet_name in ['물리1', '화학1', '생명1', '사회문화']:
-            return sheet_name, '탐구'
-        return subject, section
-
-    def _build_hard_verified_export_items(self, sheet_name: str, verified_file: Path,
-                                          token_data: Dict,
-                                          model_name: str = None) -> List[Dict]:
-        """hard 검증 결과를 대시보드용 all_results 구조로 변환"""
-        with open(verified_file, 'r', encoding='utf-8') as f:
-            verified_data = json.load(f)
-
-        results_by_model = defaultdict(list)
-        for result in verified_data.get('results', []):
-            json_model_name = result.get('model_name')
-            if not json_model_name:
-                continue
-            if model_name and json_model_name != model_name:
-                continue
-            results_by_model[json_model_name].append(result)
-
-        export_items = []
-        total_points = verified_data.get('total_points', 0)
-        model_scores = verified_data.get('model_scores', {})
-
-        for json_model_name, model_results in sorted(results_by_model.items()):
-            model_results.sort(key=lambda item: item.get('question_number', 0))
-            clean_results = [
-                {
-                    'question_number': r.get('question_number'),
-                    'extracted_answer': r.get('extracted_answer'),
-                    'correct_answer': r.get('correct_answer'),
-                    'is_correct': r.get('is_correct'),
-                    'points': r.get('points'),
-                    'answer_status': r.get('answer_status'),
-                    'provider_stop_reason': r.get('provider_stop_reason'),
-                }
-                for r in model_results
-            ]
-
-            score = model_scores.get(json_model_name)
-            if score is None:
-                score = sum((r.get('points') or 0) for r in model_results if r.get('is_correct'))
-
-            dashboard_subject, dashboard_section = self._get_dashboard_subject_section(
-                sheet_name, verified_data.get('subject'), verified_data.get('section')
-            )
-            clean_data = {
-                'sheet_name': sheet_name,
-                'subject': dashboard_subject,
-                'section': dashboard_section,
-                'model_name': json_model_name,
-                'score': score,
-                'total_points': total_points,
-                'correct_count': sum(1 for r in model_results if r.get('is_correct')),
-                'total_questions': len(model_results),
-                'results': clean_results
-            }
-
-            token_usage = self._get_hard_token_usage(token_data, json_model_name, sheet_name)
-            if token_usage:
-                clean_data['token_usage'] = token_usage
-
-            price = self._get_model_price(json_model_name)
-            if price:
-                clean_data['price'] = price
-
-            export_items.append(clean_data)
-
-        return export_items
-
     def export_hard_all_sections_to_json(self, output_path: Path = None,
                                          model_name: str = None) -> Path:
         """
-        hard_results.json 파일들을 hard_all_results.json 형식으로 내보내기
+        hard Excel의 모든 모델 컬럼을 hard_all_results.json 형식으로 내보내기
 
-        검증 결과가 있으면 점수와 문항별 결과를 포함하고, 없으면 토큰 메타데이터만 포함한다.
+        hard_results*.json은 개별 실행 결과 원본이므로 전체 집계의 기준으로 사용하지 않는다.
+        대시보드용 전체 집계는 hard Excel을 정본으로 삼아 기존 모델을 누락하지 않는다.
         """
-        all_data = []
-        hard_token_usage = self._load_hard_token_usage()
-
-        for sheet_name in self.path_mapper.get_all_sheets():
-            json_dir = self.path_mapper.sheet_to_json_path(sheet_name)
-            if not json_dir:
-                continue
-
-            hard_file = json_dir / 'hard_results.json'
-            if not hard_file.exists():
-                continue
-
-            try:
-                verified_file = json_dir / 'hard_results_verified.json'
-                if verified_file.exists():
-                    all_data.extend(self._build_hard_verified_export_items(
-                        sheet_name, verified_file, hard_token_usage, model_name
-                    ))
-                    continue
-
-                with open(hard_file, 'r', encoding='utf-8') as f:
-                    hard_data = json.load(f)
-
-                subject = hard_data.get('subject')
-                section = hard_data.get('section')
-                dashboard_subject, dashboard_section = self._get_dashboard_subject_section(
-                    sheet_name, subject, section
-                )
-                for result in hard_data.get('results', []):
-                    json_model_name = result.get('model_name')
-                    if not json_model_name:
-                        continue
-                    if model_name and json_model_name != model_name:
-                        continue
-
-                    clean_data = {
-                        'sheet_name': sheet_name,
-                        'subject': dashboard_subject,
-                        'section': dashboard_section,
-                        'model_name': json_model_name,
-                        'score': None,
-                        'total_points': 0,
-                        'correct_count': None,
-                        'total_questions': 0,
-                        'results': []
-                    }
-
-                    token_usage = self._get_hard_token_usage(hard_token_usage, json_model_name, sheet_name)
-                    if token_usage:
-                        clean_data['token_usage'] = token_usage
-
-                    price = self._get_model_price(json_model_name)
-                    if price:
-                        clean_data['price'] = price
-
-                    all_data.append(clean_data)
-            except Exception as e:
-                print(f"경고: {hard_file} 내보내기 실패 - {e}")
-
-        if output_path is None:
-            output_path = Path('hard_all_results.json')
-
-        with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(all_data, f, ensure_ascii=False, indent=2)
-
-        print(f"hard 내보내기 완료: {output_path} ({len(all_data)}개 항목)")
-        return output_path
+        return self.export_all_sheets_to_json(
+            output_path=output_path,
+            model_name=model_name,
+            all_models=model_name is None,
+        )
 
     def list_models(self, sheet_name: str = None) -> Dict[str, List[str]]:
         """모델 목록 반환"""
