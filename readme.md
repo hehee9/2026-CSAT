@@ -3,6 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
+English version: [README_en.md](README_en.md)
+
 <div align="center">
 
 ### [**Interactive Dashboard**](https://hehee9.github.io/2026-CSAT/)
@@ -209,11 +211,15 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GPT-5.5 (high / none)
   - GPT-5.4 mini (xhigh / none)
   - GPT-5.4 nano (xhigh / none)
+  - o1 (high)
+  - GPT-4.1
+  - GPT-4o (2024-11-20)
 
 - **Google Gemini 시리즈**
   - Gemini 3.5 Flash (high / minimal)
   - Gemini 3.1 Pro (high / low)
   - Gemini 3.1 Flash-Lite (high / minimal)
+  - Gemini 3 Flash (high / minimal)
 
 - **Google Gemma 시리즈**
   - Gemma 4 31B (high / minimal)
@@ -228,44 +234,30 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - DeepSeek V4 Flash (Max / None)
   - DeepSeek V4 Pro (Max / None)
 
+- **Kakao Kanana 시리즈**
+  - Kanana-o 9.8B
+
 ※ 이미지 인식이 불가능한 모델은 텍스트로만 진행했습니다.
 
 ---
 
 ## 국어 영역
 
-### 종합 성적
+### 모델별 성적 (100점 만점)
 ![국어 2](https://hehee9.github.io/2026-CSAT/images/국어.png)
-![국어 공통 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_국어.png)
 
-### 화법과 작문
-![화법과 작문 2](https://hehee9.github.io/2026-CSAT/images/화작.png)
-![화법과 작문 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_화작.png)
-
-### 언어와 매체
-![언어와 매체 2](https://hehee9.github.io/2026-CSAT/images/언매.png)
-![언어와 매체 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_언매.png)
+### 고난도 모드
+![국어 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_국어.png)
 
 ---
 
 ## 수학 영역
 
-### 종합 성적
-
+### 모델별 성적 (100점 만점)
 ![수학 2](https://hehee9.github.io/2026-CSAT/images/수학.png)
-![수학 공통 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_수학.png)
 
-### 확률과 통계
-![확률과 통계 2](https://hehee9.github.io/2026-CSAT/images/확통.png)
-![확률과 통계 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_확통.png)
-
-### 미적분
-![미분과 적분 2](https://hehee9.github.io/2026-CSAT/images/미적.png)
-![미적분 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_미적.png)
-
-### 기하
-![기하 2](https://hehee9.github.io/2026-CSAT/images/기하.png)
-![기하 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_기하.png)
+### 고난도 모드
+![수학 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_수학.png)
 
 ---
 
@@ -273,7 +265,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ### 모델별 성적 (100점 만점)
 ![영어 2](https://hehee9.github.io/2026-CSAT/images/영어.png)
-![영어 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_영어.png)
+
+### 고난도 모드
+![영어 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_영어.png)
 
 ---
 
@@ -281,7 +275,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 ### 모델별 성적 (50점 만점)
 ![한국사 2](https://hehee9.github.io/2026-CSAT/images/한국사.png)
-![한국사 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_한국사.png)
+
+### 고난도 모드
+![한국사 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_한국사.png)
 
 ---
 
@@ -290,24 +286,24 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ### 물리1
 
 ![물리1 2](https://hehee9.github.io/2026-CSAT/images/물리1.png)
-![물리1 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_물리1.png)
+![물리1 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_물리1.png)
 
 > ※ 선이나 화살표가 많은 시각 자료가 포함된 문제에서 오답이 많아 평균적으로 점수가 낮습니다.
 
 ### 화학1
 
 ![화학1 2](https://hehee9.github.io/2026-CSAT/images/화학1.png)
-![화학1 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_화학1.png)
+![화학1 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_화학1.png)
 
 ### 생명과학1
 
 ![생명1 2](https://hehee9.github.io/2026-CSAT/images/생명1.png)
-![생명1 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_생명1.png)
+![생명1 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_생명1.png)
 
 ### 사회문화
 
 ![사회문화 2](https://hehee9.github.io/2026-CSAT/images/사회문화.png)
-![사회문화 선택률](https://hehee9.github.io/2026-CSAT/images/정오표_사회문화.png)
+![사회문화 고난도 모드](https://hehee9.github.io/2026-CSAT/images/고난도_사회문화.png)
 
 ---
 
