@@ -20,6 +20,21 @@ function createImageTarget({ id, group, exportKey, fileName, params }) {
   }
 }
 
+/** @description Create a hard-mode subject score export target */
+function createHardSubjectTarget({ id, fileName, subjects }) {
+  return createImageTarget({
+    id: `hard-${id}`,
+    group: 'subjects',
+    exportKey: 'overview-score-chart',
+    fileName: `고난도_${fileName}`,
+    params: {
+      mode: 'hard',
+      tab: 'overview',
+      subjects
+    }
+  })
+}
+
 export const EXPORT_TARGETS = [
   createImageTarget({
     id: 'overview-total',
@@ -57,46 +72,11 @@ export const EXPORT_TARGETS = [
     params: { tab: 'overview', subjects: '국어-화작,국어-언매' }
   }),
   createImageTarget({
-    id: 'subject-hwajak',
-    group: 'overview',
-    exportKey: 'overview-score-chart',
-    fileName: '화작.png',
-    params: { tab: 'overview', subjects: '국어-화작' }
-  }),
-  createImageTarget({
-    id: 'subject-unmae',
-    group: 'overview',
-    exportKey: 'overview-score-chart',
-    fileName: '언매.png',
-    params: { tab: 'overview', subjects: '국어-언매' }
-  }),
-  createImageTarget({
     id: 'subject-math',
     group: 'overview',
     exportKey: 'overview-score-chart',
     fileName: '수학.png',
     params: { tab: 'overview', subjects: '수학-확통,수학-미적,수학-기하' }
-  }),
-  createImageTarget({
-    id: 'subject-hwakton',
-    group: 'overview',
-    exportKey: 'overview-score-chart',
-    fileName: '확통.png',
-    params: { tab: 'overview', subjects: '수학-확통' }
-  }),
-  createImageTarget({
-    id: 'subject-mijeok',
-    group: 'overview',
-    exportKey: 'overview-score-chart',
-    fileName: '미적.png',
-    params: { tab: 'overview', subjects: '수학-미적' }
-  }),
-  createImageTarget({
-    id: 'subject-giha',
-    group: 'overview',
-    exportKey: 'overview-score-chart',
-    fileName: '기하.png',
-    params: { tab: 'overview', subjects: '수학-기하' }
   }),
   createImageTarget({
     id: 'subject-english',
@@ -140,96 +120,45 @@ export const EXPORT_TARGETS = [
     fileName: '사회문화.png',
     params: { tab: 'overview', subjects: '탐구-사회문화' }
   }),
-  createImageTarget({
-    id: 'heatmap-korean-common',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_국어.png',
-    params: { tab: 'subjects', selectedSubject: '국어', selectedSection: '공통' }
+  createHardSubjectTarget({
+    id: 'subject-korean',
+    fileName: '국어.png',
+    subjects: '국어-화작,국어-언매'
   }),
-  createImageTarget({
-    id: 'heatmap-hwajak',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_화작.png',
-    params: { tab: 'subjects', selectedSubject: '국어', selectedSection: '화작' }
+  createHardSubjectTarget({
+    id: 'subject-math',
+    fileName: '수학.png',
+    subjects: '수학-확통,수학-미적,수학-기하'
   }),
-  createImageTarget({
-    id: 'heatmap-unmae',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_언매.png',
-    params: { tab: 'subjects', selectedSubject: '국어', selectedSection: '언매' }
+  createHardSubjectTarget({
+    id: 'subject-english',
+    fileName: '영어.png',
+    subjects: '영어'
   }),
-  createImageTarget({
-    id: 'heatmap-math-common',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_수학.png',
-    params: { tab: 'subjects', selectedSubject: '수학', selectedSection: '공통' }
+  createHardSubjectTarget({
+    id: 'subject-history',
+    fileName: '한국사.png',
+    subjects: '한국사'
   }),
-  createImageTarget({
-    id: 'heatmap-hwakton',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_확통.png',
-    params: { tab: 'subjects', selectedSubject: '수학', selectedSection: '확통' }
+  createHardSubjectTarget({
+    id: 'subject-physics1',
+    fileName: '물리1.png',
+    subjects: '탐구-물리1'
   }),
-  createImageTarget({
-    id: 'heatmap-mijeok',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_미적.png',
-    params: { tab: 'subjects', selectedSubject: '수학', selectedSection: '미적' }
+  createHardSubjectTarget({
+    id: 'subject-chemistry1',
+    fileName: '화학1.png',
+    subjects: '탐구-화학1'
   }),
-  createImageTarget({
-    id: 'heatmap-giha',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_기하.png',
-    params: { tab: 'subjects', selectedSubject: '수학', selectedSection: '기하' }
+  createHardSubjectTarget({
+    id: 'subject-biology1',
+    fileName: '생명1.png',
+    subjects: '탐구-생명1'
   }),
-  createImageTarget({
-    id: 'heatmap-english',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_영어.png',
-    params: { tab: 'subjects', selectedSubject: '영어', selectedSection: '영어' }
-  }),
-  createImageTarget({
-    id: 'heatmap-history',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_한국사.png',
-    params: { tab: 'subjects', selectedSubject: '한국사', selectedSection: '한국사' }
-  }),
-  createImageTarget({
-    id: 'heatmap-physics1',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_물리1.png',
-    params: { tab: 'subjects', selectedSubject: '탐구', selectedSection: '물리1' }
-  }),
-  createImageTarget({
-    id: 'heatmap-chemistry1',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_화학1.png',
-    params: { tab: 'subjects', selectedSubject: '탐구', selectedSection: '화학1' }
-  }),
-  createImageTarget({
-    id: 'heatmap-biology1',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_생명1.png',
-    params: { tab: 'subjects', selectedSubject: '탐구', selectedSection: '생명1' }
-  }),
-  createImageTarget({
-    id: 'heatmap-society',
-    group: 'subjects',
-    exportKey: 'question-heatmap',
-    fileName: '정오표_사회문화.png',
-    params: { tab: 'subjects', selectedSubject: '탐구', selectedSection: '사회문화' }
+  createHardSubjectTarget({
+    id: 'subject-society',
+    fileName: '사회문화.png',
+    subjects: '탐구-사회문화'
   }),
   createImageTarget({
     id: 'cost-analysis',
