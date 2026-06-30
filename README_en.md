@@ -192,9 +192,8 @@ Therefore, **performance may differ from official website or app results.**
   - Qwen3.5 27B (Thinking / Non-Thinking)
   - Qwen3.5 9B (Thinking / Non-Thinking)
 
-- **LGAI EXAONE series** (via FriendliAI)
-  - K-EXAONE (Thinking)
-  - K-EXAONE (Non-Thinking)
+- **LGAI EXAONE series**
+  - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana series**
   - Kanana-o 9.8B
@@ -240,11 +239,18 @@ Therefore, **performance may differ from official website or app results.**
   - DeepSeek V4 Flash (Max / None)
   - DeepSeek V4 Pro (Max / None)
 
+- **Alibaba Cloud Qwen series**
+  - Qwen3.7 Max (Thinking / Non-Thinking)
+  - Qwen3.6 27B (Thinking / Non-Thinking)
+
 - **MiniMax series**
   - MiniMax M3 (Thinking / Non-Thinking)
 
 - **Z.ai GLM series**
   - GLM-5.2 (Thinking / Non-Thinking)
+
+- **LGAI EXAONE series**
+  - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana series**
   - Kanana-o 9.8B
@@ -335,7 +341,6 @@ For models without an official provider, the measurement is based on OpenRouter'
 | Model | Input Cost | Output Cost |
 | :--- | :--- | :--- |
 | GPT-OSS 120B | 0.15 | 0.6 |
-| K-EXAONE 236B | 0.23 | 0.92 |
 | Gemma 4 31B | 0.14 | 0.4 |
 | Gemma 4 26B A4B | 0.1 | 0.4 |
 
