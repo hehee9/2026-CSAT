@@ -222,6 +222,7 @@ Therefore, **performance may differ from official website or app results.**
   - Gemini 3.1 Pro (high / low)
   - Gemini 3.1 Flash-Lite (high / minimal)
   - Gemini 3 Flash (high / minimal)
+  - Gemini 2.5 Pro (32K Thinking)
 
 - **Google Gemma series**
   - Gemma 4 31B (high / minimal)
@@ -248,6 +249,9 @@ Therefore, **performance may differ from official website or app results.**
 
 - **Z.ai GLM series**
   - GLM-5.2 (Thinking / Non-Thinking)
+
+- **Moonshot AI Kimi series**
+  - Kimi K2.6 (Thinking / Non-Thinking)
 
 - **LGAI EXAONE series**
   - K-EXAONE (Thinking / Non-Thinking)
