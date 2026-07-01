@@ -230,6 +230,7 @@ Therefore, **performance may differ from official website or app results.**
   - Gemma 4 26B A4B (high / minimal)
 
 - **Anthropic Claude series**
+  - Claude Fable 5 (high)
   - Claude Sonnet 5 (high / none)
   - Claude Opus 4.8 (high / none)
   - Claude Sonnet 4.6 (high / none)
