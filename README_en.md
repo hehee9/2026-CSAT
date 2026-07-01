@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support%20this%20project-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/hehee9)
 
 **Korean version: [readme.md](readme.md)**
 
@@ -229,6 +230,7 @@ Therefore, **performance may differ from official website or app results.**
   - Gemma 4 26B A4B (high / minimal)
 
 - **Anthropic Claude series**
+  - Claude Sonnet 5 (high / none)
   - Claude Opus 4.8 (high / none)
   - Claude Sonnet 4.6 (high / none)
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
@@ -355,6 +357,16 @@ For models without an official provider, the measurement is based on OpenRouter'
 ### Token Usage
 
 ![Token usage](https://hehee9.github.io/2026-CSAT/images/토큰_사용량.png)
+
+---
+
+## Support
+
+All tests in this project are conducted through actual APIs, and token usage and costs are transparently disclosed.
+
+Since every subject is tested each time a new model is released, significant API costs are incurred. If you'd like to help maintain this project, please consider supporting via Ko-fi!
+
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/hehee9)
 
 ---
 
