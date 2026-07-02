@@ -263,6 +263,7 @@ Therefore, **performance may differ from official website or app results.**
   - Kanana-o 9.8B
 
 - **Upstage Solar series**
+  - Solar Open 2 Preview
   - Solar Pro 3 (high / low)
 
 ※ Models that cannot recognize images were run with text only.

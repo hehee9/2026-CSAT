@@ -263,6 +263,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Kanana-o 9.8B
 
 - **Upstage Solar 시리즈**
+  - Solar Open 2 Preview
   - Solar Pro 3 (high / low)
 
 ※ 이미지 인식이 불가능한 모델은 텍스트로만 진행했습니다.
