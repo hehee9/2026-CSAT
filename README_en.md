@@ -159,6 +159,7 @@ Therefore, **performance may differ from official website or app results.**
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
 
 - **xAI Grok series**
+  - Grok 4.5 (high)
   - Grok 4.3
   - Grok 4.1 Fast (Thinking / Non-Thinking)
   - Grok 4 Fast (Thinking)
@@ -237,6 +238,7 @@ Therefore, **performance may differ from official website or app results.**
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
 
 - **xAI Grok series**
+  - Grok 4.5 (high)
   - Grok 4.3 (Thinking / Non-Thinking)
 
 - **DeepSeek series**

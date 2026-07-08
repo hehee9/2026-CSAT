@@ -159,6 +159,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
 
 - **xAI Grok 시리즈**
+  - Grok 4.5 (high)
   - Grok 4.3
   - Grok 4.1 Fast (Thinking / Non-Thinking)
   - Grok 4 Fast (Thinking)
@@ -237,6 +238,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Claude Haiku 4.5 (32K Thinking / Non-Thinking)
 
 - **xAI Grok 시리즈**
+  - Grok 4.5 (high)
   - Grok 4.3 (Thinking / Non-Thinking)
 
 - **DeepSeek 시리즈**
