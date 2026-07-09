@@ -4612,11 +4612,11 @@
       }
     },
     "Grok 4.5 (high)": {
-      "total_input_tokens": 143157,
-      "total_output_tokens": 381441,
-      "total_tokens": 524598,
+      "total_input_tokens": 171682,
+      "total_output_tokens": 374675,
+      "total_tokens": 546357,
       "question_count": 13,
-      "last_updated": "2026-07-09 03:54:52",
+      "last_updated": "2026-07-09 22:05:57",
       "sections": {
         "한국사-공통": {
           "input_tokens": 17308,
@@ -4668,14 +4668,14 @@
         },
         "탐구-화학1": {
           "input_tokens": 16971,
-          "output_tokens": 32225,
-          "total_tokens": 49196,
+          "output_tokens": 24445,
+          "total_tokens": 41416,
           "request_count": 1
         },
         "탐구-물리1": {
-          "input_tokens": 0,
-          "output_tokens": 0,
-          "total_tokens": 0,
+          "input_tokens": 28525,
+          "output_tokens": 1014,
+          "total_tokens": 29539,
           "request_count": 1
         },
         "탐구-생명1": {
