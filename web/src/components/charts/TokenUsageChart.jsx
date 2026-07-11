@@ -125,11 +125,13 @@ function TokenBarShape(props) {
     <g>
       {flags.postExamKnowledgeCutoff && (
         <rect
-          x={x - 0.5}
-          y={y - 0.5}
-          width={width + 1}
-          height={height + 1}
-          fill={color}
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill="none"
+          stroke={color}
+          strokeWidth={1.5}
           opacity={0.9}
           filter="url(#token-post-exam-cutoff-glow)"
         />

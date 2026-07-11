@@ -44,6 +44,7 @@ const MODEL_DISPLAY_NAMES = {
  * @brief 수능 이후 지식 컷오프 모델 패턴
  */
 const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [
+  /^GPT-5\.6\b/,
   /^GPT-5\.5\b/,
   /^Claude Opus 4\.8\b/,
   /^Claude Opus 4\.7\b/,
