@@ -145,7 +145,7 @@
   },
   "models": {
     "noVision": "No multimodal support",
-    "nonStandard": "Only wrong answers from high retested with xhigh",
+    "nonStandard": "Only wrong answers from high retested with higher reasoning",
     "postExamKnowledgeCutoff": "Possible exposure to exam content",
     "webServiceNoTools": "Web service environment with tools disabled"
   },

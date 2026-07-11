@@ -4,6 +4,21 @@
  */
 
 const PARTIAL_BENCHMARK_MODELS = {
+  'GPT-5.6 Sol (max*)': {
+    isPartialBenchmark: true,
+    displaySuffix: '*',
+    descriptionKey: 'models.partialWrongOnly'
+  },
+  'GPT-5.6 Terra (max*)': {
+    isPartialBenchmark: true,
+    displaySuffix: '*',
+    descriptionKey: 'models.partialWrongOnly'
+  },
+  'GPT-5.6 Luna (max*)': {
+    isPartialBenchmark: true,
+    displaySuffix: '*',
+    descriptionKey: 'models.partialWrongOnly'
+  },
   'GPT-5.5 (xhigh*)': {
     isPartialBenchmark: true,
     displaySuffix: '*',

@@ -112,9 +112,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ### 기본
 
 - **OpenAI GPT 시리즈**
-  - ~~GPT-5.6 Sol (max* / high / none)~~
-  - ~~GPT-5.6 Terra (xhigh* / high / none)~~
-  - ~~GPT-5.6 Luna (xhigh / none)~~
+  - GPT-5.6 Sol (max* / high / none)
+  - GPT-5.6 Terra (max* / high / none)
+  - GPT-5.6 Luna (max* / high / none)
   - GPT-5.5 (xhigh* / high / none)
   - GPT-5.5 Instant
   - GPT-5.4 (xhigh* / high / none)
@@ -211,6 +211,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ### 고난도
 
 - **OpenAI GPT 시리즈**
+  - GPT-5.6 Sol (high / none)
+  - GPT-5.6 Terra (high / none)
+  - GPT-5.6 Luna (high / none)
   - GPT-5.5 (high / none)
   - GPT-5.5 Pro (xhigh, GPTs)
   - GPT-5.4 mini (xhigh / none)

@@ -685,6 +685,9 @@ class SyncManager:
     """동기화 관리"""
 
     WRONG_ONLY_BASE_MODELS = {
+        'GPT-5.6 Sol (max*)': 'GPT-5.6 Sol (high)',
+        'GPT-5.6 Terra (max*)': 'GPT-5.6 Terra (high)',
+        'GPT-5.6 Luna (max*)': 'GPT-5.6 Luna (high)',
         'GPT-5.5 (xhigh*)': 'GPT-5.5 (high)',
         'GPT-5.4 (xhigh*)': 'GPT-5.4 (high)',
         'Claude Opus 4.7 (max*)': 'Claude Opus 4.7 (high)',
