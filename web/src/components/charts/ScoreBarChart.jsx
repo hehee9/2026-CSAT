@@ -390,7 +390,7 @@ export default function ScoreBarChart({
 }) {
   const { t } = useTranslation()
   const { isDark: darkMode } = useTheme()
-  const { ref, exportImage } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
+  const { ref, exportImage, isExporting } = useExportImage({ exportWidth: README_EXPORT_WIDTH })
   const [showLabels, setShowLabels] = useState(true)
 
   // 모바일 감지
@@ -491,6 +491,13 @@ export default function ScoreBarChart({
   // 데스크톱: 세로 막대 차트 (TokenUsageChart 스타일)
   // 모델 수에 따른 레이블 글자 크기 (적을수록 크게)
   const labelFontSize = data.length <= 15 ? 12 : 10
+  const desktopChartMargin = {
+    top: 30,
+    right: 30,
+    left: 20,
+    bottom: isExporting ? 20 : 100
+  }
+  const desktopXAxisHeight = isExporting ? 135 : 100
 
   return (
     <div ref={ref} className="w-full">
@@ -549,7 +556,7 @@ export default function ScoreBarChart({
           <BarChart
             key={`bestWorst-${data.map(d => d.model).join(',')}`}
             data={data}
-            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            margin={desktopChartMargin}
             onMouseMove={(state) => {
               if (state?.activeTooltipIndex !== undefined) {
                 const model = data[state.activeTooltipIndex]?.model
@@ -569,7 +576,7 @@ export default function ScoreBarChart({
               tick={{ fontSize: 11, fill: xTickColor }}
               tickLine={false}
               axisLine={{ stroke: axisColor }}
-              height={100}
+              height={desktopXAxisHeight}
             />
             <YAxis
               domain={[0, computedMaxScore]}
@@ -647,7 +654,7 @@ export default function ScoreBarChart({
           <BarChart
             key={`image-${viewMode}-${data.map(d => d.model).join(',')}`}
             data={data}
-            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            margin={desktopChartMargin}
             onMouseMove={(state) => {
               if (state?.activeTooltipIndex !== undefined) {
                 const model = data[state.activeTooltipIndex]?.model
@@ -667,7 +674,7 @@ export default function ScoreBarChart({
               tick={{ fontSize: 11, fill: xTickColor }}
               tickLine={false}
               axisLine={{ stroke: axisColor }}
-              height={100}
+              height={desktopXAxisHeight}
             />
             <YAxis
               domain={[0, 100]}
@@ -725,7 +732,7 @@ export default function ScoreBarChart({
           <BarChart
             key={data.map(d => d.model).join(',')}
             data={data}
-            margin={{ top: 30, right: 30, left: 20, bottom: 100 }}
+            margin={desktopChartMargin}
             onMouseMove={(state) => {
               if (state?.activeTooltipIndex !== undefined) {
                 const model = data[state.activeTooltipIndex]?.model
@@ -745,7 +752,7 @@ export default function ScoreBarChart({
               tick={{ fontSize: 11, fill: xTickColor }}
               tickLine={false}
               axisLine={{ stroke: axisColor }}
-              height={100}
+              height={desktopXAxisHeight}
             />
             <YAxis
               domain={[0, computedMaxScore]}
