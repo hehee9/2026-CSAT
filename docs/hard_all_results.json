@@ -143137,13 +143137,13 @@
     "subject": "생명1",
     "section": "탐구",
     "model_name": "GPT-5.6 Sol Pro (high)",
-    "score": 47,
+    "score": 50,
     "total_points": 50,
-    "correct_count": 19,
+    "correct_count": 20,
     "total_questions": 20,
     "token_usage": {
-      "input_tokens": 170555,
-      "output_tokens": 62220
+      "input_tokens": 162641,
+      "output_tokens": 52583
     },
     "price": {
       "input": 5,
@@ -143314,11 +143314,11 @@
       },
       {
         "question_number": 19,
-        "extracted_answer": -1,
+        "extracted_answer": 5,
         "correct_answer": 5,
-        "is_correct": false,
+        "is_correct": true,
         "points": 3,
-        "answer_status": "no_answer",
+        "answer_status": "answered",
         "provider_stop_reason": null
       },
       {
