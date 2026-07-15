@@ -211,8 +211,11 @@ Therefore, **performance may differ from official website or app results.**
 ### Hard Mode
 
 - **OpenAI GPT series**
+  - GPT-5.6 Sol Pro (high)
   - GPT-5.6 Sol (high / none)
+  - GPT-5.6 Terra Pro (high)
   - GPT-5.6 Terra (high / none)
+  - GPT-5.6 Luna Pro (high)
   - GPT-5.6 Luna (high / none)
   - GPT-5.5 (high / none)
   - GPT-5.5 Pro (xhigh, GPTs)

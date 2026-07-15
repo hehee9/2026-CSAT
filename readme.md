@@ -211,8 +211,11 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 ### 고난도
 
 - **OpenAI GPT 시리즈**
+  - GPT-5.6 Sol Pro (high)
   - GPT-5.6 Sol (high / none)
+  - GPT-5.6 Terra Pro (high)
   - GPT-5.6 Terra (high / none)
+  - GPT-5.6 Luna Pro (high)
   - GPT-5.6 Luna (high / none)
   - GPT-5.5 (high / none)
   - GPT-5.5 Pro (xhigh, GPTs)
