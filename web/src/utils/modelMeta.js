@@ -46,6 +46,8 @@ const MODEL_DISPLAY_NAMES = {
 const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [
   /^GPT-5\.6\b/,
   /^GPT-5\.5\b/,
+  /^Gemini 3\.6 Flash\b/,
+  /^Gemini 3\.5 Flash-Lite\b/,
   /^Claude Fable 5\b/,
   /^Claude Opus 4\.8\b/,
   /^Claude Opus 4\.7\b/,
