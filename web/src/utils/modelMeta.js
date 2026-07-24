@@ -49,6 +49,7 @@ const POST_EXAM_KNOWLEDGE_CUTOFF_PATTERNS = [
   /^Gemini 3\.6 Flash\b/,
   /^Gemini 3\.5 Flash-Lite\b/,
   /^Claude Fable 5\b/,
+  /^Claude Opus 5\b/,
   /^Claude Opus 4\.8\b/,
   /^Claude Opus 4\.7\b/,
   /^Claude Sonnet 5\b/,

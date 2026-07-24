@@ -244,6 +244,7 @@ Therefore, **performance may differ from official website or app results.**
 
 - **Anthropic Claude series**
   - Claude Fable 5 (high)
+  - Claude Opus 5 (high / none)
   - Claude Sonnet 5 (high / none)
   - Claude Opus 4.8 (high / none)
   - Claude Sonnet 4.6 (high / none)

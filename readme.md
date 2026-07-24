@@ -243,6 +243,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 
 - **Anthropic Claude 시리즈**
   - Claude Fable 5 (high)
+  - Claude Opus 5 (high / none)
   - Claude Sonnet 5 (high / none)
   - Claude Opus 4.8 (high / none)
   - Claude Sonnet 4.6 (high / none)
