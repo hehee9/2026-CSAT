@@ -24,6 +24,7 @@ export const MODEL_COLORS = {
   Qwen: '#FF6A00',      // Alibaba - 주황색
   Kakao: '#FEE500',     // Kakao - 노란색
   MiniMax: '#E2167E',   // MiniMax - 로고 핑크색
+  Motif: '#00A6A6',     // Motif Technologies - 청록색
   default: '#6B7280'    // 기타 - 회색
 }
 
@@ -46,6 +47,7 @@ export const VENDORS = [
   { id: 'alibaba', name: 'Alibaba', pattern: /qwen/i, color: MODEL_COLORS.Qwen },
   { id: 'kakao', name: 'Kakao', pattern: /kanana/i, color: MODEL_COLORS.Kakao },
   { id: 'minimax', name: 'MiniMax', pattern: /minimax/i, color: MODEL_COLORS.MiniMax },
+  { id: 'motif', name: 'Motif Technologies', pattern: /motif/i, color: MODEL_COLORS.Motif },
   { id: 'other', name: '기타', pattern: null, color: MODEL_COLORS.default }
 ]
 
@@ -151,6 +153,9 @@ export function getModelColor(modelName) {
   }
   if (name.includes('minimax')) {
     return MODEL_COLORS.MiniMax
+  }
+  if (name.includes('motif')) {
+    return MODEL_COLORS.Motif
   }
 
   return MODEL_COLORS.default
