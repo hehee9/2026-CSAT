@@ -172,6 +172,7 @@ Therefore, **performance may differ from official website or app results.**
   - Mistral Small 4 (Thinking / Non-Thinking)
 
 - **DeepSeek series**
+  - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (None / Max)
   - DeepSeek V4 Pro (None / Max)
   - DeepSeek V3.2 Speciale
@@ -204,8 +205,12 @@ Therefore, **performance may differ from official website or app results.**
   - Kanana-o 9.8B
 
 - **Upstage Solar series**
+  - Solar Open 2 Preview
   - Solar Pro 3 0126 (high / low)
   - Solar Pro 3 (high / low)
+
+- **Motif series**
+  - Motif 12.7B (Thinking)
 
 ※ * GPT-5.x (xhigh) and Claude Opus 4.7 (max) were retested only on problems they missed at high. This approach was used because the time and cost became too large relative to the performance gain.
 
@@ -255,6 +260,7 @@ Therefore, **performance may differ from official website or app results.**
   - Grok 4.3 (Thinking / Non-Thinking)
 
 - **DeepSeek series**
+  - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
   - DeepSeek V4 Pro (Max / None)
 
@@ -278,7 +284,6 @@ Therefore, **performance may differ from official website or app results.**
   - Kanana-o 9.8B
 
 - **Upstage Solar series**
-  - Solar Open 2 Preview
   - Solar Pro 3 (high / low)
 
 ※ Models that cannot recognize images were run with text only.

@@ -35,6 +35,50 @@ NO_ANSWER = -1
 REFUSAL_MARKERS = {"-2", "(검열)", "검열", "Refusal", "refusal"}
 DEFAULT_EXCEL_PATH = Path('2026 수능 LLM 풀이.xlsx')
 DEFAULT_HARD_EXCEL_PATH = Path('2026 수능 LLM 풀이 hard.xlsx')
+DEFAULT_MODEL_METADATA_PATH = Path(__file__).resolve().parent / 'web' / 'model_metadata.json'
+
+
+def _sync_model_metadata(model_config: Dict[str, Dict],
+                         metadata_path: Path = DEFAULT_MODEL_METADATA_PATH) -> bool:
+    """
+    @brief 모델 설정의 시각 입력 지원 여부를 대시보드 메타데이터에 동기화한다.
+
+    @param model_config 모델 이름을 키로 하는 설정 매핑
+    @param metadata_path 대시보드 메타데이터 파일 경로
+    @return 파일 내용이 변경되었는지 여부
+    """
+    if not model_config:
+        return False
+
+    if metadata_path.exists():
+        original_text = metadata_path.read_text(encoding='utf-8')
+        metadata = json.loads(original_text)
+        if not isinstance(metadata, dict):
+            raise ValueError(f"모델 메타데이터가 JSON 객체가 아닙니다: {metadata_path}")
+    else:
+        original_text = ''
+        metadata = {}
+
+    for model_name, config in model_config.items():
+        if model_name in metadata and not isinstance(metadata[model_name], dict):
+            raise ValueError(f"모델 메타데이터 항목이 JSON 객체가 아닙니다: {model_name}")
+
+        if config.get('supports_vision') is False:
+            metadata.setdefault(model_name, {})['supportsVision'] = False
+            continue
+
+        model_metadata = metadata.get(model_name)
+        if model_metadata and 'supportsVision' in model_metadata:
+            del model_metadata['supportsVision']
+            if not model_metadata:
+                del metadata[model_name]
+
+    updated_text = f"{json.dumps(metadata, ensure_ascii=False, indent=2)}\n"
+    if updated_text == original_text:
+        return False
+
+    metadata_path.write_text(updated_text, encoding='utf-8')
+    return True
 
 
 def normalize_answer_value(answer):
@@ -1110,6 +1154,9 @@ class SyncManager:
         # 저장
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(all_data, f, ensure_ascii=False, indent=2)
+
+        if _sync_model_metadata(self._model_config):
+            print(f"모델 메타데이터 동기화 완료: {DEFAULT_MODEL_METADATA_PATH}")
 
         print(f"내보내기 완료: {output_path} ({len(all_data)}개 항목)")
         return output_path
