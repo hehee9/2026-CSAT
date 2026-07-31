@@ -65,5 +65,26 @@
   "GPT-5.5 Pro": {
     "supportsVision": true,
     "webServiceNoTools": true
+  },
+  "DeepSeek V4 Flash 0731 (None)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Flash 0731 (Max)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 (0126, high)": {
+    "supportsVision": false
+  },
+  "Solar Pro 3 (0126, low)": {
+    "supportsVision": false
+  },
+  "GLM-5.2 (Thinking)": {
+    "supportsVision": false
+  },
+  "GLM-5.2 (Non-Thinking)": {
+    "supportsVision": false
+  },
+  "Motif 12.7B (Thinking)": {
+    "supportsVision": false
   }
 }
