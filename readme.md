@@ -181,7 +181,6 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - DeepSeek V3.2 Exp (Non-Thinking)
 
 - **Moonshot AI Kimi 시리즈**
-  - Kimi K3 (high / Non-Thinking)
   - Kimi K2.6 (Thinking / Non-Thinking)
   - Kimi K2.5 (Thinking / Non-Thinking)
 
@@ -277,7 +276,6 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - GLM-5.2 (Thinking / Non-Thinking)
 
 - **Moonshot AI Kimi 시리즈**
-  - Kimi K3 (high / Non-Thinking)
   - Kimi K2.6 (Thinking / Non-Thinking)
 
 - **LGAI EXAONE 시리즈**

@@ -182,7 +182,6 @@ Therefore, **performance may differ from official website or app results.**
   - DeepSeek V3.2 Exp (Non-Thinking)
 
 - **Moonshot AI Kimi series**
-  - Kimi K3 (high / Non-Thinking)
   - Kimi K2.6 (Thinking / Non-Thinking)
   - Kimi K2.5 (Thinking / Non-Thinking)
 
@@ -278,7 +277,6 @@ Therefore, **performance may differ from official website or app results.**
   - GLM-5.2 (Thinking / Non-Thinking)
 
 - **Moonshot AI Kimi series**
-  - Kimi K3 (high / Non-Thinking)
   - Kimi K2.6 (Thinking / Non-Thinking)
 
 - **LGAI EXAONE series**
