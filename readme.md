@@ -167,6 +167,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Grok 4 Fast (Thinking)
   - Grok 4
 
+- **Meta Muse Spark 시리즈**
+  - Muse Spark 1.2 (minimal / high)
+
 - **Mistral 시리즈**
   - Mistral Small 4 (Thinking / Non-Thinking)
 
@@ -205,7 +208,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Kanana-o 9.8B
 
 - **Upstage Solar 시리즈**
-  - Solar Open 2 Preview
+  - Solar Pro 4 (none / max)
   - Solar Pro 3 0126 (high / low)
   - Solar Pro 3 (high / low)
 
@@ -259,6 +262,9 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Grok 4.5 (high)
   - Grok 4.3 (Thinking / Non-Thinking)
 
+- **Meta Muse Spark 시리즈**
+  - Muse Spark 1.2 (minimal / high)
+
 - **DeepSeek 시리즈**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
@@ -285,6 +291,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Kanana-o 9.8B
 
 - **Upstage Solar 시리즈**
+  - Solar Pro 4 (none / max)
   - Solar Pro 3 (high / low)
 
 ※ 이미지 인식이 불가능한 모델은 텍스트로만 진행했습니다.

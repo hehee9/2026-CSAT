@@ -168,6 +168,9 @@ Therefore, **performance may differ from official website or app results.**
   - Grok 4 Fast (Thinking)
   - Grok 4
 
+- **Meta Muse Spark series**
+  - Muse Spark 1.2 (minimal / high)
+
 - **Mistral series**
   - Mistral Small 4 (Thinking / Non-Thinking)
 
@@ -206,7 +209,7 @@ Therefore, **performance may differ from official website or app results.**
   - Kanana-o 9.8B
 
 - **Upstage Solar series**
-  - Solar Open 2 Preview
+  - Solar Pro 4 (none / max)
   - Solar Pro 3 0126 (high / low)
   - Solar Pro 3 (high / low)
 
@@ -260,6 +263,9 @@ Therefore, **performance may differ from official website or app results.**
   - Grok 4.5 (high)
   - Grok 4.3 (Thinking / Non-Thinking)
 
+- **Meta Muse Spark series**
+  - Muse Spark 1.2 (minimal / high)
+
 - **DeepSeek series**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
@@ -286,6 +292,7 @@ Therefore, **performance may differ from official website or app results.**
   - Kanana-o 9.8B
 
 - **Upstage Solar series**
+  - Solar Pro 4 (none / max)
   - Solar Pro 3 (high / low)
 
 ※ Models that cannot recognize images were run with text only.

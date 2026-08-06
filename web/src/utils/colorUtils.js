@@ -25,6 +25,7 @@ export const MODEL_COLORS = {
   Kakao: '#FEE500',     // Kakao - 노란색
   MiniMax: '#E2167E',   // MiniMax - 로고 핑크색
   Motif: '#00A6A6',     // Motif Technologies - 청록색
+  Meta: '#0668E1',      // Meta - 파란색
   default: '#6B7280'    // 기타 - 회색
 }
 
@@ -48,6 +49,7 @@ export const VENDORS = [
   { id: 'kakao', name: 'Kakao', pattern: /kanana/i, color: MODEL_COLORS.Kakao },
   { id: 'minimax', name: 'MiniMax', pattern: /minimax/i, color: MODEL_COLORS.MiniMax },
   { id: 'motif', name: 'Motif Technologies', pattern: /motif/i, color: MODEL_COLORS.Motif },
+  { id: 'meta', name: 'Meta', pattern: /^Muse Spark\b/i, color: MODEL_COLORS.Meta },
   { id: 'other', name: '기타', pattern: null, color: MODEL_COLORS.default }
 ]
 
@@ -156,6 +158,9 @@ export function getModelColor(modelName) {
   }
   if (name.includes('motif')) {
     return MODEL_COLORS.Motif
+  }
+  if (/^muse spark\b/.test(name)) {
+    return MODEL_COLORS.Meta
   }
 
   return MODEL_COLORS.default
