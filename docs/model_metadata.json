@@ -95,5 +95,11 @@
   },
   "Solar Pro 4 (max)": {
     "supportsVision": false
+  },
+  "EXAONE 4.0 32B (Thinking)": {
+    "supportsVision": false
+  },
+  "EXAONE 4.0 32B (Non-Thinking)": {
+    "supportsVision": false
   }
 }

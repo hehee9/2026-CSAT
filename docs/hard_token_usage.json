@@ -4526,10 +4526,10 @@
     },
     "Claude Fable 5 (high)": {
       "total_input_tokens": 236856,
-      "total_output_tokens": 149493,
-      "total_tokens": 386349,
+      "total_output_tokens": 219255,
+      "total_tokens": 456111,
       "question_count": 13,
-      "last_updated": "2026-07-02 04:48:59",
+      "last_updated": "2026-08-07 17:10:32",
       "sections": {
         "수학-확통": {
           "input_tokens": 3956,
@@ -4543,22 +4543,10 @@
           "total_tokens": 18798,
           "question_count": 1
         },
-        "탐구-사회문화": {
-          "input_tokens": 18181,
-          "output_tokens": 215,
-          "total_tokens": 18396,
-          "question_count": 1
-        },
         "영어-공통": {
           "input_tokens": 22118,
           "output_tokens": 4170,
           "total_tokens": 26288,
-          "question_count": 1
-        },
-        "탐구-생명1": {
-          "input_tokens": 25176,
-          "output_tokens": 5,
-          "total_tokens": 25181,
           "question_count": 1
         },
         "한국사-공통": {
@@ -4607,6 +4595,18 @@
           "input_tokens": 37882,
           "output_tokens": 56313,
           "total_tokens": 94195,
+          "question_count": 1
+        },
+        "탐구-사회문화": {
+          "input_tokens": 18181,
+          "output_tokens": 24500,
+          "total_tokens": 42681,
+          "question_count": 1
+        },
+        "탐구-생명1": {
+          "input_tokens": 25176,
+          "output_tokens": 45482,
+          "total_tokens": 70658,
           "question_count": 1
         }
       }
