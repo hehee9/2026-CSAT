@@ -6502,15 +6502,15 @@
         },
         "탐구-생명1": {
           "input_tokens": 25210,
-          "output_tokens": 725,
-          "question_count": 20,
-          "total_tokens": 25935
+          "output_tokens": 56581,
+          "total_tokens": 81791,
+          "question_count": 20
         },
         "탐구-사회문화": {
           "input_tokens": 18215,
-          "output_tokens": 26926,
-          "question_count": 20,
-          "total_tokens": 45141
+          "output_tokens": 28143,
+          "total_tokens": 46358,
+          "question_count": 20
         },
         "한국사-공통": {
           "input_tokens": 22935,
@@ -6520,10 +6520,10 @@
         }
       },
       "total_input_tokens": 317320,
-      "total_output_tokens": 263890,
-      "total_tokens": 581210,
+      "total_output_tokens": 320963,
+      "total_tokens": 638283,
       "question_count": 247,
-      "last_updated": "2026-06-10 02:38:04"
+      "last_updated": "2026-08-07 17:27:16"
     },
     "Gemini 3.1 Flash-Lite (high)": {
       "total_input_tokens": 193153,
@@ -8958,6 +8958,180 @@
           "output_tokens": 11475,
           "total_tokens": 30764,
           "question_count": 20
+        }
+      }
+    },
+    "EXAONE 4.0 32B (Non-Thinking)": {
+      "total_input_tokens": 15993,
+      "total_output_tokens": 15451,
+      "total_tokens": 31444,
+      "question_count": 27,
+      "last_updated": "2026-08-07 01:43:17",
+      "sections": {
+        "국어-언매": {
+          "input_tokens": 6113,
+          "output_tokens": 1799,
+          "total_tokens": 7912,
+          "question_count": 6
+        },
+        "수학-공통": {
+          "input_tokens": 79,
+          "output_tokens": 1754,
+          "total_tokens": 1833,
+          "question_count": 1
+        },
+        "한국사-공통": {
+          "input_tokens": 514,
+          "output_tokens": 474,
+          "total_tokens": 988,
+          "question_count": 2
+        },
+        "영어-공통": {
+          "input_tokens": 914,
+          "output_tokens": 519,
+          "total_tokens": 1433,
+          "question_count": 3
+        },
+        "탐구-물리1": {
+          "input_tokens": 671,
+          "output_tokens": 2227,
+          "total_tokens": 2898,
+          "question_count": 3
+        },
+        "탐구-화학1": {
+          "input_tokens": 435,
+          "output_tokens": 3994,
+          "total_tokens": 4429,
+          "question_count": 2
+        },
+        "탐구-생명1": {
+          "input_tokens": 305,
+          "output_tokens": 296,
+          "total_tokens": 601,
+          "question_count": 1
+        },
+        "탐구-사회문화": {
+          "input_tokens": 1157,
+          "output_tokens": 2591,
+          "total_tokens": 3748,
+          "question_count": 3
+        },
+        "국어-화작": {
+          "input_tokens": 5805,
+          "output_tokens": 1797,
+          "total_tokens": 7602,
+          "question_count": 6
+        }
+      }
+    },
+    "EXAONE 4.0 32B (Thinking)": {
+      "total_input_tokens": 17934,
+      "total_output_tokens": 43087,
+      "total_tokens": 61021,
+      "question_count": 27,
+      "last_updated": "2026-08-07 01:43:17",
+      "sections": {
+        "국어-언매": {
+          "input_tokens": 9256,
+          "output_tokens": 16302,
+          "total_tokens": 25558,
+          "question_count": 8
+        },
+        "국어-공통": {
+          "input_tokens": 690,
+          "output_tokens": 580,
+          "total_tokens": 1270,
+          "question_count": 1
+        },
+        "수학-공통": {
+          "input_tokens": 370,
+          "output_tokens": 4096,
+          "total_tokens": 4466,
+          "question_count": 2
+        },
+        "수학-확통": {
+          "input_tokens": 172,
+          "output_tokens": 2048,
+          "total_tokens": 2220,
+          "question_count": 1
+        },
+        "수학-미적": {
+          "input_tokens": 103,
+          "output_tokens": 2048,
+          "total_tokens": 2151,
+          "question_count": 1
+        },
+        "한국사-공통": {
+          "input_tokens": 742,
+          "output_tokens": 2422,
+          "total_tokens": 3164,
+          "question_count": 3
+        },
+        "영어-공통": {
+          "input_tokens": 977,
+          "output_tokens": 3169,
+          "total_tokens": 4146,
+          "question_count": 3
+        },
+        "탐구-물리1": {
+          "input_tokens": 236,
+          "output_tokens": 2048,
+          "total_tokens": 2284,
+          "question_count": 1
+        },
+        "탐구-사회문화": {
+          "input_tokens": 260,
+          "output_tokens": 1800,
+          "total_tokens": 2060,
+          "question_count": 1
+        },
+        "국어-화작": {
+          "input_tokens": 5128,
+          "output_tokens": 8574,
+          "total_tokens": 13702,
+          "question_count": 6
+        }
+      }
+    },
+    "HyperCLOVAX SEED Think 32B (Non-Thinking)": {
+      "total_input_tokens": 7768,
+      "total_output_tokens": 1032,
+      "total_tokens": 8800,
+      "question_count": 8,
+      "last_updated": "2026-08-07 01:43:17",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 4351,
+          "output_tokens": 569,
+          "total_tokens": 4920,
+          "question_count": 5
+        },
+        "국어-언매": {
+          "input_tokens": 3417,
+          "output_tokens": 463,
+          "total_tokens": 3880,
+          "question_count": 3
+        }
+      }
+    },
+    "HyperCLOVAX SEED Think 32B (Thinking)": {
+      "total_input_tokens": 7293,
+      "total_output_tokens": 1303,
+      "total_tokens": 8596,
+      "question_count": 8,
+      "last_updated": "2026-08-07 01:43:17",
+      "sections": {
+        "국어-화작": {
+          "input_tokens": 4351,
+          "output_tokens": 793,
+          "total_tokens": 5144,
+          "question_count": 5
+        },
+        "국어-언매": {
+          "input_tokens": 2942,
+          "output_tokens": 510,
+          "total_tokens": 3452,
+          "question_count": 3
         }
       }
     }

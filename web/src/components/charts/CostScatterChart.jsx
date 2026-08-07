@@ -449,23 +449,35 @@ function getNiceRange(min, max, tickCount = 5) {
  * @return {Object} 로그 축 범위와 10진 눈금
  */
 function _getLogCostRange(min, max) {
-  let minExponent = Math.floor(Math.log10(min))
-  let maxExponent = Math.ceil(Math.log10(max))
-
-  // 모든 비용이 같은 자릿수에 있으면 축 너비를 확보한다.
-  if (minExponent === maxExponent) {
-    minExponent -= 1
-    maxExponent += 1
+  const multipliers = [1, 2, 5]
+  const _getLowerBound = (value) => {
+    const magnitude = 10 ** Math.floor(Math.log10(value))
+    const multiplier = [...multipliers].reverse().find(item => item <= value / magnitude)
+    return (multiplier ?? 0.5) * magnitude
+  }
+  const _getUpperBound = (value) => {
+    const magnitude = 10 ** Math.floor(Math.log10(value))
+    const multiplier = multipliers.find(item => item >= value / magnitude)
+    return (multiplier ?? 10) * magnitude
   }
 
-  const ticks = []
+  // 데이터와 점 라벨이 축 경계에 붙지 않도록 로그 공간에서 10% 여유를 둔다.
+  const minCost = _getLowerBound(min * 0.9)
+  const maxCost = _getUpperBound(max * 1.1)
+  const minExponent = Math.ceil(Math.log10(minCost))
+  const maxExponent = Math.floor(Math.log10(maxCost))
+
+  // 유동 경계와 그 사이의 10진 주요 눈금만 표시해 모바일 가독성을 유지한다.
+  const ticks = [minCost]
   for (let exponent = minExponent; exponent <= maxExponent; exponent += 1) {
-    ticks.push(10 ** exponent)
+    const tick = 10 ** exponent
+    if (tick > minCost && tick < maxCost) ticks.push(tick)
   }
+  ticks.push(maxCost)
 
   return {
-    min: 10 ** minExponent,
-    max: 10 ** maxExponent,
+    min: minCost,
+    max: maxCost,
     ticks
   }
 }
