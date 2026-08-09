@@ -203,6 +203,7 @@ Therefore, **performance may differ from official website or app results.**
   - Qwen3.5 9B (Thinking / Non-Thinking)
 
 - **LGAI EXAONE series**
+  - K-EXAONE 2.0 (Thinking / Non-Thinking)
   - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana series**
@@ -286,6 +287,7 @@ Therefore, **performance may differ from official website or app results.**
   - Kimi K2.6 (Thinking / Non-Thinking)
 
 - **LGAI EXAONE series**
+  - K-EXAONE 2.0 (Thinking / Non-Thinking)
   - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana series**

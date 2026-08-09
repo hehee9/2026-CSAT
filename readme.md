@@ -202,6 +202,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Qwen3.5 9B (Thinking / Non-Thinking)
 
 - **LGAI EXAONE 시리즈**
+  - K-EXAONE 2.0 (Thinking / Non-Thinking)
   - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana 시리즈**
@@ -285,6 +286,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Kimi K2.6 (Thinking / Non-Thinking)
 
 - **LGAI EXAONE 시리즈**
+  - K-EXAONE 2.0 (Thinking / Non-Thinking)
   - K-EXAONE (Thinking / Non-Thinking)
 
 - **Kakao Kanana 시리즈**
