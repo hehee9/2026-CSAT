@@ -40,5 +40,8 @@
     "globals": "^16.5.0",
     "playwright": "^1.56.1",
     "vite": "^7.2.4"
+  },
+  "overrides": {
+    "nanoid": "3.3.17"
   }
 }
