@@ -176,6 +176,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **DeepSeek 시리즈**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (None / Max)
+  - DeepSeek V4 Pro 0813 (Max / None)
   - DeepSeek V4 Pro (None / Max)
   - DeepSeek V3.2 Speciale
   - DeepSeek V3.2 (Thinking)
@@ -269,6 +270,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
 - **DeepSeek 시리즈**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
+  - DeepSeek V4 Pro 0813 (Max / None)
   - DeepSeek V4 Pro (Max / None)
 
 - **Alibaba Cloud Qwen 시리즈**

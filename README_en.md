@@ -177,6 +177,7 @@ Therefore, **performance may differ from official website or app results.**
 - **DeepSeek series**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (None / Max)
+  - DeepSeek V4 Pro 0813 (Max / None)
   - DeepSeek V4 Pro (None / Max)
   - DeepSeek V3.2 Speciale
   - DeepSeek V3.2 (Thinking)
@@ -270,6 +271,7 @@ Therefore, **performance may differ from official website or app results.**
 - **DeepSeek series**
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
+  - DeepSeek V4 Pro 0813 (Max / None)
   - DeepSeek V4 Pro (Max / None)
 
 - **Alibaba Cloud Qwen series**
