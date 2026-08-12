@@ -113,5 +113,11 @@
   },
   "K-EXAONE 2.0 (Non-Thinking)": {
     "supportsVision": false
+  },
+  "DeepSeek V4 Pro 0813 (None)": {
+    "supportsVision": false
+  },
+  "DeepSeek V4 Pro 0813 (Max)": {
+    "supportsVision": false
   }
 }
