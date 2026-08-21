@@ -175,6 +175,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Mistral Small 4 (Thinking / Non-Thinking)
 
 - **DeepSeek 시리즈**
+  - DeepSeek V4 Flash Vision Exp (None / Max)
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (None / Max)
   - DeepSeek V4 Pro 0813 (Max / None)
@@ -270,6 +271,7 @@ Readme에는 **주요 모델의 성적만**을 표기하고 있으니, **전체 
   - Muse Spark 1.2 (minimal / high)
 
 - **DeepSeek 시리즈**
+  - DeepSeek V4 Flash Vision Exp (None / Max)
   - DeepSeek V4 Flash 0731 (None / Max)
   - DeepSeek V4 Flash (Max / None)
   - DeepSeek V4 Pro 0813 (Max / None)
