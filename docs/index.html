@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>대시보드 주소 변경</title>
+  </head>
+  <body>
+    <main>
+      <h1>대시보드 주소가 변경되었습니다.</h1>
+      <p>새 대시보드로 이동합니다.</p>
+      <p><a id="destination" href="https://hehee9.github.io/CSAT-benchmark/">새 대시보드 열기</a></p>
+    </main>
+    <script>
+      const target = new URL("https://hehee9.github.io/CSAT-benchmark/");
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode");
+      params.set("mode", mode === "hard" ? "default" : "easy");
+      if (!params.has("exam")) params.set("exam", "csat-2026");
+      target.search = params.toString();
+      target.hash = window.location.hash;
+      document.getElementById("destination").href = target.href;
+      window.location.replace(target.href);
+    </script>
+  </body>
+</html>
